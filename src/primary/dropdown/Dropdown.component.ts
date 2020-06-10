@@ -1,19 +1,26 @@
 import { Component, Inject, Vue, Watch } from 'vue-property-decorator';
 
 import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
+import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { SelectionSource } from '@/domain/selection/SelectionSource';
 import { SelectionType } from '@/domain/selection/SelectionType';
 import { StateSummary } from '@/domain/state/StateSummary';
 import { AppStore } from '@/primary/app/AppStore';
+import { DropdownItem } from '@/primary/dropdown/DropdownItem';
 
 @Component
 export default class Dropdown extends Vue {
   text: string = '';
-  items: StateSummary[] | MunicipalitySummary[] = [];
+  items: DropdownItem[] = [];
   selectionType: SelectionType = SelectionType.STATE;
 
   @Inject()
   appStore!: () => AppStore;
+
+  @Watch('schoolSummaryList')
+  schoolSummaryListWatcher() {
+    this.items = this.schoolSummaryList;
+  }
 
   @Watch('selection')
   selectionWatcher() {
@@ -29,10 +36,19 @@ export default class Dropdown extends Vue {
         .getMunicipalitySummaryList()
         .filter(municipalitySummary => municipalitySummary.stateId === this.selection?.stateId);
     }
+
+    if (this.selection.type === SelectionType.MUNICIPALITY) {
+      this.selectionType = SelectionType.SCHOOL;
+      this.items = this.schoolSummaryList;
+    }
   }
 
   get selection() {
     return this.appStore().getSelection();
+  }
+
+  get schoolSummaryList() {
+    return this.appStore().getSchoolSummaryList();
   }
 
   get sortedItems() {
@@ -47,7 +63,7 @@ export default class Dropdown extends Vue {
     this.items = this.appStore().getStateSummaryList();
   }
 
-  selectItem(item: StateSummary | MunicipalitySummary | null) {
+  selectItem(item: StateSummary | MunicipalitySummary | SchoolSummary | null) {
     if (item === null) {
       this.appStore().select(null);
       return;
@@ -73,6 +89,15 @@ export default class Dropdown extends Vue {
         schoolId: '',
       });
       return;
+    }
+
+    if (this.selection && selection.type === SelectionType.SCHOOL) {
+      this.appStore().select({
+        ...selection,
+        stateId: this.selection?.stateId,
+        municipalityId: this.selection?.municipalityId,
+        schoolId: item.id.toString(),
+      });
     }
   }
 }

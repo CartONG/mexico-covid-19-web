@@ -1,6 +1,7 @@
 import { Store } from 'vuex';
 
 import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
+import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { Selection } from '@/domain/selection/Selection';
 import { StateSummary } from '@/domain/state/StateSummary';
 import { AppState } from '@/primary/app/storeOptions';
@@ -30,6 +31,14 @@ export class AppStore {
 
   getMunicipalitySummaryById(): { [key: string]: MunicipalitySummary } {
     return this.store.getters.municipalitySummaryById;
+  }
+
+  saveSchoolSummaryList(schoolSummaryList: SchoolSummary[]) {
+    return this.store.commit('setSchoolSummaryList', schoolSummaryList);
+  }
+
+  getSchoolSummaryList(): SchoolSummary[] {
+    return this.store.state.schoolSummaryList;
   }
 
   select(selection: Selection | null) {

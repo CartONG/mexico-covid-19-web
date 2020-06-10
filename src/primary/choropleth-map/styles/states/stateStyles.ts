@@ -13,16 +13,17 @@ export const enum stateStyleName {
 }
 
 const noFill = new Style({
-  stroke: new Stroke({ color: [77, 77, 77, 0.6], width: 4 }),
+  // stroke: new Stroke({ color: [77, 77, 77, 1], width: 3 }),
+  stroke: new Stroke({ color: [255, 255, 255, 1], width: 6 }),
   fill: new Fill({ color: [255, 255, 255, 0] }),
-  zIndex: 2,
+  zIndex: 4,
 });
 
 const toStyle = (color: number[]) =>
   new Style({
     stroke: new Stroke({ color: '#fff', width: 1 }),
     fill: new Fill({ color: [...color, 0.6] }),
-    zIndex: 1,
+    zIndex: 2,
   });
 
 export const stateStyles = {

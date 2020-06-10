@@ -12,6 +12,7 @@ import { storeOptions } from '@/primary/app/storeOptions';
 import { ConsoleLogger } from '@/secondary/ConsoleLogger';
 import { LocalFetcher } from '@/secondary/LocalFetcher';
 import { RestMunicipalityRepository } from '@/secondary/municipality/RestMunicipalityRepository';
+import { RestSchoolRepository } from '@/secondary/school/RestSchoolRepository';
 import { RestStateRepository } from '@/secondary/state/RestStateRepository';
 
 Vue.use(Buefy);
@@ -24,6 +25,7 @@ const logger = new ConsoleLogger(console); // eslint-disable-line no-console
 const fetcher = new LocalFetcher(localAxios);
 const stateRepository = new RestStateRepository(localAxios);
 const municipalityRepository = new RestMunicipalityRepository(localAxios);
+const schoolRepository = new RestSchoolRepository(localAxios);
 const store = new Store(storeOptions);
 const appStore = new AppStore(store);
 
@@ -35,5 +37,6 @@ new Vue({
     fetcher: () => fetcher,
     stateRepository: () => stateRepository,
     municipalityRepository: () => municipalityRepository,
+    schoolRepository: () => schoolRepository,
   },
 }).$mount('#app');

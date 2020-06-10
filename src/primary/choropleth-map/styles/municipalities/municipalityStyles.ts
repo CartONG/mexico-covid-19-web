@@ -15,14 +15,14 @@ export const enum municipalityStyleName {
 const noFill = new Style({
   stroke: new Stroke({ color: [77, 77, 77, 0.8], width: 3 }),
   fill: new Fill({ color: [255, 255, 255, 0] }),
-  zIndex: 2,
+  zIndex: 3,
 });
 
 const toStyle = (color: number[]) =>
   new Style({
     stroke: new Stroke({ color: '#fff', width: 1 }),
     fill: new Fill({ color: [...color, 0.5] }),
-    zIndex: 1,
+    zIndex: 2,
   });
 
 export const municipalityStyles = {
