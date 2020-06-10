@@ -23,4 +23,4 @@ deploy:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - rsync -avz --delete dist/ $SSH_USERNAME@$SSH_IP_ADDRESS:SSH_APP_PATH
+    - rsync -avz --delete dist/ $SSH_USERNAME@$SSH_IP_ADDRESS:$SSH_APP_PATH
