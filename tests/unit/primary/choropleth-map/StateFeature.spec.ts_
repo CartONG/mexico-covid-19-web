@@ -1,0 +1,35 @@
+import { Feature } from 'ol';
+
+import { StateSummary } from '@/domain/state/StateSummary';
+import { RateType } from '@/primary/choropleth-map/RateType';
+import { toStateFeature } from '@/primary/choropleth-map/StateFeature';
+
+// const stateSummary: StateSummary = { id: '01', name: 'test', studentAbsenceRate }
+
+let rawFeature: Feature;
+let stateSummary: StateSummary;
+
+describe('StateFeature', () => {
+  beforeEach(() => {
+    rawFeature = new Feature();
+    rawFeature.setId('0');
+
+    stateSummary = {
+      id: '0',
+      name: 'test',
+      studentAbsenceRate: 0.5,
+      teacherAbsenceRate: 0.5,
+      adminAbsenceRate: 0.5,
+    };
+  });
+
+  it('should set state feature properties', () => {
+    const newFeature = toStateFeature(rawFeature, { '0': stateSummary });
+    expect(newFeature.get('name')).toBe('test');
+    expect(newFeature.get('rate')).toBe(RateType.MEDIUM);
+  });
+
+  it('should set rate to unknown rate if no summary is found for the feature', () => {
+    expect(toStateFeature(rawFeature, {}).get('rate')).toBe(RateType.UNKNOWN);
+  });
+});
