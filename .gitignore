@@ -2,12 +2,10 @@
 node_modules
 /dist
 
-/tests
+/tests/
 /tests/e2e/videos/
 /tests/e2e/screenshots/
-/coverage
-/public/data/states.json
-/public/data/municipalities.json
+/coverage/
 
 # local env files
 .env.local
