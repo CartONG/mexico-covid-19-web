@@ -36,6 +36,16 @@ html {
   overflow: auto;
 }
 
+#recenter-control {
+  top: 90px;
+  left: 10px;
+}
+
+#refresh-control {
+  top: 136px;
+  left: 10px;
+}
+
 @import "ol.overrides";
 @import "map";
 @import "sidebar";

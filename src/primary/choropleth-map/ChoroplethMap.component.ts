@@ -1,4 +1,5 @@
 import { Feature, Map, MapBrowserEvent, Overlay } from 'ol';
+import Control from 'ol/control/Control';
 import { getCenter } from 'ol/extent';
 import { TopoJSON } from 'ol/format';
 import VectorLayer from 'ol/layer/Vector';
@@ -35,6 +36,7 @@ export default class ChoroplethMap extends Vue {
   statesLayer = new VectorLayer(statesLayerOptions);
   popup = new Overlay(popupOptions);
   schoolItems: { id: string; text: string }[] = [];
+  extent: [number, number, number, number] = [0, 0, 0, 0];
 
   @Inject()
   private appStore!: () => AppStore;
@@ -88,6 +90,12 @@ export default class ChoroplethMap extends Vue {
   }
 
   mounted() {
+    const recenterControl = new Control({ element: document.getElementById('recenter-control') || undefined });
+    const refreshControl = new Control({ element: document.getElementById('refresh-control') || undefined });
+
+    this.map.addControl(recenterControl);
+    this.map.addControl(refreshControl);
+
     this.map.setTarget('map');
     this.popup.setElement(document.getElementById('popup') || undefined);
 
@@ -99,8 +107,8 @@ export default class ChoroplethMap extends Vue {
         this.adaptToStateDomain();
         this.adaptToMunicipalityDomain();
 
-        const sourceExtent = this.statesLayer.getSource().getExtent();
-        this.map.getView().fit(sourceExtent, { padding: [20, 20, 20, 20] });
+        this.extent = this.statesLayer.getSource().getExtent();
+        this.fitView();
         this.map.getView().setMinZoom(this.map.getView().getZoom());
 
         this.state = ComponentState.SUCCESS;
@@ -233,5 +241,14 @@ export default class ChoroplethMap extends Vue {
       });
       this.closePopup();
     }
+  }
+
+  private fitView(duration: number = 0) {
+    this.map.getView().fit(this.extent, { padding: [20, 20, 20, 20], duration });
+  }
+
+  private refreshView() {
+    this.appStore().select(null);
+    this.fitView(1000);
   }
 }
