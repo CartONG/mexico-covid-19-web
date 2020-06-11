@@ -54,6 +54,10 @@ export default class ChoroplethMap extends Vue {
 
   @Watch('selection')
   selectionWatcher() {
+    if (!this.selection) {
+      this.refreshView();
+    }
+
     if (this.selection && this.selection.type === SelectionType.STATE) {
       const feature = this.statesLayer.getSource().getFeatureById(this.selection.stateId);
       this.map.getView().fit(feature.getGeometry().getExtent(), { padding: [20, 20, 20, 20], duration: 1000 });

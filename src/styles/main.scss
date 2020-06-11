@@ -3,8 +3,12 @@
 
 $primary: #d4c19c;
 $secondary: #9d2449;
+$tertiary: #621132;
+
 $primary-invert: findColorInvert($primary);
 $secondary-invert: findColorInvert($secondary);
+$tertiary-invert: findColorInvert($secondary);
+
 
 $colors: (
   "white": ($white, $black),
@@ -13,6 +17,7 @@ $colors: (
   "dark": ($dark, $dark-invert),
   "primary": ($primary, $primary-invert),
   "secondary": ($secondary, $secondary-invert),
+  "tertiary": ($tertiary, $tertiary-invert),
   "info": ($info, $info-invert),
   "success": ($success, $success-invert),
   "warning": ($warning, $warning-invert),
@@ -28,6 +33,16 @@ $input-border-color: #ffffff;
 $input-icon-color: $primary;
 $input-icon-active-color: $primary;
 $input-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.5);
+
+$breadcrumb-item-color: $white;
+$breadcrumb-item-active-color: $white;
+$breadcrumb-item-separator-color: $primary;
+$breadcrumb-item-hover-color: $primary;
+
+.breadcrumb {
+  border-radius: 4px;
+  padding: 16px 18px;
+}
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
