@@ -13,7 +13,7 @@ const selectedFeatureStyle = new Style({
   image: new Circle({
     radius: 8,
     stroke: new Stroke({ color: [255, 255, 255, 1], width: 3 }),
-    fill: new Fill({ color: [77, 77, 77, 1] }),
+    fill: new Fill({ color: [157, 36, 73, 1] }),
   }),
 });
 
@@ -30,8 +30,8 @@ const clusterStyle = (totalFeatures: number) =>
 const selectedClusterStyle = (totalFeatures: number) =>
   new Style({
     image: new Circle({
-      radius: 15,
-      stroke: new Stroke({ color: [77, 77, 77, 1], width: 3 }),
+      radius: 16,
+      stroke: new Stroke({ color: [157, 36, 73, 0.6], width: 5 }),
       fill: new Fill({ color: [255, 255, 255, 1] }),
     }),
     text: new Text({ text: '' + totalFeatures, textBaseline: 'middle', offsetY: 1 }),

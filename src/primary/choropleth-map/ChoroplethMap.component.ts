@@ -83,7 +83,7 @@ export default class ChoroplethMap extends Vue {
     this.map.addLayer(this.schoolsLayer);
     this.map.addOverlay(this.popup);
     this.map.on('singleclick', this.selectEntity);
-    this.map.on('dblclick', () => this.popup.setPosition(undefined));
+    this.map.on('dblclick', () => this.closePopup());
     this.schoolsLayer.setStyle(createSchoolsStyleFunction());
   }
 
@@ -234,41 +234,4 @@ export default class ChoroplethMap extends Vue {
       this.closePopup();
     }
   }
-
-  /*
-  private selectEntity(event: SelectEvent) {
-    if (event.selected.length === 0) {
-      this.appStore().select(null);
-      return;
-    }
-
-    const feature = event.selected[0];
-    const selection = { source: SelectionSource.MAP };
-
-    if (this.statesLayer.getSource().hasFeature(feature)) {
-      this.appStore().select({
-        ...selection,
-        stateId: feature.getId().toString(),
-        municipalityId: '',
-        schoolId: '',
-        type: SelectionType.STATE,
-      });
-    }
-
-    // const type = this.statesLayer.getSource().hasFeature(feature) ? SelectionType.STATE : SelectionType.MUNICIPALITY;
-    // const selection = { type, source: SelectionSource.MAP, entityId: feature.getId().toString() };
-    // this.appStore().select(selection);
-  }
-   */
-
-  /*
-  private selectFeature(feature: Feature) {
-    const mapBrowserEvent = new MapBrowserEvent(MapBrowserEventType.SINGLECLICK, this.map, new Event('click'));
-    const event: SelectEvent = new SelectEvent('select', [feature], this.select.getFeatures().getArray(), mapBrowserEvent);
-    this.select.getFeatures().setAt(0, feature);
-    this.select.un('select', this.selectEntity);
-    this.select.dispatchEvent(event);
-    this.select.on('select', this.selectEntity);
-  }
-   */
 }

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <div class="navbar has-background-primary"></div>
     <DashboardVue />
   </div>
 </template>

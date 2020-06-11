@@ -1,8 +1,16 @@
 .sidebar {
-  height: 100%;
-  padding: 12px;
+  position: fixed;
+  width: 350px;
+  height: 100vh;
 }
 
-.sidebar.has-light-border {
-  border: 1px solid  $grey-lighter;
+.sidebar-brand {
+  padding: 30px;
+  width: 100%;
+  height: auto;
+}
+
+.sidebar-content {
+  padding: 30px;
+  width: 100%;
 }

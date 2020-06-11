@@ -8,10 +8,11 @@ import { StateRepository } from '@/domain/state/StateRepository';
 import { AppStore } from '@/primary/app/AppStore';
 import { ChoroplethMapVue } from '@/primary/choropleth-map';
 import { ComponentState } from '@/primary/ComponentState';
-import { DropdownVue } from '@/primary/dropdown';
+import { MainVue } from '@/primary/main';
+import { SidebarVue } from '@/primary/sidebar';
 
 @Component({
-  components: { ChoroplethMapVue, DropdownVue },
+  components: { ChoroplethMapVue, SidebarVue, MainVue },
 })
 export default class Dashboard extends Vue {
   state = ComponentState.PENDING;

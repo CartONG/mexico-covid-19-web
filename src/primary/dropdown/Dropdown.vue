@@ -3,7 +3,7 @@
     v-model="text"
     :data="filteredItems"
     field="name"
-    placeholder="search for a state, municipality or school"
+    placeholder=""
     icon="magnify"
     clearable
     open-on-focus

@@ -1,8 +1,10 @@
 @import "~ol/ol.css";
 @import "~bulma/sass/utilities/_all";
 
-$primary: #13322b;
+$primary: #d4c19c;
+$secondary: #9d2449;
 $primary-invert: findColorInvert($primary);
+$secondary-invert: findColorInvert($secondary);
 
 $colors: (
   "white": ($white, $black),
@@ -10,6 +12,7 @@ $colors: (
   "light": ($light, $light-invert),
   "dark": ($dark, $dark-invert),
   "primary": ($primary, $primary-invert),
+  "secondary": ($secondary, $secondary-invert),
   "info": ($info, $info-invert),
   "success": ($success, $success-invert),
   "warning": ($warning, $warning-invert),
@@ -20,6 +23,11 @@ $colors: (
 $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
+
+$input-border-color: #ffffff;
+$input-icon-color: $primary;
+$input-icon-active-color: $primary;
+$input-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.5);
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
@@ -32,3 +40,4 @@ html {
 @import "map";
 @import "sidebar";
 @import "popup";
+@import "main";
