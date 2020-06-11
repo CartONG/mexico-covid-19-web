@@ -1,4 +1,5 @@
-import { Feature, Map, MapBrowserEvent } from 'ol';
+import { Feature, Map, MapBrowserEvent, Overlay } from 'ol';
+import { getCenter } from 'ol/extent';
 import { TopoJSON } from 'ol/format';
 import VectorLayer from 'ol/layer/Vector';
 import { Component, Inject, Vue, Watch } from 'vue-property-decorator';
@@ -12,14 +13,18 @@ import { AppStore } from '@/primary/app/AppStore';
 import { toMunicipalityFeature } from '@/primary/choropleth-map/MunicipalityFeature';
 import { mapOptions } from '@/primary/choropleth-map/options/mapOptions';
 import { municipalitiesLayerOptions } from '@/primary/choropleth-map/options/municipalitiesLayerOptions';
+import { popupOptions } from '@/primary/choropleth-map/options/popupOptions';
 import { schoolsLayerOptions } from '@/primary/choropleth-map/options/schoolsLayerOptions';
 import { statesLayerOptions } from '@/primary/choropleth-map/options/statesLayerOptions';
+import { PopupVue } from '@/primary/choropleth-map/popup';
 import { toSchoolFeature } from '@/primary/choropleth-map/SchoolFeature';
 import { toStateFeature } from '@/primary/choropleth-map/StateFeature';
 import { createSchoolsStyleFunction } from '@/primary/choropleth-map/styles/schools/createSchoolsStyleFunction';
 import { ComponentState } from '@/primary/ComponentState';
 
-@Component
+@Component({
+  components: { PopupVue },
+})
 export default class ChoroplethMap extends Vue {
   state: ComponentState = ComponentState.PENDING;
   map = new Map(mapOptions);
@@ -28,6 +33,8 @@ export default class ChoroplethMap extends Vue {
   municipalitiesLayer = new VectorLayer(municipalitiesLayerOptions);
   stateGeometries: Feature[] = [];
   statesLayer = new VectorLayer(statesLayerOptions);
+  popup = new Overlay(popupOptions);
+  schoolItems: { id: string; text: string }[] = [];
 
   @Inject()
   private appStore!: () => AppStore;
@@ -55,6 +62,8 @@ export default class ChoroplethMap extends Vue {
       this.map.getView().fit(feature.getGeometry().getExtent(), { padding: [20, 20, 20, 20], duration: 1000 });
     }
 
+    this.closePopup();
+
     this.adaptToStateDomain();
     this.adaptToMunicipalityDomain();
     this.adaptToSchoolDomain(this.schoolSummaryList);
@@ -72,12 +81,15 @@ export default class ChoroplethMap extends Vue {
     this.map.addLayer(this.statesLayer);
     this.map.addLayer(this.municipalitiesLayer);
     this.map.addLayer(this.schoolsLayer);
+    this.map.addOverlay(this.popup);
     this.map.on('singleclick', this.selectEntity);
+    this.map.on('dblclick', () => this.popup.setPosition(undefined));
     this.schoolsLayer.setStyle(createSchoolsStyleFunction());
   }
 
   mounted() {
     this.map.setTarget('map');
+    this.popup.setElement(document.getElementById('popup') || undefined);
 
     Promise.all([this.fetcher().fetch('states.topojson'), this.fetcher().fetch('municipalities.topojson')])
       .then(results => {
@@ -153,6 +165,7 @@ export default class ChoroplethMap extends Vue {
   }
 
   private selectEntity(event: MapBrowserEvent) {
+    this.closePopup();
     const features = this.map.getFeaturesAtPixel(event.pixel, { hitTolerance: 5 });
 
     if (features.length === 0) {
@@ -185,7 +198,9 @@ export default class ChoroplethMap extends Vue {
     }
 
     if (this.selection && this.schoolsLayer.getSource().hasFeature(feature) && feature.get('features').length > 1) {
-      // console.log('open popup');
+      this.schoolItems = feature.get('features').map((feature: Feature) => ({ id: feature.getId().toString(), text: feature.get('name') }));
+      const coordinates = getCenter(feature.getGeometry().getExtent());
+      this.popup.setPosition(coordinates);
       return;
     }
 
@@ -200,6 +215,23 @@ export default class ChoroplethMap extends Vue {
           .toString(),
         type: SelectionType.SCHOOL,
       });
+    }
+  }
+
+  private closePopup() {
+    this.popup.setPosition(undefined);
+  }
+
+  private pickSchool(schoolItem: { id: string; text: string }) {
+    if (this.selection) {
+      this.appStore().select({
+        source: SelectionSource.MAP,
+        stateId: this.selection?.stateId,
+        municipalityId: this.selection?.municipalityId,
+        schoolId: schoolItem.id,
+        type: SelectionType.SCHOOL,
+      });
+      this.closePopup();
     }
   }
 
