@@ -65,7 +65,6 @@ export default class Dropdown extends Vue {
 
   selectItem(item: StateSummary | MunicipalitySummary | SchoolSummary | null) {
     if (item === null) {
-      this.appStore().select(null);
       return;
     }
 
