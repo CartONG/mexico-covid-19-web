@@ -10,7 +10,7 @@ export class RestStateRepository implements StateRepository {
 
   list(): Promise<StateSummary[]> {
     return this.axiosInstance
-      .get<RestStateSummary[]>('states.json')
+      .get<RestStateSummary[]>('entidades')
       .then(response => response.data.map(toStateSummary))
       .catch(error => {
         throw new NotFound('state summary').cause(error);

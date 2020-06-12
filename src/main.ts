@@ -21,9 +21,10 @@ Vue.use(Vuex);
 Vue.config.productionTip = false;
 
 const localAxios = axios.create({ baseURL: './data/' });
+const restAxios = axios.create({ baseURL: 'http://5.196.71.114/api/' });
 const logger = new ConsoleLogger(console); // eslint-disable-line no-console
 const fetcher = new LocalFetcher(localAxios);
-const stateRepository = new RestStateRepository(localAxios);
+const stateRepository = new RestStateRepository(restAxios);
 const municipalityRepository = new RestMunicipalityRepository(localAxios);
 const schoolRepository = new RestSchoolRepository(localAxios);
 const store = new Store(storeOptions);
