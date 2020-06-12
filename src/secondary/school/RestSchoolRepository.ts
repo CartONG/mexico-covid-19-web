@@ -12,7 +12,7 @@ export class RestSchoolRepository implements SchoolRepository {
     const restMunicipalityId = municipalityId.substring(2);
     const restStateId = municipalityId.substring(0, 2);
     const url =
-      process.env.NODE_ENV === 'development' ? 'schools.json' : `escuelas/?entidad=${restStateId}&municipio=${restMunicipalityId}`;
+      process.env.NODE_ENV === 'development' ? 'schools.json' : `escuelas/?cod_entidad=${restStateId}&cod_mun=${restMunicipalityId}`;
     return this.axiosInstance
       .get<RestSchoolSummary[]>(url)
       .then(response => response.data.map(toSchoolSummary))

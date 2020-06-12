@@ -4,6 +4,7 @@ import { Logger } from '@/domain/Logger';
 import { MunicipalityRepository } from '@/domain/municipality/MunicipalityRepository';
 import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
 import { SchoolRepository } from '@/domain/school/SchoolRepository';
+import { Selection } from '@/domain/selection/Selection';
 import { StateRepository } from '@/domain/state/StateRepository';
 import { AppStore } from '@/primary/app/AppStore';
 import { ChoroplethMapVue } from '@/primary/choropleth-map';
@@ -37,15 +38,20 @@ export default class Dashboard extends Vue {
   }
 
   @Watch('selection')
-  selectionWatcher() {
+  selectionWatcher(newValue: Selection, oldValue: Selection) {
     if (this.selection && this.selection.municipalityId !== '' && this.selection.schoolId === '') {
-      this.schoolRepository()
-        .list(this.selection.municipalityId)
-        .then(schoolSummaryList => {
-          this.appStore().saveSchoolSummaryList(schoolSummaryList);
-        })
-        .catch(error => this.error(error));
-    } else {
+      setTimeout(() => {
+        this.schoolRepository()
+          .list(this.selection?.municipalityId || '')
+          .then(schoolSummaryList => {
+            this.appStore().saveSchoolSummaryList(schoolSummaryList);
+          })
+          .catch(error => this.error(error));
+      }, 1000);
+      return;
+    }
+
+    if (oldValue && oldValue.municipalityId !== '' && (!newValue || newValue.municipalityId === '')) {
       this.appStore().saveSchoolSummaryList([]);
     }
   }

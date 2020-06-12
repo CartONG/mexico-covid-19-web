@@ -3,18 +3,16 @@ import { SchoolSummary } from '@/domain/school/SchoolSummary';
 export interface RestSchoolSummary {
   id: string;
   nombre: string;
-  entidadId: string;
-  municipioId: string;
+  nivel: string;
   coordenadas: {
-    latitud: number;
-    longitud: number;
+    latitud: string;
+    longitud: string;
   };
 }
 
 export const toSchoolSummary = (restSchoolSummary: RestSchoolSummary): SchoolSummary => ({
-  id: restSchoolSummary.id,
+  id: `${restSchoolSummary.id}${restSchoolSummary.nivel}`,
   name: restSchoolSummary.nombre,
-  stateId: restSchoolSummary.entidadId,
-  municipalityId: restSchoolSummary.municipioId,
-  coordinates: [restSchoolSummary.coordenadas.longitud, restSchoolSummary.coordenadas.latitud],
+  level: restSchoolSummary.nivel,
+  coordinates: [parseFloat(restSchoolSummary.coordenadas.longitud), parseFloat(restSchoolSummary.coordenadas.latitud)],
 });
