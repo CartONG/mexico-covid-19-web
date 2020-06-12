@@ -38,9 +38,9 @@ export default class Dashboard extends Vue {
 
   @Watch('selection')
   selectionWatcher() {
-    if (this.selection && this.selection.municipalityId === 'MX005002') {
+    if (this.selection && this.selection.municipalityId !== '' && this.selection.schoolId === '') {
       this.schoolRepository()
-        .list()
+        .list(this.selection.municipalityId)
         .then(schoolSummaryList => {
           this.appStore().saveSchoolSummaryList(schoolSummaryList);
         })
