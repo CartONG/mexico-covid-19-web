@@ -16,7 +16,7 @@ export class RestSchoolRepository implements SchoolRepository {
         ? 'schools.json'
         : encodeURIComponent(`escuelas/?entidad=${restStateId}&municipio=${restMunicipalityId}`);
     return this.axiosInstance
-      .get<RestSchoolSummary[]>('schools.json')
+      .get<RestSchoolSummary[]>(url)
       .then(response => response.data.map(toSchoolSummary))
       .catch(error => {
         throw new NotFound('school summary').cause(error);
