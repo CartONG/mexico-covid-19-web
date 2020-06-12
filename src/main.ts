@@ -20,12 +20,13 @@ Vue.use(Vuex);
 
 Vue.config.productionTip = false;
 
+const restBaseUrl = process.env.NODE_ENV === 'development' ? './data/' : 'http://5.196.71.114/api/';
 const localAxios = axios.create({ baseURL: './data/' });
-const restAxios = axios.create({ baseURL: 'http://5.196.71.114/api/' });
+const restAxios = axios.create({ baseURL: restBaseUrl });
 const logger = new ConsoleLogger(console); // eslint-disable-line no-console
 const fetcher = new LocalFetcher(localAxios);
 const stateRepository = new RestStateRepository(restAxios);
-const municipalityRepository = new RestMunicipalityRepository(localAxios);
+const municipalityRepository = new RestMunicipalityRepository(restAxios);
 const schoolRepository = new RestSchoolRepository(localAxios);
 const store = new Store(storeOptions);
 const appStore = new AppStore(store);

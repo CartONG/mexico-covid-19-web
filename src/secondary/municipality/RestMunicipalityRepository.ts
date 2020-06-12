@@ -9,8 +9,9 @@ export class RestMunicipalityRepository implements MunicipalityRepository {
   constructor(private axiosInstance: AxiosInstance) {}
 
   list(): Promise<MunicipalitySummary[]> {
+    const url = process.env.NODE_ENV === 'development' ? 'municipalities.json' : 'municipios';
     return this.axiosInstance
-      .get<RestMunicipalitySummary[]>('municipalities.json')
+      .get<RestMunicipalitySummary[]>(url)
       .then(response => response.data.map(toMunicipalitySummary))
       .catch(error => {
         throw new NotFound('municipality summary').cause(error);

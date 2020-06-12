@@ -10,7 +10,7 @@ export interface RestMunicipalitySummary {
 }
 
 export const toMunicipalitySummary = (restMunicipalitySummary: RestMunicipalitySummary): MunicipalitySummary => ({
-  id: restMunicipalitySummary.id,
+  id: `${restMunicipalitySummary.entidadId}${restMunicipalitySummary.id}`,
   name: restMunicipalitySummary.nombre,
   stateId: restMunicipalitySummary.entidadId,
   studentAbsenceRate: restMunicipalitySummary.alumnosInasistencia,

@@ -10,7 +10,7 @@
     clear-on-select
     @select="selectItem"
   >
-    <template slot="empty">No results found</template>
+    <template slot="empty">No se han encontrado resultados</template>
   </b-autocomplete>
 </template>
 

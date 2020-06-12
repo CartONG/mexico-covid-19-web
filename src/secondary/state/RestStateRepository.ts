@@ -9,8 +9,9 @@ export class RestStateRepository implements StateRepository {
   constructor(private axiosInstance: AxiosInstance) {}
 
   list(): Promise<StateSummary[]> {
+    const url = process.env.NODE_ENV === 'development' ? 'states.json' : 'entidades';
     return this.axiosInstance
-      .get<RestStateSummary[]>('entidades')
+      .get<RestStateSummary[]>(url)
       .then(response => response.data.map(toStateSummary))
       .catch(error => {
         throw new NotFound('state summary').cause(error);
