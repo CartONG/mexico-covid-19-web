@@ -46,7 +46,10 @@ export default class Dashboard extends Vue {
           .then(schoolSummaryList => {
             this.appStore().saveSchoolSummaryList(schoolSummaryList);
           })
-          .catch(error => this.logger().error('Fail to retrieve school summaries', error));
+          .catch(error => {
+            this.logger().error('Fail to retrieve school summaries', error);
+            this.appStore().saveSchoolSummaryList([]);
+          });
       }, 1000);
       return;
     }
