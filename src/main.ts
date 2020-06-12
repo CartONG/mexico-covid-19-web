@@ -27,7 +27,7 @@ const logger = new ConsoleLogger(console); // eslint-disable-line no-console
 const fetcher = new LocalFetcher(localAxios);
 const stateRepository = new RestStateRepository(restAxios);
 const municipalityRepository = new RestMunicipalityRepository(restAxios);
-const schoolRepository = new RestSchoolRepository(localAxios);
+const schoolRepository = new RestSchoolRepository(restAxios);
 const store = new Store(storeOptions);
 const appStore = new AppStore(store);
 
