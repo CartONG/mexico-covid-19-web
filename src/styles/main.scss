@@ -9,6 +9,13 @@ $primary-invert: findColorInvert($primary);
 $secondary-invert: findColorInvert($secondary);
 $tertiary-invert: findColorInvert($secondary);
 
+$success: #3c947b;
+$warning: #efb749;
+$danger: #db3f3d;
+
+$success-invert: findColorInvert($success);
+$warning-invert: findColorInvert($warning);
+$danger-invert: findColorInvert($danger);
 
 $colors: (
   "white": ($white, $black),
@@ -39,10 +46,7 @@ $breadcrumb-item-active-color: $white;
 $breadcrumb-item-separator-color: $primary;
 $breadcrumb-item-hover-color: $primary;
 
-.breadcrumb {
-  border-radius: 4px;
-  padding: 16px 18px;
-}
+$tabs-border-bottom-width: 0;
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
@@ -61,8 +65,36 @@ html {
   left: 10px;
 }
 
+@each $name, $pair in $colors {
+  $color: nth($pair, 1);
+  .has-border-#{$name} {
+    border-color: $color !important;
+  }
+}
+
+.tabs a {
+  display: block;
+  text-align: center;
+  margin: 0;
+}
+
+.tabs li.is-active a {
+  border-top: 4px solid #3273dc;
+  color: #3273dc;
+}
+
+.tabs li a {
+  border-top: 1px solid $grey-lighter;
+}
+
+.breadcrumb {
+  border-radius: 4px;
+  padding: 16px 18px;
+}
+
 @import "ol.overrides";
 @import "map";
 @import "sidebar";
 @import "popup";
+@import "choropleth-map";
 @import "main";

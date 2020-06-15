@@ -1,9 +1,20 @@
 import { Feature } from 'ol';
 import { Style } from 'ol/style';
 
-import { Selection } from '@/domain/selection/Selection';
 import { StateSummary } from '@/domain/state/StateSummary';
 import { stateStyleName, stateStyles } from '@/primary/choropleth-map/styles/states/stateStyles';
+import { RateTypes } from '@/primary/RateTypes';
+
+const getRate = (stateSummary: StateSummary, rateType: RateTypes): number => {
+  switch (rateType) {
+    case RateTypes.STUDENT_ABSENCE:
+      return stateSummary.studentAbsenceRate;
+    case RateTypes.TEACHER_ABSENCE:
+      return stateSummary.teacherAbsenceRate;
+    case RateTypes.PERSONAL_ABSENCE:
+      return stateSummary.adminAbsenceRate;
+  }
+};
 
 export const toStateFeatureStyle = (rate: number): Style => {
   if (rate < 0.2) {
@@ -18,13 +29,17 @@ export const toStateFeatureStyle = (rate: number): Style => {
   if (rate >= 0.6 && rate < 0.8) {
     return stateStyles[stateStyleName.LIGHT_RED];
   }
-  return stateStyles[stateStyleName.RED];
+  if (rate >= 0.8 && rate <= 1) {
+    return stateStyles[stateStyleName.RED];
+  }
+  return stateStyles[stateStyleName.LIGHT_GREY];
 };
 
 export const toStateFeature = (
   feature: Feature,
   stateSummaryById: { [key: string]: StateSummary },
-  selection: Selection | null
+  selectedStateId: string,
+  rateType: RateTypes
 ): Feature => {
   const featureProperties = {
     geometry: feature.getGeometry(),
@@ -36,11 +51,12 @@ export const toStateFeature = (
   const stateSummary = stateSummaryById[feature.getId()];
 
   if (stateSummary) {
+    const rate = getRate(stateSummary, rateType);
     featureProperties.name = stateSummary.name;
-    style = toStateFeatureStyle(stateSummary.studentAbsenceRate);
+    style = toStateFeatureStyle(rate);
   }
 
-  if (selection && selection.stateId === feature.getId()) {
+  if (selectedStateId === feature.getId()) {
     style = stateStyles[stateStyleName.NO_FILL];
   }
 

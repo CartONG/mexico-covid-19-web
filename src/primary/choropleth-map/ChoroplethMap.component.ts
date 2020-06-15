@@ -1,7 +1,6 @@
 import { Feature, Map, MapBrowserEvent, Overlay } from 'ol';
 import Control from 'ol/control/Control';
 import { getCenter } from 'ol/extent';
-import { TopoJSON } from 'ol/format';
 import VectorLayer from 'ol/layer/Vector';
 import { Component, Inject, Vue, Watch } from 'vue-property-decorator';
 
@@ -9,8 +8,14 @@ import { Fetcher } from '@/domain/Fetcher';
 import { Logger } from '@/domain/Logger';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { SelectionSource } from '@/domain/selection/SelectionSource';
-import { SelectionType } from '@/domain/selection/SelectionType';
 import { AppStore } from '@/primary/app/AppStore';
+import {
+  addLayerSingleClickEvent,
+  fitFeature,
+  parseTopoJson,
+  setClusterLayerFeature,
+  setLayerFeature,
+} from '@/primary/choropleth-map/mapUtil';
 import { toMunicipalityFeature } from '@/primary/choropleth-map/MunicipalityFeature';
 import { mapOptions } from '@/primary/choropleth-map/options/mapOptions';
 import { municipalitiesLayerOptions } from '@/primary/choropleth-map/options/municipalitiesLayerOptions';
@@ -18,13 +23,14 @@ import { popupOptions } from '@/primary/choropleth-map/options/popupOptions';
 import { schoolsLayerOptions } from '@/primary/choropleth-map/options/schoolsLayerOptions';
 import { statesLayerOptions } from '@/primary/choropleth-map/options/statesLayerOptions';
 import { PopupVue } from '@/primary/choropleth-map/popup';
+import { RateTabsVue } from '@/primary/choropleth-map/rate-tabs';
 import { toSchoolFeature } from '@/primary/choropleth-map/SchoolFeature';
 import { toStateFeature } from '@/primary/choropleth-map/StateFeature';
 import { createSchoolsStyleFunction } from '@/primary/choropleth-map/styles/schools/createSchoolsStyleFunction';
 import { ComponentState } from '@/primary/ComponentState';
 
 @Component({
-  components: { PopupVue },
+  components: { PopupVue, RateTabsVue },
 })
 export default class ChoroplethMap extends Vue {
   state: ComponentState = ComponentState.PENDING;
@@ -47,40 +53,68 @@ export default class ChoroplethMap extends Vue {
   @Inject()
   private logger!: () => Logger;
 
-  @Watch('schoolSummaryList')
-  schoolSummaryListWatcher() {
-    this.adaptToSchoolDomain(this.schoolSummaryList);
-  }
-
-  @Watch('selection')
-  selectionWatcher() {
-    if (!this.selection) {
-      this.refreshView();
-    }
-
-    if (this.selection && this.selection.type === SelectionType.STATE) {
-      const feature = this.statesLayer.getSource().getFeatureById(this.selection.stateId);
-      this.map.getView().fit(feature.getGeometry().getExtent(), { padding: [20, 20, 20, 20], duration: 1000 });
-    }
-
-    if (this.selection && this.selection.type === SelectionType.MUNICIPALITY) {
-      const feature = this.municipalitiesLayer.getSource().getFeatureById(this.selection.municipalityId);
-      this.map.getView().fit(feature.getGeometry().getExtent(), { padding: [20, 20, 20, 20], duration: 1000 });
-    }
-
-    this.closePopup();
-
-    this.adaptToStateDomain();
-    this.adaptToMunicipalityDomain();
-    this.adaptToSchoolDomain(this.schoolSummaryList);
-  }
-
-  get selection() {
-    return this.appStore().getSelection();
-  }
-
   get schoolSummaryList() {
     return this.appStore().getSchoolSummaryList();
+  }
+
+  get stateSelection() {
+    return this.appStore().getStateSelection();
+  }
+
+  get municipalitySelection() {
+    return this.appStore().getMunicipalitySelection();
+  }
+
+  get schoolSelection() {
+    return this.appStore().getSchoolSelection();
+  }
+
+  get selectedRateType() {
+    return this.appStore().getSelectedRateType();
+  }
+
+  @Watch('schoolSummaryList')
+  schoolSummaryListWatcher() {
+    this.adaptToSchoolDomain('', this.schoolSummaryList);
+  }
+
+  @Watch('stateSelection')
+  stateSelectionWatcher() {
+    this.closePopup();
+    fitFeature(this.map, this.statesLayer, this.stateSelection.stateId);
+
+    if (this.stateSelection.stateId === '') {
+      this.fitView(1000);
+    }
+  }
+
+  @Watch('stateSelection.stateId')
+  stateIdWatcher(stateId: string) {
+    this.adaptToStateDomain(stateId);
+    this.adaptToMunicipalityDomain(stateId, '');
+  }
+
+  @Watch('municipalitySelection')
+  municipalitySelectionWatcher() {
+    this.closePopup();
+    fitFeature(this.map, this.municipalitiesLayer, this.municipalitySelection.municipalityId);
+  }
+
+  @Watch('municipalitySelection.municipalityId')
+  municipalityIdWatcher(municipalityId: string) {
+    this.adaptToMunicipalityDomain(this.stateSelection.stateId, municipalityId);
+  }
+
+  @Watch('schoolSelection.schoolId')
+  schoolSelectionWatcher(schoolId: string) {
+    this.closePopup();
+    this.adaptToSchoolDomain(schoolId, this.schoolSummaryList);
+  }
+
+  @Watch('selectedRateType')
+  selectedRateTypeWatcher() {
+    this.adaptToStateDomain(this.stateSelection.stateId);
+    this.adaptToMunicipalityDomain(this.stateSelection.stateId, this.municipalitySelection.municipalityId);
   }
 
   created() {
@@ -91,6 +125,10 @@ export default class ChoroplethMap extends Vue {
     this.map.on('singleclick', this.selectEntity);
     this.map.on('dblclick', () => this.closePopup());
     this.schoolsLayer.setStyle(createSchoolsStyleFunction());
+    this.statesLayer.on('singleclick', event => this.selectState(event as MapBrowserEvent));
+    this.municipalitiesLayer.on('singleclick', event => this.selectMunicipality(event as MapBrowserEvent));
+    this.schoolsLayer.on('singleclick', (event: MapBrowserEvent) => this.selectSchool(event as MapBrowserEvent));
+    addLayerSingleClickEvent(this.map);
   }
 
   mounted() {
@@ -105,11 +143,11 @@ export default class ChoroplethMap extends Vue {
 
     Promise.all([this.fetcher().fetch('states.topojson'), this.fetcher().fetch('municipalities.topojson')])
       .then(results => {
-        this.stateGeometries = this.parseTopoJson(results[0]);
-        this.municipalityGeometriesByState = this.parseTopoJson(results[1]).reduce(this.municipalityReducer, {});
+        this.stateGeometries = parseTopoJson(results[0]);
+        this.municipalityGeometriesByState = parseTopoJson(results[1]).reduce(this.municipalityReducer, {});
 
-        this.adaptToStateDomain();
-        this.adaptToMunicipalityDomain();
+        this.adaptToStateDomain('');
+        this.adaptToMunicipalityDomain('', '');
 
         this.extent = this.statesLayer.getSource().getExtent();
         this.fitView();
@@ -125,50 +163,29 @@ export default class ChoroplethMap extends Vue {
     return { ...accumulator, [geometry.get('stateId')]: [...geometries, geometry] };
   }
 
-  private parseTopoJson(topoJson: any): Feature[] {
-    const parser = new TopoJSON();
-    const readOptions = { dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857' };
-    return parser.readFeatures(topoJson, readOptions);
+  private adaptToStateDomain(selectedStateId: string) {
+    const features = this.stateGeometries.map(geometry =>
+      toStateFeature(geometry, this.appStore().getStateSummaryById(), selectedStateId, this.selectedRateType)
+    );
+    setLayerFeature(this.statesLayer, features);
   }
 
-  private adaptToStateDomain() {
-    const features = this.stateGeometries.map(geometry => toStateFeature(geometry, this.appStore().getStateSummaryById(), this.selection));
-    this.statesLayer.getSource().clear();
-    this.statesLayer.getSource().addFeatures(features);
-  }
-
-  private adaptToMunicipalityDomain() {
-    if (!this.selection) {
-      this.municipalitiesLayer.getSource().clear();
-      return;
-    }
-
+  private adaptToMunicipalityDomain(selectedStateId: string, selectedMunicipalityId: string) {
     const summaryList = this.appStore().getMunicipalitySummaryList();
-
-    const features = this.municipalityGeometriesByState[this.selection?.stateId].map(geometry =>
+    const features = (this.municipalityGeometriesByState[selectedStateId] || []).map(geometry =>
       toMunicipalityFeature(
         geometry,
         summaryList.find(summary => summary.id === geometry.getId()),
-        this.selection
+        selectedMunicipalityId,
+        this.selectedRateType
       )
     );
-
-    this.municipalitiesLayer.getSource().clear();
-    this.municipalitiesLayer.getSource().addFeatures(features);
+    setLayerFeature(this.municipalitiesLayer, features);
   }
 
-  private adaptToSchoolDomain(schoolSummaries: SchoolSummary[]) {
-    const features = schoolSummaries.map(schoolSummary => toSchoolFeature(schoolSummary, this.selection));
-
-    this.schoolsLayer
-      .getSource()
-      .getSource()
-      .clear();
-
-    this.schoolsLayer
-      .getSource()
-      .getSource()
-      .addFeatures(features);
+  private adaptToSchoolDomain(selectedSchoolId: string, schoolSummaries: SchoolSummary[]) {
+    const features = schoolSummaries.map(schoolSummary => toSchoolFeature(schoolSummary, selectedSchoolId));
+    setClusterLayerFeature(this.schoolsLayer, features);
   }
 
   private error(error: Error): void {
@@ -176,57 +193,33 @@ export default class ChoroplethMap extends Vue {
     this.state = ComponentState.ERROR;
   }
 
-  private selectEntity(event: MapBrowserEvent) {
-    this.closePopup();
-    const features = this.map.getFeaturesAtPixel(event.pixel, { hitTolerance: 5 });
+  private selectState(event: MapBrowserEvent) {
+    const feature = this.map.getFeaturesAtPixel(event.pixel, { hitTolerance: 5 })[0];
+    this.appStore().selectState(feature.getId().toString(), SelectionSource.MAP);
+  }
 
-    if (features.length === 0) {
-      this.appStore().select(null);
-      return;
-    }
+  private selectMunicipality(event: MapBrowserEvent) {
+    const feature = this.map.getFeaturesAtPixel(event.pixel, { hitTolerance: 5 })[0];
+    this.appStore().selectMunicipality(feature.getId().toString(), SelectionSource.MAP);
+  }
 
-    const feature = features[0] as Feature;
-    const selection = { source: SelectionSource.MAP };
-
-    if (this.statesLayer.getSource().hasFeature(feature)) {
-      this.appStore().select({
-        ...selection,
-        stateId: feature.getId().toString(),
-        municipalityId: '',
-        schoolId: '',
-        type: SelectionType.STATE,
-      });
-      return;
-    }
-
-    if (this.selection && this.municipalitiesLayer.getSource().hasFeature(feature)) {
-      this.appStore().select({
-        ...selection,
-        stateId: this.selection?.stateId,
-        municipalityId: feature.getId().toString(),
-        schoolId: '',
-        type: SelectionType.MUNICIPALITY,
-      });
-    }
-
-    if (this.selection && this.schoolsLayer.getSource().hasFeature(feature) && feature.get('features').length > 1) {
+  private selectSchool(event: MapBrowserEvent) {
+    const feature = this.map.getFeaturesAtPixel(event.pixel, { hitTolerance: 5 })[0];
+    if (feature.get('features').length > 1) {
       this.schoolItems = feature.get('features').map((feature: Feature) => ({ id: feature.getId().toString(), text: feature.get('name') }));
       const coordinates = getCenter(feature.getGeometry().getExtent());
       this.popup.setPosition(coordinates);
-      return;
+    } else {
+      this.appStore().selectSchool(feature.get('features')[0].getId(), SelectionSource.MAP);
     }
+  }
 
-    if (this.selection && this.schoolsLayer.getSource().hasFeature(feature) && feature.get('features').length === 1) {
-      this.appStore().select({
-        ...selection,
-        stateId: this.selection?.stateId,
-        municipalityId: this.selection?.municipalityId,
-        schoolId: feature
-          .get('features')[0]
-          .getId()
-          .toString(),
-        type: SelectionType.SCHOOL,
-      });
+  private selectEntity(event: MapBrowserEvent) {
+    this.closePopup();
+    const features = this.map.getFeaturesAtPixel(event.pixel, { hitTolerance: 5 });
+    if (features.length === 0) {
+      this.appStore().selectCountry(SelectionSource.MAP);
+      return;
     }
   }
 
@@ -235,24 +228,15 @@ export default class ChoroplethMap extends Vue {
   }
 
   private pickSchool(schoolItem: { id: string; text: string }) {
-    if (this.selection) {
-      this.appStore().select({
-        source: SelectionSource.MAP,
-        stateId: this.selection?.stateId,
-        municipalityId: this.selection?.municipalityId,
-        schoolId: schoolItem.id,
-        type: SelectionType.SCHOOL,
-      });
-      this.closePopup();
-    }
+    this.appStore().selectSchool(schoolItem.id, SelectionSource.MAP);
   }
 
   private fitView(duration: number = 0) {
     this.map.getView().fit(this.extent, { padding: [20, 20, 20, 20], duration });
   }
 
-  private refreshView() {
-    this.appStore().select(null);
+  private resetView() {
+    this.appStore().selectCountry(SelectionSource.MAP);
     this.fitView(1000);
   }
 }

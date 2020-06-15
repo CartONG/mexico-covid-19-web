@@ -1,7 +1,6 @@
 import { Component, Inject, Vue } from 'vue-property-decorator';
 
 import { SelectionSource } from '@/domain/selection/SelectionSource';
-import { SelectionType } from '@/domain/selection/SelectionType';
 import { AppStore } from '@/primary/app/AppStore';
 
 @Component
@@ -9,34 +8,27 @@ export default class Breadcrumb extends Vue {
   @Inject()
   private appStore!: () => AppStore;
 
-  get selection() {
-    return this.appStore().getSelection();
+  get stateSelection() {
+    return this.appStore().getStateSelection();
   }
 
-  private select(level: 'country' | 'state' | 'municipality') {
-    if (this.selection) {
-      switch (level) {
-        case 'country':
-          this.appStore().select(null);
-          break;
-        case 'state':
-          this.appStore().select({
-            ...this.selection,
-            source: SelectionSource.BREADCRUMB,
-            type: SelectionType.STATE,
-            municipalityId: '',
-            schoolId: '',
-          });
-          break;
-        case 'municipality':
-          this.appStore().select({
-            ...this.selection,
-            source: SelectionSource.BREADCRUMB,
-            type: SelectionType.MUNICIPALITY,
-            schoolId: '',
-          });
-          break;
-      }
-    }
+  get municipalitySelection() {
+    return this.appStore().getMunicipalitySelection();
+  }
+
+  get schoolSelection() {
+    return this.appStore().getSchoolSelection();
+  }
+
+  selectCountry() {
+    this.appStore().selectCountry(SelectionSource.BREADCRUMB);
+  }
+
+  selectState() {
+    this.appStore().selectState(this.stateSelection.stateId, SelectionSource.BREADCRUMB);
+  }
+
+  selectMunicipality() {
+    this.appStore().selectMunicipality(this.municipalitySelection.municipalityId, SelectionSource.BREADCRUMB);
   }
 }

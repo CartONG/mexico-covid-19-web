@@ -4,6 +4,7 @@ export interface Country {
   adminAbsenceRate: number;
   totalSchools: number;
   totalStudent: number;
+  /*
   schoolGivingClassesPercentages: { [key: string]: number };
   studentAbsenceMainReasonPercentages: { [key: string]: number };
   schoolWaterSupplyPercentages: { [key: string]: number };
@@ -16,4 +17,5 @@ export interface Country {
   schoolBinSufficiencyPercentages: { [key: string]: number };
   schoolWithSepticSystemPercentages: { [key: string]: number };
   schoolWithAbilityToReorganizeSpacePercentages: { [key: string]: number };
+   */
 }

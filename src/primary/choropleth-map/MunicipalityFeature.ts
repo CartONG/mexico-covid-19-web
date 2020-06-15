@@ -2,8 +2,20 @@ import { Feature } from 'ol';
 import { Style } from 'ol/style';
 
 import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
-import { Selection } from '@/domain/selection/Selection';
+import { StateSummary } from '@/domain/state/StateSummary';
 import { municipalityStyleName, municipalityStyles } from '@/primary/choropleth-map/styles/municipalities/municipalityStyles';
+import { RateTypes } from '@/primary/RateTypes';
+
+const getRate = (municipalitySummary: MunicipalitySummary, rateType: RateTypes): number => {
+  switch (rateType) {
+    case RateTypes.STUDENT_ABSENCE:
+      return municipalitySummary.studentAbsenceRate;
+    case RateTypes.TEACHER_ABSENCE:
+      return municipalitySummary.teacherAbsenceRate;
+    case RateTypes.PERSONAL_ABSENCE:
+      return municipalitySummary.adminAbsenceRate;
+  }
+};
 
 const toMunicipalityFeatureStyle = (rate: number): Style => {
   if (rate < 0.2) {
@@ -18,13 +30,17 @@ const toMunicipalityFeatureStyle = (rate: number): Style => {
   if (rate >= 0.6 && rate < 0.8) {
     return municipalityStyles[municipalityStyleName.LIGHT_RED];
   }
-  return municipalityStyles[municipalityStyleName.RED];
+  if (rate >= 0.8 && rate <= 1) {
+    return municipalityStyles[municipalityStyleName.RED];
+  }
+  return municipalityStyles[municipalityStyleName.LIGHT_GREY];
 };
 
 export const toMunicipalityFeature = (
   feature: Feature,
   municipalitySummary: MunicipalitySummary | undefined,
-  selection: Selection | null
+  selectedMunicipalityId: string,
+  rateType: RateTypes
 ): Feature => {
   const featureProperties = {
     geometry: feature.getGeometry(),
@@ -35,12 +51,13 @@ export const toMunicipalityFeature = (
   let style: Style | Style[] = municipalityStyles[municipalityStyleName.LIGHT_GREY];
 
   if (municipalitySummary) {
+    const rate = getRate(municipalitySummary, rateType);
     featureProperties.name = municipalitySummary.name;
     featureProperties.state = municipalitySummary.stateId;
-    style = toMunicipalityFeatureStyle(municipalitySummary.studentAbsenceRate);
+    style = toMunicipalityFeatureStyle(rate);
   }
 
-  if (selection && selection.municipalityId === feature.getId()) {
+  if (selectedMunicipalityId === feature.getId()) {
     style = [style, municipalityStyles[municipalityStyleName.NO_FILL]];
   }
 

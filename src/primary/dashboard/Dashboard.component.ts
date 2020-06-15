@@ -1,10 +1,10 @@
 import { Component, Inject, Vue, Watch } from 'vue-property-decorator';
 
+import { CountryRepository } from '@/domain/country/CountryRepository';
 import { Logger } from '@/domain/Logger';
 import { MunicipalityRepository } from '@/domain/municipality/MunicipalityRepository';
 import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
 import { SchoolRepository } from '@/domain/school/SchoolRepository';
-import { Selection } from '@/domain/selection/Selection';
 import { StateRepository } from '@/domain/state/StateRepository';
 import { AppStore } from '@/primary/app/AppStore';
 import { ChoroplethMapVue } from '@/primary/choropleth-map';
@@ -22,6 +22,9 @@ export default class Dashboard extends Vue {
   private logger!: () => Logger;
 
   @Inject()
+  private countryRepository!: () => CountryRepository;
+
+  @Inject()
   private stateRepository!: () => StateRepository;
 
   @Inject()
@@ -33,44 +36,41 @@ export default class Dashboard extends Vue {
   @Inject()
   private appStore!: () => AppStore;
 
-  get selection() {
-    return this.appStore().getSelection();
+  get municipalitySelection() {
+    return this.appStore().getMunicipalitySelection();
   }
 
-  @Watch('selection')
-  selectionWatcher(newValue: Selection, oldValue: Selection) {
-    if (this.selection && this.selection.municipalityId !== '' && this.selection.schoolId === '') {
-      setTimeout(() => {
-        this.schoolRepository()
-          .list(this.selection?.municipalityId || '')
-          .then(schoolSummaryList => {
-            this.appStore().saveSchoolSummaryList(schoolSummaryList);
-          })
-          .catch(error => {
-            this.logger().error('Fail to retrieve school summaries', error);
-            this.appStore().saveSchoolSummaryList([]);
-          });
-      }, 1000);
+  @Watch('municipalitySelection.municipalityId')
+  watcher(municipalityId: string) {
+    if (municipalityId === '') {
+      this.appStore().saveSchoolSummaryList([]);
       return;
     }
 
-    if (oldValue && oldValue.municipalityId !== '' && (!newValue || newValue.municipalityId === '')) {
-      this.appStore().saveSchoolSummaryList([]);
-    }
+    setTimeout(() => {
+      this.schoolRepository()
+        .list(municipalityId)
+        .then(schoolSummaryList => this.appStore().saveSchoolSummaryList(schoolSummaryList))
+        .catch(error => {
+          this.logger().error('Fail to retrieve school summaries', error);
+          this.appStore().saveSchoolSummaryList([]);
+        });
+    }, 1000);
   }
 
   created(): void {
-    Promise.all([this.stateRepository().list(), this.municipalityRepository().list()])
+    Promise.all([this.countryRepository().get(), this.stateRepository().list(), this.municipalityRepository().list()])
       .then(results => {
-        this.appStore().saveStateSummaryList(results[0]);
-        this.appStore().saveMunicipalitySummaryList(results[1] as MunicipalitySummary[]);
+        this.appStore().saveCountry(results[0]);
+        this.appStore().saveStateSummaryList(results[1]);
+        this.appStore().saveMunicipalitySummaryList(results[2] as MunicipalitySummary[]);
         this.state = ComponentState.SUCCESS;
       })
       .catch(error => this.error(error));
   }
 
   private error(error: Error): void {
-    this.logger().error('Fail to retrieve state, municipality or school summaries', error);
+    this.logger().error('Fail to retrieve country, state, municipality or school data', error);
     this.state = ComponentState.ERROR;
   }
 }

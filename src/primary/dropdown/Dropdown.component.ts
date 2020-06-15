@@ -3,7 +3,6 @@ import { Component, Inject, Vue, Watch } from 'vue-property-decorator';
 import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { SelectionSource } from '@/domain/selection/SelectionSource';
-import { SelectionType } from '@/domain/selection/SelectionType';
 import { StateSummary } from '@/domain/state/StateSummary';
 import { AppStore } from '@/primary/app/AppStore';
 import { DropdownItem } from '@/primary/dropdown/DropdownItem';
@@ -12,7 +11,7 @@ import { DropdownItem } from '@/primary/dropdown/DropdownItem';
 export default class Dropdown extends Vue {
   text: string = '';
   items: DropdownItem[] = [];
-  selectionType: SelectionType = SelectionType.STATE;
+  nextSelectionType: 'state' | 'municipality' | 'school' = 'state';
 
   @Inject()
   appStore!: () => AppStore;
@@ -22,29 +21,34 @@ export default class Dropdown extends Vue {
     this.items = this.schoolSummaryList;
   }
 
-  @Watch('selection')
-  selectionWatcher() {
-    if (this.selection === null) {
-      this.selectionType = SelectionType.STATE;
+  @Watch('stateSelection')
+  stateSelectionWatcher() {
+    if (this.stateSelection.stateId === '') {
+      this.nextSelectionType = 'state';
       this.items = [...this.appStore().getStateSummaryList()];
       return;
     }
 
-    if (this.selection.type === SelectionType.STATE) {
-      this.selectionType = SelectionType.MUNICIPALITY;
-      this.items = this.appStore()
-        .getMunicipalitySummaryList()
-        .filter(municipalitySummary => municipalitySummary.stateId === this.selection?.stateId);
-    }
+    this.nextSelectionType = 'municipality';
+    this.items = this.appStore()
+      .getMunicipalitySummaryList()
+      .filter(municipalitySummary => municipalitySummary.stateId === this.stateSelection.stateId);
+  }
 
-    if (this.selection.type === SelectionType.MUNICIPALITY) {
-      this.selectionType = SelectionType.SCHOOL;
+  @Watch('municipalitySelection')
+  municipalitySelectionWatcher() {
+    if (this.municipalitySelection.municipalityId !== '') {
+      this.nextSelectionType = 'school';
       this.items = this.schoolSummaryList;
     }
   }
 
-  get selection() {
-    return this.appStore().getSelection();
+  get stateSelection() {
+    return this.appStore().getStateSelection();
+  }
+
+  get municipalitySelection() {
+    return this.appStore().getMunicipalitySelection();
   }
 
   get schoolSummaryList() {
@@ -64,39 +68,17 @@ export default class Dropdown extends Vue {
   }
 
   selectItem(item: StateSummary | MunicipalitySummary | SchoolSummary | null) {
-    if (item === null) {
-      return;
-    }
-
-    const selection = { type: this.selectionType, source: SelectionSource.DROP_DOWN };
-
-    if (selection.type === SelectionType.STATE) {
-      this.appStore().select({
-        ...selection,
-        stateId: item.id,
-        municipalityId: '',
-        schoolId: '',
-      });
-      return;
-    }
-
-    if (this.selection && selection.type === SelectionType.MUNICIPALITY) {
-      this.appStore().select({
-        ...selection,
-        stateId: this.selection?.stateId,
-        municipalityId: item.id,
-        schoolId: '',
-      });
-      return;
-    }
-
-    if (this.selection && selection.type === SelectionType.SCHOOL) {
-      this.appStore().select({
-        ...selection,
-        stateId: this.selection?.stateId,
-        municipalityId: this.selection?.municipalityId,
-        schoolId: item.id.toString(),
-      });
+    if (item) {
+      switch (this.nextSelectionType) {
+        case 'state':
+          this.appStore().selectState(item.id, SelectionSource.DROP_DOWN);
+          break;
+        case 'municipality':
+          this.appStore().selectMunicipality(item.id, SelectionSource.DROP_DOWN);
+          break;
+        case 'school':
+          this.appStore().selectSchool(item.id, SelectionSource.DROP_DOWN);
+      }
     }
   }
 }
