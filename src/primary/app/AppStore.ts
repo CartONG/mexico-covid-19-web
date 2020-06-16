@@ -74,6 +74,14 @@ export class AppStore {
     return this.store.getters.municipalitySummaryById;
   }
 
+  getMunicipalitySummaryByStateId(): { [key: string]: MunicipalitySummary[] } {
+    return this.store.getters.municipalitySummaryByStateId;
+  }
+
+  getMunicipalitySummaryListForState(): MunicipalitySummary[] {
+    return this.store.getters.municipalitySummaryListForState;
+  }
+
   saveSchoolSummaryList(schoolSummaryList: SchoolSummary[]) {
     return this.store.commit('setSchoolSummaryList', schoolSummaryList);
   }

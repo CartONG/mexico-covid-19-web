@@ -116,6 +116,15 @@ export const storeOptions: StoreOptions<AppState> = {
     municipalitySummaryById: (state: AppState) => {
       return state.municipalitySummaryList.reduce((accumulator, municipality) => ({ ...accumulator, [municipality.id]: municipality }), {});
     },
+    municipalitySummaryByStateId: (state: AppState) => {
+      return state.municipalitySummaryList.reduce((accumulator: { [key: string]: MunicipalitySummary[] }, municipality) => {
+        const municipalities = accumulator[municipality.stateId] ? accumulator[municipality.stateId] : [];
+        return { ...accumulator, [municipality.stateId]: [...municipalities, municipality] };
+      }, {});
+    },
+    municipalitySummaryListForState: (state, getters) => {
+      return getters.municipalitySummaryByStateId[state.stateSelection.stateId] || [];
+    },
     schoolSummaryById: (state: AppState) => {
       return state.schoolSummaryList.reduce((accumulator, school) => ({ ...accumulator, [school.id]: school }), {});
     },

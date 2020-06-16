@@ -1,5 +1,5 @@
 <template>
-  <div class="main has-background-secondary">
+  <div class="main">
     <section class="section">
       <div class="container is-fluid">
         <h1 class="has-text-primary main-title">COVID19 DASHBOARD - Simulación Servicio Educativo</h1>
@@ -11,6 +11,12 @@
           <div class="column is-3">
             <IndicatorsVue />
           </div>
+        </div>
+        <div class="columns">
+          <div class="column is-6">
+            <RateListVue />
+          </div>
+          <div class="column is-6"></div>
         </div>
       </div>
     </section>

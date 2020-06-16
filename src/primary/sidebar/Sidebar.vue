@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar has-background-white">
     <div class="sidebar-brand">
       <img src="/EDUCACION_vertical.png" alt="Secretaria de education publica" />
     </div>
