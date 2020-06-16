@@ -12,7 +12,7 @@ const toPercentage = (rate: number): string => `${(Math.round(rate * 100 * 10) /
 export const toRateTabDataSet = (text: string, rateType: RateTypes, rate: number): RateTabDataSet => {
   let classes: string[] = [];
   let percentage = '-';
-  let percentageColor = 'grey-lighter';
+  let percentageColor = 'unknown';
 
   if (rate >= 0 && rate <= 0.25) {
     percentage = toPercentage(rate);

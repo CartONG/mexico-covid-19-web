@@ -1,9 +1,11 @@
 import { StoreOptions } from 'vuex';
 
 import { Country } from '@/domain/country/Country';
+import { Municipality } from '@/domain/municipality/Municipality';
 import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { SelectionSource } from '@/domain/selection/SelectionSource';
+import { State } from '@/domain/state/State';
 import { StateSummary } from '@/domain/state/StateSummary';
 import { RateTypes } from '@/primary/RateTypes';
 
@@ -23,7 +25,10 @@ export interface SchoolSelection {
 }
 
 export interface AppState {
+  level: 'country' | 'state' | 'municipality' | 'school';
   country: Country | undefined;
+  state: State | undefined;
+  municipality: Municipality | undefined;
   stateSummaryList: StateSummary[];
   municipalitySummaryList: MunicipalitySummary[];
   schoolSummaryList: SchoolSummary[];
@@ -35,7 +40,10 @@ export interface AppState {
 
 export const storeOptions: StoreOptions<AppState> = {
   state: {
+    level: 'country',
     country: undefined,
+    state: undefined,
+    municipality: undefined,
     stateSummaryList: [],
     municipalitySummaryList: [],
     schoolSummaryList: [],
@@ -45,8 +53,14 @@ export const storeOptions: StoreOptions<AppState> = {
     selectedRateType: RateTypes.STUDENT_ABSENCE,
   },
   mutations: {
-    setCountry(state: AppState, country: Country) {
+    setCountry(state: AppState, country: Country | undefined) {
       state.country = country;
+    },
+    setState(appState: AppState, state: State | undefined) {
+      appState.state = state;
+    },
+    setMunicipality(state: AppState, municipality: Municipality | undefined) {
+      state.municipality = municipality;
     },
     setStateSummaryList(state: AppState, stateSummaryList: StateSummary[]) {
       state.stateSummaryList = stateSummaryList;
@@ -57,21 +71,31 @@ export const storeOptions: StoreOptions<AppState> = {
     setSchoolSummaryList(state: AppState, schoolSummaryList: SchoolSummary[]) {
       state.schoolSummaryList = schoolSummaryList;
     },
-    selectCountry(state: AppState, source: SelectionSource) {
-      state.stateSelection = { stateId: '', source };
-      state.municipalitySelection = { municipalityId: '', source };
-      state.schoolSelection = { schoolId: '', source };
+    selectCountry(appState: AppState, source: SelectionSource) {
+      appState.level = 'country';
+      appState.stateSelection = { stateId: '', source };
+      appState.municipalitySelection = { municipalityId: '', source };
+      appState.schoolSelection = { schoolId: '', source };
+      appState.state = undefined;
+      appState.municipality = undefined;
     },
-    selectState(state: AppState, stateSelection: StateSelection) {
-      state.stateSelection = stateSelection;
-      state.municipalitySelection = { municipalityId: '', source: stateSelection.source };
-      state.schoolSelection = { schoolId: '', source: stateSelection.source };
+    selectState(appState: AppState, stateSelection: StateSelection) {
+      appState.level = 'state';
+      appState.state = stateSelection.stateId !== appState.stateSelection.stateId ? undefined : appState.state;
+      appState.stateSelection = stateSelection;
+      appState.municipalitySelection = { municipalityId: '', source: stateSelection.source };
+      appState.schoolSelection = { schoolId: '', source: stateSelection.source };
+      appState.municipality = undefined;
     },
     selectMunicipality(state: AppState, municipalitySelection: MunicipalitySelection) {
+      state.level = 'municipality';
+      state.municipality =
+        municipalitySelection.municipalityId !== state.municipalitySelection.municipalityId ? undefined : state.municipality;
       state.municipalitySelection = municipalitySelection;
       state.schoolSelection = { schoolId: '', source: municipalitySelection.source };
     },
     selectSchool(state: AppState, schoolSelection: SchoolSelection) {
+      state.level = 'school';
       state.schoolSelection = schoolSelection;
     },
     selectRateType(state: AppState, rateType: RateTypes) {

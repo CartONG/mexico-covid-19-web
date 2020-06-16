@@ -36,26 +36,46 @@ export default class Dashboard extends Vue {
   @Inject()
   private appStore!: () => AppStore;
 
+  get stateSelection() {
+    return this.appStore().getStateSelection();
+  }
+
   get municipalitySelection() {
     return this.appStore().getMunicipalitySelection();
   }
 
+  get schoolSelection() {
+    return this.appStore().getSchoolSelection();
+  }
+
+  @Watch('stateSelection.stateId')
+  stateIdWatcher(stateId: string) {
+    if (stateId !== '') {
+      setTimeout(() => {
+        this.findState(stateId);
+      }, 1000);
+    } else {
+      this.appStore().saveState(undefined);
+    }
+  }
+
   @Watch('municipalitySelection.municipalityId')
-  watcher(municipalityId: string) {
+  municipalityIdWatcher(municipalityId: string) {
     if (municipalityId === '') {
       this.appStore().saveSchoolSummaryList([]);
-      return;
+    } else {
+      setTimeout(() => {
+        this.listSchool(municipalityId);
+        this.findMunicipality(municipalityId);
+      }, 1000);
     }
+  }
 
-    setTimeout(() => {
-      this.schoolRepository()
-        .list(municipalityId)
-        .then(schoolSummaryList => this.appStore().saveSchoolSummaryList(schoolSummaryList))
-        .catch(error => {
-          this.logger().error('Fail to retrieve school summaries', error);
-          this.appStore().saveSchoolSummaryList([]);
-        });
-    }, 1000);
+  @Watch('schoolSelection.schoolId')
+  schoolIdWatcher(schoolId: string) {
+    if (schoolId) {
+      this.findSchool(schoolId);
+    }
   }
 
   created(): void {
@@ -72,5 +92,50 @@ export default class Dashboard extends Vue {
   private error(error: Error): void {
     this.logger().error('Fail to retrieve country, state, municipality or school data', error);
     this.state = ComponentState.ERROR;
+  }
+
+  private listSchool(municipalityId: string) {
+    this.schoolRepository()
+      .list(municipalityId)
+      .then(schoolSummaryList => this.appStore().saveSchoolSummaryList(schoolSummaryList))
+      .catch(error => {
+        this.logger().error('Fail to retrieve school summaries', error);
+        this.appStore().saveSchoolSummaryList([]);
+      });
+  }
+
+  private findState(stateId: string) {
+    this.stateRepository()
+      .find(stateId)
+      .then(state => {
+        this.appStore().saveState(state);
+      })
+      .catch(error => {
+        this.appStore().saveState(undefined);
+        this.logger().error('Fail to retrieve state', error);
+      });
+  }
+
+  private findMunicipality(municipalityId: string) {
+    this.municipalityRepository()
+      .find(municipalityId)
+      .then(municipality => {
+        this.appStore().saveMunicipality(municipality);
+      })
+      .catch(error => {
+        this.appStore().saveMunicipality(undefined);
+        this.logger().error('Fail to retrieve municipality', error);
+      });
+  }
+
+  private findSchool(schoolId: string) {
+    this.schoolRepository()
+      .find(schoolId)
+      .then(school => {
+        console.log(school);
+      })
+      .catch(error => {
+        this.logger().error('Fail to retrieve school', error);
+      });
   }
 }

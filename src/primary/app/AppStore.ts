@@ -1,9 +1,11 @@
 import { Store } from 'vuex';
 
 import { Country } from '@/domain/country/Country';
+import { Municipality } from '@/domain/municipality/Municipality';
 import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { SelectionSource } from '@/domain/selection/SelectionSource';
+import { State } from '@/domain/state/State';
 import { StateSummary } from '@/domain/state/StateSummary';
 import { AppState, MunicipalitySelection, SchoolSelection, StateSelection } from '@/primary/app/storeOptions';
 import { RateTypes } from '@/primary/RateTypes';
@@ -11,12 +13,32 @@ import { RateTypes } from '@/primary/RateTypes';
 export class AppStore {
   constructor(private store: Store<AppState>) {}
 
+  getLevel(): string {
+    return this.store.state.level;
+  }
+
   saveCountry(country: Country) {
     this.store.commit('setCountry', country);
   }
 
   getCountry(): Country | undefined {
     return this.store.state.country;
+  }
+
+  saveState(state: State | undefined) {
+    this.store.commit('setState', state);
+  }
+
+  getState() {
+    return this.store.state.state;
+  }
+
+  saveMunicipality(municipality: Municipality | undefined) {
+    this.store.commit('setMunicipality', municipality);
+  }
+
+  getMunicipality() {
+    return this.store.state.municipality;
   }
 
   saveStateSummaryList(stateSummaryList: StateSummary[]) {

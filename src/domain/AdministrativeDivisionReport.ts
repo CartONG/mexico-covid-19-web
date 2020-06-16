@@ -1,18 +1,6 @@
-export interface School {
-  id: string;
-  name: string;
-  locality: string;
-  municipalityId: string;
-  stateId: string;
-  studentAbsenceRate: number;
-  teacherAbsenceRate: number;
-  adminAbsenceRate: number;
-  students: number;
-  level: string;
-  workCenterKey: string;
-  turn: string;
-  type: string;
-  givesClasses: number;
+export interface AdministrativeDivisionReport {
+  totalSchools: number;
+  schoolGivingClassesPercentages: { [key: string]: number };
   studentsFirstGrade: number;
   studentsSecondGrade: number;
   studentsThirdGrade: number;
@@ -57,14 +45,15 @@ export interface School {
   absentAdministrativeStaff: number;
   absentQuartermasterStaff: number;
   absentOthers: number;
-  studentAbsenceMainReason: number;
-  waterSupply: number;
-  waterServiceContinuity: number;
-  sinkSufficiency: number;
-  soapSufficiency: number;
-  towelSufficiency: number;
-  sanitizerSufficiency: number;
-  binSufficiency: number;
-  hasSepticSystem: number;
-  hasAbilityToReorganizeSpace: number;
+  studentAbsenceMainReasonPercentages: { [key: string]: number };
+  schoolWaterSupplyPercentages: { [key: string]: number };
+  schoolWaterServiceContinuityPercentages: { [key: string]: number };
+  schoolWithWaterForHandWashingPercentages: { [key: string]: number };
+  schoolSinkSufficiencyPercentages: { [key: string]: number };
+  schoolSoapSufficiencyPercentages: { [key: string]: number };
+  schoolTowelSufficiencyPercentages: { [key: string]: number };
+  schoolSanitizerSufficiencyPercentages: { [key: string]: number };
+  schoolBinSufficiencyPercentages: { [key: string]: number };
+  schoolWithSepticSystemPercentages: { [key: string]: number };
+  schoolWithAbilityToReorganizeSpacePercentages: { [key: string]: number };
 }

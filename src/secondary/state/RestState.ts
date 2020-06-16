@@ -1,7 +1,9 @@
-import { Country } from '@/domain/country/Country';
+import { State } from '@/domain/state/State';
 import { toAdministrativeDivisionReport } from '@/secondary/RestAdministrativeDivisionReport';
 
-export interface RestCountry {
+export interface RestState {
+  id: string;
+  nombre: string;
   alumnosInasistencia: number;
   docentesInasistencia: number;
   adminInasistencia: number;
@@ -65,10 +67,11 @@ export interface RestCountry {
   espacios: { [key: string]: number };
 }
 
-export const toCountry = (restCountry: RestCountry): Country => ({
-  studentAbsenceRate: restCountry.alumnosInasistencia,
-  teacherAbsenceRate: restCountry.docentesInasistencia,
-  adminAbsenceRate: restCountry.adminInasistencia,
-  totalStudent: restCountry.totalAlum,
-  report: toAdministrativeDivisionReport(restCountry),
+export const toState = (restState: RestState): State => ({
+  id: restState.id,
+  name: restState.nombre,
+  studentAbsenceRate: restState.alumnosInasistencia,
+  teacherAbsenceRate: restState.docentesInasistencia,
+  adminAbsenceRate: restState.adminInasistencia,
+  report: toAdministrativeDivisionReport(restState),
 });

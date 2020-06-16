@@ -1,9 +1,11 @@
 import { AdministrativeDivisionReport } from '@/domain/AdministrativeDivisionReport';
 
-export interface Country {
+export interface Municipality {
+  id: string;
+  name: string;
+  stateId: string;
   studentAbsenceRate: number;
   teacherAbsenceRate: number;
   adminAbsenceRate: number;
-  totalStudent: number;
   report: AdministrativeDivisionReport;
 }

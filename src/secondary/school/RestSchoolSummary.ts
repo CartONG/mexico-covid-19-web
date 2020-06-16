@@ -14,7 +14,7 @@ export interface RestSchoolSummary {
 }
 
 export const toSchoolSummary = (restSchoolSummary: RestSchoolSummary): SchoolSummary => ({
-  id: `${restSchoolSummary.id}${restSchoolSummary.nivel}`,
+  id: `${restSchoolSummary.id}__${restSchoolSummary.nivel}`,
   name: restSchoolSummary.nombre,
   level: restSchoolSummary.nivel,
   studentAbsenceRate: restSchoolSummary.alumnosInasistencia,

@@ -5,8 +5,11 @@
         <h1 class="has-text-primary main-title">COVID19 DASHBOARD - Simulación Servicio Educativo</h1>
         <BreadcrumbVue />
         <div class="columns">
-          <div class="column is-8">
+          <div class="column is-9">
             <ChoroplethMapVue />
+          </div>
+          <div class="column is-3">
+            <IndicatorsVue />
           </div>
         </div>
       </div>
