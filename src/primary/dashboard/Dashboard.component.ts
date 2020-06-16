@@ -131,8 +131,11 @@ export default class Dashboard extends Vue {
   private findSchool(schoolId: string) {
     this.schoolRepository()
       .find(schoolId)
-      .then(school => {})
+      .then(school => {
+        this.appStore().saveSchool(school);
+      })
       .catch(error => {
+        this.appStore().saveSchool(undefined);
         this.logger().error('Fail to retrieve school', error);
       });
   }

@@ -3,48 +3,48 @@
     <div class="indicator-card card mb">
       <header class="card-header">
         <p class="card-header-title has-text-grey">
-          Total de escuelas
+          {{ indicatorsDataSet.school.label }}
         </p>
       </header>
       <div class="card-content has-text-centered">
-        <p :class="`title has-text-${indicatorsDataSet.schools.color}`">
-          {{ indicatorsDataSet.schools.text }}
+        <p :class="`title has-text-${indicatorsDataSet.school.color}`">
+          {{ indicatorsDataSet.school.text }}
         </p>
       </div>
     </div>
     <div class="indicator-card card mb">
       <header class="card-header">
         <p class="card-header-title has-text-grey">
-          Existencia de lavamanos en la escuela
+          {{ indicatorsDataSet.sinkSufficiency.label }}
         </p>
       </header>
       <div class="card-content has-text-centered">
-        <p :class="`title has-text-${indicatorsDataSet.schools.color}`">
-          {{ indicatorsDataSet.sinkSufficiencyPercentage.text }}
+        <p :class="`title has-text-${indicatorsDataSet.school.color}`">
+          {{ indicatorsDataSet.sinkSufficiency.text }}
         </p>
       </div>
     </div>
     <div class="indicator-card card mb">
       <header class="card-header">
         <p class="card-header-title has-text-grey">
-          Existencia de Jabón para lavado de manos
+          {{ indicatorsDataSet.soapSufficiency.label }}
         </p>
       </header>
       <div class="card-content has-text-centered">
-        <p :class="`title has-text-${indicatorsDataSet.schools.color}`">
-          {{ indicatorsDataSet.soapSufficiencyPercentage.text }}
+        <p :class="`title has-text-${indicatorsDataSet.school.color}`">
+          {{ indicatorsDataSet.soapSufficiency.text }}
         </p>
       </div>
     </div>
     <div class="indicator-card card">
       <header class="card-header">
         <p class="card-header-title has-text-grey">
-          La escuela puede reoganizar los espacios educativos
+          {{ indicatorsDataSet.abilityToReorganizeSpace.label }}
         </p>
       </header>
       <div class="card-content has-text-centered">
-        <p :class="`title has-text-${indicatorsDataSet.schools.color}`">
-          {{ indicatorsDataSet.abilityToReorganizeSpacePercentage.text }}
+        <p :class="`title has-text-${indicatorsDataSet.school.color}`">
+          {{ indicatorsDataSet.abilityToReorganizeSpace.text }}
         </p>
       </div>
     </div>

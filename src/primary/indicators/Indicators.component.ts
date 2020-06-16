@@ -1,7 +1,7 @@
 import { Component, Inject, Vue } from 'vue-property-decorator';
 
 import { AppStore } from '@/primary/app/AppStore';
-import { IndicatorsDataSet, toIndicatorDataSet } from '@/primary/indicators/IndicatorsDataSet';
+import { IndicatorsDataSet, mergedReportToIndicatorDataSet, toIndicatorDataSet } from '@/primary/indicators/IndicatorsDataSet';
 
 @Component
 export default class Indicators extends Vue {
@@ -24,15 +24,19 @@ export default class Indicators extends Vue {
     return this.appStore().getMunicipality();
   }
 
+  get school() {
+    return this.appStore().getSchool();
+  }
+
   get indicatorsDataSet(): IndicatorsDataSet {
     switch (this.level) {
       case 'state':
-        return toIndicatorDataSet(this.state);
+        return mergedReportToIndicatorDataSet(this.state);
       case 'municipality':
-        return toIndicatorDataSet(this.municipality);
+        return mergedReportToIndicatorDataSet(this.municipality);
       case 'school':
-        return toIndicatorDataSet(undefined);
+        return toIndicatorDataSet(this.school);
     }
-    return toIndicatorDataSet(this.country);
+    return mergedReportToIndicatorDataSet(this.country);
   }
 }

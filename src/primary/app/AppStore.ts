@@ -3,6 +3,7 @@ import { Store } from 'vuex';
 import { Country } from '@/domain/country/Country';
 import { Municipality } from '@/domain/municipality/Municipality';
 import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
+import { School } from '@/domain/school/School';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { SelectionSource } from '@/domain/selection/SelectionSource';
 import { State } from '@/domain/state/State';
@@ -39,6 +40,14 @@ export class AppStore {
 
   getMunicipality() {
     return this.store.state.municipality;
+  }
+
+  saveSchool(school: School | undefined) {
+    this.store.commit('setSchool', school);
+  }
+
+  getSchool(): School | undefined {
+    return this.store.state.school;
   }
 
   saveStateSummaryList(stateSummaryList: StateSummary[]) {

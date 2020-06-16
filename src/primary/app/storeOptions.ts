@@ -3,6 +3,7 @@ import { StoreOptions } from 'vuex';
 import { Country } from '@/domain/country/Country';
 import { Municipality } from '@/domain/municipality/Municipality';
 import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
+import { School } from '@/domain/school/School';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { SelectionSource } from '@/domain/selection/SelectionSource';
 import { State } from '@/domain/state/State';
@@ -29,6 +30,7 @@ export interface AppState {
   country: Country | undefined;
   state: State | undefined;
   municipality: Municipality | undefined;
+  school: School | undefined;
   stateSummaryList: StateSummary[];
   municipalitySummaryList: MunicipalitySummary[];
   schoolSummaryList: SchoolSummary[];
@@ -44,6 +46,7 @@ export const storeOptions: StoreOptions<AppState> = {
     country: undefined,
     state: undefined,
     municipality: undefined,
+    school: undefined,
     stateSummaryList: [],
     municipalitySummaryList: [],
     schoolSummaryList: [],
@@ -61,6 +64,9 @@ export const storeOptions: StoreOptions<AppState> = {
     },
     setMunicipality(state: AppState, municipality: Municipality | undefined) {
       state.municipality = municipality;
+    },
+    setSchool(state: AppState, school: School | undefined) {
+      state.school = school;
     },
     setStateSummaryList(state: AppState, stateSummaryList: StateSummary[]) {
       state.stateSummaryList = stateSummaryList;
@@ -96,6 +102,7 @@ export const storeOptions: StoreOptions<AppState> = {
     },
     selectSchool(state: AppState, schoolSelection: SchoolSelection) {
       state.level = 'school';
+      state.school = undefined;
       state.schoolSelection = schoolSelection;
     },
     selectRateType(state: AppState, rateType: RateTypes) {
