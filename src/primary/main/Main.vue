@@ -2,7 +2,7 @@
   <div class="main">
     <section class="section">
       <div class="container is-fluid">
-        <h1 class="has-text-primary main-title">COVID19 DASHBOARD - Simulación Servicio Educativo</h1>
+        <h1 class="has-text-primary main-title">Tablero de Análisis Integral</h1>
         <BreadcrumbVue />
         <div class="columns">
           <div class="column is-9">
