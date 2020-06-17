@@ -53,6 +53,10 @@ export default class RateList extends Vue {
     return this.appStore().getSchoolSummaryList();
   }
 
+  get selectedSchoolId() {
+    return this.appStore().getSchoolSelection().schoolId;
+  }
+
   get rateDataSets(): RateDataSet[] {
     switch (this.level) {
       case 'country':
@@ -60,6 +64,7 @@ export default class RateList extends Vue {
       case 'state':
         return this.municipalitySummaryListForState.map(municipality => toRateDataSet(municipality, this.selectedRateType));
       case 'municipality':
+      case 'school':
         return this.schoolSummaryList.map(school => toRateDataSet(school, this.selectedRateType));
     }
     return [];

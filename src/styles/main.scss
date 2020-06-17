@@ -130,6 +130,10 @@ html {
   width: 80px;
 }
 
+.has-no-background {
+  background-color: rgba(0, 0, 0, 0);
+}
+
 @import "ol.overrides";
 @import "map";
 @import "sidebar";
