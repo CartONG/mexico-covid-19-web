@@ -4,10 +4,14 @@
 $primary: #d4c19c;
 $secondary: #9d2449;
 $tertiary: #621132;
+$quaternary: #285c4d;
+$quinary: #bfbfbf;
 
 $primary-invert: findColorInvert($primary);
 $secondary-invert: findColorInvert($secondary);
-$tertiary-invert: findColorInvert($secondary);
+$tertiary-invert: findColorInvert($tertiary);
+$quaternary-invert: findColorInvert($quaternary);
+$quinary-invert: findColorInvert($quinary);
 
 $success: #3c947b;
 $warning: #efb749;
@@ -27,6 +31,8 @@ $colors: (
   "primary": ($primary, $primary-invert),
   "secondary": ($secondary, $secondary-invert),
   "tertiary": ($tertiary, $tertiary-invert),
+  "quaternary": ($quaternary, $quaternary-invert),
+  "quinary": ($quinary, $quinary-invert),
   "info": ($info, $info-invert),
   "success": ($success, $success-invert),
   "warning": ($warning, $warning-invert),
@@ -134,6 +140,19 @@ html {
   background-color: rgba(0, 0, 0, 0);
 }
 
+.legend-item {
+  margin-bottom: 12px;
+}
+
+.legend-box {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-right: 8px;
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
 @import "ol.overrides";
 @import "map";
 @import "sidebar";
@@ -142,3 +161,4 @@ html {
 @import "main";
 @import "indicator-card";
 @import "rate-list";
+@import "absence-reasons-details";

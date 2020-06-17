@@ -16,7 +16,9 @@
           <div class="column is-6">
             <RateListVue />
           </div>
-          <div class="column is-6"></div>
+          <div class="column is-6">
+            <AbsenceReasonsDetailsVue></AbsenceReasonsDetailsVue>
+          </div>
         </div>
       </div>
     </section>
