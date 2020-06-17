@@ -20,6 +20,7 @@ export default class RateList extends Vue {
       case 'state':
         return 'municipio';
       case 'municipality':
+      case 'school':
         return 'escuela';
     }
     return '-';
