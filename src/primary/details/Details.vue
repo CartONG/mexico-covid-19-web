@@ -7,9 +7,14 @@
       <table class="table is-fullwidth has-no-background">
         <tbody>
           <tr>
-            <td>Nombre de la escuela</td>
-            <td class="w80">{{ administrativeDivisionDataSet.totalSchools }}</td>
+            <td>Número de escuela</td>
+            <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.totalSchools }}</td>
           </tr>
+          <tr>
+            <td>Número de alumnos</td>
+            <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.totalStudent }}</td>
+          </tr>
+          <!--
           <tr>
             <td>Matricula de alumnos de primer grado</td>
             <td class="w80">{{ administrativeDivisionDataSet.studentsFirstGrade }}</td>
@@ -58,6 +63,7 @@
             <td>Total de Docentes frente a grupo de 6to.</td>
             <td class="w80">{{ administrativeDivisionDataSet.teachersSixthGrade }}</td>
           </tr>
+          -->
         </tbody>
       </table>
     </div>

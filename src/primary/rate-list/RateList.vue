@@ -20,7 +20,7 @@
             ]"
           >
             <td>{{ summaryDataSet.name }}</td>
-            <td class="w80">
+            <td class="w80 has-text-weight-bold">
               <template v-if="selectedRateType === 'STUDENT_ABSENCE'">
                 <span :class="`has-text-${summaryDataSet.studentAbsenceRate.percentageColor}`">{{
                   summaryDataSet.studentAbsenceRate.percentage
