@@ -1,10 +1,10 @@
 import { Component, Inject, Vue, Watch } from 'vue-property-decorator';
 
+import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { SelectionSource } from '@/domain/selection/SelectionSource';
 import { AppStore } from '@/primary/app/AppStore';
 import { DropdownItem } from '@/primary/dropdown/DropdownItem';
-import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
 
 @Component
 export default class Dropdown extends Vue {
