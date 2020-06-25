@@ -55,7 +55,7 @@ export default class AbsenceReasonsDetails extends Vue {
   }
 
   toChart(absenceReasonsDetailsDataSet: AbsenceReasonsDetailsDataSet | undefined) {
-    d3.select('g').remove();
+    d3.select('#absence-reasons-details-chart g').remove();
 
     if (absenceReasonsDetailsDataSet === undefined) {
       return;
@@ -75,9 +75,10 @@ export default class AbsenceReasonsDetails extends Vue {
       'rgba(191, 191, 191, 0.7)',
     ]);
 
-    const svg = d3.select('svg');
-    const width = parseInt(svg.attr('width'));
-    const height = parseInt(svg.attr('height'));
+    const svg = d3.select('#absence-reasons-details-chart');
+    const margin = { top: 10, right: 10, bottom: 10, left: 10 };
+    const width = 200 - margin.right - margin.left;
+    const height = 200 - margin.top - margin.bottom;
     const radius = Math.min(width, height) / 2;
     const g = svg.append('g').attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
     const pie = d3.pie();

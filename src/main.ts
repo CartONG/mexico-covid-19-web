@@ -9,12 +9,11 @@ import { AppVue } from './primary/app';
 
 import { AppStore } from '@/primary/app/AppStore';
 import { storeOptions } from '@/primary/app/storeOptions';
+import { RestAdministrativeDivisionHistoryRepository } from '@/secondary/administrative-division-history/RestAdministrativeDivisionHistoryRepository';
+import { RestAdministrativeDivisionRepository } from '@/secondary/administrative-division/RestAdministrativeDivisionRepository';
 import { ConsoleLogger } from '@/secondary/ConsoleLogger';
-import { RestCountryRepository } from '@/secondary/country/RestCountryRepository';
 import { LocalFetcher } from '@/secondary/LocalFetcher';
-import { RestMunicipalityRepository } from '@/secondary/municipality/RestMunicipalityRepository';
 import { RestSchoolRepository } from '@/secondary/school/RestSchoolRepository';
-import { RestStateRepository } from '@/secondary/state/RestStateRepository';
 
 Vue.use(Buefy);
 Vue.use(Vuex);
@@ -26,9 +25,8 @@ const localAxios = axios.create({ baseURL: './data/' });
 const restAxios = axios.create({ baseURL: restBaseUrl });
 const logger = new ConsoleLogger(console); // eslint-disable-line no-console
 const fetcher = new LocalFetcher(localAxios);
-const countryRepository = new RestCountryRepository(restAxios);
-const stateRepository = new RestStateRepository(restAxios);
-const municipalityRepository = new RestMunicipalityRepository(restAxios);
+const administrativeDivisionRepository = new RestAdministrativeDivisionRepository(restAxios);
+const administrativeDivisionHistoryRepository = new RestAdministrativeDivisionHistoryRepository(restAxios);
 const schoolRepository = new RestSchoolRepository(restAxios);
 const store = new Store(storeOptions);
 const appStore = new AppStore(store);
@@ -39,9 +37,8 @@ new Vue({
     logger: () => logger,
     appStore: () => appStore,
     fetcher: () => fetcher,
-    countryRepository: () => countryRepository,
-    stateRepository: () => stateRepository,
-    municipalityRepository: () => municipalityRepository,
+    administrativeDivisionRepository: () => administrativeDivisionRepository,
+    administrativeDivisionHistoryRepository: () => administrativeDivisionHistoryRepository,
     schoolRepository: () => schoolRepository,
   },
 }).$mount('#app');

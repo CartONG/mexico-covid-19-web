@@ -153,6 +153,14 @@ html {
   opacity: 0.7;
 }
 
+.card {
+  border-radius: 4px;
+}
+
+.card-header {
+  margin-bottom: 1px;
+}
+
 @import "ol.overrides";
 @import "map";
 @import "sidebar";

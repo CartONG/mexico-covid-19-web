@@ -20,6 +20,16 @@
             <AbsenceReasonsDetailsVue></AbsenceReasonsDetailsVue>
           </div>
         </div>
+        <div class="columns">
+          <div class="column is-12">
+            <HistoricVue></HistoricVue>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-12">
+            <DetailsVue></DetailsVue>
+          </div>
+        </div>
       </div>
     </section>
   </div>

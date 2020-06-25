@@ -1,7 +1,5 @@
-import { Country } from '@/domain/country/Country';
-import { Municipality } from '@/domain/municipality/Municipality';
+import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
 import { School } from '@/domain/school/School';
-import { State } from '@/domain/state/State';
 
 export interface AbsenceReasonsDetailsDataSet {
   noFacility: number;
@@ -14,13 +12,13 @@ const validNumber = (toValid: number) => !isNaN(toValid);
 const validRate = (rate: number) => validNumber(rate) && rate >= 0 && rate <= 1;
 
 export const mergedReportToAbsenceReasonsDetailsDataSet = (
-  entity: Country | State | Municipality | undefined
+  entity: AdministrativeDivision | undefined
 ): AbsenceReasonsDetailsDataSet | undefined => {
   if (entity === undefined) {
     return undefined;
   }
 
-  const reasons = entity.report.studentAbsenceMainReasonPercentages;
+  const reasons = entity.studentAbsenceMainReasonPercentages;
 
   return {
     noFacility: validRate(reasons['1']) ? reasons['1'] : 0,

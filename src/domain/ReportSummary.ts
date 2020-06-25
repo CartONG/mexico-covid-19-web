@@ -1,6 +1,4 @@
-export interface StateSummary {
-  id: string;
-  name: string;
+export interface ReportSummary {
   studentAbsenceRate: number;
   teacherAbsenceRate: number;
   adminAbsenceRate: number;

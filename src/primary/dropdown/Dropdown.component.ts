@@ -1,11 +1,10 @@
 import { Component, Inject, Vue, Watch } from 'vue-property-decorator';
 
-import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { SelectionSource } from '@/domain/selection/SelectionSource';
-import { StateSummary } from '@/domain/state/StateSummary';
 import { AppStore } from '@/primary/app/AppStore';
 import { DropdownItem } from '@/primary/dropdown/DropdownItem';
+import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
 
 @Component
 export default class Dropdown extends Vue {
@@ -67,7 +66,7 @@ export default class Dropdown extends Vue {
     this.items = this.appStore().getStateSummaryList();
   }
 
-  selectItem(item: StateSummary | MunicipalitySummary | SchoolSummary | null) {
+  selectItem(item: AdministrativeDivisionSummary | SchoolSummary | null) {
     if (item) {
       switch (this.nextSelectionType) {
         case 'state':

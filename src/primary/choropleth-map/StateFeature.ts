@@ -1,11 +1,11 @@
 import { Feature } from 'ol';
 import { Style } from 'ol/style';
 
-import { StateSummary } from '@/domain/state/StateSummary';
+import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
 import { stateStyleName, stateStyles } from '@/primary/choropleth-map/styles/states/stateStyles';
 import { RateTypes } from '@/primary/RateTypes';
 
-const getRate = (stateSummary: StateSummary, rateType: RateTypes): number => {
+const getRate = (stateSummary: AdministrativeDivisionSummary, rateType: RateTypes): number => {
   switch (rateType) {
     case RateTypes.STUDENT_ABSENCE:
       return stateSummary.studentAbsenceRate;
@@ -37,7 +37,7 @@ export const toStateFeatureStyle = (rate: number): Style => {
 
 export const toStateFeature = (
   feature: Feature,
-  stateSummaryById: { [key: string]: StateSummary },
+  stateSummaryById: { [key: string]: AdministrativeDivisionSummary },
   selectedStateId: string,
   rateType: RateTypes
 ): Feature => {

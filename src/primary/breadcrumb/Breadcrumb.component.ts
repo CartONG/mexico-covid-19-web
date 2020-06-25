@@ -8,27 +8,19 @@ export default class Breadcrumb extends Vue {
   @Inject()
   private appStore!: () => AppStore;
 
-  get stateSelection() {
-    return this.appStore().getStateSelection();
-  }
-
-  get municipalitySelection() {
-    return this.appStore().getMunicipalitySelection();
-  }
-
-  get schoolSelection() {
-    return this.appStore().getSchoolSelection();
+  get navigation() {
+    return this.appStore().getNavigation();
   }
 
   selectCountry() {
     this.appStore().selectCountry(SelectionSource.BREADCRUMB);
   }
 
-  selectState() {
-    this.appStore().selectState(this.stateSelection.stateId, SelectionSource.BREADCRUMB);
+  selectState(stateId: string) {
+    this.appStore().selectState(stateId, SelectionSource.BREADCRUMB);
   }
 
-  selectMunicipality() {
-    this.appStore().selectMunicipality(this.municipalitySelection.municipalityId, SelectionSource.BREADCRUMB);
+  selectMunicipality(municipalityId: string) {
+    this.appStore().selectMunicipality(municipalityId, SelectionSource.BREADCRUMB);
   }
 }

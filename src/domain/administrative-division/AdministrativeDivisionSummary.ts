@@ -1,4 +1,4 @@
-export interface MunicipalitySummary {
+export interface AdministrativeDivisionSummary {
   id: string;
   name: string;
   stateId: string;

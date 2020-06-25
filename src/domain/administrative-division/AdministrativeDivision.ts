@@ -1,5 +1,15 @@
-export interface AdministrativeDivisionReport {
+import { AdministrativeDivisionTypes } from '@/domain/administrative-division/AdministrativeDivisionTypes';
+
+export interface AdministrativeDivision {
+  id: string;
+  name: string;
+  type: AdministrativeDivisionTypes;
+  stateId: string;
   totalSchools: number;
+  totalStudent: number;
+  studentAbsenceRate: number;
+  teacherAbsenceRate: number;
+  adminAbsenceRate: number;
   schoolGivingClassesPercentages: { [key: string]: number };
   studentsFirstGrade: number;
   studentsSecondGrade: number;

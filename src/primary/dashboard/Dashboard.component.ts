@@ -1,11 +1,9 @@
 import { Component, Inject, Vue, Watch } from 'vue-property-decorator';
 
-import { CountryRepository } from '@/domain/country/CountryRepository';
+import { AdministrativeDivisionRepository } from '@/domain/administrative-division/AdministrativeDivisionRepository';
+import { AdministrativeDivisionTypes } from '@/domain/administrative-division/AdministrativeDivisionTypes';
 import { Logger } from '@/domain/Logger';
-import { MunicipalityRepository } from '@/domain/municipality/MunicipalityRepository';
-import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
 import { SchoolRepository } from '@/domain/school/SchoolRepository';
-import { StateRepository } from '@/domain/state/StateRepository';
 import { AppStore } from '@/primary/app/AppStore';
 import { ChoroplethMapVue } from '@/primary/choropleth-map';
 import { ComponentState } from '@/primary/ComponentState';
@@ -22,13 +20,7 @@ export default class Dashboard extends Vue {
   private logger!: () => Logger;
 
   @Inject()
-  private countryRepository!: () => CountryRepository;
-
-  @Inject()
-  private stateRepository!: () => StateRepository;
-
-  @Inject()
-  private municipalityRepository!: () => MunicipalityRepository;
+  private administrativeDivisionRepository!: () => AdministrativeDivisionRepository;
 
   @Inject()
   private schoolRepository!: () => SchoolRepository;
@@ -36,19 +28,11 @@ export default class Dashboard extends Vue {
   @Inject()
   private appStore!: () => AppStore;
 
-  get stateSelection() {
-    return this.appStore().getStateSelection();
+  get navigation() {
+    return this.appStore().getNavigation();
   }
 
-  get municipalitySelection() {
-    return this.appStore().getMunicipalitySelection();
-  }
-
-  get schoolSelection() {
-    return this.appStore().getSchoolSelection();
-  }
-
-  @Watch('stateSelection.stateId')
+  @Watch('navigation.stateId')
   stateIdWatcher(stateId: string) {
     if (stateId !== '') {
       setTimeout(() => {
@@ -59,7 +43,7 @@ export default class Dashboard extends Vue {
     }
   }
 
-  @Watch('municipalitySelection.municipalityId')
+  @Watch('navigation.municipalityId')
   municipalityIdWatcher(municipalityId: string) {
     if (municipalityId === '') {
       this.appStore().saveSchoolSummaryList([]);
@@ -71,7 +55,7 @@ export default class Dashboard extends Vue {
     }
   }
 
-  @Watch('schoolSelection.schoolId')
+  @Watch('navigation.schoolId')
   schoolIdWatcher(schoolId: string) {
     if (schoolId) {
       this.findSchool(schoolId);
@@ -79,11 +63,15 @@ export default class Dashboard extends Vue {
   }
 
   created(): void {
-    Promise.all([this.countryRepository().get(), this.stateRepository().list(), this.municipalityRepository().list()])
+    Promise.all([
+      this.administrativeDivisionRepository().find(AdministrativeDivisionTypes.COUNTRY, ''),
+      this.administrativeDivisionRepository().list(AdministrativeDivisionTypes.STATE),
+      this.administrativeDivisionRepository().list(AdministrativeDivisionTypes.MUNICIPALITY),
+    ])
       .then(results => {
         this.appStore().saveCountry(results[0]);
         this.appStore().saveStateSummaryList(results[1]);
-        this.appStore().saveMunicipalitySummaryList(results[2] as MunicipalitySummary[]);
+        this.appStore().saveMunicipalitySummaryList(results[2]);
         this.state = ComponentState.SUCCESS;
       })
       .catch(error => this.error(error));
@@ -105,8 +93,8 @@ export default class Dashboard extends Vue {
   }
 
   private findState(stateId: string) {
-    this.stateRepository()
-      .find(stateId)
+    this.administrativeDivisionRepository()
+      .find(AdministrativeDivisionTypes.STATE, stateId)
       .then(state => {
         this.appStore().saveState(state);
       })
@@ -117,8 +105,8 @@ export default class Dashboard extends Vue {
   }
 
   private findMunicipality(municipalityId: string) {
-    this.municipalityRepository()
-      .find(municipalityId)
+    this.administrativeDivisionRepository()
+      .find(AdministrativeDivisionTypes.MUNICIPALITY, municipalityId)
       .then(municipality => {
         this.appStore().saveMunicipality(municipality);
       })

@@ -1,12 +1,11 @@
 import { Feature } from 'ol';
 import { Style } from 'ol/style';
 
-import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
-import { StateSummary } from '@/domain/state/StateSummary';
+import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
 import { municipalityStyleName, municipalityStyles } from '@/primary/choropleth-map/styles/municipalities/municipalityStyles';
 import { RateTypes } from '@/primary/RateTypes';
 
-const getRate = (municipalitySummary: MunicipalitySummary, rateType: RateTypes): number => {
+const getRate = (municipalitySummary: AdministrativeDivisionSummary, rateType: RateTypes): number => {
   switch (rateType) {
     case RateTypes.STUDENT_ABSENCE:
       return municipalitySummary.studentAbsenceRate;
@@ -38,7 +37,7 @@ const toMunicipalityFeatureStyle = (rate: number): Style => {
 
 export const toMunicipalityFeature = (
   feature: Feature,
-  municipalitySummary: MunicipalitySummary | undefined,
+  municipalitySummary: AdministrativeDivisionSummary | undefined,
   selectedMunicipalityId: string,
   rateType: RateTypes
 ): Feature => {

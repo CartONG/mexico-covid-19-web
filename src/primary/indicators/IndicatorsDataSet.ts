@@ -1,7 +1,5 @@
-import { Country } from '@/domain/country/Country';
-import { Municipality } from '@/domain/municipality/Municipality';
+import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
 import { School } from '@/domain/school/School';
-import { State } from '@/domain/state/State';
 
 export interface IndicatorsDataSet {
   school: { label: string; text: string; color: string };
@@ -19,7 +17,7 @@ const validRate = (rate: number) => validNumber(rate) && rate >= 0 && rate <= 1;
 const validSufficiencyValue = (value: number) => validNumber(value) && value >= 1 && value <= 3;
 const validYesNoValue = (value: number) => validNumber(value) && value >= 1 && value <= 2;
 
-export const mergedReportToIndicatorDataSet = (entity: Country | State | Municipality | undefined): IndicatorsDataSet => {
+export const mergedReportToIndicatorDataSet = (entity: AdministrativeDivision | undefined): IndicatorsDataSet => {
   const indicatorsDataSet = {
     school: { label: 'Total de escuelas', text: '-', color: 'grey-lighter' },
     sinkSufficiency: { label: 'Existencia de lavamanos en la escuela', text: '-', color: 'grey-lighter' },
@@ -27,30 +25,30 @@ export const mergedReportToIndicatorDataSet = (entity: Country | State | Municip
     abilityToReorganizeSpace: { label: 'La escuela puede reoganizar los espacios educativos', text: '-', color: 'grey-lighter' },
   };
 
-  if (entity && entity.report.totalSchools) {
-    indicatorsDataSet.school = { ...indicatorsDataSet.school, text: entity.report.totalSchools.toString(), color: 'secondary' };
+  if (entity && entity.totalSchools) {
+    indicatorsDataSet.school = { ...indicatorsDataSet.school, text: entity.totalSchools.toString(), color: 'secondary' };
   }
 
-  if (entity && validRate(entity.report.schoolSinkSufficiencyPercentages['1'])) {
+  if (entity && validRate(entity.schoolSinkSufficiencyPercentages['1'])) {
     indicatorsDataSet.sinkSufficiency = {
       ...indicatorsDataSet.sinkSufficiency,
-      text: toPercentage(entity.report.schoolSinkSufficiencyPercentages['1']),
+      text: toPercentage(entity.schoolSinkSufficiencyPercentages['1']),
       color: 'secondary',
     };
   }
 
-  if (entity && validRate(entity.report.schoolSoapSufficiencyPercentages['1'])) {
+  if (entity && validRate(entity.schoolSoapSufficiencyPercentages['1'])) {
     indicatorsDataSet.soapSufficiency = {
       ...indicatorsDataSet.soapSufficiency,
-      text: toPercentage(entity.report.schoolSoapSufficiencyPercentages['1']),
+      text: toPercentage(entity.schoolSoapSufficiencyPercentages['1']),
       color: 'secondary',
     };
   }
 
-  if (entity && validRate(entity.report.schoolWithAbilityToReorganizeSpacePercentages['1'])) {
+  if (entity && validRate(entity.schoolWithAbilityToReorganizeSpacePercentages['1'])) {
     indicatorsDataSet.abilityToReorganizeSpace = {
       ...indicatorsDataSet.abilityToReorganizeSpace,
-      text: toPercentage(entity.report.schoolWithAbilityToReorganizeSpacePercentages['1']),
+      text: toPercentage(entity.schoolWithAbilityToReorganizeSpacePercentages['1']),
       color: 'secondary',
     };
   }

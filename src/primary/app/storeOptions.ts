@@ -1,14 +1,18 @@
 import { StoreOptions } from 'vuex';
 
-import { Country } from '@/domain/country/Country';
-import { Municipality } from '@/domain/municipality/Municipality';
-import { MunicipalitySummary } from '@/domain/municipality/MunicipalitySummary';
+import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
+import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
 import { School } from '@/domain/school/School';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { SelectionSource } from '@/domain/selection/SelectionSource';
-import { State } from '@/domain/state/State';
-import { StateSummary } from '@/domain/state/StateSummary';
+import { Summary } from '@/domain/Summary';
 import { RateTypes } from '@/primary/RateTypes';
+
+export interface Navigation {
+  stateId: string;
+  municipalityId: string;
+  schoolId: string;
+}
 
 export interface StateSelection {
   stateId: string;
@@ -27,12 +31,14 @@ export interface SchoolSelection {
 
 export interface AppState {
   level: 'country' | 'state' | 'municipality' | 'school';
-  country: Country | undefined;
-  state: State | undefined;
-  municipality: Municipality | undefined;
+  navigation: Navigation;
+  currentSummary: Summary | undefined;
+  country: AdministrativeDivision | undefined;
+  state: AdministrativeDivision | undefined;
+  municipality: AdministrativeDivision | undefined;
   school: School | undefined;
-  stateSummaryList: StateSummary[];
-  municipalitySummaryList: MunicipalitySummary[];
+  stateSummaryList: AdministrativeDivisionSummary[];
+  municipalitySummaryList: AdministrativeDivisionSummary[];
   schoolSummaryList: SchoolSummary[];
   stateSelection: StateSelection;
   municipalitySelection: MunicipalitySelection;
@@ -43,6 +49,8 @@ export interface AppState {
 export const storeOptions: StoreOptions<AppState> = {
   state: {
     level: 'country',
+    navigation: { stateId: '', municipalityId: '', schoolId: '' },
+    currentSummary: undefined,
     country: undefined,
     state: undefined,
     municipality: undefined,
@@ -56,22 +64,23 @@ export const storeOptions: StoreOptions<AppState> = {
     selectedRateType: RateTypes.STUDENT_ABSENCE,
   },
   mutations: {
-    setCountry(state: AppState, country: Country | undefined) {
+    setCountry(state: AppState, country: AdministrativeDivision | undefined) {
+      state.currentSummary = country;
       state.country = country;
     },
-    setState(appState: AppState, state: State | undefined) {
+    setState(appState: AppState, state: AdministrativeDivision | undefined) {
       appState.state = state;
     },
-    setMunicipality(state: AppState, municipality: Municipality | undefined) {
+    setMunicipality(state: AppState, municipality: AdministrativeDivision | undefined) {
       state.municipality = municipality;
     },
     setSchool(state: AppState, school: School | undefined) {
       state.school = school;
     },
-    setStateSummaryList(state: AppState, stateSummaryList: StateSummary[]) {
+    setStateSummaryList(state: AppState, stateSummaryList: AdministrativeDivision[]) {
       state.stateSummaryList = stateSummaryList;
     },
-    setMunicipalitySummaryList(state: AppState, municipalitySummaryList: MunicipalitySummary[]) {
+    setMunicipalitySummaryList(state: AppState, municipalitySummaryList: AdministrativeDivision[]) {
       state.municipalitySummaryList = municipalitySummaryList;
     },
     setSchoolSummaryList(state: AppState, schoolSummaryList: SchoolSummary[]) {
@@ -79,6 +88,8 @@ export const storeOptions: StoreOptions<AppState> = {
     },
     selectCountry(appState: AppState, source: SelectionSource) {
       appState.level = 'country';
+      appState.navigation = { stateId: '', municipalityId: '', schoolId: '' };
+      appState.currentSummary = appState.country;
       appState.stateSelection = { stateId: '', source };
       appState.municipalitySelection = { municipalityId: '', source };
       appState.schoolSelection = { schoolId: '', source };
@@ -87,6 +98,8 @@ export const storeOptions: StoreOptions<AppState> = {
     },
     selectState(appState: AppState, stateSelection: StateSelection) {
       appState.level = 'state';
+      appState.navigation = { stateId: stateSelection.stateId, municipalityId: '', schoolId: '' };
+      appState.currentSummary = appState.stateSummaryList.find(stateSummary => stateSummary.id === stateSelection.stateId);
       appState.state = stateSelection.stateId !== appState.stateSelection.stateId ? undefined : appState.state;
       appState.stateSelection = stateSelection;
       appState.municipalitySelection = { municipalityId: '', source: stateSelection.source };
@@ -95,6 +108,10 @@ export const storeOptions: StoreOptions<AppState> = {
     },
     selectMunicipality(state: AppState, municipalitySelection: MunicipalitySelection) {
       state.level = 'municipality';
+      state.navigation = { ...state.navigation, municipalityId: municipalitySelection.municipalityId, schoolId: '' };
+      state.currentSummary = state.municipalitySummaryList.find(
+        municipalitySummary => municipalitySummary.id === municipalitySelection.municipalityId
+      );
       state.municipality =
         municipalitySelection.municipalityId !== state.municipalitySelection.municipalityId ? undefined : state.municipality;
       state.municipalitySelection = municipalitySelection;
@@ -102,6 +119,8 @@ export const storeOptions: StoreOptions<AppState> = {
     },
     selectSchool(state: AppState, schoolSelection: SchoolSelection) {
       state.level = 'school';
+      state.navigation = { ...state.navigation, schoolId: schoolSelection.schoolId };
+      state.currentSummary = state.schoolSummaryList.find(schoolSummary => schoolSummary.id === schoolSelection.schoolId);
       state.school = undefined;
       state.schoolSelection = schoolSelection;
     },
@@ -117,7 +136,7 @@ export const storeOptions: StoreOptions<AppState> = {
       return state.municipalitySummaryList.reduce((accumulator, municipality) => ({ ...accumulator, [municipality.id]: municipality }), {});
     },
     municipalitySummaryByStateId: (state: AppState) => {
-      return state.municipalitySummaryList.reduce((accumulator: { [key: string]: MunicipalitySummary[] }, municipality) => {
+      return state.municipalitySummaryList.reduce((accumulator: { [key: string]: AdministrativeDivisionSummary[] }, municipality) => {
         const municipalities = accumulator[municipality.stateId] ? accumulator[municipality.stateId] : [];
         return { ...accumulator, [municipality.stateId]: [...municipalities, municipality] };
       }, {});
@@ -136,6 +155,16 @@ export const storeOptions: StoreOptions<AppState> = {
     },
     selectedSchool: (state: AppState, getters) => {
       return getters.schoolSummaryById[state.schoolSelection.schoolId];
+    },
+    currentAdministrativeDivision: (state: AppState, getters) => {
+      return state.navigation.stateId === '' ? state.country : state.navigation.municipalityId === '' ? state.state : state.municipality;
+    },
+    currentSummaryList: (state: AppState, getters) => {
+      return state.navigation.stateId === ''
+        ? state.stateSummaryList
+        : state.navigation.municipalityId === ''
+        ? state.municipalitySummaryList.filter(summary => summary.stateId === state.navigation.stateId)
+        : state.schoolSummaryList;
     },
   },
 };
