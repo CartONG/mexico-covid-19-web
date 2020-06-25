@@ -7,6 +7,7 @@ export interface AdministrativeDivision {
   stateId: string;
   totalSchools: number;
   totalStudent: number;
+  totalTeachers: number;
   studentAbsenceRate: number;
   teacherAbsenceRate: number;
   adminAbsenceRate: number;

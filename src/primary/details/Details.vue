@@ -7,12 +7,16 @@
       <table class="table is-fullwidth has-no-background">
         <tbody>
           <tr>
-            <td>Número de escuela</td>
+            <td>Número de escuelas</td>
             <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.totalSchools }}</td>
           </tr>
           <tr>
             <td>Número de alumnos</td>
             <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.totalStudent }}</td>
+          </tr>
+          <tr>
+            <td>Número de docentes</td>
+            <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.totalTeachers }}</td>
           </tr>
           <!--
           <tr>

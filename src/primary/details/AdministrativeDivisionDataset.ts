@@ -3,6 +3,7 @@ import { AdministrativeDivision } from '@/domain/administrative-division/Adminis
 export interface AdministrativeDivisionDataset {
   totalSchools: string;
   totalStudent: string;
+  totalTeachers: string;
   schoolGivingClassesPercentages: {
     '1': string;
     '2': string;
@@ -124,6 +125,7 @@ export const toAdministrativeDivisionDataset = (
     ? {
         totalSchools: administrativeDivision.totalSchools.toString(),
         totalStudent: administrativeDivision.totalStudent.toString(),
+        totalTeachers: administrativeDivision.totalTeachers.toString(),
         schoolGivingClassesPercentages: {
           '1': validRate(administrativeDivision.schoolBinSufficiencyPercentages['1'])
             ? toPercentage(administrativeDivision.schoolBinSufficiencyPercentages['1'])
@@ -316,6 +318,7 @@ export const toAdministrativeDivisionDataset = (
     : {
         totalSchools: '-',
         totalStudent: '-',
+        totalTeachers: '-',
         schoolGivingClassesPercentages: {
           '1': '-',
           '2': '-',

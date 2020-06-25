@@ -78,6 +78,13 @@ export const toAdministrativeDivision = (
   stateId: restAdministrativeDivision.entidadid || '',
   totalSchools: restAdministrativeDivision.totalEscuelas,
   totalStudent: restAdministrativeDivision.totalAlum,
+  totalTeachers:
+    restAdministrativeDivision.docente1ro +
+    restAdministrativeDivision.docente2do +
+    restAdministrativeDivision.docente3ro +
+    restAdministrativeDivision.docente4to +
+    restAdministrativeDivision.docente5to +
+    restAdministrativeDivision.docente6to,
   studentAbsenceRate: restAdministrativeDivision.alumnosInasistencia,
   teacherAbsenceRate: restAdministrativeDivision.docentesInasistencia,
   adminAbsenceRate: restAdministrativeDivision.adminInasistencia,
