@@ -32,7 +32,7 @@ export interface RestSchool {
   admin: number;
   intenden: number;
   otros: number;
-  tipoaBasagua: number;
+  tipoAbasAgua: number;
   contServAgua: number;
   aguaLavamanos: number;
   lavamanos: number;
@@ -99,7 +99,7 @@ export const toSchool = (restSchool: RestSchool): School => ({
   admins: restSchool.admin,
   quartermasters: restSchool.intenden,
   others: restSchool.otros,
-  waterSupply: restSchool.tipoaBasagua,
+  waterSupply: restSchool.tipoAbasAgua,
   waterServiceContinuity: restSchool.contServAgua,
   waterForHandWashing: restSchool.aguaLavamanos,
   sinkSufficiency: restSchool.lavamanos,
