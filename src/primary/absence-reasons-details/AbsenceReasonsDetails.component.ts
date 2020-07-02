@@ -28,8 +28,9 @@ export default class AbsenceReasonsDetails extends Vue {
       : toAdministrativeDivisionDataset(this.administrativeDivision).studentAbsenceMainReasons;
   }
 
-  @Watch('dataset')
-  absenceReasonsDetailsDataSetWatcher() {
+  @Watch('dataSet')
+  dataSetWatcher() {
+    console.log('watcher');
     this.toChart(this.dataSet);
   }
 
