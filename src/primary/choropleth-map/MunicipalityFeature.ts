@@ -8,29 +8,29 @@ import { RateTypes } from '@/primary/RateTypes';
 const getRate = (municipalitySummary: AdministrativeDivisionSummary, rateType: RateTypes): number => {
   switch (rateType) {
     case RateTypes.STUDENT_ABSENCE:
-      return municipalitySummary.studentAbsenceRate;
+      return municipalitySummary.maleStudentAttendance;
     case RateTypes.TEACHER_ABSENCE:
-      return municipalitySummary.teacherAbsenceRate;
+      return municipalitySummary.teacherAttendance;
     case RateTypes.PERSONAL_ABSENCE:
-      return municipalitySummary.adminAbsenceRate;
+      return municipalitySummary.adminAttendance;
   }
 };
 
 const toMunicipalityFeatureStyle = (rate: number): Style => {
   if (rate < 0.2) {
-    return municipalityStyles[municipalityStyleName.GREEN];
+    return municipalityStyles[municipalityStyleName.RED];
   }
   if (rate >= 0.2 && rate < 0.4) {
-    return municipalityStyles[municipalityStyleName.LIGHT_GREEN];
+    return municipalityStyles[municipalityStyleName.LIGHT_RED];
   }
   if (rate >= 0.4 && rate < 0.6) {
     return municipalityStyles[municipalityStyleName.ORANGE];
   }
   if (rate >= 0.6 && rate < 0.8) {
-    return municipalityStyles[municipalityStyleName.LIGHT_RED];
+    return municipalityStyles[municipalityStyleName.LIGHT_GREEN];
   }
   if (rate >= 0.8 && rate <= 1) {
-    return municipalityStyles[municipalityStyleName.RED];
+    return municipalityStyles[municipalityStyleName.GREEN];
   }
   return municipalityStyles[municipalityStyleName.LIGHT_GREY];
 };

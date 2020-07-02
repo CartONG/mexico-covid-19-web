@@ -2,11 +2,12 @@ import { AdministrativeDivisionSummary } from '@/domain/administrative-division/
 
 export interface RestAdministrativeDivisionSummary {
   id: string;
+  entidadId: string;
   nombre: string;
-  entidadId?: string;
-  alumnosInasistencia: number;
-  docentesInasistencia: number;
-  adminInasistencia: number;
+  alumnas: number;
+  alumnos: number;
+  docentes: number;
+  admin: number;
 }
 
 export const toAdministrativeDivisionSummary = (
@@ -15,7 +16,8 @@ export const toAdministrativeDivisionSummary = (
   id: `${restAdministrativeDivisionSummary.entidadId || ''}${restAdministrativeDivisionSummary.id}`,
   name: restAdministrativeDivisionSummary.nombre,
   stateId: restAdministrativeDivisionSummary.entidadId || '',
-  studentAbsenceRate: restAdministrativeDivisionSummary.alumnosInasistencia,
-  teacherAbsenceRate: restAdministrativeDivisionSummary.docentesInasistencia,
-  adminAbsenceRate: restAdministrativeDivisionSummary.adminInasistencia,
+  maleStudentAttendance: restAdministrativeDivisionSummary.alumnos,
+  femaleStudentAttendance: restAdministrativeDivisionSummary.alumnas,
+  teacherAttendance: restAdministrativeDivisionSummary.docentes,
+  adminAttendance: restAdministrativeDivisionSummary.admin,
 });

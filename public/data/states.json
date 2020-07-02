@@ -1,1 +1,8 @@
-[{"id":"07","nombre":"CHIAPAS","alumnosInasistencia":0.51,"docentesInasistencia":0.29,"adminInasistencia":0.54},{"id":"08","nombre":"CHIHUAHUA","alumnosInasistencia":0.33,"docentesInasistencia":0.05,"adminInasistencia":0.14},{"id":"12","nombre":"GUERRERO","alumnosInasistencia":0.43,"docentesInasistencia":0.17,"adminInasistencia":0.34},{"id":"13","nombre":"HIDALGO","alumnosInasistencia":0.42,"docentesInasistencia":0.10,"adminInasistencia":0.24},{"id":"14","nombre":"JALISCO","alumnosInasistencia":0.44,"docentesInasistencia":0.18,"adminInasistencia":0.42},{"id":"16","nombre":"MICHOACÁN DE OCAMPO","alumnosInasistencia":0.37,"docentesInasistencia":0.18,"adminInasistencia":0.36},{"id":"19","nombre":"NUEVO LEÓN","alumnosInasistencia":0.40,"docentesInasistencia":0.12,"adminInasistencia":0.53},{"id":"20","nombre":"OAXACA","alumnosInasistencia":0.42,"docentesInasistencia":0.23,"adminInasistencia":0.30},{"id":"21","nombre":"PUEBLA","alumnosInasistencia":0.39,"docentesInasistencia":0.19,"adminInasistencia":0.26},{"id":"24","nombre":"SAN LUIS POTOSÍ","alumnosInasistencia":0.44,"docentesInasistencia":0.25,"adminInasistencia":0.47},{"id":"26","nombre":"SONORA","alumnosInasistencia":0.29,"docentesInasistencia":0.03,"adminInasistencia":0.26},{"id":"28","nombre":"TAMAULIPAS","alumnosInasistencia":0.47,"docentesInasistencia":0.12,"adminInasistencia":0.50},{"id":"30","nombre":"VERACRUZ DE IGNACIO DE LA LLAVE","alumnosInasistencia":0.39,"docentesInasistencia":0.27,"adminInasistencia":0.14},{"id":"31","nombre":"YUCATÁN","alumnosInasistencia":0.47,"docentesInasistencia":0.04,"adminInasistencia":0.57}]
+[{
+  "id": "07",
+  "nombre": "CHIAPAS",
+  "alumnas": 0.91,
+  "alumnos": 0.94,
+  "docentes": 0.86,
+  "admin": 1.00
+}]

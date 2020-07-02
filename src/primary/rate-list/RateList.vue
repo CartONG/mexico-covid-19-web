@@ -3,11 +3,72 @@
     <header class="card-header">
       <p class="card-header-title has-text-primary">Porcentaje de {{ selectedRateTypeLabel }} ausentes por {{ levelLabel }}</p>
     </header>
-    <div class="card-content px-0 py-0">
+    <div class="card-content">
       <div v-if="summaryDataSets.length === 0" class="has-text-grey px-2 py-2">
         No se han encontrado resultados
       </div>
+      <b-table v-else :data="summaryDataSets" :default-sort="['name', 'asc']">
+        <template slot-scope="props">
+          <b-table-column
+            field="name"
+            :class="[
+              {
+                'has-text-weight-bold': props.row.id === `${selectedSchoolId}`,
+                'has-background-light': props.row.id === `${selectedSchoolId}`,
+              },
+            ]"
+            :label="levelLabel"
+            custom-key="name"
+            sortable
+          >
+            {{ props.row.name }}
+          </b-table-column>
+          <b-table-column
+            v-if="selectedRateType === 'STUDENT_ABSENCE'"
+            :class="`w80 has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''}`"
+            field="studentAbsenceRate.value"
+            label="Inasistencia"
+            sortable
+            numeric
+          >
+            <span :class="`has-text-${props.row.studentAbsenceRate.color}`">
+              {{ props.row.studentAbsenceRate.text }}
+            </span>
+          </b-table-column>
+          <b-table-column
+            v-else-if="selectedRateType === 'TEACHER_ABSENCE'"
+            :class="`w80 has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''}`"
+            field="teacherAbsenceRate.value"
+            label="Inasistencia"
+            sortable
+            numeric
+          >
+            <span :class="`has-text-${props.row.teacherAbsenceRate.color}`">
+              {{ props.row.teacherAbsenceRate.text }}
+            </span>
+          </b-table-column>
+          <b-table-column
+            v-else
+            :class="`w80 has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''}`"
+            field="adminAbsenceRate.value"
+            label="Inasistencia"
+            sortable
+            numeric
+          >
+            <span :class="`has-text-${props.row.adminAbsenceRate.color}`">
+              {{ props.row.adminAbsenceRate.text }}
+            </span>
+          </b-table-column>
+        </template>
+      </b-table>
+      <!--
       <table class="table is-fullwidth has-no-background">
+        <thead>
+          <tr>
+            <th>Alumnos</th>
+            <th>Asistencia</th>
+          </tr>
+        </thead>
         <tbody>
           <tr
             v-for="summaryDataSet in summaryDataSets"
@@ -40,6 +101,7 @@
           </tr>
         </tbody>
       </table>
+      -->
     </div>
   </div>
 </template>

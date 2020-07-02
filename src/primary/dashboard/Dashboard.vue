@@ -1,7 +1,7 @@
 <template>
   <div class="has-background-secondary">
     <template v-if="state === 'SUCCESS'">
-      <SidebarVue />
+      <!-- <SidebarVue /> -->
       <MainVue />
     </template>
   </div>

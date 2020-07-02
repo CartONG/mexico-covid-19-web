@@ -1,5 +1,5 @@
 <template>
-  <nav class="breadcrumb has-background-tertiary" aria-label="breadcrumbs">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
     <ul>
       <li :class="{ 'is-active': navigation.stateId === '' }">
         <a href="#" @click.stop.prevent="selectCountry">Pais</a>

@@ -161,6 +161,11 @@ html {
   margin-bottom: 1px;
 }
 
+.navbar-brand img {
+  height: 30px;
+  width: auto;
+}
+
 @import "ol.overrides";
 @import "map";
 @import "sidebar";

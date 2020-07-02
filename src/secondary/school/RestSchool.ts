@@ -2,49 +2,29 @@ import { School } from '@/domain/school/School';
 
 export interface RestSchool {
   id: string;
-  nombre: string;
   localidad: string;
-  nivel: string;
   municipioId: string;
   entidadId: string;
-  alumnosInasistencia: number;
-  docentesInasistencia: number;
-  adminInasistencia: number;
-  totalAlum: number;
+  nombre: string;
+  alumnasPorcentaje: number;
+  alumnosPorcentaje: number;
+  docentesPorcentaje: number;
+  adminPorcentaje: number;
+  nivel: string;
   cct: string;
   turno: string;
+  hayClases: 1;
+  modalidad: string;
+  municipio: string;
+  cod_localidad: string;
+  domicilio: string;
+  cod_inmueble: string;
   sostenimiento: string;
-  hayclases: number;
-  alum1ro: number;
-  alum2do: number;
-  alum3ro: number;
-  alum4to: number;
-  alum5to: number;
-  alum6to: number;
-  docente1ro: number;
-  docente2do: number;
-  docente3ro: number;
-  docente4to: number;
-  docente5to: number;
-  docente6to: number;
-  gpos1ro: number;
-  gpos2do: number;
-  gpos3ro: number;
-  gpos4to: number;
-  gpos5to: number;
-  gpos6to: number;
-  inaalum1ro: number;
-  inaalum2do: number;
-  inaalum3ro: number;
-  inaalum4to: number;
-  inaalum5to: number;
-  inaalum6to: number;
-  inadocente1ro: number;
-  inadocente2do: number;
-  inadocente3ro: number;
-  inadocente4to: number;
-  inadocente5to: number;
-  inadocente6to: number;
+  alumnas: number;
+  alumnos: number;
+  totAlumnos: number;
+  docentes: number;
+  grupos: number;
   director: number;
   subdirector: number;
   atps: number;
@@ -52,92 +32,110 @@ export interface RestSchool {
   admin: number;
   intenden: number;
   otros: number;
-  inadirector: number;
-  inasubdirector: number;
-  inaatps: number;
-  inaeducfis: number;
-  inaadmin: number;
-  inaintenden: number;
-  inaotros: number;
-  causaInaAlum: number;
   tipoaBasagua: number;
-  contServagua: number;
+  contServAgua: number;
+  aguaLavamanos: number;
   lavamanos: number;
   jabon: number;
   toallas: number;
   sanitizante: number;
   botesBasura: number;
-  tipodrenaje: number;
+  tipoDrenaje: number;
   espacios: number;
+  comite: number;
+  asistencia50: number;
+  inaAlumnas: number;
+  inaAlumnos: number;
+  inaalum_causa1: number;
+  inaalum_causa2: number;
+  inaalum_causa3: number;
+  inaalum_causa4: number;
+  inaalum_causa5: number;
+  inaalum_causaotro: string;
+  inaDocentes: number;
+  inadoc_causa1: number;
+  inadoc_causa2: number;
+  inadoc_causa3: number;
+  inadoc_causa4: number;
+  inadoc_causaotro: string;
+  inaAdministrativos: number;
+  inaadm_causa1: number;
+  inaadm_causa2: number;
+  inaadm_causa3: number;
+  inaadm_causa4: number;
+  inaadm_causaotro: string;
+  comentarios: string;
 }
 
 export const toSchool = (restSchool: RestSchool): School => ({
-  id: `${restSchool.id}__${restSchool.nivel}`,
-  name: restSchool.nombre,
+  id: restSchool.id,
   locality: restSchool.localidad,
   municipalityId: restSchool.municipioId,
   stateId: restSchool.entidadId,
-  studentAbsenceRate: restSchool.alumnosInasistencia,
-  teacherAbsenceRate: restSchool.docentesInasistencia,
-  adminAbsenceRate: restSchool.adminInasistencia,
-  students: restSchool.totalAlum,
+  name: restSchool.nombre,
+  femaleStudentAttendance: restSchool.alumnasPorcentaje,
+  maleStudentAttendance: restSchool.alumnosPorcentaje,
+  teacherAttendance: restSchool.docentesPorcentaje,
+  adminAttendance: restSchool.adminPorcentaje,
   level: restSchool.nivel,
   workCenterKey: restSchool.cct,
   turn: restSchool.turno,
-  type: restSchool.sostenimiento,
-  givesClasses: restSchool.hayclases,
-  studentsFirstGrade: restSchool.alum1ro,
-  studentsSecondGrade: restSchool.alum2do,
-  studentsThirdGrade: restSchool.alum3ro,
-  studentsFourthGrade: restSchool.alum4to,
-  studentsFifthGrade: restSchool.alum5to,
-  studentsSixthGrade: restSchool.alum6to,
-  teachersFirstGrade: restSchool.docente1ro,
-  teachersSecondGrade: restSchool.docente2do,
-  teachersThirdGrade: restSchool.docente3ro,
-  teachersFourthGrade: restSchool.docente4to,
-  teachersFifthGrade: restSchool.docente5to,
-  teachersSixthGrade: restSchool.docente6to,
-  assistantsFirstGrade: restSchool.gpos1ro,
-  assistantsSecondGrade: restSchool.gpos2do,
-  assistantsThirdGrade: restSchool.gpos3ro,
-  assistantsFourthGrade: restSchool.gpos4to,
-  assistantsFifthGrade: restSchool.gpos5to,
-  assistantsSixthGrade: restSchool.gpos6to,
-  absentStudentsFirstGrade: restSchool.inaalum1ro,
-  absentStudentsSecondGrade: restSchool.inaalum2do,
-  absentStudentsThirdGrade: restSchool.inaalum3ro,
-  absentStudentsFourthGrade: restSchool.inaalum4to,
-  absentStudentsFifthGrade: restSchool.inaalum5to,
-  absentStudentsSixthGrade: restSchool.inaalum6to,
-  absentTeachersFirstGrade: restSchool.inadocente1ro,
-  absentTeachersSecondGrade: restSchool.inadocente2do,
-  absentTeachersThirdGrade: restSchool.inadocente3ro,
-  absentTeachersFourthGrade: restSchool.inadocente4to,
-  absentTeachersFifthGrade: restSchool.inadocente5to,
-  absentTeachersSixthGrade: restSchool.inadocente6to,
-  directors: restSchool.director,
-  subDirector: restSchool.subdirector,
+  givesClasses: restSchool.hayClases,
+  modality: restSchool.modalidad,
+  municipality: restSchool.municipio,
+  localityId: restSchool.cod_localidad,
+  address: restSchool.domicilio,
+  buildingId: restSchool.cod_inmueble,
+  support: restSchool.sostenimiento,
+  femaleStudent: restSchool.alumnas,
+  maleStudent: restSchool.alumnos,
+  students: restSchool.totAlumnos,
+  teachers: restSchool.docentes,
+  assistants: restSchool.grupos,
+  director: restSchool.director,
+  subDirectors: restSchool.subdirector,
   technicalPedagogicalAdvisers: restSchool.atps,
   physicalEducationTeachers: restSchool.educfis,
-  administrativeStaff: restSchool.admin,
-  quartermasterStaff: restSchool.intenden,
+  admins: restSchool.admin,
+  quartermasters: restSchool.intenden,
   others: restSchool.otros,
-  absentDirectors: restSchool.inadirector,
-  absentSubDirector: restSchool.inasubdirector,
-  absentTechnicalPedagogicalAdvisers: restSchool.inaatps,
-  absentPhysicalEducationTeachers: restSchool.inaeducfis,
-  absentAdministrativeStaff: restSchool.inaadmin,
-  absentQuartermasterStaff: restSchool.inaintenden,
-  absentOthers: restSchool.inaotros,
-  studentAbsenceMainReason: restSchool.causaInaAlum,
   waterSupply: restSchool.tipoaBasagua,
-  waterServiceContinuity: restSchool.contServagua,
+  waterServiceContinuity: restSchool.contServAgua,
+  waterForHandWashing: restSchool.aguaLavamanos,
   sinkSufficiency: restSchool.lavamanos,
   soapSufficiency: restSchool.jabon,
   towelSufficiency: restSchool.toallas,
   sanitizerSufficiency: restSchool.sanitizante,
   binSufficiency: restSchool.botesBasura,
-  hasSepticSystem: restSchool.tipodrenaje,
+  hasSepticSystem: restSchool.tipoDrenaje,
   hasAbilityToReorganizeSpace: restSchool.espacios,
+  hasHygieneCommittee: restSchool.comite,
+  alternatesAttendance: restSchool.asistencia50,
+  absentFemaleStudents: restSchool.inaAlumnas,
+  absentMaleStudents: restSchool.inaAlumnos,
+  studentAbsenceMainReasons: {
+    '1': restSchool.inaalum_causa1,
+    '2': restSchool.inaalum_causa2,
+    '3': restSchool.inaalum_causa3,
+    '4': restSchool.inaalum_causa4,
+    '5': restSchool.inaalum_causa5,
+  },
+  studentAbsenceOtherReason: restSchool.inaalum_causaotro,
+  absentTeachers: restSchool.inaDocentes,
+  teacherAbsenceMainReasons: {
+    '1': restSchool.inadoc_causa1,
+    '2': restSchool.inadoc_causa2,
+    '3': restSchool.inadoc_causa3,
+    '4': restSchool.inadoc_causa4,
+  },
+  teacherAbsenceOtherReason: restSchool.inadoc_causaotro,
+  absentAdmins: restSchool.inaAdministrativos,
+  adminAbsenceMainReasons: {
+    '1': restSchool.inaadm_causa1,
+    '2': restSchool.inaadm_causa2,
+    '3': restSchool.inaadm_causa3,
+    '4': restSchool.inaadm_causa4,
+  },
+  adminAbsenceOtherReason: restSchool.inaadm_causaotro,
+  comments: restSchool.comentarios,
 });

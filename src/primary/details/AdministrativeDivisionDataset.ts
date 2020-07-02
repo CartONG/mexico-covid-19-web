@@ -1,10 +1,25 @@
 import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
 
 export interface AdministrativeDivisionDataset {
-  totalSchools: string;
-  totalStudent: string;
-  totalTeachers: string;
-  schoolGivingClassesPercentages: {
+  support: { private: string; public: string };
+  femaleStudentAttendance: string;
+  maleStudentAttendance: string;
+  teacherAttendance: string;
+  adminAttendance: string;
+  schools: string;
+  students: string;
+  femaleStudents: string;
+  maleStudents: string;
+  teachers: string;
+  assistants: string;
+  directors: string;
+  subDirectors: string;
+  technicalPedagogicalAdvisers: string;
+  physicalEducationTeachers: string;
+  admins: string;
+  quartermasters: string;
+  others: string;
+  schoolGivingClasses: {
     '1': string;
     '2': string;
     '3': string;
@@ -13,313 +28,229 @@ export interface AdministrativeDivisionDataset {
     '6': string;
     '7': string;
   };
-  studentsFirstGrade: string;
-  studentsSecondGrade: string;
-  studentsThirdGrade: string;
-  studentsFourthGrade: string;
-  studentsFifthGrade: string;
-  studentsSixthGrade: string;
-  teachersFirstGrade: string;
-  teachersSecondGrade: string;
-  teachersThirdGrade: string;
-  teachersFourthGrade: string;
-  teachersFifthGrade: string;
-  teachersSixthGrade: string;
-  assistantsFirstGrade: string;
-  assistantsSecondGrade: string;
-  assistantsThirdGrade: string;
-  assistantsFourthGrade: string;
-  assistantsFifthGrade: string;
-  assistantsSixthGrade: string;
-  absentStudentsFirstGrade: string;
-  absentStudentsSecondGrade: string;
-  absentStudentsThirdGrade: string;
-  absentStudentsFourthGrade: string;
-  absentStudentsFifthGrade: string;
-  absentStudentsSixthGrade: string;
-  absentTeachersFirstGrade: string;
-  absentTeachersSecondGrade: string;
-  absentTeachersThirdGrade: string;
-  absentTeachersFourthGrade: string;
-  absentTeachersFifthGrade: string;
-  absentTeachersSixthGrade: string;
-  directors: string;
-  subDirector: string;
-  technicalPedagogicalAdvisers: string;
-  physicalEducationTeachers: string;
-  administrativeStaff: string;
-  quartermasterStaff: string;
-  others: string;
-  absentDirectors: string;
-  absentSubDirector: string;
-  absentTechnicalPedagogicalAdvisers: string;
-  absentPhysicalEducationTeachers: string;
-  absentAdministrativeStaff: string;
-  absentQuartermasterStaff: string;
-  absentOthers: string;
-  studentAbsenceMainReasonPercentages: {
+  schoolWaterSupply: {
     '1': string;
     '2': string;
     '3': string;
     '4': string;
   };
-  schoolWaterSupplyPercentages: {
+  schoolWaterServiceContinuity: {
     '1': string;
     '2': string;
     '3': string;
     '4': string;
   };
-  schoolWaterServiceContinuityPercentages: {
+  schoolWithWaterForHandWashing: {
+    '1': string;
+    '2': string;
+  };
+  schoolSinkSufficiency: {
+    '1': string;
+    '2': string;
+    '3': string;
+  };
+  schoolSoapSufficiency: {
+    '1': string;
+    '2': string;
+    '3': string;
+  };
+  schoolTowelSufficiency: {
+    '1': string;
+    '2': string;
+    '3': string;
+  };
+  schoolSanitizerSufficiency: {
+    '1': string;
+    '2': string;
+    '3': string;
+  };
+  schoolBinSufficiency: {
+    '1': string;
+    '2': string;
+    '3': string;
+  };
+  schoolWithSepticSystem: {
+    '1': string;
+    '2': string;
+  };
+  schoolWithAbilityToReorganizeSpace: {
+    '1': string;
+    '2': string;
+  };
+  hygieneCommittee: {
+    '1': string;
+    '2': string;
+  };
+  alternatesAttendance: {
+    '1': string;
+    '2': string;
+  };
+  absentFemaleStudents: string;
+  absentMaleStudents: string;
+  studentAbsenceMainReasons: {
+    '1': string;
+    '2': string;
+    '3': string;
+    '4': string;
+    '5': string;
+  };
+  absentTeachers: string;
+  teacherAbsenceMainReasons: {
     '1': string;
     '2': string;
     '3': string;
     '4': string;
   };
-  schoolWithWaterForHandWashingPercentages: {
-    '1': string;
-    '2': string;
-  };
-  schoolSinkSufficiencyPercentages: {
+  absentAdmins: string;
+  adminsAbsenceMainReasons: {
     '1': string;
     '2': string;
     '3': string;
-  };
-  schoolSoapSufficiencyPercentages: {
-    '1': string;
-    '2': string;
-    '3': string;
-  };
-  schoolTowelSufficiencyPercentages: {
-    '1': string;
-    '2': string;
-    '3': string;
-  };
-  schoolSanitizerSufficiencyPercentages: {
-    '1': string;
-    '2': string;
-    '3': string;
-  };
-  schoolBinSufficiencyPercentages: {
-    '1': string;
-    '2': string;
-    '3': string;
-  };
-  schoolWithSepticSystemPercentages: {
-    '1': string;
-    '2': string;
-  };
-  schoolWithAbilityToReorganizeSpacePercentages: {
-    '1': string;
-    '2': string;
+    '4': string;
   };
 }
 
 const toPercentage = (rate: number): string => `${(Math.round(rate * 100 * 10) / 10).toString()} %`;
 const validNumber = (toValid: number) => !isNaN(toValid);
 const validRate = (rate: number) => validNumber(rate) && rate >= 0 && rate <= 1;
+const toPercentageIfValidRate = (rate: number) => (validRate(rate) ? toPercentage(rate) : '-');
 
 export const toAdministrativeDivisionDataset = (
   administrativeDivision: AdministrativeDivision | undefined
 ): AdministrativeDivisionDataset =>
   administrativeDivision
     ? {
-        totalSchools: administrativeDivision.totalSchools.toString(),
-        totalStudent: administrativeDivision.totalStudent.toString(),
-        totalTeachers: administrativeDivision.totalTeachers.toString(),
-        schoolGivingClassesPercentages: {
-          '1': validRate(administrativeDivision.schoolBinSufficiencyPercentages['1'])
-            ? toPercentage(administrativeDivision.schoolBinSufficiencyPercentages['1'])
-            : '-',
-          '2': validRate(administrativeDivision.schoolBinSufficiencyPercentages['2'])
-            ? toPercentage(administrativeDivision.schoolBinSufficiencyPercentages['2'])
-            : '-',
-          '3': validRate(administrativeDivision.schoolBinSufficiencyPercentages['3'])
-            ? toPercentage(administrativeDivision.schoolBinSufficiencyPercentages['3'])
-            : '-',
-          '4': validRate(administrativeDivision.schoolBinSufficiencyPercentages['4'])
-            ? toPercentage(administrativeDivision.schoolBinSufficiencyPercentages['4'])
-            : '-',
-          '5': validRate(administrativeDivision.schoolBinSufficiencyPercentages['5'])
-            ? toPercentage(administrativeDivision.schoolBinSufficiencyPercentages['5'])
-            : '-',
-          '6': validRate(administrativeDivision.schoolBinSufficiencyPercentages['6'])
-            ? toPercentage(administrativeDivision.schoolBinSufficiencyPercentages['6'])
-            : '-',
-          '7': validRate(administrativeDivision.schoolBinSufficiencyPercentages['7'])
-            ? toPercentage(administrativeDivision.schoolBinSufficiencyPercentages['7'])
-            : '-',
+        support: {
+          private: administrativeDivision.support.private.toString(),
+          public: administrativeDivision.support.public.toString(),
         },
-        studentsFirstGrade: administrativeDivision.studentsFirstGrade.toString(),
-        studentsSecondGrade: administrativeDivision.studentsSecondGrade.toString(),
-        studentsThirdGrade: administrativeDivision.studentsThirdGrade.toString(),
-        studentsFourthGrade: administrativeDivision.studentsFourthGrade.toString(),
-        studentsFifthGrade: administrativeDivision.studentsFifthGrade.toString(),
-        studentsSixthGrade: administrativeDivision.studentsSixthGrade.toString(),
-        teachersFirstGrade: administrativeDivision.teachersFirstGrade.toString(),
-        teachersSecondGrade: administrativeDivision.teachersSecondGrade.toString(),
-        teachersThirdGrade: administrativeDivision.teachersThirdGrade.toString(),
-        teachersFourthGrade: administrativeDivision.teachersFourthGrade.toString(),
-        teachersFifthGrade: administrativeDivision.teachersFifthGrade.toString(),
-        teachersSixthGrade: administrativeDivision.teachersSixthGrade.toString(),
-        assistantsFirstGrade: administrativeDivision.assistantsFirstGrade.toString(),
-        assistantsSecondGrade: administrativeDivision.assistantsSecondGrade.toString(),
-        assistantsThirdGrade: administrativeDivision.assistantsThirdGrade.toString(),
-        assistantsFourthGrade: administrativeDivision.assistantsFourthGrade.toString(),
-        assistantsFifthGrade: administrativeDivision.assistantsFifthGrade.toString(),
-        assistantsSixthGrade: administrativeDivision.assistantsSixthGrade.toString(),
-        absentStudentsFirstGrade: administrativeDivision.absentStudentsFirstGrade.toString(),
-        absentStudentsSecondGrade: administrativeDivision.absentStudentsSecondGrade.toString(),
-        absentStudentsThirdGrade: administrativeDivision.absentStudentsThirdGrade.toString(),
-        absentStudentsFourthGrade: administrativeDivision.absentStudentsFourthGrade.toString(),
-        absentStudentsFifthGrade: administrativeDivision.absentStudentsFifthGrade.toString(),
-        absentStudentsSixthGrade: administrativeDivision.absentStudentsSixthGrade.toString(),
-        absentTeachersFirstGrade: administrativeDivision.absentTeachersFirstGrade.toString(),
-        absentTeachersSecondGrade: administrativeDivision.absentTeachersSecondGrade.toString(),
-        absentTeachersThirdGrade: administrativeDivision.absentTeachersThirdGrade.toString(),
-        absentTeachersFourthGrade: administrativeDivision.absentTeachersFourthGrade.toString(),
-        absentTeachersFifthGrade: administrativeDivision.absentTeachersFifthGrade.toString(),
-        absentTeachersSixthGrade: administrativeDivision.absentTeachersSixthGrade.toString(),
+        femaleStudentAttendance: administrativeDivision.femaleStudentAttendance.toString(),
+        maleStudentAttendance: administrativeDivision.maleStudentAttendance.toString(),
+        teacherAttendance: administrativeDivision.teacherAttendance.toString(),
+        adminAttendance: administrativeDivision.adminAttendance.toString(),
+        schools: administrativeDivision.schools.toString(),
+        students: administrativeDivision.students.toString(),
+        femaleStudents: administrativeDivision.femaleStudents.toString(),
+        maleStudents: administrativeDivision.maleStudents.toString(),
+        teachers: administrativeDivision.teachers.toString(),
+        assistants: administrativeDivision.assistants.toString(),
         directors: administrativeDivision.directors.toString(),
-        subDirector: administrativeDivision.subDirector.toString(),
+        subDirectors: administrativeDivision.subDirectors.toString(),
         technicalPedagogicalAdvisers: administrativeDivision.technicalPedagogicalAdvisers.toString(),
         physicalEducationTeachers: administrativeDivision.physicalEducationTeachers.toString(),
-        administrativeStaff: administrativeDivision.administrativeStaff.toString(),
-        quartermasterStaff: administrativeDivision.quartermasterStaff.toString(),
+        admins: administrativeDivision.admins.toString(),
+        quartermasters: administrativeDivision.quartermasters.toString(),
         others: administrativeDivision.others.toString(),
-        absentDirectors: administrativeDivision.absentDirectors.toString(),
-        absentSubDirector: administrativeDivision.absentSubDirector.toString(),
-        absentTechnicalPedagogicalAdvisers: administrativeDivision.absentTechnicalPedagogicalAdvisers.toString(),
-        absentPhysicalEducationTeachers: administrativeDivision.absentPhysicalEducationTeachers.toString(),
-        absentAdministrativeStaff: administrativeDivision.absentAdministrativeStaff.toString(),
-        absentQuartermasterStaff: administrativeDivision.absentQuartermasterStaff.toString(),
-        absentOthers: administrativeDivision.absentOthers.toString(),
-        studentAbsenceMainReasonPercentages: {
-          '1': validRate(administrativeDivision.studentAbsenceMainReasonPercentages['1'])
-            ? toPercentage(administrativeDivision.studentAbsenceMainReasonPercentages['1'])
-            : '-',
-          '2': validRate(administrativeDivision.studentAbsenceMainReasonPercentages['2'])
-            ? toPercentage(administrativeDivision.studentAbsenceMainReasonPercentages['2'])
-            : '-',
-          '3': validRate(administrativeDivision.studentAbsenceMainReasonPercentages['3'])
-            ? toPercentage(administrativeDivision.studentAbsenceMainReasonPercentages['3'])
-            : '-',
-          '4': validRate(administrativeDivision.studentAbsenceMainReasonPercentages['4'])
-            ? toPercentage(administrativeDivision.studentAbsenceMainReasonPercentages['4'])
-            : '-',
+        schoolGivingClasses: {
+          '1': toPercentageIfValidRate(administrativeDivision.schoolGivingClasses['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.schoolGivingClasses['2']),
+          '3': toPercentageIfValidRate(administrativeDivision.schoolGivingClasses['3']),
+          '4': toPercentageIfValidRate(administrativeDivision.schoolGivingClasses['4']),
+          '5': toPercentageIfValidRate(administrativeDivision.schoolGivingClasses['5']),
+          '6': toPercentageIfValidRate(administrativeDivision.schoolGivingClasses['6']),
+          '7': toPercentageIfValidRate(administrativeDivision.schoolGivingClasses['7']),
         },
-        schoolWaterSupplyPercentages: {
-          '1': validRate(administrativeDivision.schoolWaterSupplyPercentages['1'])
-            ? toPercentage(administrativeDivision.schoolWaterSupplyPercentages['1'])
-            : '-',
-          '2': validRate(administrativeDivision.schoolWaterSupplyPercentages['2'])
-            ? toPercentage(administrativeDivision.schoolWaterSupplyPercentages['2'])
-            : '-',
-          '3': validRate(administrativeDivision.schoolWaterSupplyPercentages['3'])
-            ? toPercentage(administrativeDivision.schoolWaterSupplyPercentages['3'])
-            : '-',
-          '4': validRate(administrativeDivision.schoolWaterSupplyPercentages['4'])
-            ? toPercentage(administrativeDivision.schoolWaterSupplyPercentages['4'])
-            : '-',
+        schoolWaterSupply: {
+          '1': toPercentageIfValidRate(administrativeDivision.schoolWaterSupply['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.schoolWaterSupply['2']),
+          '3': toPercentageIfValidRate(administrativeDivision.schoolWaterSupply['3']),
+          '4': toPercentageIfValidRate(administrativeDivision.schoolWaterSupply['4']),
         },
-        schoolWaterServiceContinuityPercentages: {
-          '1': validRate(administrativeDivision.schoolWaterServiceContinuityPercentages['1'])
-            ? toPercentage(administrativeDivision.schoolWaterServiceContinuityPercentages['1'])
-            : '-',
-          '2': validRate(administrativeDivision.schoolWaterServiceContinuityPercentages['2'])
-            ? toPercentage(administrativeDivision.schoolWaterServiceContinuityPercentages['2'])
-            : '-',
-          '3': validRate(administrativeDivision.schoolWaterServiceContinuityPercentages['3'])
-            ? toPercentage(administrativeDivision.schoolWaterServiceContinuityPercentages['3'])
-            : '-',
-          '4': validRate(administrativeDivision.schoolWaterServiceContinuityPercentages['4'])
-            ? toPercentage(administrativeDivision.schoolWaterServiceContinuityPercentages['4'])
-            : '-',
+        schoolWaterServiceContinuity: {
+          '1': toPercentageIfValidRate(administrativeDivision.schoolWaterServiceContinuity['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.schoolWaterServiceContinuity['2']),
+          '3': toPercentageIfValidRate(administrativeDivision.schoolWaterServiceContinuity['3']),
+          '4': toPercentageIfValidRate(administrativeDivision.schoolWaterServiceContinuity['4']),
         },
-        schoolWithWaterForHandWashingPercentages: {
-          '1': validRate(administrativeDivision.schoolWithWaterForHandWashingPercentages['1'])
-            ? toPercentage(administrativeDivision.schoolWithWaterForHandWashingPercentages['1'])
-            : '-',
-          '2': validRate(administrativeDivision.schoolWithWaterForHandWashingPercentages['2'])
-            ? toPercentage(administrativeDivision.schoolWithWaterForHandWashingPercentages['2'])
-            : '-',
+        schoolWithWaterForHandWashing: {
+          '1': toPercentageIfValidRate(administrativeDivision.schoolWithWaterForHandWashing['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.schoolWithWaterForHandWashing['2']),
         },
-        schoolSinkSufficiencyPercentages: {
-          '1': validRate(administrativeDivision.schoolSinkSufficiencyPercentages['1'])
-            ? toPercentage(administrativeDivision.schoolSinkSufficiencyPercentages['1'])
-            : '-',
-          '2': validRate(administrativeDivision.schoolSinkSufficiencyPercentages['2'])
-            ? toPercentage(administrativeDivision.schoolSinkSufficiencyPercentages['2'])
-            : '-',
-          '3': validRate(administrativeDivision.schoolSinkSufficiencyPercentages['3'])
-            ? toPercentage(administrativeDivision.schoolSinkSufficiencyPercentages['3'])
-            : '-',
+        schoolSinkSufficiency: {
+          '1': toPercentageIfValidRate(administrativeDivision.schoolSinkSufficiency['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.schoolSinkSufficiency['2']),
+          '3': toPercentageIfValidRate(administrativeDivision.schoolSinkSufficiency['3']),
         },
-        schoolSoapSufficiencyPercentages: {
-          '1': validRate(administrativeDivision.schoolSoapSufficiencyPercentages['1'])
-            ? toPercentage(administrativeDivision.schoolSoapSufficiencyPercentages['1'])
-            : '-',
-          '2': validRate(administrativeDivision.schoolSoapSufficiencyPercentages['2'])
-            ? toPercentage(administrativeDivision.schoolSoapSufficiencyPercentages['2'])
-            : '-',
-          '3': validRate(administrativeDivision.schoolSoapSufficiencyPercentages['3'])
-            ? toPercentage(administrativeDivision.schoolSoapSufficiencyPercentages['3'])
-            : '-',
+        schoolSoapSufficiency: {
+          '1': toPercentageIfValidRate(administrativeDivision.schoolSoapSufficiency['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.schoolSoapSufficiency['2']),
+          '3': toPercentageIfValidRate(administrativeDivision.schoolSoapSufficiency['3']),
         },
-        schoolTowelSufficiencyPercentages: {
-          '1': validRate(administrativeDivision.schoolTowelSufficiencyPercentages['1'])
-            ? toPercentage(administrativeDivision.schoolTowelSufficiencyPercentages['1'])
-            : '-',
-          '2': validRate(administrativeDivision.schoolTowelSufficiencyPercentages['2'])
-            ? toPercentage(administrativeDivision.schoolTowelSufficiencyPercentages['2'])
-            : '-',
-          '3': validRate(administrativeDivision.schoolTowelSufficiencyPercentages['3'])
-            ? toPercentage(administrativeDivision.schoolTowelSufficiencyPercentages['3'])
-            : '-',
+        schoolTowelSufficiency: {
+          '1': toPercentageIfValidRate(administrativeDivision.schoolTowelSufficiency['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.schoolTowelSufficiency['2']),
+          '3': toPercentageIfValidRate(administrativeDivision.schoolTowelSufficiency['3']),
         },
-        schoolSanitizerSufficiencyPercentages: {
-          '1': validRate(administrativeDivision.schoolSanitizerSufficiencyPercentages['1'])
-            ? toPercentage(administrativeDivision.schoolSanitizerSufficiencyPercentages['1'])
-            : '-',
-          '2': validRate(administrativeDivision.schoolSanitizerSufficiencyPercentages['2'])
-            ? toPercentage(administrativeDivision.schoolSanitizerSufficiencyPercentages['2'])
-            : '-',
-          '3': validRate(administrativeDivision.schoolSanitizerSufficiencyPercentages['3'])
-            ? toPercentage(administrativeDivision.schoolSanitizerSufficiencyPercentages['3'])
-            : '-',
+        schoolSanitizerSufficiency: {
+          '1': toPercentageIfValidRate(administrativeDivision.schoolSanitizerSufficiency['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.schoolSanitizerSufficiency['2']),
+          '3': toPercentageIfValidRate(administrativeDivision.schoolSanitizerSufficiency['3']),
         },
-        schoolBinSufficiencyPercentages: {
-          '1': validRate(administrativeDivision.schoolBinSufficiencyPercentages['1'])
-            ? toPercentage(administrativeDivision.schoolBinSufficiencyPercentages['1'])
-            : '-',
-          '2': validRate(administrativeDivision.schoolBinSufficiencyPercentages['2'])
-            ? toPercentage(administrativeDivision.schoolBinSufficiencyPercentages['2'])
-            : '-',
-          '3': validRate(administrativeDivision.schoolBinSufficiencyPercentages['3'])
-            ? toPercentage(administrativeDivision.schoolBinSufficiencyPercentages['3'])
-            : '-',
+        schoolBinSufficiency: {
+          '1': toPercentageIfValidRate(administrativeDivision.schoolBinSufficiency['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.schoolBinSufficiency['2']),
+          '3': toPercentageIfValidRate(administrativeDivision.schoolBinSufficiency['3']),
         },
-        schoolWithSepticSystemPercentages: {
-          '1': validRate(administrativeDivision.schoolWithSepticSystemPercentages['1'])
-            ? toPercentage(administrativeDivision.schoolWithSepticSystemPercentages['1'])
-            : '-',
-          '2': validRate(administrativeDivision.schoolWithSepticSystemPercentages['2'])
-            ? toPercentage(administrativeDivision.schoolWithSepticSystemPercentages['2'])
-            : '-',
+        schoolWithSepticSystem: {
+          '1': toPercentageIfValidRate(administrativeDivision.schoolWithSepticSystem['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.schoolWithSepticSystem['2']),
         },
-        schoolWithAbilityToReorganizeSpacePercentages: {
-          '1': validRate(administrativeDivision.schoolWithAbilityToReorganizeSpacePercentages['1'])
-            ? toPercentage(administrativeDivision.schoolWithAbilityToReorganizeSpacePercentages['1'])
-            : '-',
-          '2': validRate(administrativeDivision.schoolWithAbilityToReorganizeSpacePercentages['2'])
-            ? toPercentage(administrativeDivision.schoolWithAbilityToReorganizeSpacePercentages['2'])
-            : '-',
+        schoolWithAbilityToReorganizeSpace: {
+          '1': toPercentageIfValidRate(administrativeDivision.schoolWithAbilityToReorganizeSpace['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.schoolWithAbilityToReorganizeSpace['2']),
+        },
+        hygieneCommittee: {
+          '1': toPercentageIfValidRate(administrativeDivision.hygieneCommittee['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.hygieneCommittee['2']),
+        },
+        alternatesAttendance: {
+          '1': toPercentageIfValidRate(administrativeDivision.alternatesAttendance['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.alternatesAttendance['2']),
+        },
+        absentFemaleStudents: administrativeDivision.absentFemaleStudents.toString(),
+        absentMaleStudents: administrativeDivision.absentMaleStudents.toString(),
+        studentAbsenceMainReasons: {
+          '1': toPercentageIfValidRate(administrativeDivision.studentAbsenceMainReasons['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.studentAbsenceMainReasons['2']),
+          '3': toPercentageIfValidRate(administrativeDivision.studentAbsenceMainReasons['3']),
+          '4': toPercentageIfValidRate(administrativeDivision.studentAbsenceMainReasons['4']),
+          '5': toPercentageIfValidRate(administrativeDivision.studentAbsenceMainReasons['5']),
+        },
+        absentTeachers: administrativeDivision.absentTeachers.toString(),
+        teacherAbsenceMainReasons: {
+          '1': toPercentageIfValidRate(administrativeDivision.teacherAbsenceMainReasons['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.teacherAbsenceMainReasons['2']),
+          '3': toPercentageIfValidRate(administrativeDivision.teacherAbsenceMainReasons['3']),
+          '4': toPercentageIfValidRate(administrativeDivision.teacherAbsenceMainReasons['4']),
+        },
+        absentAdmins: administrativeDivision.absentAdmins.toString(),
+        adminsAbsenceMainReasons: {
+          '1': toPercentageIfValidRate(administrativeDivision.adminsAbsenceMainReasons['1']),
+          '2': toPercentageIfValidRate(administrativeDivision.adminsAbsenceMainReasons['2']),
+          '3': toPercentageIfValidRate(administrativeDivision.adminsAbsenceMainReasons['3']),
+          '4': toPercentageIfValidRate(administrativeDivision.adminsAbsenceMainReasons['4']),
         },
       }
     : {
-        totalSchools: '-',
-        totalStudent: '-',
-        totalTeachers: '-',
-        schoolGivingClassesPercentages: {
+        support: { private: '-', public: '-' },
+        femaleStudentAttendance: '-',
+        maleStudentAttendance: '-',
+        teacherAttendance: '-',
+        adminAttendance: '-',
+        schools: '-',
+        students: '-',
+        femaleStudents: '-',
+        maleStudents: '-',
+        teachers: '-',
+        assistants: '-',
+        directors: '-',
+        subDirectors: '-',
+        technicalPedagogicalAdvisers: '-',
+        physicalEducationTeachers: '-',
+        admins: '-',
+        quartermasters: '-',
+        others: '-',
+        schoolGivingClasses: {
           '1': '-',
           '2': '-',
           '3': '-',
@@ -328,103 +259,84 @@ export const toAdministrativeDivisionDataset = (
           '6': '-',
           '7': '-',
         },
-        studentsFirstGrade: '-',
-        studentsSecondGrade: '-',
-        studentsThirdGrade: '-',
-        studentsFourthGrade: '-',
-        studentsFifthGrade: '-',
-        studentsSixthGrade: '-',
-        teachersFirstGrade: '-',
-        teachersSecondGrade: '-',
-        teachersThirdGrade: '-',
-        teachersFourthGrade: '-',
-        teachersFifthGrade: '-',
-        teachersSixthGrade: '-',
-        assistantsFirstGrade: '-',
-        assistantsSecondGrade: '-',
-        assistantsThirdGrade: '-',
-        assistantsFourthGrade: '-',
-        assistantsFifthGrade: '-',
-        assistantsSixthGrade: '-',
-        absentStudentsFirstGrade: '-',
-        absentStudentsSecondGrade: '-',
-        absentStudentsThirdGrade: '-',
-        absentStudentsFourthGrade: '-',
-        absentStudentsFifthGrade: '-',
-        absentStudentsSixthGrade: '-',
-        absentTeachersFirstGrade: '-',
-        absentTeachersSecondGrade: '-',
-        absentTeachersThirdGrade: '-',
-        absentTeachersFourthGrade: '-',
-        absentTeachersFifthGrade: '-',
-        absentTeachersSixthGrade: '-',
-        directors: '-',
-        subDirector: '-',
-        technicalPedagogicalAdvisers: '-',
-        physicalEducationTeachers: '-',
-        administrativeStaff: '-',
-        quartermasterStaff: '-',
-        others: '-',
-        absentDirectors: '-',
-        absentSubDirector: '-',
-        absentTechnicalPedagogicalAdvisers: '-',
-        absentPhysicalEducationTeachers: '-',
-        absentAdministrativeStaff: '-',
-        absentQuartermasterStaff: '-',
-        absentOthers: '-',
-        studentAbsenceMainReasonPercentages: {
+        schoolWaterSupply: {
           '1': '-',
           '2': '-',
           '3': '-',
           '4': '-',
         },
-        schoolWaterSupplyPercentages: {
+        schoolWaterServiceContinuity: {
           '1': '-',
           '2': '-',
           '3': '-',
           '4': '-',
         },
-        schoolWaterServiceContinuityPercentages: {
+        schoolWithWaterForHandWashing: {
+          '1': '-',
+          '2': '-',
+        },
+        schoolSinkSufficiency: {
+          '1': '-',
+          '2': '-',
+          '3': '-',
+        },
+        schoolSoapSufficiency: {
+          '1': '-',
+          '2': '-',
+          '3': '-',
+        },
+        schoolTowelSufficiency: {
+          '1': '-',
+          '2': '-',
+          '3': '-',
+        },
+        schoolSanitizerSufficiency: {
+          '1': '-',
+          '2': '-',
+          '3': '-',
+        },
+        schoolBinSufficiency: {
+          '1': '-',
+          '2': '-',
+          '3': '-',
+        },
+        schoolWithSepticSystem: {
+          '1': '-',
+          '2': '-',
+        },
+        schoolWithAbilityToReorganizeSpace: {
+          '1': '-',
+          '2': '-',
+        },
+        hygieneCommittee: {
+          '1': '-',
+          '2': '-',
+        },
+        alternatesAttendance: {
+          '1': '-',
+          '2': '-',
+        },
+        absentFemaleStudents: '-',
+        absentMaleStudents: '-',
+        studentAbsenceMainReasons: {
+          '1': '-',
+          '2': '-',
+          '3': '-',
+          '4': '-',
+          '5': '-',
+        },
+        absentTeachers: '-',
+        teacherAbsenceMainReasons: {
           '1': '-',
           '2': '-',
           '3': '-',
           '4': '-',
         },
-        schoolWithWaterForHandWashingPercentages: {
-          '1': '-',
-          '2': '-',
-        },
-        schoolSinkSufficiencyPercentages: {
+        absentAdmins: '-',
+        adminsAbsenceMainReasons: {
           '1': '-',
           '2': '-',
           '3': '-',
-        },
-        schoolSoapSufficiencyPercentages: {
-          '1': '-',
-          '2': '-',
-          '3': '-',
-        },
-        schoolTowelSufficiencyPercentages: {
-          '1': '-',
-          '2': '-',
-          '3': '-',
-        },
-        schoolSanitizerSufficiencyPercentages: {
-          '1': '-',
-          '2': '-',
-          '3': '-',
-        },
-        schoolBinSufficiencyPercentages: {
-          '1': '-',
-          '2': '-',
-          '3': '-',
-        },
-        schoolWithSepticSystemPercentages: {
-          '1': '-',
-          '2': '-',
-        },
-        schoolWithAbilityToReorganizeSpacePercentages: {
-          '1': '-',
-          '2': '-',
+          '4': '-',
         },
       };

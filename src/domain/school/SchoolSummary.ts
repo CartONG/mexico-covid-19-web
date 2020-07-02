@@ -1,11 +1,11 @@
-import { ReportSummary } from '@/domain/ReportSummary';
-
 export interface SchoolSummary {
   id: string;
   name: string;
   level: string;
-  studentAbsenceRate: number;
-  teacherAbsenceRate: number;
-  adminAbsenceRate: number;
+  locality: string;
+  maleStudentAttendance: number;
+  femaleStudentAttendance: number;
+  teacherAttendance: number;
+  adminAttendance: number;
   coordinates: [number, number];
 }

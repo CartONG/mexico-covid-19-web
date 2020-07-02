@@ -1,6 +1,6 @@
 <template>
   <div class="choropleth-map has-background-white">
-    <div id="map" class="map is-h50"></div>
+    <div id="map" class="map is-h60"></div>
     <PopupVue id="popup" :items="schoolItems" @pick="pickSchool" @close="closePopup" />
     <div id="recenter-control" class="ol-control">
       <button type="button" title="centrar mapa" @click="fitView(1000)">

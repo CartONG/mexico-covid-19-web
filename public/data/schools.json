@@ -1,1 +1,28 @@
-[{"id":"28DES0005R1","nombre":"PDTE. ADOLFO RUIZ CORTINES","nivel":"SECUNDARIA","localidad":"MIER","coordenadas":{"latitud":"26.430196","longitud":"-99.152020"},"alumnosInasistencia":0.88,"docentesInasistencia":0.00,"adminInasistencia":1.28},{"id":"28DJN0010T1","nombre":"VLADIMIR TREVIÑO R","nivel":"PREESCOLAR","localidad":"MIER","coordenadas":{"latitud":"26.420721","longitud":"-99.151438"},"alumnosInasistencia":0.00,"docentesInasistencia":0.00,"adminInasistencia":0.00},{"id":"28DJN0144I1","nombre":"FRANCISCO RAMIREZ CANALES","nivel":"PREESCOLAR","localidad":"MIER","coordenadas":{"latitud":"26.430160","longitud":"-99.149973"},"alumnosInasistencia":0.88,"docentesInasistencia":0.33,"adminInasistencia":0.00},{"id":"28DPR0644U1","nombre":"CLUB DE LEONES NUM. 1","nivel":"PRIMARIA","localidad":"MIER","coordenadas":{"latitud":"26.435388","longitud":"-99.149310"},"alumnosInasistencia":0.00,"docentesInasistencia":0.00,"adminInasistencia":0.00},{"id":"28DPR0660L1","nombre":"FRANCISCO RAMIREZ CANALES","nivel":"PRIMARIA","localidad":"MIER","coordenadas":{"latitud":"26.427400","longitud":"-99.147762"},"alumnosInasistencia":0.88,"docentesInasistencia":0.00,"adminInasistencia":1.00},{"id":"28DPR1299H1","nombre":"MEXICO 70","nivel":"PRIMARIA","localidad":"MIER","coordenadas":{"latitud":"26.422261","longitud":"-99.151352"},"alumnosInasistencia":0.88,"docentesInasistencia":0.14,"adminInasistencia":0.83},{"id":"28FUA0072F1","nombre":"UNIDAD DE SERVICIOS DE APOYO A LA EDUCACION REGULAR","nivel":"ESPECIAL","localidad":"MIER","coordenadas":{"latitud":"26.422286","longitud":"-99.150651"},"alumnosInasistencia":0.00,"docentesInasistencia":0.00,"adminInasistencia":0.00}]
+[{
+  "id": "07DJN0489P1",
+  "nombre": "JOSE FALCONI CASTELLANOS",
+  "nivel": "PREESCOLAR",
+  "localidad": "EL CARRIZAL",
+  "coordenadas": {
+    "latitud": "17.162463",
+    "longitud": "-93.077041"
+  },
+  "alumnas": 0.71,
+  "alumnos": 0.69,
+  "docentes": 0.71,
+  "admin": 1.00
+},
+{
+  "id": "07DCC1633C1",
+  "nombre": "EMILIANO ZAPATA SALAZAR",
+  "nivel": "PREESCOLAR",
+  "localidad": "RAYÓN",
+  "coordenadas": {
+    "latitud": "17.194041",
+    "longitud": "-93.008258"
+  },
+  "alumnas": 0.95,
+  "alumnos": 0.97,
+  "docentes": 0.91,
+  "admin": 1.00
+}]

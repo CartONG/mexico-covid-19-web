@@ -18,7 +18,7 @@ export const mergedReportToAbsenceReasonsDetailsDataSet = (
     return undefined;
   }
 
-  const reasons = entity.studentAbsenceMainReasonPercentages;
+  const reasons = entity.studentAbsenceMainReasons;
 
   return {
     noFacility: validRate(reasons['1']) ? reasons['1'] : 0,
@@ -29,14 +29,16 @@ export const mergedReportToAbsenceReasonsDetailsDataSet = (
 };
 
 export const toAbsenceReasonsDetailsDataSet = (school: School | undefined): AbsenceReasonsDetailsDataSet | undefined => {
-  if (school === undefined || school.studentAbsenceMainReason <= 0 || school.studentAbsenceMainReason > 4) {
+  if (school === undefined) {
     return undefined;
   }
 
+  const reasons = school.studentAbsenceMainReasons;
+
   return {
-    noFacility: school.studentAbsenceMainReason === 1 ? 1 : 0,
-    father: school.studentAbsenceMainReason === 2 ? 1 : 0,
-    sick: school.studentAbsenceMainReason === 3 ? 1 : 0,
-    unknown: school.studentAbsenceMainReason === 4 ? 1 : 0,
+    noFacility: validRate(reasons['1']) ? reasons['1'] : 0,
+    father: validRate(reasons['2']) ? reasons['2'] : 0,
+    sick: validRate(reasons['3']) ? reasons['3'] : 0,
+    unknown: validRate(reasons['4']) ? reasons['4'] : 0,
   };
 };

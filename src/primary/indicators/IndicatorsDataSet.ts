@@ -25,30 +25,30 @@ export const mergedReportToIndicatorDataSet = (entity: AdministrativeDivision | 
     abilityToReorganizeSpace: { label: 'La escuela puede reoganizar los espacios educativos', text: '-', color: 'grey-lighter' },
   };
 
-  if (entity && entity.totalSchools) {
-    indicatorsDataSet.school = { ...indicatorsDataSet.school, text: entity.totalSchools.toString(), color: 'secondary' };
+  if (entity && entity.schools) {
+    indicatorsDataSet.school = { ...indicatorsDataSet.school, text: entity.schools.toString(), color: 'secondary' };
   }
 
-  if (entity && validRate(entity.schoolSinkSufficiencyPercentages['1'])) {
+  if (entity && validRate(entity.schoolSinkSufficiency['1'])) {
     indicatorsDataSet.sinkSufficiency = {
       ...indicatorsDataSet.sinkSufficiency,
-      text: toPercentage(entity.schoolSinkSufficiencyPercentages['1']),
+      text: toPercentage(entity.schoolSinkSufficiency['1']),
       color: 'secondary',
     };
   }
 
-  if (entity && validRate(entity.schoolSoapSufficiencyPercentages['1'])) {
+  if (entity && validRate(entity.schoolSoapSufficiency['1'])) {
     indicatorsDataSet.soapSufficiency = {
       ...indicatorsDataSet.soapSufficiency,
-      text: toPercentage(entity.schoolSoapSufficiencyPercentages['1']),
+      text: toPercentage(entity.schoolSoapSufficiency['1']),
       color: 'secondary',
     };
   }
 
-  if (entity && validRate(entity.schoolWithAbilityToReorganizeSpacePercentages['1'])) {
+  if (entity && validRate(entity.schoolWithAbilityToReorganizeSpace['1'])) {
     indicatorsDataSet.abilityToReorganizeSpace = {
       ...indicatorsDataSet.abilityToReorganizeSpace,
-      text: toPercentage(entity.schoolWithAbilityToReorganizeSpacePercentages['1']),
+      text: toPercentage(entity.schoolWithAbilityToReorganizeSpace['1']),
       color: 'secondary',
     };
   }

@@ -76,9 +76,9 @@ export default class AbsenceReasonsDetails extends Vue {
     ]);
 
     const svg = d3.select('#absence-reasons-details-chart');
-    const margin = { top: 10, right: 10, bottom: 10, left: 10 };
-    const width = 200 - margin.right - margin.left;
-    const height = 200 - margin.top - margin.bottom;
+    const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+    const width = 150 - margin.right - margin.left;
+    const height = 150 - margin.top - margin.bottom;
     const radius = Math.min(width, height) / 2;
     const g = svg.append('g').attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
     const pie = d3.pie();

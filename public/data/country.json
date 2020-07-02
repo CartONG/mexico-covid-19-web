@@ -1,1 +1,112 @@
-{"alumnosInasistencia":0.42,"docentesInasistencia":0.21,"adminInasistencia":0.36,"totalEscuelas":7634,"totalAlum":376334,"hayClases":{"1":0.50,"2":0.08,"3":0.08,"4":0.08,"5":0.09,"6":0.08,"7":0.08},"alum1ro":80267,"alum2do":93085,"alum3ro":97586,"alum4to":35339,"alum5to":35266,"alum6to":34791,"docente1ro":2438,"docente2do":2748,"docente3ro":3226,"docente4to":1230,"docente5to":1220,"docente6to":1215,"gpos1ro":3362,"gpos2do":3753,"gpos3ro":4152,"gpos4to":1250,"gpos5to":1238,"gpos6to":1238,"inaalum1ro":33218,"inaalum2do":40170,"inaalum3ro":40002,"inaalum4to":14416,"inaalum5to":15906,"inaalum6to":13841,"inadocente1ro":243,"inadocente2do":374,"inadocente3ro":406,"inadocente4to":155,"inadocente5to":144,"inadocente6to":132,"director":5258,"subdirector":90,"atps":0,"educfis":1161,"admin":3604,"intenden":1720,"otros":1661,"inadirector":2169,"inasubdirector":16,"inaatps":0,"inaeducfis":66,"inaadmin":1050,"inaintenden":274,"inaotros":511,"causaInaAlum":{"1":0.11,"2":0.11,"3":0.11,"4":0.66},"tipoAbasAgua":{"1":0.12,"2":0.63,"3":0.13,"4":0.12},"contServAgua":{"1":0.12,"2":0.13,"3":0.13,"4":0.62},"aguaLavamanos":{"1":0.19,"2":0.81},"lavamanos":{"1":0.25,"2":0.25,"3":0.50},"jabon":{"1":0.17,"2":0.17,"3":0.66},"toallas":{"1":0.18,"2":0.17,"3":0.65},"sanitizante":{"1":0.17,"2":0.17,"3":0.66},"botesBasura":{"1":0.25,"2":0.25,"3":0.50},"tipoDrenaje":{"1":0.24,"2":0.76},"espacios":{"1":0.26,"2":0.74}}
+{
+  "sostenimiento": {
+    "privado": 0.00,
+    "publico": 1.00
+  },
+  "alumnasPorcentaje": 0.91,
+  "alumnosPorcentaje": 0.94,
+  "docentesPorcentaje": 0.86,
+  "adminPorcentaje": 1.00,
+  "hayClases": {
+    "1": 1.00,
+    "2": 0.00,
+    "3": 0.00,
+    "4": 0.00,
+    "5": 0.00,
+    "6": 0.00,
+    "7": 0.00
+  },
+  "totAlumnas": 352,
+  "totAlumnos": 388,
+  "totalAlum": 740,
+  "totalEscuelas": 2,
+  "docentes": 29,
+  "grupos": 24,
+  "director": 2,
+  "subdirector": 0,
+  "atps": 0,
+  "educfis": 0,
+  "admin": 10,
+  "intenden": 0,
+  "otros": 1,
+  "tipoAbasAgua": {
+    "1": 0.00,
+    "2": 0.00,
+    "3": 1.00,
+    "4": 0.00
+  },
+  "contServAgua": {
+    "1": 0.50,
+    "2": 0.50,
+    "3": 0.00,
+    "4": 0.00
+  },
+  "aguaLavamanos": {
+    "1": 0.50,
+    "2": 0.50
+  },
+  "lavamanos": {
+    "1": 0.50,
+    "2": 0.00,
+    "3": 0.50
+  },
+  "jabon": {
+    "1": 0.00,
+    "2": 1.00,
+    "3": 0.00
+  },
+  "toallas": {
+    "1": 0.50,
+    "2": 0.50,
+    "3": 0.00
+  },
+  "sanitizante": {
+    "1": 1.00,
+    "2": 0.00,
+    "3": 0.00
+  },
+  "botesBasura": {
+    "1": 1.00,
+    "2": 0.00,
+    "3": 0.00
+  },
+  "tipoDrenaje": {
+    "1": 0.50,
+    "2": 0.50
+  },
+  "espacios": {
+    "1": 0.00,
+    "2": 1.00
+  },
+  "comite": {
+    "1": 0.00,
+    "2": 1.00
+  },
+  "asistencia50": {
+    "1": 0.00,
+    "2": 1.00
+  },
+  "inaAlumnas": 30,
+  "inaAlumnos": 24,
+  "causaInaAlum": {
+    "1": 0.00,
+    "2": 0.37,
+    "3": 0.07,
+    "4": 0.37,
+    "5": 0.19
+  },
+  "inaDocentes": 4,
+  "causaInaDocente": {
+    "1": 0.00,
+    "2": 1.00,
+    "3": 0.00,
+    "4": 0.00
+  },
+  "inaAdministrativos": 0,
+  "causaInaAdmin": {
+    "1": 0.00,
+    "2": 0.00,
+    "3": 0.00,
+    "4": 0.00
+  }
+}

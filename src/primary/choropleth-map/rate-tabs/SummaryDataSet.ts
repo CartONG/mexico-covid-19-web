@@ -1,16 +1,17 @@
 import { Summary } from '@/domain/Summary';
 
-interface RateDataSet {
-  percentage: string;
-  percentageColor: string;
+interface PercentageDataSet {
+  text: string;
+  color: string;
+  value: number;
 }
 
 export interface SummaryDataSet {
   id: string;
   name: string;
-  studentAbsenceRate: RateDataSet;
-  teacherAbsenceRate: RateDataSet;
-  adminAbsenceRate: RateDataSet;
+  studentAbsenceRate: PercentageDataSet;
+  teacherAbsenceRate: PercentageDataSet;
+  adminAbsenceRate: PercentageDataSet;
 }
 
 const toPercentage = (rate: number): string => `${(Math.round(rate * 100 * 10) / 10).toString()} %`;
@@ -19,7 +20,7 @@ const validRate = (rate: number) => validNumber(rate) && rate >= 0 && rate <= 1;
 
 const toPercentageColor = (rate: number) => {
   if (rate >= 0 && rate <= 0.25) {
-    return 'success';
+    return 'danger';
   }
 
   if (rate > 0.25 && rate < 0.75) {
@@ -27,7 +28,7 @@ const toPercentageColor = (rate: number) => {
   }
 
   if (rate >= 0.75 && rate <= 1) {
-    return 'danger';
+    return 'success';
   }
 
   return 'unknown';
@@ -39,22 +40,25 @@ export const toSummaryDataSet = (summary: Summary | undefined): SummaryDataSet =
         id: summary.id,
         name: summary.name,
         studentAbsenceRate: {
-          percentage: validRate(summary.studentAbsenceRate) ? toPercentage(summary.studentAbsenceRate) : '-',
-          percentageColor: toPercentageColor(summary.studentAbsenceRate),
+          text: validRate(summary.maleStudentAttendance) ? toPercentage(summary.maleStudentAttendance) : '-',
+          color: toPercentageColor(summary.maleStudentAttendance),
+          value: summary.maleStudentAttendance,
         },
         teacherAbsenceRate: {
-          percentage: validRate(summary.teacherAbsenceRate) ? toPercentage(summary.teacherAbsenceRate) : '-',
-          percentageColor: toPercentageColor(summary.teacherAbsenceRate),
+          text: validRate(summary.teacherAttendance) ? toPercentage(summary.teacherAttendance) : '-',
+          color: toPercentageColor(summary.teacherAttendance),
+          value: summary.teacherAttendance,
         },
         adminAbsenceRate: {
-          percentage: validRate(summary.adminAbsenceRate) ? toPercentage(summary.adminAbsenceRate) : '-',
-          percentageColor: toPercentageColor(summary.adminAbsenceRate),
+          text: validRate(summary.adminAttendance) ? toPercentage(summary.adminAttendance) : '-',
+          color: toPercentageColor(summary.adminAttendance),
+          value: summary.adminAttendance,
         },
       }
     : {
         id: '-',
         name: '-',
-        studentAbsenceRate: { percentage: '-', percentageColor: 'unknown' },
-        teacherAbsenceRate: { percentage: '-', percentageColor: 'unknown' },
-        adminAbsenceRate: { percentage: '-', percentageColor: 'unknown' },
+        studentAbsenceRate: { text: '-', color: 'unknown', value: -1 },
+        teacherAbsenceRate: { text: '-', color: 'unknown', value: -1 },
+        adminAbsenceRate: { text: '-', color: 'unknown', value: -1 },
       };
