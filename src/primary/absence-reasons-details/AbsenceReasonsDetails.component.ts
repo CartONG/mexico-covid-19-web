@@ -30,7 +30,6 @@ export default class AbsenceReasonsDetails extends Vue {
 
   @Watch('dataSet')
   dataSetWatcher() {
-    console.log('watcher');
     this.toChart(this.dataSet);
   }
 
