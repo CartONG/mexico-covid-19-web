@@ -23,7 +23,7 @@ export interface School {
   students: number;
   teachers: number;
   assistants: number;
-  director: number;
+  directors: number;
   subDirectors: number;
   technicalPedagogicalAdvisers: number;
   physicalEducationTeachers: number;

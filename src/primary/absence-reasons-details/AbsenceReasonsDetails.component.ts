@@ -1,78 +1,53 @@
 import * as d3 from 'd3';
 import { Component, Inject, Vue, Watch } from 'vue-property-decorator';
 
-import {
-  AbsenceReasonsDetailsDataSet,
-  mergedReportToAbsenceReasonsDetailsDataSet,
-  toAbsenceReasonsDetailsDataSet,
-} from '@/primary/absence-reasons-details/AbsenceReasonsDetailsDataSet';
 import { AppStore } from '@/primary/app/AppStore';
+import { toAdministrativeDivisionDataset } from '@/primary/common/AdministrativeDivisionDataSet';
+import { toSchoolDataSet } from '@/primary/common/SchoolDataSet';
 
 @Component
 export default class AbsenceReasonsDetails extends Vue {
   @Inject()
   private appStore!: () => AppStore;
 
-  get level() {
-    return this.appStore().getLevel();
+  get navigation() {
+    return this.appStore().getNavigation();
   }
 
-  get country() {
-    return this.appStore().getCountry();
-  }
-
-  get state() {
-    return this.appStore().getState();
-  }
-
-  get municipality() {
-    return this.appStore().getMunicipality();
+  get administrativeDivision() {
+    return this.appStore().getCurrentAdministrativeDivision();
   }
 
   get school() {
     return this.appStore().getSchool();
   }
 
-  get absenceReasonsDetailsDataSet(): AbsenceReasonsDetailsDataSet | undefined {
-    switch (this.level) {
-      case 'state':
-        return mergedReportToAbsenceReasonsDetailsDataSet(this.state);
-      case 'municipality':
-        return mergedReportToAbsenceReasonsDetailsDataSet(this.municipality);
-      case 'school':
-        return toAbsenceReasonsDetailsDataSet(this.school);
-    }
-    return mergedReportToAbsenceReasonsDetailsDataSet(this.country);
+  get dataSet() {
+    return this.navigation.schoolId
+      ? toSchoolDataSet(this.school).studentAbsenceMainReasons
+      : toAdministrativeDivisionDataset(this.administrativeDivision).studentAbsenceMainReasons;
   }
 
-  @Watch('absenceReasonsDetailsDataSet')
+  @Watch('dataset')
   absenceReasonsDetailsDataSetWatcher() {
-    this.toChart(this.absenceReasonsDetailsDataSet);
+    this.toChart(this.dataSet);
   }
 
   mounted() {
-    this.toChart(mergedReportToAbsenceReasonsDetailsDataSet(this.country));
+    this.toChart(toAdministrativeDivisionDataset(this.administrativeDivision).studentAbsenceMainReasons);
   }
 
-  toChart(absenceReasonsDetailsDataSet: AbsenceReasonsDetailsDataSet | undefined) {
+  toChart(dataset: { [key: string]: { text: string; value: number } }) {
     d3.select('#absence-reasons-details-chart g').remove();
 
-    if (absenceReasonsDetailsDataSet === undefined) {
-      return;
-    }
-
-    const data = [
-      absenceReasonsDetailsDataSet.noFacility,
-      absenceReasonsDetailsDataSet.father,
-      absenceReasonsDetailsDataSet.sick,
-      absenceReasonsDetailsDataSet.unknown,
-    ];
+    const data = [dataset['1'], dataset['2'], dataset['3'], dataset['4'], dataset['5']].map(d => d.value);
 
     const color = d3.scaleOrdinal([
       'rgba(212, 193, 156, 0.7)',
       'rgba(157, 36, 73, 0.7)',
       'rgba(40, 92, 77, 0.7)',
       'rgba(191, 191, 191, 0.7)',
+      'rgba(98, 17, 50, 0.7)',
     ]);
 
     const svg = d3.select('#absence-reasons-details-chart');

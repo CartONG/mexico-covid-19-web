@@ -1,7 +1,7 @@
 import { Component, Inject, Vue } from 'vue-property-decorator';
 
 import { AppStore } from '@/primary/app/AppStore';
-import { toSummaryDataSet } from '@/primary/choropleth-map/rate-tabs/SummaryDataSet';
+import { toSummaryDataSet } from '@/primary/common/SummaryDataSet';
 import { RateTypes } from '@/primary/RateTypes';
 
 @Component

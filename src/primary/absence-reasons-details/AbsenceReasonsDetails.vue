@@ -6,15 +6,7 @@
     <div class="card-content">
       <div class="columns">
         <div class="column is-5 has-text-centered">
-          <svg
-            v-show="absenceReasonsDetailsDataSet"
-            id="absence-reasons-details-chart"
-            viewBox="0 0 150 150"
-            perserveAspectRatio="xMinYMid meet"
-          ></svg>
-          <div v-show="!absenceReasonsDetailsDataSet" class="has-text-grey">
-            No se han encontrado resultados
-          </div>
+          <svg id="absence-reasons-details-chart" viewBox="0 0 150 150" perserveAspectRatio="xMinYMid meet"></svg>
         </div>
         <div class="column is-7">
           <div class="legend-item">

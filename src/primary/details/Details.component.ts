@@ -1,7 +1,7 @@
 import { Component, Inject, Vue } from 'vue-property-decorator';
 
 import { AppStore } from '@/primary/app/AppStore';
-import { AdministrativeDivisionDataset, toAdministrativeDivisionDataset } from '@/primary/details/AdministrativeDivisionDataset';
+import { AdministrativeDivisionDataSet, toAdministrativeDivisionDataset } from '@/primary/common/AdministrativeDivisionDataSet';
 
 @Component
 export default class Details extends Vue {
@@ -12,7 +12,7 @@ export default class Details extends Vue {
     return this.appStore().getCurrentAdministrativeDivision();
   }
 
-  get administrativeDivisionDataSet(): AdministrativeDivisionDataset {
+  get administrativeDivisionDataSet(): AdministrativeDivisionDataSet {
     return toAdministrativeDivisionDataset(this.currentAdministrativeDivision);
   }
 }

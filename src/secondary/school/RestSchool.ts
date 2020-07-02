@@ -92,7 +92,7 @@ export const toSchool = (restSchool: RestSchool): School => ({
   students: restSchool.totAlumnos,
   teachers: restSchool.docentes,
   assistants: restSchool.grupos,
-  director: restSchool.director,
+  directors: restSchool.director,
   subDirectors: restSchool.subdirector,
   technicalPedagogicalAdvisers: restSchool.atps,
   physicalEducationTeachers: restSchool.educfis,
