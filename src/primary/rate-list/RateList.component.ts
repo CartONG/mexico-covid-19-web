@@ -1,5 +1,6 @@
 import { Component, Inject, Vue } from 'vue-property-decorator';
 
+import { SelectionSource } from '@/domain/selection/SelectionSource';
 import { AppStore } from '@/primary/app/AppStore';
 import { toSummaryDataSet } from '@/primary/common/SummaryDataSet';
 import { RateTypes } from '@/primary/RateTypes';
@@ -45,5 +46,13 @@ export default class RateList extends Vue {
     return this.summaryList
       .map(toSummaryDataSet)
       .sort((summaryDataSet1, summaryDataSet2) => (summaryDataSet1.name < summaryDataSet2.name ? -1 : 1));
+  }
+
+  select(entityId: string) {
+    this.navigation.stateId === ''
+      ? this.appStore().selectState(entityId, SelectionSource.RATE_LIST)
+      : this.navigation.municipalityId === ''
+      ? this.appStore().selectMunicipality(entityId, SelectionSource.RATE_LIST)
+      : this.appStore().selectSchool(entityId, SelectionSource.RATE_LIST);
   }
 }

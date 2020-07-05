@@ -173,6 +173,10 @@ html {
   width: auto;
 }
 
+.is-clickable {
+  cursor: pointer;
+}
+
 @import "ol.overrides";
 @import "map";
 @import "sidebar";

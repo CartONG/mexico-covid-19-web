@@ -7,7 +7,7 @@
       <div v-if="summaryDataSets.length === 0" class="has-text-grey px-2 py-2">
         No se han encontrado resultados
       </div>
-      <b-table v-else :data="summaryDataSets" :default-sort="['name']" sticky-header>
+      <b-table v-else :data="summaryDataSets" :default-sort="['name']" sticky-header hoverable @click="select($event.id)">
         <template slot-scope="props">
           <b-table-column
             field="name"
@@ -16,6 +16,7 @@
                 'has-text-weight-bold': props.row.id === `${selectedSchoolId}`,
                 'has-background-light': props.row.id === `${selectedSchoolId}`,
               },
+              'is-clickable',
             ]"
             :label="tableLabel"
             custom-key="name"
@@ -25,7 +26,9 @@
           </b-table-column>
           <b-table-column
             v-if="selectedRateType === 'STUDENT_ABSENCE'"
-            :class="`w150 has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''} has-text-centered`"
+            :class="
+              `w150 is-clickable has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''} has-text-centered`
+            "
             field="studentAttendance.value"
             label="Asistencia"
             sortable
@@ -36,7 +39,9 @@
           </b-table-column>
           <b-table-column
             v-else-if="selectedRateType === 'TEACHER_ABSENCE'"
-            :class="`w150 has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''} has-text-centered`"
+            :class="
+              `w150 is-clickable has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''} has-text-centered`
+            "
             field="teacherAttendance.value"
             label="Asistencia"
             sortable
@@ -47,7 +52,9 @@
           </b-table-column>
           <b-table-column
             v-else
-            :class="`w150 has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''} has-text-centered`"
+            :class="
+              `w150 is-clickable has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''} has-text-centered`
+            "
             field="adminAttendance.value"
             label="Asistencia"
             sortable
