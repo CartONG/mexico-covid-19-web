@@ -1,5 +1,6 @@
 <template>
   <div class="choropleth-map has-background-white">
+    <div class="is-size-3 px-2">Tasa de asistencia</div>
     <div id="map" class="map is-h60"></div>
     <PopupVue id="popup" :items="schoolItems" @pick="pickSchool" @close="closePopup" />
     <div id="recenter-control" class="ol-control">

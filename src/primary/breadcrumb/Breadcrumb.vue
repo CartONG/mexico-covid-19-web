@@ -2,21 +2,21 @@
   <nav class="breadcrumb" aria-label="breadcrumbs">
     <ul>
       <li :class="{ 'is-active': navigation.stateId === '' }">
-        <a href="#" @click.stop.prevent="selectCountry">Pais</a>
+        <a href="#" @click.stop.prevent="selectCountry">MÉXICO</a>
       </li>
       <template v-if="navigation.stateId !== ''">
         <li :class="{ 'is-active': navigation.municipalityId === '' }">
-          <a href="#" @click.stop.prevent="selectState(navigation.stateId)">Entidad</a>
+          <a href="#" @click.stop.prevent="selectState(navigation.stateId)">{{ navigation.stateName }}</a>
         </li>
       </template>
       <template v-if="navigation.municipalityId !== ''">
         <li :class="{ 'is-active': navigation.schoolId === '' }">
-          <a href="#" @click.stop.prevent="selectMunicipality(navigation.municipalityId)">Municipio</a>
+          <a href="#" @click.stop.prevent="selectMunicipality(navigation.municipalityId)">{{ navigation.municipalityName }}</a>
         </li>
       </template>
       <template v-if="navigation.schoolId !== ''">
         <li class="is-active">
-          <a href="#" @click.stop.prevent="">Escuela</a>
+          <a href="#" @click.stop.prevent="">{{ navigation.schoolName }}</a>
         </li>
       </template>
     </ul>

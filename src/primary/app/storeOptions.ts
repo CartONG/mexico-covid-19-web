@@ -10,8 +10,11 @@ import { RateTypes } from '@/primary/RateTypes';
 
 export interface Navigation {
   stateId: string;
+  stateName: string;
   municipalityId: string;
+  municipalityName: string;
   schoolId: string;
+  schoolName: string;
 }
 
 export interface StateSelection {
@@ -49,7 +52,7 @@ export interface AppState {
 export const storeOptions: StoreOptions<AppState> = {
   state: {
     level: 'country',
-    navigation: { stateId: '', municipalityId: '', schoolId: '' },
+    navigation: { stateId: '', stateName: '', municipalityId: '', municipalityName: '', schoolId: '', schoolName: '' },
     currentSummary: undefined,
     country: undefined,
     state: undefined,
@@ -88,7 +91,7 @@ export const storeOptions: StoreOptions<AppState> = {
     },
     selectCountry(appState: AppState, source: SelectionSource) {
       appState.level = 'country';
-      appState.navigation = { stateId: '', municipalityId: '', schoolId: '' };
+      appState.navigation = { stateId: '', stateName: '', municipalityId: '', municipalityName: '', schoolId: '', schoolName: '' };
       appState.currentSummary = appState.country;
       appState.stateSelection = { stateId: '', source };
       appState.municipalitySelection = { municipalityId: '', source };
@@ -97,9 +100,17 @@ export const storeOptions: StoreOptions<AppState> = {
       appState.municipality = undefined;
     },
     selectState(appState: AppState, stateSelection: StateSelection) {
+      const summary = appState.stateSummaryList.find(state => state.id === stateSelection.stateId);
       appState.level = 'state';
-      appState.navigation = { stateId: stateSelection.stateId, municipalityId: '', schoolId: '' };
-      appState.currentSummary = appState.stateSummaryList.find(stateSummary => stateSummary.id === stateSelection.stateId);
+      appState.navigation = {
+        stateId: stateSelection.stateId,
+        stateName: summary ? summary.name : '',
+        municipalityId: '',
+        municipalityName: '',
+        schoolId: '',
+        schoolName: '',
+      };
+      appState.currentSummary = summary;
       appState.state = stateSelection.stateId !== appState.stateSelection.stateId ? undefined : appState.state;
       appState.stateSelection = stateSelection;
       appState.municipalitySelection = { municipalityId: '', source: stateSelection.source };
@@ -107,20 +118,26 @@ export const storeOptions: StoreOptions<AppState> = {
       appState.municipality = undefined;
     },
     selectMunicipality(state: AppState, municipalitySelection: MunicipalitySelection) {
+      const summary = state.municipalitySummaryList.find(municipality => municipality.id === municipalitySelection.municipalityId);
       state.level = 'municipality';
-      state.navigation = { ...state.navigation, municipalityId: municipalitySelection.municipalityId, schoolId: '' };
-      state.currentSummary = state.municipalitySummaryList.find(
-        municipalitySummary => municipalitySummary.id === municipalitySelection.municipalityId
-      );
+      state.navigation = {
+        ...state.navigation,
+        municipalityId: municipalitySelection.municipalityId,
+        municipalityName: summary ? summary.name : '',
+        schoolId: '',
+        schoolName: '',
+      };
+      state.currentSummary = summary;
       state.municipality =
         municipalitySelection.municipalityId !== state.municipalitySelection.municipalityId ? undefined : state.municipality;
       state.municipalitySelection = municipalitySelection;
       state.schoolSelection = { schoolId: '', source: municipalitySelection.source };
     },
     selectSchool(state: AppState, schoolSelection: SchoolSelection) {
+      const summary = state.schoolSummaryList.find(schoolSummary => schoolSummary.id === schoolSelection.schoolId);
       state.level = 'school';
-      state.navigation = { ...state.navigation, schoolId: schoolSelection.schoolId };
-      state.currentSummary = state.schoolSummaryList.find(schoolSummary => schoolSummary.id === schoolSelection.schoolId);
+      state.navigation = { ...state.navigation, schoolId: schoolSelection.schoolId, schoolName: summary ? summary.name : '' };
+      state.currentSummary = summary;
       state.school = undefined;
       state.schoolSelection = schoolSelection;
     },
