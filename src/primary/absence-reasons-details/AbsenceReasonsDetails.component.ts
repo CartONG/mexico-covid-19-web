@@ -30,19 +30,27 @@ export default class AbsenceReasonsDetails extends Vue {
 
   @Watch('dataSet')
   dataSetWatcher() {
-    this.toChart(this.dataSet);
+    this.updateChart(this.dataSet);
   }
 
   mounted() {
-    this.toChart(toAdministrativeDivisionDataset(this.administrativeDivision).studentAbsenceMainReasons);
+    this.makeChart();
+    this.updateChart(toAdministrativeDivisionDataset(this.administrativeDivision).studentAbsenceMainReasons);
   }
 
-  toChart(dataset: { [key: string]: { text: string; value: number } }) {
-    d3.select('#absence-reasons-details-chart g').remove();
+  makeChart() {
+    const svg = d3.select('#absence-reasons-details-chart');
+    const margin = { top: 0, right: 0, bottom: 0, left: 0 };
+    const width = 150 - margin.right - margin.left;
+    const height = 150 - margin.top - margin.bottom;
+    const radius = Math.min(width, height) / 2;
+    svg.append('g').attr('transform', 'translate(' + width / 2 + ',' + 65 + ')');
+  }
 
+  updateChart(dataset: { [key: string]: { text: string; value: number } }) {
     const data = [dataset['1'], dataset['2'], dataset['3'], dataset['4'], dataset['5']].map(d => d.value);
 
-    const color = d3.scaleOrdinal([
+    const colors = d3.scaleOrdinal([
       'rgba(212, 193, 156, 0.7)',
       'rgba(157, 36, 73, 0.7)',
       'rgba(40, 92, 77, 0.7)',
@@ -50,29 +58,40 @@ export default class AbsenceReasonsDetails extends Vue {
       'rgba(98, 17, 50, 0.7)',
     ]);
 
-    const svg = d3.select('#absence-reasons-details-chart');
-    const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-    const width = 150 - margin.right - margin.left;
-    const height = 150 - margin.top - margin.bottom;
-    const radius = Math.min(width, height) / 2;
-    const g = svg.append('g').attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+    const g = d3.select('#absence-reasons-details-chart > g');
+    const t = d3.transition().duration(250);
+
     const pie = d3.pie();
 
     const arc = d3
       .arc()
       .innerRadius(0)
-      .outerRadius(radius);
+      .outerRadius(65);
 
-    const arcs = g
-      .selectAll('arc')
-      .data(pie(data))
+    const pieData = pie(data);
+    const selection = g.selectAll('path').data(pieData);
+
+    const arcTween = (a: any) => {
+      const i = d3.interpolate({ data: 0, index: 0, value: 0, startAngle: 0, endAngle: 0, padAngle: 0 }, a);
+      return (t: any) => arc(i(t));
+    };
+
+    selection
+      .transition()
+      .duration(500)
+      .attrTween('d', arcTween as any);
+
+    selection
       .enter()
-      .append('g')
-      .attr('class', 'arc');
-
-    arcs
       .append('path')
-      .attr('fill', (d, i) => color(i.toString()))
-      .attr('d', arc as any);
+      .attr('fill', (d, i) => colors(i.toString()))
+      .attr('d', arc as any)
+      .attr('stroke', 'white')
+      .attr('stroke-width', '1px');
+
+    selection
+      .exit()
+      .transition(t as any)
+      .remove();
   }
 }

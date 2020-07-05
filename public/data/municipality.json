@@ -92,8 +92,8 @@
   "inaAlumnas": 15,
   "inaAlumnos": 12,
   "causaInaAlum": {
-    "1": 0.00,
-    "2": 0.37,
+    "1": 0.35,
+    "2": 0.02,
     "3": 0.07,
     "4": 0.37,
     "5": 0.19
@@ -105,7 +105,7 @@
     "3": 0.00,
     "4": 0.00
   },
-  "inaadministrativos": 0,
+  "inaAdministrativos": 0,
   "causaInaAdmin": {
     "1": 0.00,
     "2": 0.00,

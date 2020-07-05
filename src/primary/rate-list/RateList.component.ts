@@ -25,6 +25,10 @@ export default class RateList extends Vue {
       : 'personal';
   }
 
+  get tableLabel() {
+    return `${this.levelLabel[0].toUpperCase()}${this.levelLabel.substring(1)}`;
+  }
+
   get selectedRateType() {
     return this.appStore().getSelectedRateType();
   }

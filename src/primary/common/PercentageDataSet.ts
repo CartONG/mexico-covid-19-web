@@ -6,7 +6,7 @@ export interface PercentageDataSet {
 
 const validNumber = (toValid: number) => !isNaN(toValid);
 const validRate = (rate: number) => validNumber(rate) && rate >= 0 && rate <= 1;
-const toText = (rate: number): string => (validRate(rate) ? `${(Math.round(rate * 100 * 10) / 10).toString()} %` : '-');
+const toText = (rate: number): string => (validRate(rate) ? `${(Math.round(rate * 100 * 10) / 10).toString()}%` : '-');
 
 const toColor = (rate: number) => {
   if (rate >= 0 && rate <= 0.25) {

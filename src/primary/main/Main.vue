@@ -19,11 +19,11 @@
             <IndicatorsVue />
           </div>
         </div>
-        <div class="columns">
-          <div class="column is-6">
+        <div class="columns is-desktop">
+          <div class="column">
             <RateListVue />
           </div>
-          <div class="column is-6">
+          <div class="column">
             <AbsenceReasonsDetailsVue></AbsenceReasonsDetailsVue>
           </div>
         </div>
