@@ -3,7 +3,7 @@
     <section class="section py-2 px-2">
       <div class="container is-fluid">
         <h1 class="has-text-primary main-title">Tablero de Análisis Integral</h1>
-        <div class="columns has-background-tertiary">
+        <div class="columns has-background-tertiary no-print">
           <div class="column is-10 py-0">
             <BreadcrumbVue />
           </div>

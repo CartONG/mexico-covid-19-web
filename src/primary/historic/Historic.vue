@@ -5,7 +5,7 @@
     </header>
     <div class="card-content">
       <svg id="historic-chart" viewBox="0 0 1200 400" perserveAspectRatio="xMinYMid meet"></svg>
-      <b-field v-if="currentHistoryItems.length > 0">
+      <b-field v-if="currentHistoryItems.length > 0" class="no-print">
         <b-slider
           v-model="interval"
           :min="0"
