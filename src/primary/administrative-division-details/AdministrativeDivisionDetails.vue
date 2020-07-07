@@ -71,6 +71,10 @@
             <td>No cuenta con suficientes lavamanos</td>
             <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.schoolSinkSufficiency['2'].text }}</td>
           </tr>
+          <tr>
+            <td>No cuenta</td>
+            <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.schoolSinkSufficiency['3'].text }}</td>
+          </tr>
         </tbody>
       </table>
       <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de jabón para el lavado de manos</h4>
@@ -83,6 +87,10 @@
           <tr>
             <td>No cuenta con suficiente jabón</td>
             <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.schoolSoapSufficiency['2'].text }}</td>
+          </tr>
+          <tr>
+            <td>No cuenta</td>
+            <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.schoolSoapSufficiency['3'].text }}</td>
           </tr>
         </tbody>
       </table>
@@ -97,6 +105,10 @@
             <td>No cuenta con suficientes toallas</td>
             <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.schoolTowelSufficiency['2'].text }}</td>
           </tr>
+          <tr>
+            <td>No cuenta</td>
+            <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.schoolTowelSufficiency['3'].text }}</td>
+          </tr>
         </tbody>
       </table>
       <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de alcohol en gel al 70%</h4>
@@ -110,6 +122,10 @@
             <td>No cuenta con suficiente alcohol en gel</td>
             <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.schoolSanitizerSufficiency['2'].text }}</td>
           </tr>
+          <tr>
+            <td>No cuenta</td>
+            <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.schoolSanitizerSufficiency['3'].text }}</td>
+          </tr>
         </tbody>
       </table>
       <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de botes de basura</h4>
@@ -122,6 +138,10 @@
           <tr>
             <td>No cuenta con suficientes botes de basura</td>
             <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.schoolBinSufficiency['2'].text }}</td>
+          </tr>
+          <tr>
+            <td>No cuenta</td>
+            <td class="w80 has-text-centered">{{ administrativeDivisionDataSet.schoolBinSufficiency['3'].text }}</td>
           </tr>
         </tbody>
       </table>

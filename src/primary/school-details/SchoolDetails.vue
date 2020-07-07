@@ -29,10 +29,6 @@
       <div class="content">
         <p>{{ schoolDataSet.towelSufficiency }}</p>
       </div>
-      <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de toallas para el secado de manos (papel o tela)</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.towelSufficiency }}</p>
-      </div>
       <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de alcohol en gel al 70%</h4>
       <div class="content">
         <p>{{ schoolDataSet.sanitizerSufficiency }}</p>

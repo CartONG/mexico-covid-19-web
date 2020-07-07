@@ -19,11 +19,23 @@ const waterServiceContinuityTexts: string[] = [
 ];
 
 const waterForHandWashingTexts: string[] = ['', 'Cuenta con agua para el lavado de manos', 'No cuenta con agua para lavado de manos'];
-const sinkSufficiencyTexts: string[] = ['', 'Cuenta con suficientes lavamanos', 'No cuenta con suficientes lavamanos'];
-const soapSufficiencyTexts: string[] = ['', 'Cuenta con suficiente jabón', 'No cuenta con suficiente jabón'];
-const towelSufficiencyTexts: string[] = ['', 'Cuenta con suficientes toallas', 'No cuenta con suficientes toallas'];
-const sanitizerSufficiencyTexts: string[] = ['', 'Cuenta con suficiente alcohol en gel', 'No cuenta con suficiente alcohol en gel'];
-const binSufficiencyTexts: string[] = ['', 'Cuenta con suficientes botes de basura', 'No cuenta con suficientes  botes de basura'];
+const sinkSufficiencyTexts: string[] = ['', 'Cuenta con suficientes lavamanos', 'No cuenta con suficientes lavamanos', 'No cuenta'];
+const soapSufficiencyTexts: string[] = ['', 'Cuenta con suficiente jabón', 'No cuenta con suficiente jabón', 'No cuenta'];
+const towelSufficiencyTexts: string[] = ['', 'Cuenta con suficientes toallas', 'No cuenta con suficientes toallas', 'No cuenta'];
+
+const sanitizerSufficiencyTexts: string[] = [
+  '',
+  'Cuenta con suficiente alcohol en gel',
+  'No cuenta con suficiente alcohol en gel',
+  'No cuenta',
+];
+
+const binSufficiencyTexts: string[] = [
+  '',
+  'Cuenta con suficientes botes de basura',
+  'No cuenta con suficientes  botes de basura',
+  'No cuenta',
+];
 
 const hasSepticSystemTexts: string[] = [
   '',
