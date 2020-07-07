@@ -4,14 +4,30 @@ import { AdministrativeDivisionRepository } from '@/domain/administrative-divisi
 import { AdministrativeDivisionTypes } from '@/domain/administrative-division/AdministrativeDivisionTypes';
 import { Logger } from '@/domain/Logger';
 import { SchoolRepository } from '@/domain/school/SchoolRepository';
+import { AbsenceReasonsDetailsVue } from '@/primary/absence-reasons-details';
+import { AdministrativeDivisionDetailsVue } from '@/primary/administrative-division-details';
 import { AppStore } from '@/primary/app/AppStore';
+import { BreadcrumbVue } from '@/primary/breadcrumb';
 import { ChoroplethMapVue } from '@/primary/choropleth-map';
 import { ComponentState } from '@/primary/ComponentState';
-import { MainVue } from '@/primary/main';
-import { SidebarVue } from '@/primary/sidebar';
+import { DropdownVue } from '@/primary/dropdown';
+import { HistoricVue } from '@/primary/historic';
+import { IndicatorsVue } from '@/primary/indicators';
+import { RateListVue } from '@/primary/rate-list';
+import { SchoolDetailsVue } from '@/primary/school-details';
 
 @Component({
-  components: { ChoroplethMapVue, SidebarVue, MainVue },
+  components: {
+    BreadcrumbVue,
+    ChoroplethMapVue,
+    IndicatorsVue,
+    RateListVue,
+    AbsenceReasonsDetailsVue,
+    AdministrativeDivisionDetailsVue,
+    SchoolDetailsVue,
+    HistoricVue,
+    DropdownVue,
+  },
 })
 export default class Dashboard extends Vue {
   state = ComponentState.PENDING;
@@ -30,6 +46,10 @@ export default class Dashboard extends Vue {
 
   get navigation() {
     return this.appStore().getNavigation();
+  }
+
+  get administrativeDivision() {
+    return this.navigation.schoolId === '';
   }
 
   @Watch('navigation.stateId')

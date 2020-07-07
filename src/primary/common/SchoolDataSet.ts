@@ -2,6 +2,35 @@ import { School } from '@/domain/school/School';
 import { toNumericDataSet } from '@/primary/common/NumericDataSet';
 import { PercentageDataSet, toPercentageDataSet } from '@/primary/common/PercentageDataSet';
 
+const waterSupplyTexts: string[] = [
+  '',
+  'Red municipal de agua potable',
+  'Abastecimiento a través de pipas',
+  'Otra fuente (pozo, río, lago, etc.)',
+  'No cuenta con ningún tipo de abastecimiento',
+];
+
+const waterServiceContinuityTexts: string[] = [
+  '',
+  'Todos los días',
+  'De 2 a 4 días a la semana',
+  'Una sola vez por semana',
+  'No cuenta con servicio de agua',
+];
+
+const waterForHandWashingTexts: string[] = ['', 'Cuenta con agua para el lavado de manos', 'No cuenta con agua para lavado de manos'];
+const sinkSufficiencyTexts: string[] = ['', 'Cuenta con suficientes lavamanos', 'No cuenta con suficientes lavamanos'];
+const soapSufficiencyTexts: string[] = ['', 'Cuenta con suficiente jabón', 'No cuenta con suficiente jabón'];
+const towelSufficiencyTexts: string[] = ['', 'Cuenta con suficientes toallas', 'No cuenta con suficientes toallas'];
+const sanitizerSufficiencyTexts: string[] = ['', 'Cuenta con suficiente alcohol en gel', 'No cuenta con suficiente alcohol en gel'];
+const binSufficiencyTexts: string[] = ['', 'Cuenta con suficientes botes de basura', 'No cuenta con suficientes  botes de basura'];
+
+const hasSepticSystemTexts: string[] = [
+  '',
+  'Cuenta con Red de drenaje, fosa séptica para desalojo de aguas',
+  'No cuenta con Red de drenaje, fosa séptica para desalojo de aguas',
+];
+
 export interface SchoolDataSet {
   locality: string;
   name: string;
@@ -99,15 +128,15 @@ export const toSchoolDataSet = (school: School | undefined) =>
         admins: school.admins.toString(),
         quartermasters: school.quartermasters.toString(),
         others: school.others.toString(),
-        waterSupply: school.waterSupply.toString(),
-        waterServiceContinuity: school.waterServiceContinuity.toString(),
-        waterForHandWashing: school.waterSupply.toString(),
-        sinkSufficiency: school.sinkSufficiency.toString(),
-        soapSufficiency: school.soapSufficiency.toString(),
-        towelSufficiency: school.towelSufficiency.toString(),
-        sanitizerSufficiency: school.sanitizerSufficiency.toString(),
-        binSufficiency: school.binSufficiency.toString(),
-        hasSepticSystem: school.hasSepticSystem.toString(),
+        waterSupply: waterSupplyTexts[school.waterSupply],
+        waterServiceContinuity: waterServiceContinuityTexts[school.waterServiceContinuity],
+        waterForHandWashing: waterForHandWashingTexts[school.waterForHandWashing],
+        sinkSufficiency: sinkSufficiencyTexts[school.sinkSufficiency],
+        soapSufficiency: soapSufficiencyTexts[school.soapSufficiency],
+        towelSufficiency: towelSufficiencyTexts[school.towelSufficiency],
+        sanitizerSufficiency: sanitizerSufficiencyTexts[school.sanitizerSufficiency],
+        binSufficiency: binSufficiencyTexts[school.binSufficiency],
+        hasSepticSystem: hasSepticSystemTexts[school.hasSepticSystem],
         hasAbilityToReorganizeSpace: school.hasAbilityToReorganizeSpace.toString(),
         hasHygieneCommittee: school.hasHygieneCommittee.toString(),
         alternatesAttendance: school.alternatesAttendance.toString(),
