@@ -1,7 +1,7 @@
 <template>
   <div class="rate-list has-background-white card">
     <header class="card-header">
-      <p class="card-header-title has-text-primary">Porcentaje de {{ selectedRateTypeLabel }} presentes por {{ levelLabel }}</p>
+      <h2 class="card-header-title has-text-primary">Porcentaje de {{ selectedRateTypeLabel }} presentes por {{ levelLabel }}</h2>
     </header>
     <div class="card-content">
       <div v-if="summaryDataSets.length === 0" class="has-text-grey px-2 py-2">

@@ -1,27 +1,32 @@
 <template>
   <div class="has-background-secondary">
     <template v-if="state === 'SUCCESS'">
-      <section class="section py-2 px-2">
-        <div class="container is-fluid">
-          <h1 class="has-text-primary main-title">Tablero de Análisis Integral</h1>
-          <div class="columns has-background-tertiary no-print">
-            <div class="column is-10 py-0">
-              <BreadcrumbVue />
-            </div>
-            <div class="column is-2">
+      <nav class="navbar" role="navigation">
+        <div class="navbar-brand">
+          <div class="navbar-item">
+            <img src="/logo.svg" alt="Logotipos de la Secretaría de Educación Pública y de UNICEF" />
+          </div>
+        </div>
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <div class="navbar-item">
               <DropdownVue />
             </div>
           </div>
+        </div>
+      </nav>
+      <div class="has-background-tertiary">
+        <BreadcrumbVue />
+      </div>
+      <section class="section py-2 px-2">
+        <div class="container is-fluid">
+          <h1 class="has-text-septenary title is-uppercase is-4 has-text-weight-bold">Tablero de Análisis Integral</h1>
           <div class="columns">
             <div class="column is-10">
               <ChoroplethMapVue />
             </div>
             <div class="column is-2">
               <IndicatorsVue />
-              <!--
-              <AdministrativeDivisionIndicatorsVue />
-              <SchoolIndicatorsVue />
-              -->
             </div>
           </div>
           <div class="columns is-desktop">

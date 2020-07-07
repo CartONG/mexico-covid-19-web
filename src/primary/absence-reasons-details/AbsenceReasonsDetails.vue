@@ -1,7 +1,7 @@
 <template>
   <div class="absence-reasons-details has-background-white card">
     <header class="card-header">
-      <p class="card-header-title has-text-primary">Causas generales del total de inasistencia</p>
+      <h2 class="card-header-title has-text-primary">Causas generales del total de inasistencia</h2>
     </header>
     <div class="card-content">
       <div class="columns is-mobile">

@@ -1,7 +1,7 @@
 <template>
   <div class="has-background-white card">
     <header class="card-header">
-      <p class="card-header-title has-text-primary">Historial de escuelas con clases presenciales</p>
+      <h2 class="card-header-title has-text-primary">Historial de escuelas con clases presenciales</h2>
     </header>
     <div class="card-content">
       <svg id="historic-chart" viewBox="0 0 1200 400" perserveAspectRatio="xMinYMid meet"></svg>

@@ -1,7 +1,7 @@
 <template>
   <div class="has-background-white card">
     <header class="card-header">
-      <p class="card-header-title has-text-primary">Información detallada</p>
+      <H2 class="card-header-title has-text-primary">Información detallada</H2>
     </header>
     <div class="card-content">
       <h3 class="is-size-4 title has-text-weight-normal">Tasa de asistencia</h3>

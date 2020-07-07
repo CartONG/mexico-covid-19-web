@@ -1,12 +1,13 @@
 @import "~ol/ol.css";
 @import "~bulma/sass/utilities/_all";
 
-$primary: #d4c19c;
+$primary: #b38e5d;
 $secondary: #9d2449;
 $tertiary: #621132;
 $quaternary: #285c4d;
 $quinary: #bfbfbf;
 $senary: #621132;
+$septenary: #d4c19c;;
 
 $primary-invert: findColorInvert($primary);
 $secondary-invert: findColorInvert($secondary);
@@ -14,6 +15,7 @@ $tertiary-invert: findColorInvert($tertiary);
 $quaternary-invert: findColorInvert($quaternary);
 $quinary-invert: findColorInvert($quinary);
 $senary-invert: findColorInvert($senary);
+$septenary-invert: findColorInvert($septenary);
 
 $success: #3c947b;
 $warning: #efb749;
@@ -36,6 +38,7 @@ $colors: (
   "quaternary": ($quaternary, $quaternary-invert),
   "quinary": ($quinary, $quinary-invert),
   "senary": ($senary, $senary-invert),
+  "septenary": ($septenary, $septenary-invert),
   "info": ($info, $info-invert),
   "success": ($success, $success-invert),
   "warning": ($warning, $warning-invert),
@@ -48,10 +51,11 @@ $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
-$input-border-color: #ffffff;
+$input-border-color: $primary;
 $input-icon-color: $primary;
 $input-icon-active-color: $primary;
-$input-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.5);
+$input-shadow: 0;
+// $input-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.5);
 
 $breadcrumb-item-color: $white;
 $breadcrumb-item-active-color: $white;
@@ -177,12 +181,26 @@ html {
   cursor: pointer;
 }
 
+.navbar-brand img {
+  height: 57px;
+  max-height: 57px;
+  width: auto;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+}
+
+@import url("./fonts/Montserrat.css");
+
 @import "ol.overrides";
 @import "map";
 @import "sidebar";
 @import "popup";
 @import "choropleth-map";
-@import "main";
 @import "indicator-card";
 @import "rate-list";
 @import "absence-reasons-details";
