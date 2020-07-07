@@ -128,7 +128,7 @@ export default class Historic extends Vue {
       .enter()
       .append('rect')
       .attr('class', 'bar')
-      .style('fill', '#bfbfbf')
+      .style('fill', '#d4c19c')
       .attr('x', d => x(d.date) as any)
       .attr('width', x.bandwidth())
       .attr('y', d => y(d.openSchools))

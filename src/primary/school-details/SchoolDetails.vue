@@ -4,6 +4,20 @@
       <p class="card-header-title has-text-primary">Información detallada</p>
     </header>
     <div class="card-content">
+      <h3 class="is-size-4 title has-text-weight-normal">Organización escolar</h3>
+      <h4 class="is-size-5 has-text-weight-bold">Escuelas que instalaron el filtro a cargo del comité de salud escolar</h4>
+      <div class="content">
+        <p>{{ schoolDataSet.hasHygieneCommittee }}</p>
+      </div>
+      <h4 class="is-size-5 has-text-weight-bold">Escuelas que alternan la asistencia de sus alumnas (os)</h4>
+      <div class="content">
+        <p>{{ schoolDataSet.alternatesAttendance }}</p>
+      </div>
+      <h4 class="is-size-5 has-text-weight-bold">Escuelas que pueden reorganizar los espacios para facilitar la sana distancia</h4>
+      <div class="content">
+        <p>{{ schoolDataSet.hasAbilityToReorganizeSpace }}</p>
+      </div>
+      <hr />
       <h3 class="is-size-4 title has-text-weight-normal">Condiciones sanitarias elementales en las escuelas</h3>
       <h4 class="is-size-5 has-text-weight-bold">Abastecimiento de agua</h4>
       <div class="content">

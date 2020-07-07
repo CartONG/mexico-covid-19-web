@@ -43,6 +43,10 @@ const hasSepticSystemTexts: string[] = [
   'No cuenta con Red de drenaje, fosa séptica para desalojo de aguas',
 ];
 
+const hasAbilityToReorganizeSpaceTexts: string[] = ['', 'SI', 'NO'];
+const hasHygieneCommitteeTexts: string[] = ['', 'SI', 'NO'];
+const alternatesAttendanceTexts: string[] = ['', 'SI', 'NO'];
+
 export interface SchoolDataSet {
   locality: string;
   name: string;
@@ -149,9 +153,9 @@ export const toSchoolDataSet = (school: School | undefined) =>
         sanitizerSufficiency: sanitizerSufficiencyTexts[school.sanitizerSufficiency],
         binSufficiency: binSufficiencyTexts[school.binSufficiency],
         hasSepticSystem: hasSepticSystemTexts[school.hasSepticSystem],
-        hasAbilityToReorganizeSpace: school.hasAbilityToReorganizeSpace.toString(),
-        hasHygieneCommittee: school.hasHygieneCommittee.toString(),
-        alternatesAttendance: school.alternatesAttendance.toString(),
+        hasAbilityToReorganizeSpace: hasAbilityToReorganizeSpaceTexts[school.hasAbilityToReorganizeSpace],
+        hasHygieneCommittee: hasHygieneCommitteeTexts[school.hasHygieneCommittee],
+        alternatesAttendance: alternatesAttendanceTexts[school.alternatesAttendance],
         absentFemaleStudents: school.absentFemaleStudents.toString(),
         absentMaleStudents: school.absentMaleStudents.toString(),
         studentAbsenceMainReasons: {
