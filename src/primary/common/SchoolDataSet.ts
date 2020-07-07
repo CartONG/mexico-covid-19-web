@@ -43,9 +43,9 @@ const hasSepticSystemTexts: string[] = [
   'No cuenta con Red de drenaje, fosa séptica para desalojo de aguas',
 ];
 
-const hasAbilityToReorganizeSpaceTexts: string[] = ['', 'SI', 'NO'];
-const hasHygieneCommitteeTexts: string[] = ['', 'SI', 'NO'];
-const alternatesAttendanceTexts: string[] = ['', 'SI', 'NO'];
+const hasAbilityToReorganizeSpaceTexts: string[] = ['-', 'SI', 'NO'];
+const hasHygieneCommitteeTexts: string[] = ['-', 'SI', 'NO'];
+const alternatesAttendanceTexts: string[] = ['-', 'SI', 'NO'];
 
 const givesClassesText: string[] = [
   '-',
