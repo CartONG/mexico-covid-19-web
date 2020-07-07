@@ -4,6 +4,33 @@
       <p class="card-header-title has-text-primary">Información detallada</p>
     </header>
     <div class="card-content">
+      <h3 class="is-size-4 title has-text-weight-normal">Tasa de asistencia</h3>
+      <table class="table is-fullwidth has-no-background">
+        <tbody>
+          <tr>
+            <td>Alumnos</td>
+            <td class="w80 has-text-centered">{{ schoolDataSet.maleStudentAttendance.text }}</td>
+          </tr>
+          <tr>
+            <td>Alumnas</td>
+            <td class="w80 has-text-centered">{{ schoolDataSet.femaleStudentAttendance.text }}</td>
+          </tr>
+          <tr>
+            <td>Docentes</td>
+            <td class="w80 has-text-centered">{{ schoolDataSet.teacherAttendance.text }}</td>
+          </tr>
+          <tr>
+            <td>Personal</td>
+            <td class="w80 has-text-centered">{{ schoolDataSet.adminAttendance.text }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+      <h3 class="is-size-4 title has-text-weight-normal">Motivo por el que la escuela no tiene clases presenciales</h3>
+      <div class="content">
+        <p>{{ schoolDataSet.givesClasses }}</p>
+      </div>
+      <hr />
       <h3 class="is-size-4 title has-text-weight-normal">Organización escolar</h3>
       <h4 class="is-size-5 has-text-weight-bold">Escuelas que instalaron el filtro a cargo del comité de salud escolar</h4>
       <div class="content">

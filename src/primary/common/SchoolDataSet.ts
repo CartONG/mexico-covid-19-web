@@ -47,6 +47,17 @@ const hasAbilityToReorganizeSpaceTexts: string[] = ['', 'SI', 'NO'];
 const hasHygieneCommitteeTexts: string[] = ['', 'SI', 'NO'];
 const alternatesAttendanceTexts: string[] = ['', 'SI', 'NO'];
 
+const givesClassesText: string[] = [
+  '',
+  'No aplicable',
+  'Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases',
+  'Existe la confirmación de al menos un caso de COVID-19 en la escuela',
+  'La Autoridad Educativa Local determinó continuar con la suspensión de clases',
+  'La comunidad escolar determinó continuar con la suspensión de clases',
+  'El personal de la escuela decidió continuar con la suspensión de clases',
+  'Los padres de familia informaron que no enviarán a sus hijos a la escuela',
+];
+
 export interface SchoolDataSet {
   locality: string;
   name: string;
@@ -127,7 +138,7 @@ export const toSchoolDataSet = (school: School | undefined) =>
         level: school.level,
         workCenterKey: school.workCenterKey,
         turn: school.turn,
-        givesClasses: school.givesClasses,
+        givesClasses: givesClassesText[school.givesClasses],
         modality: school.modality,
         municipality: school.municipality,
         address: school.address,
