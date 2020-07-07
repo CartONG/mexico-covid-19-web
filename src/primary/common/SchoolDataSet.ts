@@ -3,7 +3,7 @@ import { toNumericDataSet } from '@/primary/common/NumericDataSet';
 import { PercentageDataSet, toPercentageDataSet } from '@/primary/common/PercentageDataSet';
 
 const waterSupplyTexts: string[] = [
-  '',
+  '-',
   'Red municipal de agua potable',
   'Abastecimiento a través de pipas',
   'Otra fuente (pozo, río, lago, etc.)',
@@ -11,34 +11,34 @@ const waterSupplyTexts: string[] = [
 ];
 
 const waterServiceContinuityTexts: string[] = [
-  '',
+  '-',
   'Todos los días',
   'De 2 a 4 días a la semana',
   'Una sola vez por semana',
   'No cuenta con servicio de agua',
 ];
 
-const waterForHandWashingTexts: string[] = ['', 'Cuenta con agua para el lavado de manos', 'No cuenta con agua para lavado de manos'];
-const sinkSufficiencyTexts: string[] = ['', 'Cuenta con suficientes lavamanos', 'No cuenta con suficientes lavamanos', 'No cuenta'];
-const soapSufficiencyTexts: string[] = ['', 'Cuenta con suficiente jabón', 'No cuenta con suficiente jabón', 'No cuenta'];
-const towelSufficiencyTexts: string[] = ['', 'Cuenta con suficientes toallas', 'No cuenta con suficientes toallas', 'No cuenta'];
+const waterForHandWashingTexts: string[] = ['-', 'Cuenta con agua para el lavado de manos', 'No cuenta con agua para lavado de manos'];
+const sinkSufficiencyTexts: string[] = ['-', 'Cuenta con suficientes lavamanos', 'No cuenta con suficientes lavamanos', 'No cuenta'];
+const soapSufficiencyTexts: string[] = ['-', 'Cuenta con suficiente jabón', 'No cuenta con suficiente jabón', 'No cuenta'];
+const towelSufficiencyTexts: string[] = ['-', 'Cuenta con suficientes toallas', 'No cuenta con suficientes toallas', 'No cuenta'];
 
 const sanitizerSufficiencyTexts: string[] = [
-  '',
+  '-',
   'Cuenta con suficiente alcohol en gel',
   'No cuenta con suficiente alcohol en gel',
   'No cuenta',
 ];
 
 const binSufficiencyTexts: string[] = [
-  '',
+  '-',
   'Cuenta con suficientes botes de basura',
   'No cuenta con suficientes  botes de basura',
   'No cuenta',
 ];
 
 const hasSepticSystemTexts: string[] = [
-  '',
+  '-',
   'Cuenta con Red de drenaje, fosa séptica para desalojo de aguas',
   'No cuenta con Red de drenaje, fosa séptica para desalojo de aguas',
 ];
@@ -48,7 +48,7 @@ const hasHygieneCommitteeTexts: string[] = ['', 'SI', 'NO'];
 const alternatesAttendanceTexts: string[] = ['', 'SI', 'NO'];
 
 const givesClassesText: string[] = [
-  '',
+  '-',
   'No aplicable',
   'Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases',
   'Existe la confirmación de al menos un caso de COVID-19 en la escuela',
