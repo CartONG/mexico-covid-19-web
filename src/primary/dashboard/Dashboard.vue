@@ -22,7 +22,14 @@
       </div>
       <section class="section py-2 px-2">
         <div class="container is-fluid">
-          <h1 class="has-text-septenary title is-uppercase is-4 has-text-weight-bold">Tablero de Análisis Integral</h1>
+          <div class="columns">
+            <div class="column is-10">
+              <h1 class="has-text-septenary title is-uppercase is-4 has-text-weight-bold">Tablero de Análisis Integral</h1>
+            </div>
+            <div class="column is-2 has-text-right">
+              <InfoModalVue />
+            </div>
+          </div>
           <div class="columns">
             <div class="column is-10">
               <ChoroplethMapVue />

@@ -13,6 +13,7 @@ import { ChoroplethMapVue } from '@/primary/choropleth-map';
 import { ComponentState } from '@/primary/ComponentState';
 import { DropdownVue } from '@/primary/dropdown';
 import { HistoricVue } from '@/primary/historic';
+import { InfoModalVue } from '@/primary/info-modal';
 import { RateListVue } from '@/primary/rate-list';
 import { SchoolDetailsVue } from '@/primary/school-details';
 import { SchoolIndicatorsVue } from '@/primary/school-indicators';
@@ -20,6 +21,7 @@ import { SchoolIndicatorsVue } from '@/primary/school-indicators';
 @Component({
   components: {
     BreadcrumbVue,
+    InfoModalVue,
     ChoroplethMapVue,
     AdministrativeDivisionIndicatorsVue,
     SchoolIndicatorsVue,
