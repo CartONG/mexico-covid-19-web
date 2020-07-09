@@ -28,6 +28,7 @@ import { toSchoolFeature } from '@/primary/choropleth-map/SchoolFeature';
 import { toStateFeature } from '@/primary/choropleth-map/StateFeature';
 import { createSchoolsStyleFunction } from '@/primary/choropleth-map/styles/schools/createSchoolsStyleFunction';
 import { ComponentState } from '@/primary/ComponentState';
+import { RateTypes } from '@/primary/RateTypes';
 
 @Component({
   components: { PopupVue, RateTabsVue },
@@ -113,6 +114,7 @@ export default class ChoroplethMap extends Vue {
 
   @Watch('selectedRateType')
   selectedRateTypeWatcher() {
+    this.schoolsLayer.setStyle(createSchoolsStyleFunction(this.selectedRateType));
     this.adaptToStateDomain(this.stateSelection.stateId);
     this.adaptToMunicipalityDomain(this.stateSelection.stateId, this.municipalitySelection.municipalityId);
   }
@@ -124,7 +126,7 @@ export default class ChoroplethMap extends Vue {
     this.map.addOverlay(this.popup);
     this.map.on('singleclick', this.selectEntity);
     this.map.on('dblclick', () => this.closePopup());
-    this.schoolsLayer.setStyle(createSchoolsStyleFunction());
+    this.schoolsLayer.setStyle(createSchoolsStyleFunction(RateTypes.STUDENT_ABSENCE));
     this.statesLayer.on('singleclick', event => this.selectState(event as MapBrowserEvent));
     this.municipalitiesLayer.on('singleclick', event => this.selectMunicipality(event as MapBrowserEvent));
     this.schoolsLayer.on('singleclick', (event: MapBrowserEvent) => this.selectSchool(event as MapBrowserEvent));

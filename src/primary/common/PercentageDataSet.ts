@@ -1,5 +1,3 @@
-import { stateStyleName, stateStyles } from '@/primary/choropleth-map/styles/states/stateStyles';
-
 export interface PercentageDataSet {
   text: string;
   color: string;

@@ -8,6 +8,9 @@ export const toSchoolFeature = (domainSchoolSummary: SchoolSummary, selectedScho
   const featureOptions = {
     geometry: new Point(transform(domainSchoolSummary.coordinates, 'EPSG:4326', 'EPSG:3857')),
     name: domainSchoolSummary.name,
+    maleStudentAttendance: domainSchoolSummary.maleStudentAttendance,
+    teacherAttendance: domainSchoolSummary.teacherAttendance,
+    adminAttendance: domainSchoolSummary.adminAttendance,
     selected: selectedSchoolId === domainSchoolSummary.id,
   };
 
