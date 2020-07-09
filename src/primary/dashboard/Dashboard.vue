@@ -1,22 +1,24 @@
 <template>
-  <div class="has-background-secondary">
+  <div class="app has-background-secondary">
     <template v-if="state === 'SUCCESS'">
-      <nav class="navbar" role="navigation">
-        <div class="navbar-brand">
-          <div class="navbar-item">
-            <img src="/logo.svg" alt="Logotipos de la Secretaría de Educación Pública y de UNICEF" />
-          </div>
-        </div>
-        <div class="navbar-menu">
-          <div class="navbar-end">
+      <div class="header">
+        <nav class="navbar" role="navigation">
+          <div class="navbar-brand">
             <div class="navbar-item">
-              <DropdownVue />
+              <img src="/logo.svg" alt="Logotipos de la Secretaría de Educación Pública y de UNICEF" />
             </div>
           </div>
+          <div class="navbar-menu">
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <DropdownVue />
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div class="has-background-tertiary is-fixed-top">
+          <BreadcrumbVue />
         </div>
-      </nav>
-      <div class="has-background-tertiary">
-        <BreadcrumbVue />
       </div>
       <section class="section py-2 px-2">
         <div class="container is-fluid">
