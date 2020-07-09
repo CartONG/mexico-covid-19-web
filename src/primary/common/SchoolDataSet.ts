@@ -2,6 +2,16 @@ import { School } from '@/domain/school/School';
 import { toNumericDataSet } from '@/primary/common/NumericDataSet';
 import { PercentageDataSet, toPercentageDataSet } from '@/primary/common/PercentageDataSet';
 
+const turnTexts: { [key: string]: string } = {
+  '1': 'matutino',
+  '2': 'vespertino',
+  '3': 'nocturno',
+  '4': 'discontinuo',
+  '5': 'continuo (tiempo completo)',
+  '6': 'complementario',
+  '7': 'continuo (jornada ampliada)',
+};
+
 const waterSupplyTexts: string[] = [
   '-',
   'Red municipal de agua potable',
@@ -18,9 +28,21 @@ const waterServiceContinuityTexts: string[] = [
   'No cuenta con servicio de agua',
 ];
 
-const waterForHandWashingTexts: string[] = ['-', 'Cuenta con agua para el lavado de manos', 'No cuenta con agua para lavado de manos'];
+const waterForHandWashingTexts: { shortText: string; longText: string }[] = [
+  { shortText: '-', longText: '-' },
+  { shortText: 'Si', longText: 'Cuenta con agua para el lavado de manos' },
+  { shortText: 'No', longText: 'No cuenta con agua para lavado de manos' },
+];
+
 const sinkSufficiencyTexts: string[] = ['-', 'Cuenta con suficientes lavamanos', 'No cuenta con suficientes lavamanos', 'No cuenta'];
-const soapSufficiencyTexts: string[] = ['-', 'Cuenta con suficiente jabón', 'No cuenta con suficiente jabón', 'No cuenta'];
+
+const soapSufficiencyTexts: { shortText: string; longText: string }[] = [
+  { shortText: '-', longText: '-' },
+  { shortText: 'Suficiente', longText: 'Cuenta con suficiente jabón' },
+  { shortText: 'Insuficiente', longText: 'No cuenta con suficiente jabón' },
+  { shortText: 'No', longText: 'No cuenta' },
+];
+
 const towelSufficiencyTexts: string[] = ['-', 'Cuenta con suficientes toallas', 'No cuenta con suficientes toallas', 'No cuenta'];
 
 const sanitizerSufficiencyTexts: string[] = [
@@ -43,22 +65,23 @@ const hasSepticSystemTexts: string[] = [
   'No cuenta con Red de drenaje, fosa séptica para desalojo de aguas',
 ];
 
-const hasAbilityToReorganizeSpaceTexts: string[] = ['-', 'SI', 'NO'];
-const hasHygieneCommitteeTexts: string[] = ['-', 'SI', 'NO'];
-const alternatesAttendanceTexts: string[] = ['-', 'SI', 'NO'];
+const hasAbilityToReorganizeSpaceTexts: string[] = ['-', 'Si', 'No'];
+const hasHygieneCommitteeTexts: string[] = ['-', 'Si', 'No'];
+const alternatesAttendanceTexts: string[] = ['-', 'Si', 'No'];
 
-const givesClassesText: string[] = [
-  '-',
-  'No aplicable',
-  'Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases',
-  'Existe la confirmación de al menos un caso de COVID-19 en la escuela',
-  'La Autoridad Educativa Local determinó continuar con la suspensión de clases',
-  'La comunidad escolar determinó continuar con la suspensión de clases',
-  'El personal de la escuela decidió continuar con la suspensión de clases',
-  'Los padres de familia informaron que no enviarán a sus hijos a la escuela',
+const givesClassesText: { shortText: string; longText: string }[] = [
+  { shortText: '-', longText: '-' },
+  { shortText: 'Si', longText: 'Personal y Alumnos realizan sus actividades en la escuela' },
+  { shortText: 'No', longText: 'Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases' },
+  { shortText: 'No', longText: 'Existe la confirmación de al menos un caso de COVID-19 en la escuela' },
+  { shortText: 'No', longText: 'La Autoridad Educativa Local determinó continuar con la suspensión de clases' },
+  { shortText: 'No', longText: 'La comunidad escolar determinó continuar con la suspensión de clases' },
+  { shortText: 'No', longText: 'El personal de la escuela decidió continuar con la suspensión de clases' },
+  { shortText: 'No', longText: 'Los padres de familia informaron que no enviarán a sus hijos a la escuela' },
 ];
 
 export interface SchoolDataSet {
+  id: string;
   locality: string;
   name: string;
   femaleStudentAttendance: PercentageDataSet;
@@ -129,6 +152,7 @@ export interface SchoolDataSet {
 export const toSchoolDataSet = (school: School | undefined) =>
   school
     ? {
+        id: school.id,
         locality: school.locality,
         name: school.name,
         femaleStudentAttendance: toPercentageDataSet(school.femaleStudentAttendance),
@@ -137,7 +161,7 @@ export const toSchoolDataSet = (school: School | undefined) =>
         adminAttendance: toPercentageDataSet(school.adminAttendance),
         level: school.level,
         workCenterKey: school.workCenterKey,
-        turn: school.turn,
+        turn: turnTexts[school.turn] || '-',
         givesClasses: givesClassesText[school.givesClasses],
         modality: school.modality,
         municipality: school.municipality,
@@ -196,6 +220,7 @@ export const toSchoolDataSet = (school: School | undefined) =>
         comments: school.comments,
       }
     : {
+        id: '-',
         locality: '-',
         name: '-',
         femaleStudentAttendance: toPercentageDataSet(-1),

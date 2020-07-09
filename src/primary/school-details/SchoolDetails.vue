@@ -28,7 +28,8 @@
       <hr />
       <h3 class="is-size-4 title has-text-weight-normal">Motivo por el que la escuela no tiene clases presenciales</h3>
       <div class="content">
-        <p>{{ schoolDataSet.givesClasses }}</p>
+        <p v-if="schoolDataSet.givesClasses.shortText === 'Si'">No aplicable</p>
+        <p v-else>{{ schoolDataSet.givesClasses.longText }}</p>
       </div>
       <hr />
       <h3 class="is-size-4 title has-text-weight-normal">Organización escolar</h3>
@@ -56,7 +57,7 @@
       </div>
       <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de agua para el lavado frecuente de manos</h4>
       <div class="content">
-        <p>{{ schoolDataSet.waterForHandWashing }}</p>
+        <p>{{ schoolDataSet.waterForHandWashing.longText }}</p>
       </div>
       <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de lavamanos</h4>
       <div class="content">
@@ -64,7 +65,7 @@
       </div>
       <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de jabón para el lavado de manos</h4>
       <div class="content">
-        <p>{{ schoolDataSet.soapSufficiency }}</p>
+        <p>{{ schoolDataSet.soapSufficiency.longText }}</p>
       </div>
       <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de toallas para el secado de manos (papel o tela)</h4>
       <div class="content">

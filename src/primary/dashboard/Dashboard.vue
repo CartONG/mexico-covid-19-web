@@ -28,7 +28,8 @@
               <ChoroplethMapVue />
             </div>
             <div class="column is-2">
-              <IndicatorsVue />
+              <AdministrativeDivisionIndicatorsVue v-if="administrativeDivision" />
+              <SchoolIndicatorsVue v-else />
             </div>
           </div>
           <div class="columns is-desktop">

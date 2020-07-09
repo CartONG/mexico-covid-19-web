@@ -6,21 +6,23 @@ import { Logger } from '@/domain/Logger';
 import { SchoolRepository } from '@/domain/school/SchoolRepository';
 import { AbsenceReasonsDetailsVue } from '@/primary/absence-reasons-details';
 import { AdministrativeDivisionDetailsVue } from '@/primary/administrative-division-details';
+import { AdministrativeDivisionIndicatorsVue } from '@/primary/administrative-division-indicators';
 import { AppStore } from '@/primary/app/AppStore';
 import { BreadcrumbVue } from '@/primary/breadcrumb';
 import { ChoroplethMapVue } from '@/primary/choropleth-map';
 import { ComponentState } from '@/primary/ComponentState';
 import { DropdownVue } from '@/primary/dropdown';
 import { HistoricVue } from '@/primary/historic';
-import { IndicatorsVue } from '@/primary/indicators';
 import { RateListVue } from '@/primary/rate-list';
 import { SchoolDetailsVue } from '@/primary/school-details';
+import { SchoolIndicatorsVue } from '@/primary/school-indicators';
 
 @Component({
   components: {
     BreadcrumbVue,
     ChoroplethMapVue,
-    IndicatorsVue,
+    AdministrativeDivisionIndicatorsVue,
+    SchoolIndicatorsVue,
     RateListVue,
     AbsenceReasonsDetailsVue,
     AdministrativeDivisionDetailsVue,

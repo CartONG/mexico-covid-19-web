@@ -9,7 +9,7 @@ const validRate = (rate: number) => validNumber(rate) && rate >= 0 && rate <= 1;
 const toText = (rate: number): string => (validRate(rate) ? `${(Math.round(rate * 100 * 10) / 10).toString()}%` : '-');
 
 const toColor = (rate: number) => {
-  if (rate <= 0.7) {
+  if (rate >= 0 && rate <= 0.7) {
     return 'high-danger';
   }
   if (rate > 0.7 && rate <= 0.8) {
