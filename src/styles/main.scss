@@ -17,14 +17,18 @@ $quinary-invert: findColorInvert($quinary);
 $senary-invert: findColorInvert($senary);
 $septenary-invert: findColorInvert($septenary);
 
-$success: #3c947b;
-$warning: #efb749;
-$danger: #db3f3d;
+$high-success: #1E9B47;
+$success: #97D356;
+$warning: #FFC400;
+$danger: #EE8336;
+$high-danger: #D91D20;
 $unknown: $grey-lighter;
 
+$high-success-invert: findColorInvert($high-success);
 $success-invert: findColorInvert($success);
 $warning-invert: findColorInvert($warning);
 $danger-invert: findColorInvert($danger);
+$high-danger-invert: findColorInvert($high-danger);
 $unknown-invert: findColorInvert($unknown);
 
 $colors: (
@@ -40,9 +44,11 @@ $colors: (
   "senary": ($senary, $senary-invert),
   "septenary": ($septenary, $septenary-invert),
   "info": ($info, $info-invert),
+  "high-success": ($high-success, $high-success-invert),
   "success": ($success, $success-invert),
   "warning": ($warning, $warning-invert),
   "danger": ($danger, $danger-invert),
+  "high-danger": ($high-danger, $high-danger-invert),
   "unknown": ($unknown, $unknown-invert)
 );
 

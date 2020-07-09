@@ -17,19 +17,19 @@ const getRate = (municipalitySummary: AdministrativeDivisionSummary, rateType: R
 };
 
 const toMunicipalityFeatureStyle = (rate: number): Style => {
-  if (rate < 0.2) {
+  if (rate <= 0.7) {
     return municipalityStyles[municipalityStyleName.RED];
   }
-  if (rate >= 0.2 && rate < 0.4) {
+  if (rate > 0.7 && rate <= 0.8) {
     return municipalityStyles[municipalityStyleName.LIGHT_RED];
   }
-  if (rate >= 0.4 && rate < 0.6) {
+  if (rate > 0.8 && rate <= 0.9) {
     return municipalityStyles[municipalityStyleName.ORANGE];
   }
-  if (rate >= 0.6 && rate < 0.8) {
+  if (rate > 0.9 && rate <= 0.95) {
     return municipalityStyles[municipalityStyleName.LIGHT_GREEN];
   }
-  if (rate >= 0.8 && rate <= 1) {
+  if (rate > 0.95 && rate <= 1) {
     return municipalityStyles[municipalityStyleName.GREEN];
   }
   return municipalityStyles[municipalityStyleName.LIGHT_GREY];

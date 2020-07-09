@@ -17,19 +17,19 @@ const getRate = (stateSummary: AdministrativeDivisionSummary, rateType: RateType
 };
 
 export const toStateFeatureStyle = (rate: number): Style => {
-  if (rate < 0.2) {
+  if (rate <= 0.7) {
     return stateStyles[stateStyleName.RED];
   }
-  if (rate >= 0.2 && rate < 0.4) {
+  if (rate > 0.7 && rate <= 0.8) {
     return stateStyles[stateStyleName.LIGHT_RED];
   }
-  if (rate >= 0.4 && rate < 0.6) {
+  if (rate > 0.8 && rate <= 0.9) {
     return stateStyles[stateStyleName.ORANGE];
   }
-  if (rate >= 0.6 && rate < 0.8) {
+  if (rate > 0.9 && rate <= 0.95) {
     return stateStyles[stateStyleName.LIGHT_GREEN];
   }
-  if (rate >= 0.8 && rate <= 1) {
+  if (rate > 0.95 && rate <= 1) {
     return stateStyles[stateStyleName.GREEN];
   }
   return stateStyles[stateStyleName.LIGHT_GREY];

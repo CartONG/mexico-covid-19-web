@@ -1,10 +1,13 @@
 import { Component, Inject, Vue } from 'vue-property-decorator';
 
 import { AppStore } from '@/primary/app/AppStore';
+import { AttendanceCardVue } from '@/primary/choropleth-map/attendance-card';
 import { toSummaryDataSet } from '@/primary/common/SummaryDataSet';
 import { RateTypes } from '@/primary/RateTypes';
 
-@Component
+@Component({
+  components: { AttendanceCardVue },
+})
 export default class RateTabs extends Vue {
   @Inject()
   private appStore!: () => AppStore;

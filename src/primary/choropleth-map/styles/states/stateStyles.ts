@@ -22,7 +22,7 @@ const noFill = new Style({
 const toStyle = (color: number[]) =>
   new Style({
     stroke: new Stroke({ color: '#fff', width: 1 }),
-    fill: new Fill({ color: [...color, 0.6] }),
+    fill: new Fill({ color: [...color, 1] }),
     zIndex: 2,
   });
 

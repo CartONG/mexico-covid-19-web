@@ -11,6 +11,7 @@
             {{ summaryDataSet.studentAttendance.text }}
           </p>
         </a>
+        <!-- <AttendanceCardVue :value="summaryDataSet.studentAttendance.value" /> -->
       </li>
       <li :class="{ 'is-active': selectedRateType === 'TEACHER_ABSENCE' }">
         <a
