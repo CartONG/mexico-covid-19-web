@@ -126,7 +126,7 @@ export default class ChoroplethMap extends Vue {
     this.map.addOverlay(this.popup);
     this.map.on('singleclick', this.selectEntity);
     this.map.on('dblclick', () => this.closePopup());
-    this.schoolsLayer.setStyle(createSchoolsStyleFunction(RateTypes.STUDENT_ABSENCE));
+    this.schoolsLayer.setStyle(createSchoolsStyleFunction(RateTypes.STUDENT));
     this.statesLayer.on('singleclick', event => this.selectState(event as MapBrowserEvent));
     this.municipalitiesLayer.on('singleclick', event => this.selectMunicipality(event as MapBrowserEvent));
     this.schoolsLayer.on('singleclick', (event: MapBrowserEvent) => this.selectSchool(event as MapBrowserEvent));

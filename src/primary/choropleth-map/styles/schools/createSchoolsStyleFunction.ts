@@ -122,9 +122,9 @@ const selectedClusterStyle = (totalFeatures: number) =>
 
 const getFeatureStyle = (feature: Feature, rateType: RateTypes) => {
   const rate =
-    rateType === RateTypes.STUDENT_ABSENCE
+    rateType === RateTypes.STUDENT
       ? feature.get('maleStudentAttendance')
-      : rateType === RateTypes.TEACHER_ABSENCE
+      : rateType === RateTypes.TEACHER
       ? feature.get('teacherAttendance')
       : feature.get('adminAttendance');
 
@@ -148,9 +148,9 @@ const getFeatureStyle = (feature: Feature, rateType: RateTypes) => {
 
 const getSelectedFeatureStyle = (feature: Feature, rateType: RateTypes) => {
   const rate =
-    rateType === RateTypes.STUDENT_ABSENCE
+    rateType === RateTypes.STUDENT
       ? feature.get('maleStudentAttendance')
-      : rateType === RateTypes.TEACHER_ABSENCE
+      : rateType === RateTypes.TEACHER
       ? feature.get('teacherAttendance')
       : feature.get('adminAttendance');
 

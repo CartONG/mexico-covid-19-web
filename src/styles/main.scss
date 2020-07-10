@@ -9,6 +9,10 @@ $quinary: #bfbfbf;
 $senary: #621132;
 $septenary: #d4c19c;;
 
+// primary-bis
+// primary-ter
+// ...
+
 $primary-invert: findColorInvert($primary);
 $secondary-invert: findColorInvert($secondary);
 $tertiary-invert: findColorInvert($tertiary);
@@ -23,6 +27,9 @@ $warning: #FFC400;
 $danger: #EE8336;
 $high-danger: #D91D20;
 $unknown: $grey-lighter;
+
+// success light / dark
+// danger light / dark
 
 $high-success-invert: findColorInvert($high-success);
 $success-invert: findColorInvert($success);
@@ -98,35 +105,6 @@ html {
   left: 10px;
 }
 
-@each $name, $pair in $colors {
-  $color: nth($pair, 1);
-  .has-border-#{$name} {
-    border-color: $color !important;
-  }
-}
-
-.tabs a {
-  display: block;
-  text-align: center;
-  margin: 0;
-}
-
-.tabs li.is-active a {
-  border-top: 4px solid #3273dc;
-  color: #3273dc;
-}
-
-.tabs li.is-active:before {
-  content: '';
-  width: 100%;
-  height: 4px;
-  background-color: #3c947b;
-}
-
-.tabs li a {
-  border-top: 1px solid $grey-lighter;
-}
-
 .breadcrumb {
   border-radius: 4px;
   padding: 16px 18px;
@@ -139,6 +117,16 @@ html {
 .px-0 {
   padding-right: 0;
   padding-left: 0;
+}
+
+.py-1 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.px-1 {
+  padding-right: 8px;
+  padding-left: 8px;
 }
 
 .py-0 {
@@ -204,6 +192,45 @@ html {
   width: auto;
 }
 
+.has-fill-high-danger {
+  fill: $high-danger !important;
+}
+
+.has-fill-danger {
+  fill: $danger !important;
+}
+
+.has-fill-warning {
+  fill: $warning !important;
+}
+
+.has-fill-success {
+  fill: $success !important;
+}
+
+.has-fill-high-success {
+  fill: $high-success !important;
+}
+
+.has-fill-unknown {
+  fill: $unknown !important;
+}
+
+@each $name, $pair in $colors {
+  $color: nth($pair, 1);
+  .has-border-#{$name} {
+    border-color: $color !important;
+  }
+}
+
+.no-shadow {
+  box-shadow: none !important;
+}
+
+.opacity-6 {
+  opacity: 0.6;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   font-stretch: normal;
@@ -215,10 +242,10 @@ body {
 
 @import "ol.overrides";
 @import "map";
-@import "sidebar";
 @import "popup";
 @import "choropleth-map";
 @import "indicator-card";
 @import "rate-list";
 @import "absence-reasons-details";
+@import "attendance-tabs";
 @import "print";

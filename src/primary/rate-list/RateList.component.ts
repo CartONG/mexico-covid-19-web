@@ -19,11 +19,7 @@ export default class RateList extends Vue {
   }
 
   get selectedRateTypeLabel() {
-    return this.selectedRateType === RateTypes.STUDENT_ABSENCE
-      ? 'alumnos'
-      : this.selectedRateType === RateTypes.TEACHER_ABSENCE
-      ? 'docentes'
-      : 'personal';
+    return this.selectedRateType === RateTypes.STUDENT ? 'alumnos' : this.selectedRateType === RateTypes.TEACHER ? 'docentes' : 'personal';
   }
 
   get tableLabel() {

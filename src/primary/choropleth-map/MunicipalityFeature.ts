@@ -7,11 +7,11 @@ import { RateTypes } from '@/primary/RateTypes';
 
 const getRate = (municipalitySummary: AdministrativeDivisionSummary, rateType: RateTypes): number => {
   switch (rateType) {
-    case RateTypes.STUDENT_ABSENCE:
+    case RateTypes.STUDENT:
       return municipalitySummary.maleStudentAttendance;
-    case RateTypes.TEACHER_ABSENCE:
+    case RateTypes.TEACHER:
       return municipalitySummary.teacherAttendance;
-    case RateTypes.PERSONAL_ABSENCE:
+    case RateTypes.PERSONAL:
       return municipalitySummary.adminAttendance;
   }
 };

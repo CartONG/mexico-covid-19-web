@@ -1,0 +1,13 @@
+.tabs.attendance-tabs a {
+  border-right: 2px solid $light !important;
+  display: block;
+  margin: 0;
+}
+
+.tabs.attendance-tabs li:last-child a {
+  border-right: none !important;
+}
+
+.tabs.attendance-tabs li.is-active {
+  box-shadow: inset 0px 4px 0px $secondary;
+}

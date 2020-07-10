@@ -64,7 +64,7 @@ export const storeOptions: StoreOptions<AppState> = {
     stateSelection: { stateId: '', source: SelectionSource.MAP },
     municipalitySelection: { municipalityId: '', source: SelectionSource.MAP },
     schoolSelection: { schoolId: '', source: SelectionSource.MAP },
-    selectedRateType: RateTypes.STUDENT_ABSENCE,
+    selectedRateType: RateTypes.STUDENT,
   },
   mutations: {
     setCountry(state: AppState, country: AdministrativeDivision | undefined) {
