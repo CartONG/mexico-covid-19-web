@@ -26,7 +26,7 @@ export default class AttendanceCard extends Vue {
     svg.append('g').attr('transform', 'translate(44, 44)');
   }
 
-  updateChart(percentage: PercentageDataSet, formerPercentage = { color: 'unknown', text: '0%', value: 0 }) {
+  updateChart(percentage: PercentageDataSet, formerPercentage = { color: 'grey', text: '0%', value: 0 }) {
     const g = d3.select(`#${this.attendance.label}-attendance-chart > g`);
     const t = d3.transition().duration(250);
     const pie = d3.pie().sortValues(null);
@@ -48,13 +48,13 @@ export default class AttendanceCard extends Vue {
     selection
       .transition()
       .duration(500)
-      .attr('class', (d, i) => (i === 0 ? `has-fill-${percentage.color}` : 'has-fill-unknown'))
+      .attr('class', (d, i) => (i === 0 ? `has-fill-${percentage.color}` : 'has-fill-grey-lighter'))
       .attrTween('d', arcTween as any);
 
     selection
       .enter()
       .append('path')
-      .attr('class', (d, i) => (i === 0 ? `has-fill-${percentage.color}` : 'has-fill-unknown'))
+      .attr('class', (d, i) => (i === 0 ? `has-fill-${percentage.color}` : 'has-fill-grey-lighter'))
       .attr('d', arc as any)
       .attr('stroke', 'white')
       .attr('stroke-width', '1px');

@@ -1,7 +1,7 @@
 <template>
   <div class="choropleth-map card">
     <header class="card-header">
-      <h2 class="card-header-title has-text-primary">Tasa de asistencia</h2>
+      <h2 class="card-header-title">Tasa de asistencia</h2>
     </header>
     <div id="map" class="map is-h60 has-background-white"></div>
     <PopupVue id="popup" :items="schoolItems" @pick="pickSchool" @close="closePopup" />

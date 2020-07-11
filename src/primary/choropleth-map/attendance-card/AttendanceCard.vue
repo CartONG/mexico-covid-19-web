@@ -3,15 +3,15 @@
     <div class="card-content px-1 py-1">
       <div class="columns is-vcentered is-desktop is-desktop">
         <div class="column is-3 has-text-centered">
-          <img :src="attendance.imagePath" />
+          <img :src="attendance.imagePath" :alt="attendance.label" />
         </div>
         <div class="column is-6 is-hidden-mobile">
-          <p>Asistencia {{ attendance.precededByLabel }}</p>
-          <p :class="`is-size-4 has-text-${attendance.percentage.color}`">{{ attendance.label }}</p>
+          <p class="has-text-grey is-size-6">Asistencia {{ attendance.precededByLabel }}</p>
+          <p :class="`is-size-3 has-text-${attendance.percentage.color}`">{{ attendance.label }}</p>
         </div>
         <div class="column is-6 has-text-centered is-hidden-tablet">
-          <p>Asistencia {{ attendance.precededByLabel }}</p>
-          <p :class="`is-size-4 has-text-${attendance.percentage.color}`">{{ attendance.label }}</p>
+          <p class="has-text-grey is-size-6">Asistencia {{ attendance.precededByLabel }}</p>
+          <p :class="`is-size-3 has-text-${attendance.percentage.color}`">{{ attendance.label }}</p>
         </div>
         <div class="column is-3 has-text-centered">
           <svg

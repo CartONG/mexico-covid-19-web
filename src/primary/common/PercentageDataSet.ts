@@ -10,7 +10,7 @@ const toText = (rate: number): string => (validRate(rate) ? `${(Math.round(rate 
 
 const toColor = (rate: number) => {
   if (rate >= 0 && rate <= 0.7) {
-    return 'high-danger';
+    return 'danger-darker';
   }
   if (rate > 0.7 && rate <= 0.8) {
     return 'danger';
@@ -22,9 +22,9 @@ const toColor = (rate: number) => {
     return 'success';
   }
   if (rate > 0.95 && rate <= 1) {
-    return 'high-success';
+    return 'success-darker';
   }
-  return 'unknown';
+  return 'grey';
 };
 
 export const toPercentageDataSet = (rate: number) => ({

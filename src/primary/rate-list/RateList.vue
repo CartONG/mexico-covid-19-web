@@ -1,7 +1,7 @@
 <template>
   <div class="rate-list has-background-white card">
     <header class="card-header">
-      <h2 class="card-header-title has-text-primary">Porcentaje de {{ selectedRateTypeLabel }} presentes por {{ levelLabel }}</h2>
+      <h2 class="card-header-title">Porcentaje de {{ selectedRateTypeLabel }} presentes por {{ levelLabel }}</h2>
     </header>
     <div class="card-content">
       <div v-if="summaryDataSets.length === 0" class="has-text-grey px-2 py-2">
@@ -16,9 +16,10 @@
                 'has-text-weight-bold': props.row.id === `${selectedSchoolId}`,
                 'has-background-light': props.row.id === `${selectedSchoolId}`,
               },
-              'is-clickable',
+              'is-clickable is-size-6',
             ]"
             :label="tableLabel"
+            header-class="has-text-secondary-bis is-size-5 is-uppercase"
             custom-key="name"
             sortable
           >
@@ -31,6 +32,7 @@
             "
             field="studentAttendance.value"
             label="Asistencia"
+            header-class="has-text-secondary-bis is-size-5 is-uppercase"
             sortable
           >
             <span :class="`has-text-${props.row.studentAttendance.color}`">
@@ -44,6 +46,7 @@
             "
             field="teacherAttendance.value"
             label="Asistencia"
+            header-class="has-text-secondary-bis is-size-5 is-uppercase"
             sortable
           >
             <span :class="`has-text-${props.row.teacherAttendance.color}`">
@@ -57,6 +60,7 @@
             "
             field="adminAttendance.value"
             label="Asistencia"
+            header-class="has-text-secondary-bis is-size-5 is-uppercase"
             sortable
           >
             <span :class="`has-text-${props.row.adminAttendance.color}`">

@@ -16,7 +16,7 @@
             </div>
           </div>
         </nav>
-        <div class="has-background-tertiary is-fixed-top">
+        <div class="has-background-secondary-bis is-fixed-top">
           <BreadcrumbVue />
         </div>
       </div>
@@ -24,7 +24,7 @@
         <div class="container is-fluid">
           <div class="columns">
             <div class="column is-10">
-              <h1 class="has-text-septenary title is-uppercase is-4 has-text-weight-bold">Tablero de Análisis Integral</h1>
+              <h1 class="has-text-primary-bis title is-uppercase is-size-4 has-text-weight-bold">Tablero de Análisis Integral</h1>
             </div>
             <div class="column is-2 has-text-right">
               <InfoModalVue />
