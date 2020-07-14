@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="indicator-card card mb px-2 py-1">
+    <div class="indicator-card card mb-4 px-2 py-1">
       <header class="card-header">
         <p class="has-text-grey is-size-7 has-text-left has-text-weight-bold">
           Total de escuelas
@@ -16,7 +16,7 @@
         </p>
       </div>
     </div>
-    <div class="indicator-card card mb px-2 py-1">
+    <div class="indicator-card card mb-3 px-2 py-1">
       <header class="card-header">
         <p class="has-text-grey is-size-7 has-text-left has-text-weight-bold">
           Escuelas con clases presenciales
@@ -29,7 +29,7 @@
         </p>
       </div>
     </div>
-    <div class="indicator-card card mb px-2 py-1">
+    <div class="indicator-card card mb-3 px-2 py-1">
       <header class="card-header">
         <p class="has-text-grey is-size-7 has-text-left has-text-weight-bold">
           Escuelas con disposición de agua para el lavado de manos
@@ -42,7 +42,7 @@
         </p>
       </div>
     </div>
-    <div class="indicator-card card mb px-2 py-1">
+    <div class="indicator-card card mb-3 px-2 py-1">
       <header class="card-header">
         <p class="has-text-grey is-size-7 has-text-left has-text-weight-bold">
           Escuelas con disposición de jabón para el lavado de manos
@@ -55,7 +55,7 @@
         </p>
       </div>
     </div>
-    <div class="indicator-card card mb px-2 py-1">
+    <div class="indicator-card card px-2 py-1">
       <header class="card-header">
         <p class="has-text-grey is-size-7 has-text-left has-text-weight-bold">
           Escuelas que alternan la asistencia de sus alumnos

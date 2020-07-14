@@ -3,7 +3,7 @@
     <header class="card-header">
       <h2 class="card-header-title">Porcentaje de {{ selectedRateTypeLabel }} presentes por {{ levelLabel }}</h2>
     </header>
-    <div class="card-content">
+    <div class="card-content px-0 py-0">
       <div v-if="summaryDataSets.length === 0" class="has-text-grey px-2 py-2">
         No se han encontrado resultados
       </div>
@@ -19,7 +19,7 @@
               'is-clickable is-size-6',
             ]"
             :label="tableLabel"
-            header-class="has-text-secondary-bis is-size-5 is-uppercase"
+            header-class="has-text-secondary-bis is-size-6 is-uppercase"
             custom-key="name"
             sortable
           >
@@ -32,11 +32,11 @@
             "
             field="studentAttendance.value"
             label="Asistencia"
-            header-class="has-text-secondary-bis is-size-5 is-uppercase"
+            header-class="has-text-secondary-bis is-size-6 is-uppercase"
             sortable
           >
-            <span :class="`has-text-${props.row.studentAttendance.color}`">
-              {{ props.row.studentAttendance.text }}
+            <span :class="`has-text-${props.row.studentAttendance.percentage.color}`">
+              {{ props.row.studentAttendance.percentage.text }}
             </span>
           </b-table-column>
           <b-table-column
@@ -46,11 +46,11 @@
             "
             field="teacherAttendance.value"
             label="Asistencia"
-            header-class="has-text-secondary-bis is-size-5 is-uppercase"
+            header-class="has-text-secondary-bis is-size-6 is-uppercase"
             sortable
           >
-            <span :class="`has-text-${props.row.teacherAttendance.color}`">
-              {{ props.row.teacherAttendance.text }}
+            <span :class="`has-text-${props.row.teacherAttendance.percentage.color}`">
+              {{ props.row.teacherAttendance.percentage.text }}
             </span>
           </b-table-column>
           <b-table-column
@@ -60,11 +60,11 @@
             "
             field="adminAttendance.value"
             label="Asistencia"
-            header-class="has-text-secondary-bis is-size-5 is-uppercase"
+            header-class="has-text-secondary-bis is-size-6 is-uppercase"
             sortable
           >
-            <span :class="`has-text-${props.row.adminAttendance.color}`">
-              {{ props.row.adminAttendance.text }}
+            <span :class="`has-text-${props.row.adminAttendance.percentage.color}`">
+              {{ props.row.adminAttendance.percentage.text }}
             </span>
           </b-table-column>
         </template>
