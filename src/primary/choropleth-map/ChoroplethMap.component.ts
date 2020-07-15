@@ -74,6 +74,10 @@ export default class ChoroplethMap extends Vue {
     return this.appStore().getSelectedRateType();
   }
 
+  get school() {
+    return this.appStore().getSchool();
+  }
+
   @Watch('schoolSummaryList')
   schoolSummaryListWatcher() {
     this.adaptToSchoolDomain('', this.schoolSummaryList);
@@ -119,6 +123,14 @@ export default class ChoroplethMap extends Vue {
     this.adaptToMunicipalityDomain(this.stateSelection.stateId, this.municipalitySelection.municipalityId);
   }
 
+  @Watch('school')
+  schoolWatcher() {
+    setTimeout(() => {
+      console.log('school');
+      this.map.updateSize();
+    }, 100);
+  }
+
   created() {
     this.map.addLayer(this.statesLayer);
     this.map.addLayer(this.municipalitiesLayer);
@@ -151,9 +163,12 @@ export default class ChoroplethMap extends Vue {
         this.adaptToStateDomain('');
         this.adaptToMunicipalityDomain('', '');
 
-        this.extent = this.statesLayer.getSource().getExtent();
-        this.fitView();
-        this.map.getView().setMinZoom(this.map.getView().getZoom());
+        setTimeout(() => {
+          this.map.updateSize();
+          this.extent = this.statesLayer.getSource().getExtent();
+          this.fitView();
+          this.map.getView().setMinZoom(this.map.getView().getZoom());
+        }, 100);
 
         this.state = ComponentState.SUCCESS;
       })
