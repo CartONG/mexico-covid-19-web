@@ -126,7 +126,6 @@ export default class ChoroplethMap extends Vue {
   @Watch('school')
   schoolWatcher() {
     setTimeout(() => {
-      console.log('school');
       this.map.updateSize();
     }, 100);
   }
