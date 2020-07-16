@@ -26,7 +26,7 @@
             {{ props.row.name }}
           </b-table-column>
           <b-table-column
-            v-if="selectedRateType === 'STUDENT_ABSENCE'"
+            v-if="selectedRateType === 'STUDENT'"
             :class="
               `w150 is-clickable has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''} has-text-centered`
             "
@@ -40,7 +40,7 @@
             </span>
           </b-table-column>
           <b-table-column
-            v-else-if="selectedRateType === 'TEACHER_ABSENCE'"
+            v-else-if="selectedRateType === 'TEACHER'"
             :class="
               `w150 is-clickable has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''} has-text-centered`
             "
