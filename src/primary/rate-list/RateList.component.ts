@@ -39,9 +39,7 @@ export default class RateList extends Vue {
   }
 
   get summaryDataSets() {
-    return this.summaryList
-      .map(toSummaryDataSet)
-      .sort((summaryDataSet1, summaryDataSet2) => (summaryDataSet1.name < summaryDataSet2.name ? -1 : 1));
+    return this.summaryList.map(toSummaryDataSet);
   }
 
   select(entityId: string) {

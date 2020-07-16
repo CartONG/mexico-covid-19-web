@@ -30,7 +30,7 @@
             :class="
               `w150 is-clickable has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''} has-text-centered`
             "
-            field="studentAttendance.value"
+            field="studentAttendance.percentage.value"
             label="Asistencia"
             header-class="has-text-secondary-bis is-size-6 is-uppercase"
             sortable
@@ -44,7 +44,7 @@
             :class="
               `w150 is-clickable has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''} has-text-centered`
             "
-            field="teacherAttendance.value"
+            field="teacherAttendance.percentage.value"
             label="Asistencia"
             header-class="has-text-secondary-bis is-size-6 is-uppercase"
             sortable
@@ -58,7 +58,7 @@
             :class="
               `w150 is-clickable has-text-weight-bold${props.row.id === selectedSchoolId ? ' has-background-light' : ''} has-text-centered`
             "
-            field="adminAttendance.value"
+            field="adminAttendance.percentage.value"
             label="Asistencia"
             header-class="has-text-secondary-bis is-size-6 is-uppercase"
             sortable
