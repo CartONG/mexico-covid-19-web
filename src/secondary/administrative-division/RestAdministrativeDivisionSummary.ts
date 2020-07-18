@@ -4,10 +4,9 @@ export interface RestAdministrativeDivisionSummary {
   id: string;
   entidadId: string;
   nombre: string;
-  alumnas: number;
-  alumnos: number;
-  docentes: number;
-  admin: number;
+  indiceAsistenciaAlumnado: number;
+  indiceAsistenciaDocentes: number;
+  indiceAsistenciaAdmin: number;
 }
 
 export const toAdministrativeDivisionSummary = (
@@ -16,8 +15,7 @@ export const toAdministrativeDivisionSummary = (
   id: `${restAdministrativeDivisionSummary.entidadId || ''}${restAdministrativeDivisionSummary.id}`,
   name: restAdministrativeDivisionSummary.nombre,
   stateId: restAdministrativeDivisionSummary.entidadId || '',
-  maleStudentAttendance: restAdministrativeDivisionSummary.alumnos,
-  femaleStudentAttendance: restAdministrativeDivisionSummary.alumnas,
-  teacherAttendance: restAdministrativeDivisionSummary.docentes,
-  adminAttendance: restAdministrativeDivisionSummary.admin,
+  studentAttendance: restAdministrativeDivisionSummary.indiceAsistenciaAlumnado,
+  teacherAttendance: restAdministrativeDivisionSummary.indiceAsistenciaDocentes,
+  adminAttendance: restAdministrativeDivisionSummary.indiceAsistenciaAdmin,
 });

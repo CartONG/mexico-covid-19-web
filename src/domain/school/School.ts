@@ -4,6 +4,7 @@ export interface School {
   municipalityId: string;
   stateId: string;
   name: string;
+  studentAttendance: number;
   femaleStudentAttendance: number;
   maleStudentAttendance: number;
   teacherAttendance: number;
@@ -53,4 +54,7 @@ export interface School {
   adminAbsenceMainReasons: { [key: string]: number };
   adminAbsenceOtherReason: string;
   comments: string;
+  maleStudentAbsenceProportion: number;
+  femaleStudentAbsenceProportion: number;
+  expectedStudents: number;
 }

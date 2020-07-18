@@ -3,8 +3,7 @@ import { PercentageDataSet, toPercentageDataSet } from '@/primary/common/Percent
 
 export interface AdministrativeDivisionDataSet {
   support: { private: PercentageDataSet; public: PercentageDataSet };
-  femaleStudentAttendance: PercentageDataSet;
-  maleStudentAttendance: PercentageDataSet;
+  studentAttendance: PercentageDataSet;
   teacherAttendance: PercentageDataSet;
   adminAttendance: PercentageDataSet;
   schools: string;
@@ -120,8 +119,7 @@ export const toAdministrativeDivisionDataset = (
           private: toPercentageDataSet(administrativeDivision.support.private),
           public: toPercentageDataSet(administrativeDivision.support.public),
         },
-        femaleStudentAttendance: toPercentageDataSet(administrativeDivision.femaleStudentAttendance),
-        maleStudentAttendance: toPercentageDataSet(administrativeDivision.maleStudentAttendance),
+        studentAttendance: toPercentageDataSet(administrativeDivision.studentAttendance),
         teacherAttendance: toPercentageDataSet(administrativeDivision.teacherAttendance),
         adminAttendance: toPercentageDataSet(administrativeDivision.adminAttendance),
         schools: administrativeDivision.schools.toString(),
@@ -229,8 +227,7 @@ export const toAdministrativeDivisionDataset = (
       }
     : {
         support: { private: toPercentageDataSet(-1), public: toPercentageDataSet(-1) },
-        femaleStudentAttendance: toPercentageDataSet(-1),
-        maleStudentAttendance: toPercentageDataSet(-1),
+        studentAttendance: toPercentageDataSet(-1),
         teacherAttendance: toPercentageDataSet(-1),
         adminAttendance: toPercentageDataSet(-1),
         schools: '-',

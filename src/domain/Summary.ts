@@ -1,8 +1,7 @@
 export interface Summary {
   id: string;
   name: string;
-  maleStudentAttendance: number;
-  femaleStudentAttendance: number;
+  studentAttendance: number;
   teacherAttendance: number;
   adminAttendance: number;
 }

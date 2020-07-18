@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="has-background-white card mb-4">
-      <header class="card-header">
-        <h2 class="card-header-title">Motivo por el que la escuela no tiene clases presenciales</h2>
+      <header class="card-header py-2 px-2">
+        <h2 class="has-text-weight-bold has-text-primary is-uppercase">Motivo por el que la escuela no tiene clases presenciales</h2>
       </header>
       <div class="card-content px-0 py-0">
         <p v-if="schoolDataSet.givesClasses.shortText === 'Si'" class="px-2 py-2">No aplicable</p>
@@ -10,8 +10,8 @@
       </div>
     </div>
     <div class="has-background-white card mb-4">
-      <header class="card-header">
-        <h2 class="card-header-title">Commentarios realizados por la escuela</h2>
+      <header class="card-header py-2 px-2">
+        <h2 class="has-text-weight-bold has-text-primary is-uppercase">Commentarios realizados por la escuela</h2>
       </header>
       <div class="card-content px-0 py-0">
         <p v-if="schoolDataSet.studentAbsenceOtherReason === ''" class="px-2 py-2">No aplicable</p>
@@ -19,51 +19,77 @@
       </div>
     </div>
     <b-collapse class="card mb-4" animation="slide" aria-id="indiceDeAsistencia" :open="false">
-      <div slot="trigger" slot-scope="props" class="card-header" role="button" aria-controls="indiceDeAsistencia">
-        <h2 class="card-header-title">índice de asistencia</h2>
-        <a class="card-header-icon"><b-icon :icon="props.open ? 'menu-down' : 'menu-up'"> </b-icon></a>
+      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="indiceDeAsistencia">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-primary is-uppercase">índice de asistencia</td>
+              <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
+              <td class="w40 has-text-right">
+                <a class="card-header-icon px-0 py-0">
+                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="card-content px-0 py-0">
         <table class="table is-fullwidth has-no-background">
           <tbody>
             <tr>
               <td>Asistencia del alumnado</td>
-              <td :class="`w80 has-text-centered has-text-${schoolDataSet.maleStudentAttendance.color}`">
+              <td :class="`w120 has-text-right has-text-${schoolDataSet.maleStudentAttendance.color}`">
                 {{ schoolDataSet.maleStudentAttendance.text }}
               </td>
+              <td class="w40"></td>
             </tr>
             <tr>
               <td>inasistencia de niñas sobre el total de inasistencias</td>
-              <td :class="`w80 has-text-centered has-text-${schoolDataSet.femaleStudentAttendance.color}`">
+              <td :class="`w120 has-text-right has-text-${schoolDataSet.femaleStudentAttendance.color}`">
                 {{ schoolDataSet.maleStudentAttendance.text }}
               </td>
+              <td class="w40"></td>
             </tr>
             <tr>
               <td>inasistencia de niños sobre el total de inasistencias</td>
-              <td :class="`w80 has-text-centered has-text-${schoolDataSet.maleStudentAttendance.color}`">
+              <td :class="`w120 has-text-right has-text-${schoolDataSet.maleStudentAttendance.color}`">
                 {{ schoolDataSet.maleStudentAttendance.text }}
               </td>
+              <td class="w40"></td>
             </tr>
             <tr>
               <td>Asistencia de docentes</td>
-              <td :class="`w80 has-text-centered has-text-${schoolDataSet.teacherAttendance.color}`">
+              <td :class="`w120 has-text-right has-text-${schoolDataSet.teacherAttendance.color}`">
                 {{ schoolDataSet.teacherAttendance.text }}
               </td>
+              <td class="w40"></td>
             </tr>
             <tr>
               <td>Asistencia de personal distinto a docentes</td>
-              <td :class="`w80 has-text-centered has-text-${schoolDataSet.adminAttendance.color}`">
+              <td :class="`w120 has-text-right has-text-${schoolDataSet.adminAttendance.color}`">
                 {{ schoolDataSet.adminAttendance.text }}
               </td>
+              <td class="w40"></td>
             </tr>
           </tbody>
         </table>
       </div>
     </b-collapse>
     <b-collapse class="card mb-4" animation="slide" aria-id="conditioneSsanitariasElementales" :open="false">
-      <div slot="trigger" slot-scope="props" class="card-header" role="button" aria-controls="conditioneSsanitariasElementales">
-        <h2 class="card-header-title">conditiones sanitarias elementales en la escuela</h2>
-        <a class="card-header-icon"><b-icon :icon="props.open ? 'menu-down' : 'menu-up'"> </b-icon></a>
+      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="conditioneSsanitariasElementales">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-primary is-uppercase">conditiones sanitarias elementales en la escuela</td>
+              <td class="w40 has-text-right">
+                <a class="card-header-icon px-0 py-0">
+                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="card-content px-0 py-0">
         <table class="table is-fullwidth has-no-background">
@@ -126,95 +152,212 @@
         </table>
       </div>
     </b-collapse>
+    <b-collapse class="card mb-4" animation="slide" aria-id="estadísticasBásicasDelPersonal" :open="false">
+      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="estadísticasBásicasDelPersonal">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-primary is-uppercase">
+                Estadísticas básicas del personal
+              </td>
+              <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
+              <td class="w40 has-text-right">
+                <a class="card-header-icon px-0 py-0">
+                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-content px-0 py-0">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td>Docentes</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.teachers }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Director</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.directors }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Subdirector</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.subDirectors }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Atps</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.technicalPedagogicalAdvisers }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Educfis</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.physicalEducationTeachers }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Admin</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.admins }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Intenden</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.quartermasters }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Otros</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.others }}</td>
+              <td class="w40"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </b-collapse>
+    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDeAlumnos" :open="false">
+      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDeAlumnos">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-primary is-uppercase">
+                Causas de inasistencia de alumnos
+              </td>
+              <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
+              <td class="w40 has-text-right">
+                <a class="card-header-icon px-0 py-0">
+                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-content px-0 py-0">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['1'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Los padres de familia no enviaron a sus hijos a la escuela</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['2'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Reportaron enfermos a los alumnos que no asistieron</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['3'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Se desconocen las causas</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['4'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Otras causas</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['5'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </b-collapse>
+    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDeDocentes" :open="false">
+      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDeDocentes">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-primary is-uppercase">
+                Causas de inasistencia de docentes
+              </td>
+              <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
+              <td class="w40 has-text-right">
+                <a class="card-header-icon px-0 py-0">
+                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-content px-0 py-0">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasons['1'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Se reportaron enfermos</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasons['2'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>No se sabe las causas</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasons['3'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Otras causas</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasons['4'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </b-collapse>
+    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDelPersonal" :open="false">
+      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDelPersonal">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-primary is-uppercase">
+                Causas de inasistencia del personal
+              </td>
+              <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
+              <td class="w40 has-text-right">
+                <a class="card-header-icon px-0 py-0">
+                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-content px-0 py-0">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasons['1'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Se reportaron enfermos</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasons['2'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>No se sabe las causas</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasons['3'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr>
+              <td>Otras causas</td>
+              <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasons['4'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </b-collapse>
   </div>
-  <!--
-  <div class="has-background-white card">
-    <header class="card-header">
-      <H2 class="card-header-title">Información detallada</H2>
-    </header>
-    <div class="card-content">
-      <h3 class="is-size-4 title has-text-weight-normal">Tasa de asistencia</h3>
-      <table class="table is-fullwidth has-no-background">
-        <tbody>
-          <tr>
-            <td>Alumnos</td>
-            <td class="w80 has-text-centered">{{ schoolDataSet.maleStudentAttendance.text }}</td>
-          </tr>
-          <tr>
-            <td>Alumnas</td>
-            <td class="w80 has-text-centered">{{ schoolDataSet.femaleStudentAttendance.text }}</td>
-          </tr>
-          <tr>
-            <td>Docentes</td>
-            <td class="w80 has-text-centered">{{ schoolDataSet.teacherAttendance.text }}</td>
-          </tr>
-          <tr>
-            <td>Personal</td>
-            <td class="w80 has-text-centered">{{ schoolDataSet.adminAttendance.text }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <hr />
-      <h3 class="is-size-4 title has-text-weight-normal">Motivo por el que la escuela no tiene clases presenciales</h3>
-      <div class="content">
-        <p v-if="schoolDataSet.givesClasses.shortText === 'Si'">No aplicable</p>
-        <p v-else>{{ schoolDataSet.givesClasses.longText }}</p>
-      </div>
-      <hr />
-      <h3 class="is-size-4 title has-text-weight-normal">Organización escolar</h3>
-      <h4 class="is-size-5 has-text-weight-bold">Escuelas que instalaron el filtro a cargo del comité de salud escolar</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.hasHygieneCommittee }}</p>
-      </div>
-      <h4 class="is-size-5 has-text-weight-bold">Escuelas que alternan la asistencia de sus alumnas (os)</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.alternatesAttendance }}</p>
-      </div>
-      <h4 class="is-size-5 has-text-weight-bold">Escuelas que pueden reorganizar los espacios para facilitar la sana distancia</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.hasAbilityToReorganizeSpace }}</p>
-      </div>
-      <hr />
-      <h3 class="is-size-4 title has-text-weight-normal">Condiciones sanitarias elementales en las escuelas</h3>
-      <h4 class="is-size-5 has-text-weight-bold">Abastecimiento de agua</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.waterSupply }}</p>
-      </div>
-      <h4 class="is-size-5 has-text-weight-bold">Frecuencia del abastecimiento de agua</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.waterServiceContinuity }}</p>
-      </div>
-      <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de agua para el lavado frecuente de manos</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.waterForHandWashing.longText }}</p>
-      </div>
-      <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de lavamanos</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.sinkSufficiency }}</p>
-      </div>
-      <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de jabón para el lavado de manos</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.soapSufficiency.longText }}</p>
-      </div>
-      <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de toallas para el secado de manos (papel o tela)</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.towelSufficiency }}</p>
-      </div>
-      <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de alcohol en gel al 70%</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.sanitizerSufficiency }}</p>
-      </div>
-      <h4 class="is-size-5 has-text-weight-bold">Disponibilidad de botes de basura</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.binSufficiency }}</p>
-      </div>
-      <h4 class="is-size-5 has-text-weight-bold">Existencia de drenaje</h4>
-      <div class="content">
-        <p>{{ schoolDataSet.hasSepticSystem }}</p>
-      </div>
-    </div>
-  </div>
-  -->
 </template>
 
 <script lang="ts" src="./SchoolDetails.component.ts"></script>

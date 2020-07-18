@@ -6,24 +6,23 @@ export interface RestAdministrativeDivision {
   nombre: string;
   entidadid: string;
   sostenimiento: { privado: number; publico: number };
-  alumnasPorcentaje: number;
-  alumnosPorcentaje: number;
-  docentesPorcentaje: number;
-  adminPorcentaje: number;
-  totalEscuelas: number;
-  totalAlum: number;
-  totAlumnas: number;
-  totAlumnos: number;
+  indiceAsistenciaAlumnado: number;
+  indiceAsistenciaDocentes: number;
+  indiceAsistenciaAdmin: number;
+  sumaEscuelas: number;
+  sumaAlumnado: number;
+  sumaAlumnas: number;
+  sumaAlumnos: number;
   hayClases: { [key: string]: number };
-  docentes: number;
-  grupos: number;
-  director: number;
-  subdirector: number;
-  atps: number;
-  educfis: number;
-  admin: number;
-  intenden: number;
-  otros: number;
+  sumaDocentes: number;
+  sumaGrupos: number;
+  sumaDirector: number;
+  sumaSubdirector: number;
+  sumaAtps: number;
+  sumaEducfis: number;
+  sumaAdmin: number;
+  sumaIntenden: number;
+  sumaOtros: number;
   tipoAbasAgua: { [key: string]: number };
   contServAgua: { [key: string]: number };
   aguaLavamanos: { [key: string]: number };
@@ -35,13 +34,13 @@ export interface RestAdministrativeDivision {
   tipoDrenaje: { [key: string]: number };
   espacios: { [key: string]: number };
   comite: { [key: string]: number };
-  asistencia50: { [key: string]: number };
-  inaAlumnas: number;
-  inaAlumnos: number;
+  alterna_asis: { [key: string]: number };
+  sumaInaAlumnas: number;
+  sumaInaAlumnos: number;
   causaInaAlum: { [key: string]: number };
-  inaDocentes: number;
+  sumaInaDocentes: number;
   causaInaDocente: { [key: string]: number };
-  inaAdministrativos: number;
+  sumaInaAdministrativos: number;
   causaInaAdmin: { [key: string]: number };
 }
 
@@ -57,23 +56,22 @@ export const toAdministrativeDivision = (
     private: restAdministrativeDivision.sostenimiento.privado,
     public: restAdministrativeDivision.sostenimiento.publico,
   },
-  femaleStudentAttendance: restAdministrativeDivision.alumnasPorcentaje,
-  maleStudentAttendance: restAdministrativeDivision.alumnosPorcentaje,
-  teacherAttendance: restAdministrativeDivision.docentesPorcentaje,
-  adminAttendance: restAdministrativeDivision.adminPorcentaje,
-  schools: restAdministrativeDivision.totalEscuelas,
-  students: restAdministrativeDivision.totalAlum,
-  femaleStudents: restAdministrativeDivision.totAlumnas,
-  maleStudents: restAdministrativeDivision.totAlumnos,
-  teachers: restAdministrativeDivision.docentes,
-  assistants: restAdministrativeDivision.grupos,
-  directors: restAdministrativeDivision.director,
-  subDirectors: restAdministrativeDivision.subdirector,
-  technicalPedagogicalAdvisers: restAdministrativeDivision.atps,
-  physicalEducationTeachers: restAdministrativeDivision.educfis,
-  admins: restAdministrativeDivision.admin,
-  quartermasters: restAdministrativeDivision.intenden,
-  others: restAdministrativeDivision.otros,
+  studentAttendance: restAdministrativeDivision.indiceAsistenciaAlumnado,
+  teacherAttendance: restAdministrativeDivision.indiceAsistenciaDocentes,
+  adminAttendance: restAdministrativeDivision.indiceAsistenciaAdmin,
+  schools: restAdministrativeDivision.sumaEscuelas,
+  students: restAdministrativeDivision.sumaAlumnado,
+  femaleStudents: restAdministrativeDivision.sumaAlumnas,
+  maleStudents: restAdministrativeDivision.sumaAlumnos,
+  teachers: restAdministrativeDivision.sumaDocentes,
+  assistants: restAdministrativeDivision.sumaGrupos,
+  directors: restAdministrativeDivision.sumaDirector,
+  subDirectors: restAdministrativeDivision.sumaSubdirector,
+  technicalPedagogicalAdvisers: restAdministrativeDivision.sumaAtps,
+  physicalEducationTeachers: restAdministrativeDivision.sumaEducfis,
+  admins: restAdministrativeDivision.sumaAdmin,
+  quartermasters: restAdministrativeDivision.sumaIntenden,
+  others: restAdministrativeDivision.sumaOtros,
   schoolGivingClasses: restAdministrativeDivision.hayClases,
   schoolWaterSupply: restAdministrativeDivision.tipoAbasAgua,
   schoolWaterServiceContinuity: restAdministrativeDivision.contServAgua,
@@ -86,12 +84,12 @@ export const toAdministrativeDivision = (
   schoolWithSepticSystem: restAdministrativeDivision.tipoDrenaje,
   schoolWithAbilityToReorganizeSpace: restAdministrativeDivision.espacios,
   hygieneCommittee: restAdministrativeDivision.comite,
-  alternatesAttendance: restAdministrativeDivision.asistencia50,
-  absentFemaleStudents: restAdministrativeDivision.inaAlumnas,
-  absentMaleStudents: restAdministrativeDivision.inaAlumnos,
+  alternatesAttendance: restAdministrativeDivision.alterna_asis,
+  absentFemaleStudents: restAdministrativeDivision.sumaInaAlumnas,
+  absentMaleStudents: restAdministrativeDivision.sumaInaAlumnos,
   studentAbsenceMainReasons: restAdministrativeDivision.causaInaAlum,
-  absentTeachers: restAdministrativeDivision.inaDocentes,
+  absentTeachers: restAdministrativeDivision.sumaInaDocentes,
   teacherAbsenceMainReasons: restAdministrativeDivision.causaInaDocente,
-  absentAdmins: restAdministrativeDivision.inaAdministrativos,
+  absentAdmins: restAdministrativeDivision.sumaInaAdministrativos,
   adminsAbsenceMainReasons: restAdministrativeDivision.causaInaAdmin,
 });

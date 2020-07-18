@@ -8,7 +8,7 @@ import { RateTypes } from '@/primary/RateTypes';
 const getRate = (stateSummary: AdministrativeDivisionSummary, rateType: RateTypes): number => {
   switch (rateType) {
     case RateTypes.STUDENT:
-      return stateSummary.maleStudentAttendance;
+      return stateSummary.studentAttendance;
     case RateTypes.TEACHER:
       return stateSummary.teacherAttendance;
     case RateTypes.PERSONAL:

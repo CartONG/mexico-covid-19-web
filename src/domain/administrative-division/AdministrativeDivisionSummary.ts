@@ -2,8 +2,7 @@ export interface AdministrativeDivisionSummary {
   id: string;
   name: string;
   stateId: string;
-  maleStudentAttendance: number;
-  femaleStudentAttendance: number;
+  studentAttendance: number;
   teacherAttendance: number;
   adminAttendance: number;
 }

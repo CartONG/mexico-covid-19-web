@@ -6,10 +6,11 @@ export interface RestSchool {
   municipioId: string;
   entidadId: string;
   nombre: string;
-  alumnasPorcentaje: number;
-  alumnosPorcentaje: number;
-  docentesPorcentaje: number;
-  adminPorcentaje: number;
+  indiceAsistenciaAlumnado: number;
+  indiceAsistenciaAlumnas: number;
+  indiceAsistenciaAlumnos: number;
+  indiceAsistenciaDocentes: number;
+  indiceAsistenciaAdmin: number;
   nivel: string;
   cct: string;
   turno: string;
@@ -22,7 +23,7 @@ export interface RestSchool {
   sostenimiento: string;
   alumnas: number;
   alumnos: number;
-  totAlumnos: number;
+  sumaAlumnos: number;
   docentes: number;
   grupos: number;
   director: number;
@@ -43,28 +44,31 @@ export interface RestSchool {
   tipoDrenaje: number;
   espacios: number;
   comite: number;
-  asistencia50: number;
-  inaAlumnas: number;
-  inaAlumnos: number;
+  alterna_asis: number;
+  sumaInaAlumnas: number;
+  sumaInaAlumnos: number;
   inaalum_causa1: number;
   inaalum_causa2: number;
   inaalum_causa3: number;
   inaalum_causa4: number;
   inaalum_causa5: number;
   inaalum_causaotro: string;
-  inaDocentes: number;
+  sumaInaDocentes: number;
   inadoc_causa1: number;
   inadoc_causa2: number;
   inadoc_causa3: number;
   inadoc_causa4: number;
   inadoc_causaotro: string;
-  inaAdministrativos: number;
+  sumaInaAdministrativos: number;
   inaadm_causa1: number;
   inaadm_causa2: number;
   inaadm_causa3: number;
   inaadm_causa4: number;
   inaadm_causaotro: string;
   comentarios: string;
+  indiceAlumnasSobreInasistencias: number;
+  indiceAlumnosSobreInasistencias: number;
+  alum_prog: number;
 }
 
 export const toSchool = (restSchool: RestSchool): School => ({
@@ -73,10 +77,11 @@ export const toSchool = (restSchool: RestSchool): School => ({
   municipalityId: restSchool.municipioId,
   stateId: restSchool.entidadId,
   name: restSchool.nombre,
-  femaleStudentAttendance: restSchool.alumnasPorcentaje,
-  maleStudentAttendance: restSchool.alumnosPorcentaje,
-  teacherAttendance: restSchool.docentesPorcentaje,
-  adminAttendance: restSchool.adminPorcentaje,
+  studentAttendance: restSchool.indiceAsistenciaAlumnado,
+  femaleStudentAttendance: restSchool.indiceAsistenciaAlumnas,
+  maleStudentAttendance: restSchool.indiceAsistenciaAlumnos,
+  teacherAttendance: restSchool.indiceAsistenciaDocentes,
+  adminAttendance: restSchool.indiceAsistenciaAdmin,
   level: restSchool.nivel,
   workCenterKey: restSchool.cct,
   turn: restSchool.turno,
@@ -89,7 +94,7 @@ export const toSchool = (restSchool: RestSchool): School => ({
   support: restSchool.sostenimiento,
   femaleStudent: restSchool.alumnas,
   maleStudent: restSchool.alumnos,
-  students: restSchool.totAlumnos,
+  students: restSchool.sumaAlumnos,
   teachers: restSchool.docentes,
   assistants: restSchool.grupos,
   directors: restSchool.director,
@@ -110,9 +115,9 @@ export const toSchool = (restSchool: RestSchool): School => ({
   hasSepticSystem: restSchool.tipoDrenaje,
   hasAbilityToReorganizeSpace: restSchool.espacios,
   hasHygieneCommittee: restSchool.comite,
-  alternatesAttendance: restSchool.asistencia50,
-  absentFemaleStudents: restSchool.inaAlumnas,
-  absentMaleStudents: restSchool.inaAlumnos,
+  alternatesAttendance: restSchool.alterna_asis,
+  absentFemaleStudents: restSchool.sumaInaAlumnas,
+  absentMaleStudents: restSchool.sumaInaAlumnos,
   studentAbsenceMainReasons: {
     '1': restSchool.inaalum_causa1,
     '2': restSchool.inaalum_causa2,
@@ -121,7 +126,7 @@ export const toSchool = (restSchool: RestSchool): School => ({
     '5': restSchool.inaalum_causa5,
   },
   studentAbsenceOtherReason: restSchool.inaalum_causaotro,
-  absentTeachers: restSchool.inaDocentes,
+  absentTeachers: restSchool.sumaInaDocentes,
   teacherAbsenceMainReasons: {
     '1': restSchool.inadoc_causa1,
     '2': restSchool.inadoc_causa2,
@@ -129,7 +134,7 @@ export const toSchool = (restSchool: RestSchool): School => ({
     '4': restSchool.inadoc_causa4,
   },
   teacherAbsenceOtherReason: restSchool.inadoc_causaotro,
-  absentAdmins: restSchool.inaAdministrativos,
+  absentAdmins: restSchool.sumaInaAdministrativos,
   adminAbsenceMainReasons: {
     '1': restSchool.inaadm_causa1,
     '2': restSchool.inaadm_causa2,
@@ -138,4 +143,7 @@ export const toSchool = (restSchool: RestSchool): School => ({
   },
   adminAbsenceOtherReason: restSchool.inaadm_causaotro,
   comments: restSchool.comentarios,
+  maleStudentAbsenceProportion: restSchool.indiceAlumnosSobreInasistencias,
+  femaleStudentAbsenceProportion: restSchool.indiceAlumnasSobreInasistencias,
+  expectedStudents: restSchool.alum_prog,
 });

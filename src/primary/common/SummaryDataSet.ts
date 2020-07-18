@@ -15,7 +15,7 @@ export const toSummaryDataSet = (summary: Summary | undefined): SummaryDataSet =
     ? {
         id: summary.id,
         name: summary.name,
-        studentAttendance: toAttendanceDataset(summary.maleStudentAttendance, RateTypes.STUDENT),
+        studentAttendance: toAttendanceDataset(summary.studentAttendance, RateTypes.STUDENT),
         teacherAttendance: toAttendanceDataset(summary.teacherAttendance, RateTypes.TEACHER),
         adminAttendance: toAttendanceDataset(summary.adminAttendance, RateTypes.PERSONAL),
       }

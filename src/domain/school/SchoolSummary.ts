@@ -3,9 +3,10 @@ export interface SchoolSummary {
   name: string;
   level: string;
   locality: string;
-  maleStudentAttendance: number;
-  femaleStudentAttendance: number;
+  studentAttendance: number;
   teacherAttendance: number;
   adminAttendance: number;
+  maleStudentAbsenceProportion: number;
+  femaleStudentAbsenceProportion: number;
   coordinates: [number, number];
 }

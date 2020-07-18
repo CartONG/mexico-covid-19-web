@@ -6,8 +6,7 @@ export interface AdministrativeDivision {
   type: AdministrativeDivisionTypes;
   stateId: string;
   support: { private: number; public: number };
-  femaleStudentAttendance: number;
-  maleStudentAttendance: number;
+  studentAttendance: number;
   teacherAttendance: number;
   adminAttendance: number;
   schools: number;
