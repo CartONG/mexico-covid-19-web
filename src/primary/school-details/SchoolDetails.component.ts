@@ -1,14 +1,17 @@
-import { Component, Inject, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-import { AppStore } from '@/primary/app/AppStore';
+import { School } from '@/domain/school/School';
 import { toSchoolDataSet } from '@/primary/common/SchoolDataSet';
 
 @Component
 export default class SchoolDetails extends Vue {
-  @Inject()
-  private appStore!: () => AppStore;
+  @Prop()
+  private school!: School;
+
+  @Prop({ default: false, required: false })
+  readonly printable!: boolean;
 
   get schoolDataSet() {
-    return toSchoolDataSet(this.appStore().getSchool());
+    return toSchoolDataSet(this.school);
   }
 }

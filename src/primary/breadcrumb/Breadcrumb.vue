@@ -1,24 +1,31 @@
 <template>
   <nav class="breadcrumb" aria-label="breadcrumbs">
     <ul>
-      <li :class="[{ 'is-active': navigation.stateId === '' }, 'has-text-weight-bold', 'is-size-5']">
-        <a href="#" @click.stop.prevent="selectCountry">MÉXICO</a>
+      <li :class="[{ 'is-active': breadcrumbDataSet.country.active }, 'has-text-weight-bold', 'is-size-5']">
+        <a href="#" @click.stop.prevent="backToCountry"> {{ breadcrumbDataSet.country.name }}</a>
       </li>
-      <template v-if="navigation.stateId !== ''">
-        <li :class="[{ 'is-active': navigation.municipalityId === '' }, 'has-text-weight-bold', 'is-size-5']">
-          <a href="#" @click.stop.prevent="selectState(navigation.stateId)">{{ navigation.stateName }}</a>
-        </li>
-      </template>
-      <template v-if="navigation.municipalityId !== ''">
-        <li :class="[{ 'is-active': navigation.schoolId === '' }, 'has-text-weight-bold', 'is-size-5']">
-          <a href="#" @click.stop.prevent="selectMunicipality(navigation.municipalityId)">{{ navigation.municipalityName }}</a>
-        </li>
-      </template>
-      <template v-if="navigation.schoolId !== ''">
-        <li class="is-active has-text-weight-bold is-size-5">
-          <a href="#" @click.stop.prevent="">{{ navigation.schoolName }}</a>
-        </li>
-      </template>
+      <li
+        v-if="breadcrumbDataSet.state.visible"
+        :class="[{ 'is-active': breadcrumbDataSet.state.active }, 'has-text-weight-bold', 'is-size-5']"
+      >
+        <a href="#" @click.stop.prevent="backToState({ id: breadcrumbDataSet.state.id, name: breadcrumbDataSet.state.name })">
+          {{ breadcrumbDataSet.state.name }}
+        </a>
+      </li>
+      <li
+        v-if="breadcrumbDataSet.municipality.visible"
+        :class="[{ 'is-active': breadcrumbDataSet.municipality.active }, 'has-text-weight-bold', 'is-size-5']"
+      >
+        <a
+          href="#"
+          @click.stop.prevent="backToMunicipality({ id: breadcrumbDataSet.municipality.id, name: breadcrumbDataSet.municipality.name })"
+        >
+          {{ breadcrumbDataSet.municipality.name }}
+        </a>
+      </li>
+      <li v-if="breadcrumbDataSet.school.visible" class="is-active has-text-weight-bold is-size-5">
+        <a href="#" @click.stop.prevent="">{{ breadcrumbDataSet.school.name }}</a>
+      </li>
     </ul>
   </nav>
 </template>

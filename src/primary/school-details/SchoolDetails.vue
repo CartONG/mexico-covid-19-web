@@ -18,7 +18,7 @@
         <p v-else class="px-2 py-2">{{ schoolDataSet.studentAbsenceOtherReason }}</p>
       </div>
     </div>
-    <b-collapse class="card mb-4" animation="slide" aria-id="indiceDeAsistencia" :open="false">
+    <b-collapse class="card mb-4" animation="slide" aria-id="indiceDeAsistencia" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="indiceDeAsistencia">
         <table class="table is-fullwidth has-no-background">
           <tbody>
@@ -76,7 +76,8 @@
         </table>
       </div>
     </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="conditioneSsanitariasElementales" :open="false">
+    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
+    <b-collapse class="card mb-4" animation="slide" aria-id="conditioneSsanitariasElementales" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="conditioneSsanitariasElementales">
         <table class="table is-fullwidth has-no-background">
           <tbody>
@@ -152,7 +153,7 @@
         </table>
       </div>
     </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="estadísticasBásicasDelPersonal" :open="false">
+    <b-collapse class="card mb-4" animation="slide" aria-id="estadísticasBásicasDelPersonal" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="estadísticasBásicasDelPersonal">
         <table class="table is-fullwidth has-no-background">
           <tbody>
@@ -217,7 +218,8 @@
         </table>
       </div>
     </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDeAlumnos" :open="false">
+    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
+    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDeAlumnos" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDeAlumnos">
         <table class="table is-fullwidth has-no-background">
           <tbody>
@@ -267,7 +269,7 @@
         </table>
       </div>
     </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDeDocentes" :open="false">
+    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDeDocentes" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDeDocentes">
         <table class="table is-fullwidth has-no-background">
           <tbody>
@@ -312,7 +314,7 @@
         </table>
       </div>
     </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDelPersonal" :open="false">
+    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDelPersonal" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDelPersonal">
         <table class="table is-fullwidth has-no-background">
           <tbody>

@@ -16,7 +16,7 @@ $secondary: #9d2449;
 $secondary-bis: #621132;
 $tertiary: #285c4d;
 
-$grey: #757575;
+$grey: #C0C0C0;
 $grey-lighter: #eeeeee;
 $grey-darker: #424242;
 
@@ -61,6 +61,7 @@ $colors: (
   "danger": ($danger, $danger-invert),
   "danger-darker": ($danger-darker, $danger-darker-invert),
   "grey": ($grey, $grey-invert),
+  "unknown": ($grey, $grey-invert),
   "grey-lighter": ($grey-lighter, $grey-lighter-invert),
   "grey-darker": ($grey-darker, $grey-darker-invert),
 );
@@ -85,6 +86,8 @@ $tabs-border-bottom-width: 0;
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+
+// organize css by needs (domains), ex: spacing, sizes, print, ...
 
 .card-header-title {
   color: $primary;
@@ -136,16 +139,20 @@ html {
   overflow: auto;
 }
 
+/*
 .app {
   padding-top: 130px;
 }
+ */
 
+/*
 .header {
   width: 100%;
   position: fixed;
   top: 0;
   z-index: 3;
 }
+ */
 
 #recenter-control {
   position: absolute;
@@ -164,121 +171,12 @@ html {
   padding: 16px 18px;
 }
 
-.px-0 {
-  padding-right: 0;
-  padding-left: 0;
-}
-
-.py-0 {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.my-0 {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-.pt-1 {
-  padding-top: 8px !important;
-}
-
-.py-1 {
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-.mb-1 {
-  margin-bottom: 8px;
-}
-
-.px-1 {
-  padding-right: 8px;
-  padding-left: 8px;
-}
-
-.px-2 {
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.py-2 {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-
-.mb-2 {
-  margin-bottom: 15px;
-}
-
-.py-3 {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.mb-3 {
-  margin-bottom: 20px;
-}
-
-.py-4 {
-  padding-top: 25px;
-  padding-bottom: 25px;
-}
-
-.mb-4 {
-  margin-bottom: 25px;
-}
-
-// Flex
-.is-direction-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.is-direction-column-reverse {
-  display: flex;
-  flex-direction: column-reverse;
-}
-
-.is-flex-grow-1 {
-  flex-grow: 1;
-}
-
-.is-full-height {
-  height: 100%;
-}
-
-.w40 {
-  width: 40px;
-}
-
-.w80 {
-  width: 80px;
-}
-
-.w120 {
-  width: 120px;
-}
-
-.w150 {
-  width: 150px;
-}
-
 .has-no-background {
   background-color: rgba(0, 0, 0, 0);
 }
 
 .legend-item {
   margin-bottom: 12px;
-}
-
-.legend-box {
-  display: inline-block;
-  width: 11px;
-  height: 11px;
-  margin-right: 8px;
-  border-radius: 2px;
-  opacity: 0.7;
 }
 
 .card {
@@ -316,6 +214,14 @@ html {
   position: absolute;
 }
 
+.shift-bottom {
+  margin-top: 1px;
+}
+
+.has-page-break-before {
+  page-break-before: always;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   font-stretch: normal;
@@ -330,9 +236,12 @@ body {
 @import "ol.overrides";
 @import "map";
 @import "popup";
-@import "choropleth-map";
 @import "indicator-card";
 @import "rate-list";
-@import "absence-reasons-details";
 @import "attendance-tabs";
+@import "shapes";
+@import "positionning";
+@import "sizing";
+@import "spacing";
+@import "animations";
 @import "print";

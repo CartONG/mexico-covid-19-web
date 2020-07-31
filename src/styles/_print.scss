@@ -1,15 +1,27 @@
+.print {
+  display: none;
+}
+
 @media print {
   @page {
     size: auto;
-    margin: 0mm 5mm 0mm 5mm !important;
   }
 
-  body {
-    margin: 0px !important;
+  .app {
+    padding-top: 0px;
+  }
+
+  .header {
+    width: 100%;
+    position: unset;
   }
 
   .ol-control {
     display: none;
+  }
+
+  .print {
+    display: unset !important;
   }
 
   .no-print {

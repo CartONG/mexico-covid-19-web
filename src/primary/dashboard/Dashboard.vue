@@ -1,65 +1,54 @@
 <template>
   <div class="app has-background-secondary">
-    <template v-if="state === 'SUCCESS'">
-      <div class="header">
-        <nav class="navbar" role="navigation">
-          <div class="navbar-brand">
-            <div class="navbar-item">
-              <img src="/logo.svg" alt="Logotipos de la Secretaría de Educación Pública y de UNICEF" />
+    <div v-if="componentState === 'PENDING'">
+      <b-modal :active="true" full-screen :can-cancel="false">
+        <section class="hero is-white is-fullheight">
+          <div class="hero-body">
+            <div class="container has-text-centered pulse-color-primary">
+              <span class="icon is-large">
+                <i class="mdi mdi-48px mdi-download"></i>
+              </span>
             </div>
           </div>
-          <div class="navbar-menu">
-            <div class="navbar-end">
-              <div class="navbar-item">
-                <DropdownVue />
-              </div>
-            </div>
-          </div>
-        </nav>
-        <div class="has-background-secondary-bis is-fixed-top">
-          <BreadcrumbVue />
-        </div>
-      </div>
-      <section class="section py-2 px-2">
-        <div class="container is-fluid">
-          <div class="columns">
-            <div class="column is-10">
-              <h1 class="has-text-primary-bis title is-uppercase is-size-4 has-text-weight-bold">Tablero de Análisis Integral</h1>
-            </div>
-            <div class="column is-2 has-text-right">
-              <InfoModalVue />
-            </div>
-          </div>
-          <div class="columns">
-            <div class="column is-10">
-              <ChoroplethMapVue />
-            </div>
-            <div class="column is-2">
-              <AdministrativeDivisionIndicatorsVue v-if="administrativeDivision" />
-              <SchoolIndicatorsVue v-else />
-            </div>
-          </div>
-          <div class="columns is-desktop">
-            <div class="column">
-              <RateListVue />
-            </div>
-            <div class="column">
-              <AbsenceReasonsDetailsVue></AbsenceReasonsDetailsVue>
-            </div>
-          </div>
-          <div class="columns">
-            <div class="column is-12">
-              <HistoricVue></HistoricVue>
-            </div>
-          </div>
-          <div class="columns">
-            <div class="column is-12">
-              <AdministrativeDivisionDetailsVue v-if="administrativeDivision" />
-              <SchoolDetailsVue v-else />
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      </b-modal>
+    </div>
+    <template v-if="componentState === 'SUCCESS'">
+      <TemplatePrintVue
+        v-if="isPrinting"
+        :currentSummaryList="currentSummaryList"
+        :stateSummaryList="stateSummaryList"
+        :municipalitySummaryList="municipalitySummaryList"
+        :schoolSummaryList="schoolSummaryList"
+        :school="school"
+        :currentSummary="currentSummary"
+        :administrativeDivisionLevel="administrativeDivisionLevel"
+        :currentAdministrativeDivision="currentAdministrativeDivision"
+        :current-history-items="currentHistoryItems"
+        :navigation="navigation"
+        :attendance-type="attendanceType"
+        :administrative-level="administrativeLevel"
+        :attendance-list-sort-options="attendanceListSortOptions"
+        @endprinting="isPrinting = false"
+      ></TemplatePrintVue>
+      <TemplateWebVue
+        v-else
+        :currentSummaryList="currentSummaryList"
+        :stateSummaryList="stateSummaryList"
+        :municipalitySummaryList="municipalitySummaryList"
+        :schoolSummaryList="schoolSummaryList"
+        :school="school"
+        :currentSummary="currentSummary"
+        :administrativeDivisionLevel="administrativeDivisionLevel"
+        :currentAdministrativeDivision="currentAdministrativeDivision"
+        :current-history-items="currentHistoryItems"
+        :navigation="navigation"
+        :attendance-type="attendanceType"
+        :administrative-level="administrativeLevel"
+        :attendance-list-sort-options="attendanceListSortOptions"
+        @startprinting="isPrinting = true"
+        @sortattendancelist="attendanceListSortOptions = $event"
+      ></TemplateWebVue>
     </template>
   </div>
 </template>

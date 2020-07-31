@@ -1,0 +1,19 @@
+.is-direction-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.is-direction-column-reverse {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.is-flex-grow-1 {
+  flex-grow: 1;
+}
+
+.is-fixed-top {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+}

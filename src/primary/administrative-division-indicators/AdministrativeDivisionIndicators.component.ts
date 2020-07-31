@@ -1,14 +1,17 @@
-import { Component, Inject, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-import { AppStore } from '@/primary/app/AppStore';
+import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
 import { toAdministrativeDivisionDataset } from '@/primary/common/AdministrativeDivisionDataSet';
 
 @Component
 export default class AdministrativeDivisionIndicators extends Vue {
-  @Inject()
-  private appStore!: () => AppStore;
+  @Prop()
+  readonly administrativeDivision!: AdministrativeDivision;
+
+  @Prop()
+  readonly inline!: boolean;
 
   get administrativeDivisionDataSet() {
-    return toAdministrativeDivisionDataset(this.appStore().getCurrentAdministrativeDivision());
+    return toAdministrativeDivisionDataset(this.administrativeDivision);
   }
 }

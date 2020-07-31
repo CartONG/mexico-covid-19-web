@@ -44,7 +44,7 @@
         </table>
       </div>
     </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="tasaDeAsistencia" :open="false">
+    <b-collapse class="card mb-4" animation="slide" aria-id="tasaDeAsistencia" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="tasaDeAsistencia">
         <table class="table is-fullwidth has-no-background">
           <tbody>
@@ -88,7 +88,7 @@
         </table>
       </div>
     </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="principaleMotivosDeEscuelasSinClasesPresenciales" :open="false">
+    <b-collapse class="card mb-4" animation="slide" aria-id="principaleMotivosDeEscuelasSinClasesPresenciales" :open="printable">
       <div
         slot="trigger"
         slot-scope="props"
@@ -149,7 +149,8 @@
         </table>
       </div>
     </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="condicionesSanitariasElementales" :open="false">
+    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
+    <b-collapse class="card mb-4" animation="slide" aria-id="condicionesSanitariasElementales" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="condicionesSanitariasElementales">
         <table class="table is-fullwidth has-no-background">
           <tbody>
@@ -303,6 +304,93 @@
               <td class="w120 has-text-right">{{ administrativeDivisionDataSet.schoolTowelSufficiency['3'].text }}</td>
               <td class="w40"></td>
             </tr>
+            <tr v-if="!printable">
+              <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
+                Disponibilidad de alcohol en gel al 70%
+              </td>
+              <td></td>
+              <td class="w40"></td>
+            </tr>
+            <tr v-if="!printable">
+              <td>Cuenta con suficiente alcohol en gel</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.schoolSanitizerSufficiency['1'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr v-if="!printable">
+              <td>No cuenta con suficiente alcohol en gel</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.schoolSanitizerSufficiency['2'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr v-if="!printable">
+              <td>No cuenta</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.schoolSanitizerSufficiency['3'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr v-if="!printable">
+              <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
+                Disponibilidad de botes de basura
+              </td>
+              <td></td>
+              <td class="w40"></td>
+            </tr>
+            <tr v-if="!printable">
+              <td>Cuenta con suficientes botes de basura</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.schoolBinSufficiency['1'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr v-if="!printable">
+              <td>No cuenta con suficientes botes de basura</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.schoolBinSufficiency['2'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr v-if="!printable">
+              <td>No cuenta</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.schoolBinSufficiency['3'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr v-if="!printable">
+              <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
+                Existencia de drenaje
+              </td>
+              <td></td>
+              <td class="w40"></td>
+            </tr>
+            <tr v-if="!printable">
+              <td>Cuenta con Red de drenaje, fosa séptica para desalojo de aguas</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.schoolWithSepticSystem['1'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+            <tr v-if="!printable">
+              <td>No cuenta con Red de drenaje, fosa séptica para desalojo de aguas</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.schoolWithSepticSystem['2'].text }}</td>
+              <td class="w40"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </b-collapse>
+    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
+    <b-collapse class="card mb-4" animation="slide" aria-id="condicionesSanitariasElementales" :open="printable">
+      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="condicionesSanitariasElementales">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-primary is-uppercase">
+                Condiciones sanitarias elementales en las escuelas
+              </td>
+              <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
+              <td class="w40 has-text-right">
+                <a class="card-header-icon px-0 py-0">
+                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-content px-0 py-0">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
             <tr>
               <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
                 Disponibilidad de alcohol en gel al 70%
@@ -368,7 +456,7 @@
         </table>
       </div>
     </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="estadísticasBásicasDelPersonal" :open="false">
+    <b-collapse class="card mb-4" animation="slide" aria-id="estadísticasBásicasDelPersonal" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="estadísticasBásicasDelPersonal">
         <table class="table is-fullwidth has-no-background">
           <tbody>
@@ -433,7 +521,8 @@
         </table>
       </div>
     </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDeAlumnos" :open="false">
+    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
+    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDeAlumnos" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDeAlumnos">
         <table class="table is-fullwidth has-no-background">
           <tbody>
@@ -483,7 +572,7 @@
         </table>
       </div>
     </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDeDocentes" :open="false">
+    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDeDocentes" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDeDocentes">
         <table class="table is-fullwidth has-no-background">
           <tbody>
@@ -528,7 +617,7 @@
         </table>
       </div>
     </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="causasDeInasistenciaDelPersonal" :open="false">
+    <b-collapse :class="`card mb-${printable ? '0' : '4'}`" animation="slide" aria-id="causasDeInasistenciaDelPersonal" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDelPersonal">
         <table class="table is-fullwidth has-no-background">
           <tbody>

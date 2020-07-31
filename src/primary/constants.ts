@@ -1,0 +1,8 @@
+export const ANIMATION_DURATION = 1000;
+export const UPDATE_MAP_VIEWPORT_DELAY = 2000;
+export const MAP_EXTENT: [number, number, number, number] = [
+  -123.22837830685677,
+  14.112642349612102,
+  -81.86662169314323,
+  33.096241159845206,
+];

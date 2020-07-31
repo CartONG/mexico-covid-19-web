@@ -1,4 +1,4 @@
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Inject, Vue } from 'vue-property-decorator';
 
 import { DashboardVue } from '@/primary/dashboard';
 

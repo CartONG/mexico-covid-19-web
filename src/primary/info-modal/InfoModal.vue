@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="is-inline">
     <a href="#" @click.stop.prevent="active = true">
       <span class="icon has-text-primary">
         <i class="mdi mdi-24px mdi-information-outline"></i>

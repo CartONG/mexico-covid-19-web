@@ -24,7 +24,7 @@ const toColor = (rate: number) => {
   if (rate > 0.95 && rate <= 1) {
     return 'success-darker';
   }
-  return 'grey';
+  return 'unknown';
 };
 
 export const toPercentageDataSet = (rate: number) => ({

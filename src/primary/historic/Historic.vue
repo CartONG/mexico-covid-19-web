@@ -4,12 +4,12 @@
       <h2 class="card-header-title has-text-primary">Historial de escuelas con clases presenciales</h2>
     </header>
     <div class="card-content">
-      <svg id="historic-chart" viewBox="0 0 1200 400" perserveAspectRatio="xMinYMid meet"></svg>
-      <b-field v-if="currentHistoryItems.length > 0" class="no-print">
+      <div id="historic-chart"></div>
+      <b-field v-if="historyItems.length > 0 && !printable">
         <b-slider
           v-model="interval"
           :min="0"
-          :max="currentHistoryItems.length - 1"
+          :max="historyItems.length - 1"
           :step="1"
           :custom-formatter="tooltipLabel"
           ticks
