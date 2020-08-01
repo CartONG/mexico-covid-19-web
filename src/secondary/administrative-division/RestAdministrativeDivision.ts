@@ -91,5 +91,5 @@ export const toAdministrativeDivision = (
   absentTeachers: restAdministrativeDivision.sumaInaDocentes,
   teacherAbsenceMainReasons: restAdministrativeDivision.causaInaDocente || {},
   absentAdmins: restAdministrativeDivision.sumaInaAdministrativos,
-  adminsAbsenceMainReasons: restAdministrativeDivision.causaInaAdmin || {},
+  adminAbsenceMainReasons: restAdministrativeDivision.causaInaAdmin || {},
 });

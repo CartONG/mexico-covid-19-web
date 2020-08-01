@@ -1,5 +1,5 @@
 <template>
-  <div :class="[{ 'opacity-6': light }, 'card attendance-card no-shadow']" @click="$emit('click')">
+  <div class="card attendance-card no-shadow" @click="$emit('click')">
     <div class="card-content px-1 py-1">
       <div v-if="inline" class="columns is-vcentered is-desktop">
         <div class="column is-3 has-text-centered">
@@ -22,13 +22,6 @@
             <div :id="`${attendance.label}-attendance-chart`"></div>
           </div>
         </div>
-        <!--
-        <div class="columns">
-          <div class="column is-12 has-text-centered">
-            <div :id="`${attendance.label}-attendance-chart`"></div>
-          </div>
-        </div>
-        -->
       </div>
     </div>
   </div>

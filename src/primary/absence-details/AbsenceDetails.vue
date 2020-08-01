@@ -3,6 +3,19 @@
     <header class="card-header">
       <h2 class="card-header-title">Causas generales del total de inasistencia</h2>
     </header>
+    <div class="tabs">
+      <ul>
+        <li :class="[{ 'is-active': attendanceType === 'STUDENT' }, 'is-size-6', 'has-text-weight-bold']">
+          <a href="#" @click.prevent.stop="change('STUDENT')">ALUMNOS</a>
+        </li>
+        <li :class="[{ 'is-active': attendanceType === 'TEACHER' }, 'is-size-6', 'has-text-weight-bold']">
+          <a href="#" @click.prevent.stop="change('TEACHER')">DOCENTES</a>
+        </li>
+        <li :class="[{ 'is-active': attendanceType === 'PERSONAL' }, 'is-size-6', 'has-text-weight-bold']">
+          <a href="#" @click.prevent.stop="change('PERSONAL')">PERSONAL*</a>
+        </li>
+      </ul>
+    </div>
     <div class="card-content">
       <div class="columns is-mobile">
         <div class="column is-4 has-text-centered">
@@ -10,33 +23,16 @@
         </div>
         <div class="column is-8">
           <table class="table">
-            <tr>
-              <td><i class="square-primary"></i></td>
-              <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
-              <td class="has-text-weight-bold has-text-centered has-text-secondary">{{ dataSet['1'].text }}</td>
-            </tr>
-            <tr>
-              <td><i class="square-secondary"></i></td>
-              <td>Los padres de familia no enviaron a sus hijos a la escuela</td>
-              <td class="has-text-weight-bold has-text-centered has-text-secondary">{{ dataSet['2'].text }}</td>
-            </tr>
-            <tr>
-              <td><i class="square-tertiary"></i></td>
-              <td>Reportaron enfermos a los alumnos que no asistieron</td>
-              <td class="has-text-weight-bold has-text-centered has-text-secondary">{{ dataSet['3'].text }}</td>
-            </tr>
-            <tr>
-              <td><i class="square-grey"></i></td>
-              <td>Se desconocen las causas</td>
-              <td class="has-text-weight-bold has-text-centered has-text-secondary">{{ dataSet['4'].text }}</td>
-            </tr>
-            <tr>
-              <td><i class="square-secondary-bis"></i></td>
-              <td>Otras causas</td>
-              <td class="has-text-weight-bold has-text-centered has-text-secondary">{{ dataSet['5'].text }}</td>
+            <tr v-for="legendItem in absenceDetailsDataSet.legendItems" :key="legendItem.text">
+              <td><i :class="`square-${legendItem.color}`"></i></td>
+              <td>{{ legendItem.text }}</td>
+              <td class="has-text-weight-bold has-text-centered has-text-secondary">{{ legendItem.value }}</td>
             </tr>
           </table>
         </div>
+      </div>
+      <div class="h20 has-text-weight-bold">
+        {{ absenceDetailsDataSet.appendix }}
       </div>
     </div>
   </div>

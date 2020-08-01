@@ -2,54 +2,54 @@ import * as d3 from 'd3';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
+import { AttendanceType } from '@/domain/AttendanceType';
 import { School } from '@/domain/school/School';
-import { toAdministrativeDivisionDataset } from '@/primary/common/AdministrativeDivisionDataSet';
-import { toSchoolDataSet } from '@/primary/common/SchoolDataSet';
+import { toAbsenceDetailsDataSet } from '@/primary/absence-details/AbsenceDetailsDataSet';
 
 @Component
 export default class AbsenceReasonsDetails extends Vue {
   @Prop()
-  administrativeDivision!: AdministrativeDivision;
+  readonly administrativeDivision!: AdministrativeDivision;
 
   @Prop()
-  school!: School;
+  readonly school!: School;
 
   @Prop()
-  administrativeDivisionLevel!: boolean;
+  readonly administrativeDivisionLevel!: boolean;
 
-  @Watch('dataSet')
-  dataSetWatcher() {
-    this.updateChart(this.dataSet);
+  @Prop()
+  readonly attendanceType!: AttendanceType;
+
+  @Watch('absenceDetailsDataSet')
+  absenceDetailsDataSetWatcher() {
+    this.updateChart(this.absenceDetailsDataSet.chart.data, this.absenceDetailsDataSet.chart.colors);
   }
 
-  get dataSet() {
-    return this.administrativeDivisionLevel
-      ? toAdministrativeDivisionDataset(this.administrativeDivision).studentAbsenceMainReasons
-      : toSchoolDataSet(this.school).studentAbsenceMainReasons;
+  get absenceDetailsDataSet() {
+    const absenceDetails = this.administrativeDivisionLevel ? this.administrativeDivision : this.school;
+    return toAbsenceDetailsDataSet(absenceDetails, this.attendanceType);
   }
 
   mounted() {
     this.makeChart();
-    this.updateChart(toAdministrativeDivisionDataset(this.administrativeDivision).studentAbsenceMainReasons);
+    this.updateChart(this.absenceDetailsDataSet.chart.data, this.absenceDetailsDataSet.chart.colors);
+  }
+
+  change(attendanceType: AttendanceType) {
+    this.$emit('change', attendanceType);
   }
 
   makeChart() {
     const svg = d3.select('#absence-details-chart');
     const margin = { top: 0, right: 0, bottom: 0, left: 0 };
     const width = 150 - margin.right - margin.left;
-    const height = 150 - margin.top - margin.bottom;
-    const radius = Math.min(width, height) / 2;
     svg.append('g').attr('transform', 'translate(' + width / 2 + ',' + 75 + ')');
   }
 
-  updateChart(dataset: { [key: string]: { text: string; value: number } }) {
-    const data = [dataset['1'], dataset['2'], dataset['3'], dataset['4'], dataset['5']].map(d => d.value);
-
-    const colors = d3.scaleOrdinal(['#b38e5d', '#9d2449', '#285c4d', '#C0C0C0', '#621132']);
-
+  updateChart(data: number[], colors: string[]) {
+    const chartColors = d3.scaleOrdinal(colors);
     const g = d3.select('#absence-details-chart > g');
     const t = d3.transition().duration(250);
-
     const pie = d3.pie();
 
     const arc = d3
@@ -73,7 +73,7 @@ export default class AbsenceReasonsDetails extends Vue {
     selection
       .enter()
       .append('path')
-      .attr('fill', (d, i) => colors(i.toString()))
+      .attr('fill', (d, i) => chartColors(i.toString()))
       .attr('d', arc as any)
       .attr('stroke', 'white')
       .attr('stroke-width', '1px');

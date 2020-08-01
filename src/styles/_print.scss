@@ -2,6 +2,10 @@
   display: none;
 }
 
+.has-page-break-before {
+  page-break-before: always;
+}
+
 @media print {
   @page {
     size: auto;

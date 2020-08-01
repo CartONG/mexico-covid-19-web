@@ -29,6 +29,7 @@
         :attendance-type="attendanceType"
         :administrative-level="administrativeLevel"
         :attendance-list-sort-options="attendanceListSortOptions"
+        :absence-details-attendance-type="absenceDetailsAttendanceType"
         @endprinting="isPrinting = false"
       ></TemplatePrintVue>
       <TemplateWebVue
@@ -46,8 +47,10 @@
         :attendance-type="attendanceType"
         :administrative-level="administrativeLevel"
         :attendance-list-sort-options="attendanceListSortOptions"
+        :absence-details-attendance-type="absenceDetailsAttendanceType"
         @startprinting="isPrinting = true"
         @sortattendancelist="attendanceListSortOptions = $event"
+        @changeabsenceattendance="absenceDetailsAttendanceType = $event"
       ></TemplateWebVue>
     </template>
   </div>

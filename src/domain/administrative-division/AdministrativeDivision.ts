@@ -41,5 +41,5 @@ export interface AdministrativeDivision {
   absentTeachers: number;
   teacherAbsenceMainReasons: { [key: string]: number };
   absentAdmins: number;
-  adminsAbsenceMainReasons: { [key: string]: number };
+  adminAbsenceMainReasons: { [key: string]: number };
 }

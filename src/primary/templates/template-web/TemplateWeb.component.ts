@@ -77,4 +77,7 @@ export default class TemplateWeb extends Vue {
 
   @Prop()
   readonly attendanceListSortOptions!: [string, string];
+
+  @Prop()
+  readonly absenceDetailsAttendanceType!: AttendanceType;
 }
