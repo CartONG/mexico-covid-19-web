@@ -47,12 +47,11 @@ export default class Dashboard extends Vue {
   currentSummary: Summary | null = null;
   currentAdministrativeDivision: AdministrativeDivision | null = null;
   currentHistoryItems: AdministrativeDivisionHistory[] = [];
-  // statesGeometries!: any;
-  // municipalitiesGeometries!: any;
   navigation: NavigationParams[] = [];
   attendanceType: AttendanceType = AttendanceType.STUDENT;
   administrativeLevel: AdministrativeLevel = AdministrativeLevel.COUNTRY;
   attendanceListSortOptions: [string, string] = ['name', 'asc'];
+  absenceDetailsAttendanceType = AttendanceType.STUDENT;
   isPrinting = false;
 
   @Inject()

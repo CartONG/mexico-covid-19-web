@@ -13,9 +13,6 @@ export default class AttendanceCard extends Vue {
   readonly attendance!: AttendanceDataSet;
 
   @Prop({ default: false, required: false })
-  readonly light!: boolean;
-
-  @Prop({ default: false, required: false })
   readonly inline!: boolean;
 
   @Prop({ default: false, required: false })

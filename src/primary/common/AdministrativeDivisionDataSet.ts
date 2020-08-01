@@ -219,10 +219,10 @@ export const toAdministrativeDivisionDataset = (
         },
         absentAdmins: administrativeDivision.absentAdmins.toString(),
         adminsAbsenceMainReasons: {
-          '1': toPercentageDataSet(administrativeDivision.adminsAbsenceMainReasons['1']),
-          '2': toPercentageDataSet(administrativeDivision.adminsAbsenceMainReasons['2']),
-          '3': toPercentageDataSet(administrativeDivision.adminsAbsenceMainReasons['3']),
-          '4': toPercentageDataSet(administrativeDivision.adminsAbsenceMainReasons['4']),
+          '1': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasons['1']),
+          '2': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasons['2']),
+          '3': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasons['3']),
+          '4': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasons['4']),
         },
       }
     : {

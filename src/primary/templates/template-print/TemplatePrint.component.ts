@@ -76,6 +76,9 @@ export default class TemplatePrint extends Vue {
   @Prop()
   readonly attendanceListSortOptions!: [string, string];
 
+  @Prop()
+  readonly absenceDetailsAttendanceType!: AttendanceType;
+
   get currentSummariesChunks() {
     const sortAsc = (val1: string | number, val2: string | number) => (val1 < val2 ? -1 : 1);
     const sortDesc = (val1: string | number, val2: string | number) => (val1 > val2 ? -1 : 1);

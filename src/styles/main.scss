@@ -82,12 +82,52 @@ $breadcrumb-item-active-color: $white;
 $breadcrumb-item-separator-color: $primary;
 $breadcrumb-item-hover-color: $primary;
 
+// tabs
 $tabs-border-bottom-width: 0;
+$tabs-link-color: $secondary-bis;
+$tabs-link-active-color: $secondary-bis;
+$tabs-link-active-border-bottom-color: $secondary-bis;
+$tabs-link-hover-color: $secondary-bis;
+
+// ajouter une class pour le border radius (et l'appliquer au tabs de la map)
+
+.tabs {
+  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
+}
+
+.tabs li {
+  opacity: 0.6;
+}
+
+.tabs li:hover {
+  opacity: 1;
+}
+
+.tabs li.is-active {
+  border-bottom: 3px solid $secondary-bis;
+  opacity: 1;
+}
+
+.tabs.shadowless {
+  box-shadow: none;
+}
+
+.tabs.no-border li.is-active {
+  border-bottom: 0 !important;
+}
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 
 // organize css by needs (domains), ex: spacing, sizes, print, ...
+
+.card {
+  border-radius: 4px;
+}
+
+.card-header {
+  margin-bottom: 1px;
+}
 
 .card-header-title {
   color: $primary;
@@ -96,63 +136,9 @@ $tabs-border-bottom-width: 0;
   font-size: $size-7;
 }
 
-.has-fill-danger-darker {
-  fill: $danger-darker !important;
-}
-
-.has-fill-danger {
-  fill: $danger !important;
-}
-
-.has-fill-warning {
-  fill: $warning !important;
-}
-
-.has-fill-success {
-  fill: $success !important;
-}
-
-.has-fill-success-darker {
-  fill: $success-darker !important;
-}
-
-.has-fill-grey {
-  fill: $grey !important;
-}
-
-.has-fill-grey-lighter {
-  fill: $grey-lighter !important;
-}
-
-.has-fill-grey-lighter {
-  fill: $grey-lighter !important;
-}
-
-// @each $name, $pair in $colors {
-// $color: nth($pair, 1);
-// .has-border-#{$name} {
-// border-color: $color !important;
-// }
-// }
-
 html {
   overflow: auto;
 }
-
-/*
-.app {
-  padding-top: 130px;
-}
- */
-
-/*
-.header {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 3;
-}
- */
 
 #recenter-control {
   position: absolute;
@@ -179,14 +165,6 @@ html {
   margin-bottom: 12px;
 }
 
-.card {
-  border-radius: 4px;
-}
-
-.card-header {
-  margin-bottom: 1px;
-}
-
 .navbar-brand img {
   height: 30px;
   width: auto;
@@ -210,16 +188,8 @@ html {
   opacity: 0.6;
 }
 
-.is-absolute {
-  position: absolute;
-}
-
 .shift-bottom {
   margin-top: 1px;
-}
-
-.has-page-break-before {
-  page-break-before: always;
 }
 
 body {

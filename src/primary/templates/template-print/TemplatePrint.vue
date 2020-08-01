@@ -63,6 +63,7 @@
               :administrative-division="currentAdministrativeDivision"
               :school="school"
               :administrative-division-level="administrativeDivisionLevel"
+              :attendance-type="absenceDetailsAttendanceType"
             />
           </div>
         </div>
