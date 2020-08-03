@@ -4,7 +4,7 @@ import { AdministrativeDivisionTypes } from '@/domain/administrative-division/Ad
 export interface RestAdministrativeDivision {
   id: string;
   nombre: string;
-  entidadid: string;
+  entidadId: string;
   sostenimiento: { privado: number; publico: number };
   indiceAsistenciaAlumnado: number;
   indiceAsistenciaDocentes: number;
@@ -48,10 +48,10 @@ export const toAdministrativeDivision = (
   restAdministrativeDivision: RestAdministrativeDivision,
   type: AdministrativeDivisionTypes
 ): AdministrativeDivision => ({
-  id: `${restAdministrativeDivision.entidadid || ''}${restAdministrativeDivision.id}`,
+  id: `${restAdministrativeDivision.entidadId || ''}${restAdministrativeDivision.id}`,
   name: restAdministrativeDivision.nombre,
   type: type,
-  stateId: restAdministrativeDivision.entidadid || '',
+  stateId: restAdministrativeDivision.entidadId || '',
   support: {
     private: restAdministrativeDivision.sostenimiento.privado,
     public: restAdministrativeDivision.sostenimiento.publico,
