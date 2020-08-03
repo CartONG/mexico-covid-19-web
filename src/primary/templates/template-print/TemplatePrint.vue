@@ -84,7 +84,13 @@
         <div class="columns has-page-break-before"><div class="column is-12"></div></div>
         <div class="columns">
           <div class="column is-12">
-            <HistoricVue :history-items="currentHistoryItems" :printable="true" />
+            <AdministrativeDivisionHistoricVue
+              v-if="administrativeDivisionLevel && administrativeDivisionDailyReports.length > 0"
+              :administrative-division-daily-reports="administrativeDivisionDailyReports"
+              :historic-type="historicType"
+              :historic-interval="historicInterval"
+              :printable="true"
+            />
           </div>
         </div>
         <div class="columns has-page-break-before"><div class="column is-12"></div></div>

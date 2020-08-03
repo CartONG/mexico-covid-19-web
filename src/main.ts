@@ -16,7 +16,7 @@ import { ANIMATION_DURATION, MAP_EXTENT, UPDATE_MAP_VIEWPORT_DELAY } from '@/pri
 import { Delayer } from '@/primary/Delayer';
 import { NavigationBus } from '@/primary/navigation/NavigationBus';
 import { createClusterLayer, createMap, createPopup, createVectorLayer } from '@/primary/WebmappingUtils';
-import { RestAdministrativeDivisionHistoryRepository } from '@/secondary/administrative-division-history/RestAdministrativeDivisionHistoryRepository';
+import { RestAdministrativeDivisionDailyReportRepository } from '@/secondary/administrative-division-daily-report/RestAdministrativeDivisionDailyReportRepository';
 import { RestAdministrativeDivisionRepository } from '@/secondary/administrative-division/RestAdministrativeDivisionRepository';
 import { ConsoleLogger } from '@/secondary/ConsoleLogger';
 import { LocalFetcher } from '@/secondary/LocalFetcher';
@@ -35,7 +35,7 @@ const fetcher = new LocalFetcher(localAxios);
 const animationDelayer = new Delayer(window, ANIMATION_DURATION + 50);
 const updateMapViewportDelayer = new Delayer(window, UPDATE_MAP_VIEWPORT_DELAY);
 const administrativeDivisionRepository = new RestAdministrativeDivisionRepository(restAxios);
-const administrativeDivisionHistoryRepository = new RestAdministrativeDivisionHistoryRepository(localAxios);
+const administrativeDivisionDailyReportRepository = new RestAdministrativeDivisionDailyReportRepository(localAxios);
 const schoolRepository = new RestSchoolRepository(restAxios);
 const navigationBus = new NavigationBus(new Vue());
 const attendanceTypeBus = new AttendanceTypeBus(new Vue());
@@ -55,7 +55,7 @@ new Vue({
     animationDelayer: () => animationDelayer,
     updateMapViewportDelayer: () => updateMapViewportDelayer,
     administrativeDivisionRepository: () => administrativeDivisionRepository,
-    administrativeDivisionHistoryRepository: () => administrativeDivisionHistoryRepository,
+    administrativeDivisionDailyReportRepository: () => administrativeDivisionDailyReportRepository,
     schoolRepository: () => schoolRepository,
     navigationBus: () => navigationBus,
     attendanceTypeBus: () => attendanceTypeBus,

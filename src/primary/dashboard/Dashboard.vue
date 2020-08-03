@@ -24,12 +24,14 @@
         :currentSummary="currentSummary"
         :administrativeDivisionLevel="administrativeDivisionLevel"
         :currentAdministrativeDivision="currentAdministrativeDivision"
-        :current-history-items="currentHistoryItems"
+        :administrative-division-daily-reports="administrativeDivisionDailyReports"
         :navigation="navigation"
         :attendance-type="attendanceType"
         :administrative-level="administrativeLevel"
         :attendance-list-sort-options="attendanceListSortOptions"
         :absence-details-attendance-type="absenceDetailsAttendanceType"
+        :historic-type="historicType"
+        :historic-interval="historicInterval"
         @endprinting="isPrinting = false"
       ></TemplatePrintVue>
       <TemplateWebVue
@@ -42,15 +44,19 @@
         :currentSummary="currentSummary"
         :administrativeDivisionLevel="administrativeDivisionLevel"
         :currentAdministrativeDivision="currentAdministrativeDivision"
-        :current-history-items="currentHistoryItems"
+        :administrative-division-daily-reports="administrativeDivisionDailyReports"
         :navigation="navigation"
         :attendance-type="attendanceType"
         :administrative-level="administrativeLevel"
         :attendance-list-sort-options="attendanceListSortOptions"
         :absence-details-attendance-type="absenceDetailsAttendanceType"
+        :historic-type="historicType"
+        :historic-interval="historicInterval"
         @startprinting="isPrinting = true"
         @sortattendancelist="attendanceListSortOptions = $event"
         @changeabsenceattendance="absenceDetailsAttendanceType = $event"
+        @changehistorictype="historicType = $event"
+        @changehistoricinterval="historicInterval = $event"
       ></TemplateWebVue>
     </template>
   </div>

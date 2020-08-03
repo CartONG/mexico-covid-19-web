@@ -1,6 +1,6 @@
 import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
 
-import { AdministrativeDivisionHistory } from '@/domain/administrative-division-history/AdministrativeDivisionHistory';
+import { AdministrativeDivisionDailyReport } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReport';
 import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
 import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
 import { AdministrativeLevel } from '@/domain/AdministrativeLevel';
@@ -10,11 +10,12 @@ import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { Summary } from '@/domain/Summary';
 import { AbsenceDetailsVue } from '@/primary/absence-details';
 import { AdministrativeDivisionDetailsVue } from '@/primary/administrative-division-details';
+import { AdministrativeDivisionHistoricVue } from '@/primary/administrative-division-historic';
 import { AdministrativeDivisionIndicatorsVue } from '@/primary/administrative-division-indicators';
 import { AttendanceListVue } from '@/primary/attendance-list';
 import { AttendanceMapVue } from '@/primary/attendance-map';
 import { BreadcrumbVue } from '@/primary/breadcrumb';
-import { HistoricVue } from '@/primary/historic';
+import { HistoricType } from '@/primary/HistoricType';
 import { NavigationParams } from '@/primary/navigation/NavigationParams';
 import { SchoolDetailsVue } from '@/primary/school-details';
 import { SchoolIndicatorsVue } from '@/primary/school-indicators';
@@ -30,7 +31,7 @@ import { Printer } from '@/secondary/Printer';
     AbsenceDetailsVue,
     AdministrativeDivisionDetailsVue,
     SchoolDetailsVue,
-    HistoricVue,
+    AdministrativeDivisionHistoricVue,
   },
 })
 export default class TemplatePrint extends Vue {
@@ -62,7 +63,7 @@ export default class TemplatePrint extends Vue {
   readonly currentAdministrativeDivision!: AdministrativeDivision;
 
   @Prop()
-  readonly currentHistoryItems!: AdministrativeDivisionHistory[];
+  readonly administrativeDivisionDailyReports!: AdministrativeDivisionDailyReport[];
 
   @Prop()
   readonly navigation!: NavigationParams[];
@@ -78,6 +79,12 @@ export default class TemplatePrint extends Vue {
 
   @Prop()
   readonly absenceDetailsAttendanceType!: AttendanceType;
+
+  @Prop()
+  readonly historicType!: HistoricType;
+
+  @Prop()
+  readonly historicInterval!: [number, number];
 
   get currentSummariesChunks() {
     const sortAsc = (val1: string | number, val2: string | number) => (val1 < val2 ? -1 : 1);

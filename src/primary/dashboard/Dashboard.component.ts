@@ -1,7 +1,7 @@
 import { Component, Inject, Vue } from 'vue-property-decorator';
 
-import { AdministrativeDivisionHistory } from '@/domain/administrative-division-history/AdministrativeDivisionHistory';
-import { AdministrativeDivisionHistoryRepository } from '@/domain/administrative-division-history/AdministrativeDivisionHistoryRepository';
+import { AdministrativeDivisionDailyReport } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReport';
+import { AdministrativeDivisionDailyReportRepository } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReportRepository';
 import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
 import { AdministrativeDivisionRepository } from '@/domain/administrative-division/AdministrativeDivisionRepository';
 import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
@@ -18,6 +18,7 @@ import { AttendanceWebmapping } from '@/primary/attendance-webmapping/Attendance
 import { AttendanceTypeBus } from '@/primary/AttendanceTypeBus';
 import { ComponentState } from '@/primary/ComponentState';
 import { Delayer } from '@/primary/Delayer';
+import { HistoricType } from '@/primary/HistoricType';
 import { NavigationBus } from '@/primary/navigation/NavigationBus';
 import { NavigationParams } from '@/primary/navigation/NavigationParams';
 import { TemplatePrintVue } from '@/primary/templates/template-print';
@@ -46,12 +47,14 @@ export default class Dashboard extends Vue {
   school: School | null = null;
   currentSummary: Summary | null = null;
   currentAdministrativeDivision: AdministrativeDivision | null = null;
-  currentHistoryItems: AdministrativeDivisionHistory[] = [];
+  administrativeDivisionDailyReports: AdministrativeDivisionDailyReport[] = [];
   navigation: NavigationParams[] = [];
   attendanceType: AttendanceType = AttendanceType.STUDENT;
   administrativeLevel: AdministrativeLevel = AdministrativeLevel.COUNTRY;
   attendanceListSortOptions: [string, string] = ['name', 'asc'];
   absenceDetailsAttendanceType = AttendanceType.STUDENT;
+  historicType = HistoricType.GIVES_CLASSES;
+  historicInterval: [number, number] = [0, 0];
   isPrinting = false;
 
   @Inject()
@@ -70,7 +73,7 @@ export default class Dashboard extends Vue {
   private schoolRepository!: () => SchoolRepository;
 
   @Inject()
-  private administrativeDivisionHistoryRepository!: () => AdministrativeDivisionHistoryRepository;
+  private administrativeDivisionDailyReportRepository!: () => AdministrativeDivisionDailyReportRepository;
 
   @Inject()
   private navigationBus!: () => NavigationBus;
@@ -94,7 +97,7 @@ export default class Dashboard extends Vue {
       this.administrativeDivisionRepository().find(AdministrativeDivisionTypes.COUNTRY, ''),
       this.administrativeDivisionRepository().list(AdministrativeDivisionTypes.STATE),
       this.administrativeDivisionRepository().list(AdministrativeDivisionTypes.MUNICIPALITY),
-      this.administrativeDivisionHistoryRepository().listForAdministrativeDivision(AdministrativeDivisionTypes.COUNTRY, ''),
+      this.administrativeDivisionDailyReportRepository().listForAdministrativeDivision(AdministrativeDivisionTypes.COUNTRY, ''),
       this.fetcher().fetch('states.topojson'),
       this.fetcher().fetch('municipalities.topojson'),
     ])
@@ -105,9 +108,11 @@ export default class Dashboard extends Vue {
         this.currentAdministrativeDivision = this.country;
         this.stateSummaryList = results[1];
         this.municipalitySummaryList = results[2];
-        this.currentHistoryItems = results[3];
+        this.administrativeDivisionDailyReports = results[3];
         this.currentSummaryList = this.stateSummaryList;
         this.currentSummary = this.country;
+        const start = this.administrativeDivisionDailyReports.length - 15 < 0 ? 0 : this.administrativeDivisionDailyReports.length - 15;
+        this.historicInterval = [start, this.administrativeDivisionDailyReports.length - 1];
         this.componentState = ComponentState.SUCCESS;
       })
       .catch(error => this.error(error));
@@ -167,8 +172,21 @@ export default class Dashboard extends Vue {
       });
   }
 
+  private listAdministrativeDivisionDailyReport(administrativeDivisionType: AdministrativeDivisionTypes, id = '') {
+    this.administrativeDivisionDailyReports = [];
+    this.administrativeDivisionDailyReportRepository()
+      .listForAdministrativeDivision(administrativeDivisionType, id)
+      .then(administrativeDivisionDailyReports => {
+        this.administrativeDivisionDailyReports = administrativeDivisionDailyReports;
+      })
+      .catch(error => {
+        this.logger().error(`Fail to retrieve administrative division daily reports (${administrativeDivisionType}) ${id})`, error);
+      });
+  }
+
   onBackToCountry() {
     this.administrativeDivisionLevel = true;
+    this.animationDelayer().afterDelay(() => this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.COUNTRY));
     this.schoolSummaryList = [];
     this.currentSummary = this.country;
     this.currentAdministrativeDivision = this.country;
@@ -180,6 +198,9 @@ export default class Dashboard extends Vue {
   onGoToState(navigationParams: NavigationParams) {
     this.administrativeDivisionLevel = true;
     this.animationDelayer().afterDelay(() => this.findState(navigationParams.id));
+    this.animationDelayer().afterDelay(() =>
+      this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.STATE, navigationParams.id)
+    );
     this.schoolSummaryList = [];
     this.state = null;
     this.currentAdministrativeDivision = null;
@@ -191,6 +212,9 @@ export default class Dashboard extends Vue {
 
   onBackToState(navigationParams: NavigationParams) {
     this.administrativeDivisionLevel = true;
+    this.animationDelayer().afterDelay(() =>
+      this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.STATE, navigationParams.id)
+    );
     this.schoolSummaryList = [];
     this.currentAdministrativeDivision = this.state;
     this.currentSummary = this.stateSummaryList.find(summary => summary.id === navigationParams.id) || null;
@@ -201,6 +225,9 @@ export default class Dashboard extends Vue {
 
   onGoToMunicipality(navigationParams: NavigationParams) {
     this.administrativeDivisionLevel = true;
+    this.animationDelayer().afterDelay(() =>
+      this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.MUNICIPALITY, navigationParams.id)
+    );
     this.currentSummaryList = this.schoolSummaryList;
     this.municipality = null;
     this.currentAdministrativeDivision = null;
@@ -215,6 +242,9 @@ export default class Dashboard extends Vue {
 
   onBackToMunicipality(navigationParams: NavigationParams) {
     this.administrativeDivisionLevel = true;
+    this.animationDelayer().afterDelay(() =>
+      this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.MUNICIPALITY, navigationParams.id)
+    );
     this.currentAdministrativeDivision = this.municipality;
     this.currentSummary = this.municipalitySummaryList.find(summary => summary.id === navigationParams.id) || null;
     this.navigation = [this.navigation[0], navigationParams];
@@ -223,6 +253,7 @@ export default class Dashboard extends Vue {
 
   onGoToSchool(navigationParams: NavigationParams) {
     this.administrativeDivisionLevel = false;
+    this.administrativeDivisionDailyReports = [];
     this.findSchool(navigationParams.id);
     this.school = null;
     this.currentSummary = this.schoolSummaryList.find(summary => summary.id === navigationParams.id) || null;
