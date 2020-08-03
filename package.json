@@ -19,7 +19,8 @@
     "ts-custom-error": "^3.1.1",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
-    "vue-property-decorator": "^8.4.2"
+    "vue-property-decorator": "^8.4.2",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "@types/d3": "^5.7.2",

@@ -3,10 +3,13 @@ import '@/styles/main.scss';
 import axios from 'axios';
 import Buefy from 'buefy';
 import Vue from 'vue';
+import Vuex, { Store } from 'vuex';
 
 import { AppVue } from './primary/app';
 
 import { AttendanceType } from '@/domain/AttendanceType';
+import { AppStore } from '@/primary/app/AppStore';
+import { appStoreOptions } from '@/primary/app/appStoreOptions';
 import { AttendanceWebmapping } from '@/primary/attendance-webmapping/AttendanceWebmapping';
 import { municipalityStyler } from '@/primary/attendance-webmapping/styles/municipalities/MunicipalityStyle';
 import { schoolStyler } from '@/primary/attendance-webmapping/styles/schools/SchoolStyler';
@@ -24,6 +27,7 @@ import { Printer } from '@/secondary/Printer';
 import { RestSchoolRepository } from '@/secondary/school/RestSchoolRepository';
 
 Vue.use(Buefy);
+Vue.use(Vuex);
 
 Vue.config.productionTip = false;
 
@@ -46,6 +50,7 @@ const schoolsLayer = createClusterLayer(schoolStyler(AttendanceType.STUDENT, '')
 const popup = createPopup();
 const attendanceWebmapping = new AttendanceWebmapping(map, statesLayer, municipalitiesLayer, schoolsLayer, popup, ANIMATION_DURATION);
 const printer = new Printer(window);
+const appStore = new AppStore(new Store(appStoreOptions));
 
 new Vue({
   render: h => h(AppVue),
@@ -61,5 +66,6 @@ new Vue({
     attendanceTypeBus: () => attendanceTypeBus,
     attendanceWebmapping: () => attendanceWebmapping,
     printer: () => printer,
+    appStore: () => appStore,
   },
 }).$mount('#app');

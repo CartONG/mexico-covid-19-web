@@ -6,7 +6,7 @@ import { AdministrativeDivision } from '@/domain/administrative-division/Adminis
 import { AdministrativeDivisionRepository } from '@/domain/administrative-division/AdministrativeDivisionRepository';
 import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
 import { AdministrativeDivisionTypes } from '@/domain/administrative-division/AdministrativeDivisionTypes';
-import { AdministrativeLevel } from '@/domain/AdministrativeLevel';
+import { AdministrativeLevels } from '@/domain/AdministrativeLevels';
 import { AttendanceType } from '@/domain/AttendanceType';
 import { Fetcher } from '@/domain/Fetcher';
 import { Logger } from '@/domain/Logger';
@@ -14,6 +14,7 @@ import { School } from '@/domain/school/School';
 import { SchoolRepository } from '@/domain/school/SchoolRepository';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { Summary } from '@/domain/Summary';
+import { AppStore } from '@/primary/app/AppStore';
 import { AttendanceWebmapping } from '@/primary/attendance-webmapping/AttendanceWebmapping';
 import { AttendanceTypeBus } from '@/primary/AttendanceTypeBus';
 import { ComponentState } from '@/primary/ComponentState';
@@ -41,16 +42,13 @@ export default class Dashboard extends Vue {
   municipalitySummaryList: AdministrativeDivisionSummary[] = [];
   schoolSummaryList: SchoolSummary[] = [];
   currentSummaryList: Summary[] = [];
-  country: AdministrativeDivision | null = null;
-  state: AdministrativeDivision | null = null;
-  municipality: AdministrativeDivision | null = null;
+  administrativeDivision: AdministrativeDivision | null = null;
   school: School | null = null;
   currentSummary: Summary | null = null;
-  currentAdministrativeDivision: AdministrativeDivision | null = null;
   administrativeDivisionDailyReports: AdministrativeDivisionDailyReport[] = [];
   navigation: NavigationParams[] = [];
   attendanceType: AttendanceType = AttendanceType.STUDENT;
-  administrativeLevel: AdministrativeLevel = AdministrativeLevel.COUNTRY;
+  administrativeLevel: AdministrativeLevels = AdministrativeLevels.COUNTRY;
   attendanceListSortOptions: [string, string] = ['name', 'asc'];
   absenceDetailsAttendanceType = AttendanceType.STUDENT;
   historicType = HistoricType.GIVES_CLASSES;
@@ -84,12 +82,15 @@ export default class Dashboard extends Vue {
   @Inject()
   private attendanceWebmapping!: () => AttendanceWebmapping;
 
+  @Inject()
+  private appStore!: () => AppStore;
+
   created(): void {
     this.navigationBus().onBackToCountry(this.onBackToCountry);
-    this.navigationBus().onGoToState(this.onGoToState);
-    this.navigationBus().onBackToState(this.onBackToState);
-    this.navigationBus().onGoToMunicipality(this.onGoToMunicipality);
-    this.navigationBus().onBackToMunicipality(this.onBackToMunicipality);
+    this.navigationBus().onGoToState(this.onNavigateToState);
+    this.navigationBus().onBackToState(this.onNavigateToState);
+    this.navigationBus().onGoToMunicipality(this.onNavigateToMunicipality);
+    this.navigationBus().onBackToMunicipality(this.onNavigateToMunicipality);
     this.navigationBus().onGoToSchool(this.onGoToSchool);
     this.attendanceTypeBus().onSwitchAttendanceType(attendanceType => (this.attendanceType = attendanceType));
 
@@ -104,13 +105,15 @@ export default class Dashboard extends Vue {
       .then(results => {
         this.attendanceWebmapping().setStatesFeatures(results[4], results[1]);
         this.attendanceWebmapping().setMunicipalitiesFeatures(results[5], results[2]);
-        this.country = results[0];
-        this.currentAdministrativeDivision = this.country;
+        // this.country = results[0];
+        this.appStore().addAdministrativeDivision({ ...results[0], id: 'country' }, AdministrativeDivisionTypes.COUNTRY);
+        this.administrativeDivision = this.appStore().getAdministrativeDivision('country', AdministrativeDivisionTypes.COUNTRY);
         this.stateSummaryList = results[1];
         this.municipalitySummaryList = results[2];
         this.administrativeDivisionDailyReports = results[3];
+        this.appStore().addAdministrativeDivisionHistoric('country', results[3], AdministrativeDivisionTypes.COUNTRY);
         this.currentSummaryList = this.stateSummaryList;
-        this.currentSummary = this.country;
+        this.currentSummary = this.appStore().getAdministrativeDivision('country', AdministrativeDivisionTypes.COUNTRY);
         const start = this.administrativeDivisionDailyReports.length - 15 < 0 ? 0 : this.administrativeDivisionDailyReports.length - 15;
         this.historicInterval = [start, this.administrativeDivisionDailyReports.length - 1];
         this.componentState = ComponentState.SUCCESS;
@@ -124,131 +127,126 @@ export default class Dashboard extends Vue {
   }
 
   private listSchool(municipalityId: string) {
-    this.schoolRepository()
-      .list(municipalityId)
-      .then(schoolSummaryList => {
-        this.schoolSummaryList = schoolSummaryList;
-        this.currentSummaryList = schoolSummaryList;
-      })
-      .catch(error => {
-        this.logger().error('Fail to retrieve school summaries', error);
-        this.schoolSummaryList = [];
-      });
+    const summaries = this.appStore().getSchoolSummaries(municipalityId);
+
+    if (summaries) {
+      this.setSchoolSummaries(municipalityId, summaries, true);
+    } else {
+      this.schoolRepository()
+        .list(municipalityId)
+        .then(summaries => this.setSchoolSummaries(municipalityId, summaries))
+        .catch(this.listSchoolError);
+    }
   }
 
-  private findState(stateId: string) {
-    this.administrativeDivisionRepository()
-      .find(AdministrativeDivisionTypes.STATE, stateId)
-      .then(state => {
-        this.state = state;
-        this.currentAdministrativeDivision = this.state;
-      })
-      .catch(error => {
-        this.state = null;
-        this.logger().error('Fail to retrieve state', error);
-      });
+  private listSchoolError(error: Error) {
+    this.logger().error('Fail to retrieve school summaries', error);
+    this.schoolSummaryList = [];
   }
 
-  private findMunicipality(municipalityId: string) {
-    this.administrativeDivisionRepository()
-      .find(AdministrativeDivisionTypes.MUNICIPALITY, municipalityId)
-      .then(municipality => {
-        this.municipality = municipality;
-        this.currentAdministrativeDivision = this.municipality;
-      })
-      .catch(error => {
-        this.municipality = null;
-        this.logger().error('Fail to retrieve municipality', error);
-      });
+  private setSchoolSummaries(municipalityId: string, summaries: SchoolSummary[], updateStore = true) {
+    this.schoolSummaryList = summaries;
+    this.currentSummaryList = summaries;
+
+    if (updateStore) {
+      this.appStore().addSchoolSummaries(municipalityId, summaries);
+    }
+  }
+
+  private findAdministrativeDivision(administrativeDivisionId: string, administrativeDivisionType: AdministrativeDivisionTypes) {
+    const administrativeDivision = this.appStore().getAdministrativeDivision(administrativeDivisionId, administrativeDivisionType);
+
+    if (administrativeDivision) {
+      this.administrativeDivision = administrativeDivision;
+    } else {
+      this.administrativeDivision = null;
+      this.administrativeDivisionRepository()
+        .find(administrativeDivisionType, administrativeDivisionId)
+        .then(administrativeDivision => {
+          this.appStore().addAdministrativeDivision(administrativeDivision, administrativeDivisionType);
+          this.administrativeDivision = administrativeDivision;
+        })
+        .catch(error => {
+          this.logger().error(`Fail to retrieve administrative division ${administrativeDivisionType} ${administrativeDivisionId}`, error);
+        });
+    }
   }
 
   private findSchool(schoolId: string) {
-    this.schoolRepository()
-      .find(schoolId)
-      .then(school => (this.school = school))
-      .catch(error => {
-        this.school = null;
-        this.logger().error('Fail to retrieve school', error);
-      });
+    const school = this.appStore().getSchool(schoolId);
+
+    if (school) {
+      this.school = school;
+    } else {
+      this.school = null;
+      this.schoolRepository()
+        .find(schoolId)
+        .then(school => {
+          this.appStore().addSchool(school);
+          this.school = school;
+        })
+        .catch(error => {
+          this.school = null;
+          this.logger().error('Fail to retrieve school', error);
+        });
+    }
   }
 
-  private listAdministrativeDivisionDailyReport(administrativeDivisionType: AdministrativeDivisionTypes, id = '') {
-    this.administrativeDivisionDailyReports = [];
-    this.administrativeDivisionDailyReportRepository()
-      .listForAdministrativeDivision(administrativeDivisionType, id)
-      .then(administrativeDivisionDailyReports => {
-        this.administrativeDivisionDailyReports = administrativeDivisionDailyReports;
-      })
-      .catch(error => {
-        this.logger().error(`Fail to retrieve administrative division daily reports (${administrativeDivisionType}) ${id})`, error);
-      });
+  private listAdministrativeDivisionDailyReport(administrativeDivisionType: AdministrativeDivisionTypes, id: string) {
+    const administrativeDivisionDailyReports = this.appStore().getAdministrativeDivisionHistoric(id, administrativeDivisionType);
+
+    if (administrativeDivisionDailyReports) {
+      this.administrativeDivisionDailyReports = administrativeDivisionDailyReports;
+    } else {
+      this.administrativeDivisionDailyReports = [];
+      this.administrativeDivisionDailyReportRepository()
+        .listForAdministrativeDivision(administrativeDivisionType, id)
+        .then(administrativeDivisionDailyReports => {
+          this.appStore().addAdministrativeDivisionHistoric(id, administrativeDivisionDailyReports, administrativeDivisionType);
+          this.administrativeDivisionDailyReports = administrativeDivisionDailyReports;
+        })
+        .catch(error => {
+          this.logger().error(`Fail to retrieve administrative division daily reports (${administrativeDivisionType}) ${id})`, error);
+        });
+    }
   }
 
   onBackToCountry() {
     this.administrativeDivisionLevel = true;
-    this.animationDelayer().afterDelay(() => this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.COUNTRY));
+    this.animationDelayer().afterDelay(() => {
+      this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.COUNTRY, 'country');
+      this.findAdministrativeDivision('country', AdministrativeDivisionTypes.COUNTRY);
+    });
     this.schoolSummaryList = [];
-    this.currentSummary = this.country;
-    this.currentAdministrativeDivision = this.country;
     this.currentSummaryList = this.stateSummaryList;
     this.navigation = [];
-    this.administrativeLevel = AdministrativeLevel.COUNTRY;
+    this.administrativeLevel = AdministrativeLevels.COUNTRY;
   }
 
-  onGoToState(navigationParams: NavigationParams) {
+  onNavigateToState(navigationParams: NavigationParams) {
     this.administrativeDivisionLevel = true;
-    this.animationDelayer().afterDelay(() => this.findState(navigationParams.id));
-    this.animationDelayer().afterDelay(() =>
-      this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.STATE, navigationParams.id)
-    );
-    this.schoolSummaryList = [];
-    this.state = null;
-    this.currentAdministrativeDivision = null;
-    this.currentSummary = this.stateSummaryList.find(summary => summary.id === navigationParams.id) || null;
-    this.currentSummaryList = this.municipalitySummaryList.filter(summary => summary.stateId === navigationParams.id);
-    this.navigation = [navigationParams];
-    this.administrativeLevel = AdministrativeLevel.STATE;
-  }
-
-  onBackToState(navigationParams: NavigationParams) {
-    this.administrativeDivisionLevel = true;
-    this.animationDelayer().afterDelay(() =>
-      this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.STATE, navigationParams.id)
-    );
-    this.schoolSummaryList = [];
-    this.currentAdministrativeDivision = this.state;
-    this.currentSummary = this.stateSummaryList.find(summary => summary.id === navigationParams.id) || null;
-    this.currentSummaryList = this.municipalitySummaryList.filter(summary => summary.stateId === navigationParams.id);
-    this.navigation = [navigationParams];
-    this.administrativeLevel = AdministrativeLevel.STATE;
-  }
-
-  onGoToMunicipality(navigationParams: NavigationParams) {
-    this.administrativeDivisionLevel = true;
-    this.animationDelayer().afterDelay(() =>
-      this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.MUNICIPALITY, navigationParams.id)
-    );
-    this.currentSummaryList = this.schoolSummaryList;
-    this.municipality = null;
-    this.currentAdministrativeDivision = null;
-    this.currentSummary = this.municipalitySummaryList.find(summary => summary.id === navigationParams.id) || null;
     this.animationDelayer().afterDelay(() => {
-      this.listSchool(navigationParams.id);
-      this.findMunicipality(navigationParams.id);
+      this.findAdministrativeDivision(navigationParams.id, AdministrativeDivisionTypes.STATE);
+      this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.STATE, navigationParams.id);
     });
-    this.navigation = [this.navigation[0], navigationParams];
-    this.administrativeLevel = AdministrativeLevel.MUNICIPALITY;
+    this.schoolSummaryList = [];
+    this.currentSummary = this.stateSummaryList.find(summary => summary.id === navigationParams.id) || null;
+    this.currentSummaryList = this.municipalitySummaryList.filter(summary => summary.stateId === navigationParams.id);
+    this.navigation = [navigationParams];
+    this.administrativeLevel = AdministrativeLevels.STATE;
   }
 
-  onBackToMunicipality(navigationParams: NavigationParams) {
+  onNavigateToMunicipality(navigationParams: NavigationParams) {
     this.administrativeDivisionLevel = true;
-    this.animationDelayer().afterDelay(() =>
-      this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.MUNICIPALITY, navigationParams.id)
-    );
-    this.currentAdministrativeDivision = this.municipality;
+    this.animationDelayer().afterDelay(() => {
+      this.listAdministrativeDivisionDailyReport(AdministrativeDivisionTypes.MUNICIPALITY, navigationParams.id);
+      this.listSchool(navigationParams.id);
+      this.findAdministrativeDivision(navigationParams.id, AdministrativeDivisionTypes.MUNICIPALITY);
+    });
+    this.currentSummaryList = this.schoolSummaryList;
     this.currentSummary = this.municipalitySummaryList.find(summary => summary.id === navigationParams.id) || null;
     this.navigation = [this.navigation[0], navigationParams];
-    this.administrativeLevel = AdministrativeLevel.MUNICIPALITY;
+    this.administrativeLevel = AdministrativeLevels.MUNICIPALITY;
   }
 
   onGoToSchool(navigationParams: NavigationParams) {
@@ -258,6 +256,6 @@ export default class Dashboard extends Vue {
     this.school = null;
     this.currentSummary = this.schoolSummaryList.find(summary => summary.id === navigationParams.id) || null;
     this.navigation = [this.navigation[0], this.navigation[1], navigationParams];
-    this.administrativeLevel = AdministrativeLevel.SCHOOL;
+    this.administrativeLevel = AdministrativeLevels.SCHOOL;
   }
 }

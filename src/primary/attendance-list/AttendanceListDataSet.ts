@@ -1,4 +1,4 @@
-import { AdministrativeLevel } from '@/domain/AdministrativeLevel';
+import { AdministrativeLevels } from '@/domain/AdministrativeLevels';
 import { AttendanceType } from '@/domain/AttendanceType';
 import { Summary } from '@/domain/Summary';
 import { PercentageDataSet, toPercentageDataSet } from '@/primary/common/PercentageDataSet';
@@ -16,13 +16,13 @@ const ATTENDANCE_TYPE_LABELS = {
 };
 
 const ADMINISTRATIVE_LEVEL_LABELS = {
-  [AdministrativeLevel.COUNTRY]: 'entidad',
-  [AdministrativeLevel.STATE]: 'municipio',
-  [AdministrativeLevel.MUNICIPALITY]: 'escuela',
-  [AdministrativeLevel.SCHOOL]: 'escuela',
+  [AdministrativeLevels.COUNTRY]: 'entidad',
+  [AdministrativeLevels.STATE]: 'municipio',
+  [AdministrativeLevels.MUNICIPALITY]: 'escuela',
+  [AdministrativeLevels.SCHOOL]: 'escuela',
 };
 
-const toEntityColumnName = (administrativeLevel: AdministrativeLevel) => {
+const toEntityColumnName = (administrativeLevel: AdministrativeLevels) => {
   const label = ADMINISTRATIVE_LEVEL_LABELS[administrativeLevel];
   return `${label[0].toUpperCase()}${label.substring(1)}`;
 };
@@ -45,7 +45,7 @@ const toItem = (attendanceType: AttendanceType, summary: Summary) => ({
 });
 
 export const toAttendanceListDataSet = (
-  administrativeLevel: AdministrativeLevel,
+  administrativeLevel: AdministrativeLevels,
   attendanceType: AttendanceType,
   summaries: Summary[]
 ): AttendanceListDataSet => ({
