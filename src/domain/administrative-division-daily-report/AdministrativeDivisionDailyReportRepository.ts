@@ -1,10 +1,10 @@
 import { AdministrativeDivisionTypes } from '../administrative-division/AdministrativeDivisionTypes';
 
-import { AdministrativeDivisionHistory } from './AdministrativeDivisionHistory';
+import { AdministrativeDivisionDailyReport } from './AdministrativeDivisionDailyReport';
 
-export interface AdministrativeDivisionHistoryRepository {
+export interface AdministrativeDivisionDailyReportRepository {
   listForAdministrativeDivision: (
     type: AdministrativeDivisionTypes,
     AdministrativeDivisionId: string
-  ) => Promise<AdministrativeDivisionHistory[]>;
+  ) => Promise<AdministrativeDivisionDailyReport[]>;
 }

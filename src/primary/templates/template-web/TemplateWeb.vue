@@ -77,7 +77,15 @@
         </div>
         <div class="columns">
           <div class="column is-12">
-            <HistoricVue :history-items="currentHistoryItems" :printable="false"></HistoricVue>
+            <AdministrativeDivisionHistoricVue
+              v-if="administrativeDivisionLevel && administrativeDivisionDailyReports.length > 0"
+              :administrative-division-daily-reports="administrativeDivisionDailyReports"
+              :historic-type="historicType"
+              :historic-interval="historicInterval"
+              :printable="false"
+              @changehistorictype="$emit('changehistorictype', $event)"
+              @changehistoricinterval="$emit('changehistoricinterval', $event)"
+            />
           </div>
         </div>
         <div class="columns">

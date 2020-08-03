@@ -1,18 +1,18 @@
 import { AxiosInstance } from 'axios';
 
-import { AdministrativeDivisionHistory } from '@/domain/administrative-division-history/AdministrativeDivisionHistory';
-import { AdministrativeDivisionHistoryRepository } from '@/domain/administrative-division-history/AdministrativeDivisionHistoryRepository';
+import { AdministrativeDivisionDailyReport } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReport';
+import { AdministrativeDivisionDailyReportRepository } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReportRepository';
 import { AdministrativeDivisionTypes } from '@/domain/administrative-division/AdministrativeDivisionTypes';
 import { NotFound } from '@/domain/NotFound';
 import {
-  RestAdministrativeDivisionHistory,
+  RestAdministrativeDivisionDailyReport,
   toAdministrativeDivisionHistory,
-} from '@/secondary/administrative-division-history/RestAdministrativeDivisionHistory';
+} from '@/secondary/administrative-division-daily-report/RestAdministrativeDivisionDailyReport';
 
 const listForAdministrativeDivisionUrl = (type: AdministrativeDivisionTypes, administrativeDivisionId: string) => {
   switch (type) {
     case AdministrativeDivisionTypes.COUNTRY:
-      return process.env.NODE_ENV === 'development' ? 'country_history.json' : 'country_history.json'; // 'pais/history';
+      return process.env.NODE_ENV === 'development' ? 'country_history.json' : 'pais/historico';
     case AdministrativeDivisionTypes.STATE:
       return process.env.NODE_ENV === 'development' ? 'state_history.json' : `entidades/history?cod_entidad=${administrativeDivisionId}`;
     case AdministrativeDivisionTypes.MUNICIPALITY:
@@ -22,16 +22,16 @@ const listForAdministrativeDivisionUrl = (type: AdministrativeDivisionTypes, adm
   }
 };
 
-export class RestAdministrativeDivisionHistoryRepository implements AdministrativeDivisionHistoryRepository {
+export class RestAdministrativeDivisionDailyReportRepository implements AdministrativeDivisionDailyReportRepository {
   constructor(private axiosInstance: AxiosInstance) {}
 
   listForAdministrativeDivision(
     type: AdministrativeDivisionTypes,
     administrativeDivisionId: string
-  ): Promise<AdministrativeDivisionHistory[]> {
+  ): Promise<AdministrativeDivisionDailyReport[]> {
     const url = listForAdministrativeDivisionUrl(type, administrativeDivisionId);
     return this.axiosInstance
-      .get<RestAdministrativeDivisionHistory[]>(url)
+      .get<RestAdministrativeDivisionDailyReport[]>(url)
       .then(response => response.data.map(toAdministrativeDivisionHistory))
       .catch(error => {
         throw new NotFound(`administrative division history [${type}]`).cause(error);
