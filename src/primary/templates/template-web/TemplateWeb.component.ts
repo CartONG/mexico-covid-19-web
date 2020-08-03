@@ -3,7 +3,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { AdministrativeDivisionDailyReport } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReport';
 import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
 import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
-import { AdministrativeLevel } from '@/domain/AdministrativeLevel';
+import { AdministrativeLevels } from '@/domain/AdministrativeLevels';
 import { AttendanceType } from '@/domain/AttendanceType';
 import { School } from '@/domain/school/School';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
@@ -74,7 +74,7 @@ export default class TemplateWeb extends Vue {
   readonly attendanceType!: AttendanceType;
 
   @Prop()
-  readonly administrativeLevel!: AdministrativeLevel;
+  readonly administrativeLevel!: AdministrativeLevels;
 
   @Prop()
   readonly attendanceListSortOptions!: [string, string];

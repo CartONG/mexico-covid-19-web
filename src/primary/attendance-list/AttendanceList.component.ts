@@ -1,6 +1,6 @@
 import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
 
-import { AdministrativeLevel } from '@/domain/AdministrativeLevel';
+import { AdministrativeLevels } from '@/domain/AdministrativeLevels';
 import { AttendanceType } from '@/domain/AttendanceType';
 import { Summary } from '@/domain/Summary';
 import { toAttendanceListDataSet } from '@/primary/attendance-list/AttendanceListDataSet';
@@ -22,7 +22,7 @@ export default class RateList extends Vue {
   readonly navigation!: NavigationParams[];
 
   @Prop()
-  readonly administrativeLevel!: AdministrativeLevel;
+  readonly administrativeLevel!: AdministrativeLevels;
 
   @Prop()
   readonly attendanceListSortOptions!: [string, string];
@@ -40,13 +40,13 @@ export default class RateList extends Vue {
 
   public goTo(id: string, name: string) {
     switch (this.administrativeLevel) {
-      case AdministrativeLevel.COUNTRY:
+      case AdministrativeLevels.COUNTRY:
         return this.navigationBus().goToState({ id, name });
-      case AdministrativeLevel.STATE:
+      case AdministrativeLevels.STATE:
         return this.navigationBus().goToMunicipality({ id, name });
-      case AdministrativeLevel.MUNICIPALITY:
+      case AdministrativeLevels.MUNICIPALITY:
         return this.navigationBus().goToSchool({ id, name });
-      case AdministrativeLevel.SCHOOL:
+      case AdministrativeLevels.SCHOOL:
         return this.navigationBus().goToSchool({ id, name });
     }
   }
