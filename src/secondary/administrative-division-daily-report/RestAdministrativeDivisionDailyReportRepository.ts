@@ -14,11 +14,11 @@ const listForAdministrativeDivisionUrl = (type: AdministrativeDivisionTypes, adm
     case AdministrativeDivisionTypes.COUNTRY:
       return process.env.NODE_ENV === 'development' ? 'country_history.json' : 'pais/historico';
     case AdministrativeDivisionTypes.STATE:
-      return process.env.NODE_ENV === 'development' ? 'state_history.json' : `entidades/history?cod_entidad=${administrativeDivisionId}`;
+      return process.env.NODE_ENV === 'development' ? 'state_history.json' : `entidades/historico?cod_entidad=${administrativeDivisionId}`;
     case AdministrativeDivisionTypes.MUNICIPALITY:
       return process.env.NODE_ENV === 'development'
         ? 'municipality_history.json'
-        : `municipios/history/?cod_entidad=${administrativeDivisionId.substring(0, 2)}&cod_mun=${administrativeDivisionId.substring(2)}`;
+        : `municipios/historico/?cod_entidad=${administrativeDivisionId.substring(0, 2)}&cod_mun=${administrativeDivisionId.substring(2)}`;
   }
 };
 
