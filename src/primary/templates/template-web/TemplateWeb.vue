@@ -30,8 +30,8 @@
             <InfoModalVue class="ml-5 mr-3" />
           </div>
         </div>
-        <div class="columns">
-          <div class="column is-10">
+        <div class="columns is-desktop">
+          <div class="column is-10-desktop is-12-tablet">
             <AttendanceMapVue
               class="is-full-height is-direction-column"
               :schools-summaries="schoolSummaryList"
@@ -42,7 +42,7 @@
               :printable="false"
             />
           </div>
-          <div class="column is-2">
+          <div class="column is-2-desktop is-12-tablet">
             <AdministrativeDivisionIndicatorsVue
               v-if="administrativeDivisionLevel"
               :administrative-division="currentAdministrativeDivision"
