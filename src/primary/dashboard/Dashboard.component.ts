@@ -10,6 +10,8 @@ import { AdministrativeLevels } from '@/domain/AdministrativeLevels';
 import { AttendanceType } from '@/domain/AttendanceType';
 import { Fetcher } from '@/domain/Fetcher';
 import { Logger } from '@/domain/Logger';
+import { SchoolDailyReport } from '@/domain/school-daily-report/SchoolDailyReport';
+import { SchoolDailyReportRepository } from '@/domain/school-daily-report/SchoolDailyReportRepository';
 import { School } from '@/domain/school/School';
 import { SchoolRepository } from '@/domain/school/SchoolRepository';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
@@ -46,6 +48,7 @@ export default class Dashboard extends Vue {
   school: School | null = null;
   currentSummary: Summary | null = null;
   administrativeDivisionDailyReports: AdministrativeDivisionDailyReport[] = [];
+  schoolDailyReports: SchoolDailyReport[] = [];
   navigation: NavigationParams[] = [];
   attendanceType: AttendanceType = AttendanceType.STUDENT;
   administrativeLevel: AdministrativeLevels = AdministrativeLevels.COUNTRY;
@@ -72,6 +75,9 @@ export default class Dashboard extends Vue {
 
   @Inject()
   private administrativeDivisionDailyReportRepository!: () => AdministrativeDivisionDailyReportRepository;
+
+  @Inject()
+  private schoolDailyReportRepository!: () => SchoolDailyReportRepository;
 
   @Inject()
   private navigationBus!: () => NavigationBus;
@@ -105,7 +111,6 @@ export default class Dashboard extends Vue {
       .then(results => {
         this.attendanceWebmapping().setStatesFeatures(results[4], results[1]);
         this.attendanceWebmapping().setMunicipalitiesFeatures(results[5], results[2]);
-        // this.country = results[0];
         this.appStore().addAdministrativeDivision({ ...results[0], id: 'country' }, AdministrativeDivisionTypes.COUNTRY);
         this.administrativeDivision = this.appStore().getAdministrativeDivision('country', AdministrativeDivisionTypes.COUNTRY);
         this.stateSummaryList = results[1];
@@ -211,6 +216,25 @@ export default class Dashboard extends Vue {
     }
   }
 
+  private listSchoolDailyReport(id: string) {
+    const schoolDailyReports = this.appStore().getSchoolHistoric(id);
+
+    if (schoolDailyReports) {
+      this.schoolDailyReports = schoolDailyReports;
+    } else {
+      this.schoolDailyReports = [];
+      this.schoolDailyReportRepository()
+        .listForSchool(id)
+        .then(schoolDailyReports => {
+          this.appStore().addSchoolHistoric(id, schoolDailyReports);
+          this.schoolDailyReports = schoolDailyReports;
+        })
+        .catch(error => {
+          this.logger().error('Fail to retrieve school daily reports', error);
+        });
+    }
+  }
+
   onBackToCountry() {
     this.administrativeDivisionLevel = true;
     this.animationDelayer().afterDelay(() => {
@@ -253,9 +277,11 @@ export default class Dashboard extends Vue {
     this.administrativeDivisionLevel = false;
     this.administrativeDivisionDailyReports = [];
     this.findSchool(navigationParams.id);
+    this.listSchoolDailyReport(navigationParams.id);
     this.school = null;
     this.currentSummary = this.schoolSummaryList.find(summary => summary.id === navigationParams.id) || null;
     this.navigation = [this.navigation[0], this.navigation[1], navigationParams];
     this.administrativeLevel = AdministrativeLevels.SCHOOL;
+    this.historicType = this.historicType === HistoricType.GIVES_CLASSES ? HistoricType.STUDENT_ABSENCE : this.historicType;
   }
 }

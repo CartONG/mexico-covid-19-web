@@ -91,6 +91,13 @@
               :historic-interval="historicInterval"
               :printable="true"
             />
+            <SchoolHistoricVue
+              v-if="!administrativeDivisionLevel && schoolDailyReports.length > 0"
+              :school-daily-reports="schoolDailyReports"
+              :historic-type="historicType"
+              :historic-interval="historicInterval"
+              :printable="true"
+            />
           </div>
         </div>
         <div class="columns has-page-break-before"><div class="column is-12"></div></div>

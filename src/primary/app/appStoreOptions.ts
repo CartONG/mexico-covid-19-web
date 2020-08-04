@@ -3,6 +3,7 @@ import { StoreOptions } from 'vuex';
 import { AdministrativeDivisionDailyReport } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReport';
 import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
 import { AdministrativeDivisionTypes } from '@/domain/administrative-division/AdministrativeDivisionTypes';
+import { SchoolDailyReport } from '@/domain/school-daily-report/SchoolDailyReport';
 import { School } from '@/domain/school/School';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 
@@ -10,6 +11,7 @@ export interface AppState {
   administrativeDivisions: { [key: string]: AdministrativeDivision };
   administrativeDivisionHistories: { [key: string]: AdministrativeDivisionDailyReport[] };
   schools: { [key: string]: School };
+  schoolHistories: { [key: string]: SchoolDailyReport[] };
   schoolSummaries: { [key: string]: SchoolSummary[] };
 }
 
@@ -18,6 +20,7 @@ export const appStoreOptions: StoreOptions<AppState> = {
     administrativeDivisions: {},
     administrativeDivisionHistories: {},
     schools: {},
+    schoolHistories: {},
     schoolSummaries: {},
   },
   mutations: {
@@ -44,6 +47,9 @@ export const appStoreOptions: StoreOptions<AppState> = {
     },
     addSchool(appState: AppState, school: School) {
       appState.schools[school.id] = school;
+    },
+    addSchoolDivisionHistoric(appState: AppState, options: { schoolId: string; reports: SchoolDailyReport[] }) {
+      appState.schoolHistories[options.schoolId] = options.reports;
     },
     addSchoolSummariesForMunicipality(
       appState: AppState,

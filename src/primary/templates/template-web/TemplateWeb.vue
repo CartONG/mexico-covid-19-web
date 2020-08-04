@@ -86,6 +86,15 @@
               @changehistorictype="$emit('changehistorictype', $event)"
               @changehistoricinterval="$emit('changehistoricinterval', $event)"
             />
+            <SchoolHistoricVue
+              v-if="!administrativeDivisionLevel && schoolDailyReports.length > 0"
+              :school-daily-reports="schoolDailyReports"
+              :historic-type="historicType"
+              :historic-interval="historicInterval"
+              :printable="false"
+              @changehistorictype="$emit('changehistorictype', $event)"
+              @changehistoricinterval="$emit('changehistoricinterval', $event)"
+            />
           </div>
         </div>
         <div class="columns">

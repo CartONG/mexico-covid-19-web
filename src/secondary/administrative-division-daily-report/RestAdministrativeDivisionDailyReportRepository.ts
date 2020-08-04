@@ -34,7 +34,7 @@ export class RestAdministrativeDivisionDailyReportRepository implements Administ
       .get<RestAdministrativeDivisionDailyReport[]>(url)
       .then(response => response.data.map(toAdministrativeDivisionHistory))
       .catch(error => {
-        throw new NotFound(`administrative division history [${type}]`).cause(error);
+        throw new NotFound(`administrative division daily reports [${type}]`).cause(error);
       });
   }
 }
