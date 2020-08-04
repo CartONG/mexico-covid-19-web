@@ -1,12 +1,12 @@
 <template>
-  <div class="choropleth-map card">
+  <div class="card">
     <header class="card-header">
       <h2 class="card-header-title">Tasa de asistencia</h2>
     </header>
     <div class="card-content px-0 py-0 is-full-height is-flex-grow-1">
       <div class="is-full-height is-direction-column-reverse">
         <AttendanceTabsVue class="my-0" :summary="summary" :attendanceType="attendanceType" :inline="inline" :printable="printable" />
-        <div id="map" class="map has-background-white is-flex-grow-1"></div>
+        <div id="map" :class="`map has-background-white is-flex-grow-1${printable ? '' : ' h400'}`"></div>
       </div>
       <PopupVue id="popup" :items="schoolItems" @pick="pickSchool" @close="attendanceWebmapping().closePopup()" />
       <div id="recenter-control" class="ol-control">
