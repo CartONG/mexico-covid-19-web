@@ -24,6 +24,7 @@ import { RestAdministrativeDivisionRepository } from '@/secondary/administrative
 import { ConsoleLogger } from '@/secondary/ConsoleLogger';
 import { LocalFetcher } from '@/secondary/LocalFetcher';
 import { Printer } from '@/secondary/Printer';
+import { RestSchoolDailyReportRepository } from '@/secondary/school-daily-report/RestSchoolDailyReportRepository';
 import { RestSchoolRepository } from '@/secondary/school/RestSchoolRepository';
 
 Vue.use(Buefy);
@@ -41,6 +42,7 @@ const updateMapViewportDelayer = new Delayer(window, UPDATE_MAP_VIEWPORT_DELAY);
 const administrativeDivisionRepository = new RestAdministrativeDivisionRepository(restAxios);
 const administrativeDivisionDailyReportRepository = new RestAdministrativeDivisionDailyReportRepository(restAxios);
 const schoolRepository = new RestSchoolRepository(restAxios);
+const schoolDailyReportRepository = new RestSchoolDailyReportRepository(restAxios);
 const navigationBus = new NavigationBus(new Vue());
 const attendanceTypeBus = new AttendanceTypeBus(new Vue());
 const map = createMap(MAP_EXTENT);
@@ -62,6 +64,7 @@ new Vue({
     administrativeDivisionRepository: () => administrativeDivisionRepository,
     administrativeDivisionDailyReportRepository: () => administrativeDivisionDailyReportRepository,
     schoolRepository: () => schoolRepository,
+    schoolDailyReportRepository: () => schoolDailyReportRepository,
     navigationBus: () => navigationBus,
     attendanceTypeBus: () => attendanceTypeBus,
     attendanceWebmapping: () => attendanceWebmapping,

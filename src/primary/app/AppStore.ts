@@ -3,6 +3,7 @@ import { Store } from 'vuex';
 import { AdministrativeDivisionDailyReport } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReport';
 import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
 import { AdministrativeDivisionTypes } from '@/domain/administrative-division/AdministrativeDivisionTypes';
+import { SchoolDailyReport } from '@/domain/school-daily-report/SchoolDailyReport';
 import { School } from '@/domain/school/School';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { AppState } from '@/primary/app/appStoreOptions';
@@ -39,8 +40,16 @@ export class AppStore {
     this.store.commit('addSchool', school);
   }
 
+  addSchoolHistoric(schoolId: string, reports: SchoolDailyReport[]) {
+    this.store.commit('addSchoolDivisionHistoric', { schoolId, reports });
+  }
+
   getSchool(id: string): School | null {
     return this.store.state.schools[id] || null;
+  }
+
+  getSchoolHistoric(id: string): SchoolDailyReport[] | null {
+    return this.store.state.administrativeDivisionHistories[id] || null;
   }
 
   addSchoolSummaries(municipalityId: string, summaries: SchoolSummary[]) {

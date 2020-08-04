@@ -18,6 +18,7 @@ import { BreadcrumbVue } from '@/primary/breadcrumb';
 import { HistoricType } from '@/primary/HistoricType';
 import { NavigationParams } from '@/primary/navigation/NavigationParams';
 import { SchoolDetailsVue } from '@/primary/school-details';
+import { SchoolHistoricVue } from '@/primary/school-historic';
 import { SchoolIndicatorsVue } from '@/primary/school-indicators';
 import { Printer } from '@/secondary/Printer';
 
@@ -32,6 +33,7 @@ import { Printer } from '@/secondary/Printer';
     AdministrativeDivisionDetailsVue,
     SchoolDetailsVue,
     AdministrativeDivisionHistoricVue,
+    SchoolHistoricVue,
   },
 })
 export default class TemplatePrint extends Vue {
@@ -52,6 +54,9 @@ export default class TemplatePrint extends Vue {
 
   @Prop()
   readonly school!: School;
+
+  @Prop()
+  readonly schoolDailyReports!: AdministrativeDivisionDailyReport[];
 
   @Prop()
   readonly currentSummary!: Summary;

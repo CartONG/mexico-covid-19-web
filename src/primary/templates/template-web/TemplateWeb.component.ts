@@ -21,6 +21,7 @@ import { HistoricType } from '@/primary/HistoricType';
 import { InfoModalVue } from '@/primary/info-modal';
 import { NavigationParams } from '@/primary/navigation/NavigationParams';
 import { SchoolDetailsVue } from '@/primary/school-details';
+import { SchoolHistoricVue } from '@/primary/school-historic';
 import { SchoolIndicatorsVue } from '@/primary/school-indicators';
 
 @Component({
@@ -37,6 +38,7 @@ import { SchoolIndicatorsVue } from '@/primary/school-indicators';
     AdministrativeDivisionHistoricVue,
     DropdownVue,
     ExportDropdownVue,
+    SchoolHistoricVue,
   },
 })
 export default class TemplateWeb extends Vue {
@@ -54,6 +56,9 @@ export default class TemplateWeb extends Vue {
 
   @Prop()
   readonly school!: School;
+
+  @Prop()
+  readonly schoolDailyReports!: AdministrativeDivisionDailyReport[];
 
   @Prop()
   readonly currentSummary!: Summary;
