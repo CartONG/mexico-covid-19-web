@@ -20,8 +20,12 @@ export default class SchoolHistoric extends Vue {
   @Prop()
   readonly historicInterval!: [number, number];
 
+  get animationDuration() {
+    return this.printable ? 0 : 250;
+  }
+
   get schoolHistoricDataSet() {
-    return toSchoolHistoricDataSet(this.schoolDailyReports, this.historicType);
+    return toSchoolHistoricDataSet(this.schoolDailyReports, this.historicType, this.animationDuration);
   }
 
   @Watch('schoolHistoricDataSet')
@@ -37,16 +41,16 @@ export default class SchoolHistoric extends Vue {
   mounted() {
     const data = this.schoolHistoricDataSet.chartData.slice(this.historicInterval[0], this.historicInterval[1] + 1);
     if (this.printable) {
-      makeCanvasStackedBarChart('historic-stacked-chart', data, this.schoolHistoricDataSet.chartStackedColumns);
+      makeCanvasStackedBarChart('historic-stacked-chart', data, this.schoolHistoricDataSet.chartOptions);
     } else {
-      makeStackedBarChart('historic-stacked-chart', data, this.schoolHistoricDataSet.chartStackedColumns, 250);
+      makeStackedBarChart('historic-stacked-chart', data, this.schoolHistoricDataSet.chartOptions);
     }
   }
 
   update() {
     const data = this.schoolHistoricDataSet.chartData.slice(this.historicInterval[0], this.historicInterval[1] + 1);
     if (!this.printable) {
-      updateStackedChart('historic-stacked-chart', data, this.schoolHistoricDataSet.chartStackedColumns, 250);
+      updateStackedChart('historic-stacked-chart', data, this.schoolHistoricDataSet.chartOptions);
     }
   }
 

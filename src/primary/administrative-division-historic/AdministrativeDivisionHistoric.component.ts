@@ -20,8 +20,12 @@ export default class Historic extends Vue {
   @Prop()
   readonly historicInterval!: [number, number];
 
+  get animationDuration() {
+    return this.printable ? 0 : 250;
+  }
+
   get administrativeDivisionHistoricDataSet() {
-    return toAdministrativeDivisionHistoricDataSet(this.administrativeDivisionDailyReports, this.historicType);
+    return toAdministrativeDivisionHistoricDataSet(this.administrativeDivisionDailyReports, this.historicType, this.animationDuration);
   }
 
   @Watch('administrativeDivisionHistoricDataSet')
@@ -37,16 +41,16 @@ export default class Historic extends Vue {
   mounted() {
     const data = this.administrativeDivisionHistoricDataSet.chartData.slice(this.historicInterval[0], this.historicInterval[1] + 1);
     if (this.printable) {
-      makeCanvasStackedBarChart('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartStackedColumns);
+      makeCanvasStackedBarChart('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartOptions);
     } else {
-      makeStackedBarChart('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartStackedColumns, 250);
+      makeStackedBarChart('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartOptions);
     }
   }
 
   update() {
     const data = this.administrativeDivisionHistoricDataSet.chartData.slice(this.historicInterval[0], this.historicInterval[1] + 1);
     if (!this.printable) {
-      updateStackedChart('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartStackedColumns, 250);
+      updateStackedChart('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartOptions);
     }
   }
 

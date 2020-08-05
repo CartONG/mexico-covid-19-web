@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 
-export const makeCanvasStackedBarChart = (selectorId: string, data: { [key: string]: any }[], stackedKeys: string[]) => {
-  makeStackedBarChart(selectorId, data, stackedKeys);
+export const makeCanvasStackedBarChart = (selectorId: string, data: { [key: string]: any }[], options: HistoricChartOptions) => {
+  makeStackedBarChart(selectorId, data, options);
   const svg = d3.select(`#${selectorId} > svg`);
 
   const svgString = getSVGString(svg.node() as HTMLElement);
@@ -50,15 +50,39 @@ const svgString2Image = (selectorId: string, svgString: any, width: number, heig
   image.src = imgsrc;
 };
 
+// - build options interface
+// - make title bigger and with the correct font
+
+export interface HistoricChartOptions {
+  colors: string[];
+  stackedKeys: string[];
+  name: string;
+  legend: { text: string; color: string }[];
+  animationDuration: number;
+}
+
 const WIDTH = 1200;
 const HEIGHT = 400;
-const MARGIN_TOP = 20;
+const MARGIN_TOP = 35;
 const MARGIN_RIGHT = 20;
 const MARGIN_BOTTOM = 80;
 const MARGIN_LEFT = 40;
 
-export const makeStackedBarChart = (selectorId: string, data: { [key: string]: any }[], stackedKeys: string[], animationDuration = 0) => {
-  const parseDate = d3.timeFormat('%d/%m');
+const locale = {
+  dateTime: '%A, %e de %B de %Y, %X',
+  date: '%d/%m/%Y',
+  time: '%H:%M:%S',
+  periods: ['AM', 'PM'],
+  days: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
+  shortDays: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
+  months: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+  shortMonths: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
+};
+
+d3.timeFormatDefaultLocale(locale as any);
+
+export const makeStackedBarChart = (selectorId: string, data: { [key: string]: any }[], options: HistoricChartOptions) => {
+  const parseDate = d3.timeFormat('%e de %B');
   const chartWidth = WIDTH - MARGIN_LEFT - MARGIN_RIGHT;
   const chartHeight = HEIGHT - MARGIN_TOP - MARGIN_BOTTOM;
 
@@ -83,9 +107,14 @@ export const makeStackedBarChart = (selectorId: string, data: { [key: string]: a
   const y = d3.scaleLinear().range([chartHeight, 0]);
 
   const xAxis = d3.axisBottom(x).tickFormat(d => parseDate(new Date(d)));
-  const yAxis = d3.axisLeft(y).ticks(10);
+
+  const yAxis = d3
+    .axisLeft(y)
+    .ticks(10)
+    .tickFormat(d => `${d} %`);
 
   x.domain(data.map(d => d.date));
+
   y.domain([0, 100]);
 
   g.append('g')
@@ -97,28 +126,32 @@ export const makeStackedBarChart = (selectorId: string, data: { [key: string]: a
     .attr('dx', '-.8em')
     .attr('transform', 'rotate(-45)');
 
-  g.append('g')
-    .attr('class', 'y axis')
-    .call(yAxis)
-    .append('text')
-    .attr('y', -18)
-    .attr('x', 20)
-    .attr('dy', '.71em')
-    .style('text-anchor', 'middle')
-    .style('fill', '#000')
-    .text('');
+  const yAxisSelector = g
+    .append('g')
+    .attr('class', 'y-axis')
+    .call(yAxis);
 
-  updateStackedChart(selectorId, data, stackedKeys, animationDuration);
+  const text = yAxisSelector
+    .append('text')
+    .attr('class', 'y-axis-title')
+    .attr('y', -30)
+    .attr('x', -20)
+    .attr('dy', '.71em')
+    .style('text-anchor', 'start')
+    .style('fill', '#363636')
+    .style('font', '11px Montserrat-Regular, sans-serif')
+    .text(options.name);
+
+  updateStackedChart(selectorId, data, options);
 };
 
-export const updateStackedChart = (selectorId: string, data: { [key: string]: any }[], stackedKeys: string[], animationDuration = 0) => {
+export const updateStackedChart = (selectorId: string, data: { [key: string]: any }[], options: HistoricChartOptions) => {
   const chartWidth = WIDTH - MARGIN_LEFT - MARGIN_RIGHT;
   const chartHeight = HEIGHT - MARGIN_TOP - MARGIN_BOTTOM;
   const svg = d3.select(`#${selectorId} > svg`);
   const g = d3.select(`#${selectorId} > svg > g`);
-  const group = svg.selectAll('g.layer').data(d3.stack().keys(stackedKeys)(data as any), (d: any) => d.key);
-  const t = d3.transition().duration(animationDuration);
-  const colors = stackedKeys.length == 1 ? ['#285c4d'] : ['#9d2449', '#285c4d'];
+  const group = svg.selectAll('g.layer').data(d3.stack().keys(options.stackedKeys)(data as any), (d: any) => d.key);
+  const t = d3.transition().duration(options.animationDuration);
 
   const x = d3
     .scaleBand()
@@ -132,10 +165,10 @@ export const updateStackedChart = (selectorId: string, data: { [key: string]: an
 
   const z = d3
     .scaleOrdinal()
-    .range(colors)
-    .domain(stackedKeys);
+    .range(options.colors)
+    .domain(options.stackedKeys);
 
-  const parseDate = d3.timeFormat('%d/%m');
+  const parseDate = d3.timeFormat('%e de %B');
 
   const xAxis = d3.axisBottom(x).tickFormat(d => parseDate(new Date(d)));
 
@@ -146,6 +179,40 @@ export const updateStackedChart = (selectorId: string, data: { [key: string]: an
     .style('text-anchor', 'end')
     .attr('dx', '-.8em')
     .attr('transform', 'rotate(-45)');
+
+  const yAxisSelector = d3.select(`#${selectorId} > svg g.y-axis`);
+  const yAxisTitle = d3.select(`#${selectorId} > svg text.y-axis-title`).text(options.name) as any;
+  const textLength = yAxisTitle.node()!.getComputedTextLength();
+  let xLegend = textLength + 20;
+
+  d3.selectAll(`#${selectorId} > svg text.legend-text`).remove();
+  d3.selectAll(`#${selectorId} > svg rect.legend-color`).remove();
+
+  options.legend.forEach(legendItem => {
+    yAxisSelector
+      .append('rect')
+      .attr('class', 'legend-color')
+      .attr('y', -32)
+      .attr('x', xLegend)
+      .attr('width', 10)
+      .attr('height', 10)
+      .style('fill', legendItem.color);
+
+    xLegend += 15;
+
+    const text = yAxisSelector
+      .append('text')
+      .attr('class', 'legend-text')
+      .attr('y', -30)
+      .attr('x', xLegend)
+      .attr('dy', '.71em')
+      .style('text-anchor', 'start')
+      .style('fill', '#363636')
+      .style('font', '10px Montserrat-Regular, sans-serif')
+      .text(legendItem.text);
+
+    xLegend += text.node()!.getComputedTextLength() + 15;
+  });
 
   group
     .enter()
