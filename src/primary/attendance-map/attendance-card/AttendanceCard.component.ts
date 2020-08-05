@@ -23,9 +23,10 @@ export default class AttendanceCard extends Vue {
     const newAttendanceValue = newAttendance.percentage.value;
     const formerAttendanceValue = oldAttendance.percentage.value;
     const color = newAttendance.percentage.color;
+    const unknown = newAttendance.percentage.text === '-';
 
     this.animationDelayer().afterDelay(() => {
-      updateChart(this.chartSelectorId, newAttendanceValue, formerAttendanceValue, color, 500);
+      updateChart(this.chartSelectorId, newAttendanceValue, formerAttendanceValue, color, unknown, 500);
     });
   }
 
@@ -38,9 +39,9 @@ export default class AttendanceCard extends Vue {
     const color = this.attendance.percentage.color;
 
     if (this.printable) {
-      makeCanvasChart(this.chartSelectorId, attendance, color);
+      makeCanvasChart(this.chartSelectorId, attendance, color, this.attendance.percentage.text === '-');
     } else {
-      makeChart(this.chartSelectorId, attendance, color, 500);
+      makeChart(this.chartSelectorId, attendance, color, this.attendance.percentage.text === '-', 500);
     }
   }
 }
