@@ -11,7 +11,7 @@
     </div>
     <div class="has-background-white card mb-4">
       <header class="card-header py-2 px-2">
-        <h2 class="has-text-weight-bold has-text-primary is-uppercase">Commentarios realizados por la escuela</h2>
+        <h2 class="has-text-weight-bold has-text-primary is-uppercase">Comentarios realizados por la escuela</h2>
       </header>
       <div class="card-content px-0 py-0">
         <p v-if="schoolDataSet.studentAbsenceOtherReason === ''" class="px-2 py-2">No aplicable</p>
@@ -82,7 +82,7 @@
         <table class="table is-fullwidth has-no-background">
           <tbody>
             <tr>
-              <td class="has-text-weight-bold has-text-primary is-uppercase">conditiones sanitarias elementales en la escuela</td>
+              <td class="has-text-weight-bold has-text-primary is-uppercase">condiciones sanitarias elementales en la escuela</td>
               <td class="w40 has-text-right">
                 <a class="card-header-icon px-0 py-0">
                   <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
