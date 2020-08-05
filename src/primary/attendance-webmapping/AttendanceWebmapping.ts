@@ -54,27 +54,6 @@ export class AttendanceWebmapping {
     addLayerSingleClickEvent(this.map);
   }
 
-  /*
-  private mapAdministrativeDivisionProperties(features: Feature[], summariesById: { [key: string]: AdministrativeDivisionSummary }) {
-    const fallbackSummary: AdministrativeDivisionSummary = {
-      id: '',
-      name: '-',
-      stateId: '',
-      studentAttendance: -1,
-      teacherAttendance: -1,
-      adminAttendance: -1,
-    };
-
-    features.forEach(feature => {
-      const summary = summariesById[feature.getId()] || { ...fallbackSummary, id: feature.getId() };
-      feature.set('name', summary.name);
-      feature.set('studentAttendance', summary.studentAttendance);
-      feature.set('teacherAttendance', summary.teacherAttendance);
-      feature.set('adminAttendance', summary.adminAttendance);
-    });
-  }
-   */
-
   private mapAdministrativeDivisionProperties(features: Feature[], summaries: AdministrativeDivisionSummary[]) {
     const fallbackSummary: AdministrativeDivisionSummary = {
       id: '',
@@ -243,7 +222,7 @@ export class AttendanceWebmapping {
   public fitToMunicipality(municipalityId: string) {
     this.closePopup();
     this.updateMunicipalitiesLayer(this.attendanceType, municipalityId, this.stateId, false);
-    this.updateSchoolsLayer(this.attendanceType, '', []);
+    this.updateSchoolsLayer(this.attendanceType, '');
     fitFeature(this.map, this.municipalitiesLayer, municipalityId);
   }
 
