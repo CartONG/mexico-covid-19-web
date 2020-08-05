@@ -10,7 +10,7 @@
         <div class="navbar-menu">
           <div class="navbar-end">
             <div class="navbar-item">
-              <DropdownVue :items="currentSummaryList" />
+              <DropdownVue :items="currentSummaryList" :administrative-level="administrativeLevel" />
             </div>
           </div>
         </div>

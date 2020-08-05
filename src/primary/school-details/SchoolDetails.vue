@@ -25,7 +25,7 @@
             <tr>
               <td class="has-text-weight-bold has-text-primary is-uppercase">índice de asistencia</td>
               <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
-              <td class="w40 has-text-right">
+              <td v-if="!printable" class="w40 has-text-right">
                 <a class="card-header-icon px-0 py-0">
                   <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
                 </a>
@@ -42,35 +42,35 @@
               <td :class="`w120 has-text-right has-text-${schoolDataSet.maleStudentAttendance.color}`">
                 {{ schoolDataSet.maleStudentAttendance.text }}
               </td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>inasistencia de niñas sobre el total de inasistencias</td>
               <td :class="`w120 has-text-right has-text-${schoolDataSet.femaleStudentAttendance.color}`">
                 {{ schoolDataSet.maleStudentAttendance.text }}
               </td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>inasistencia de niños sobre el total de inasistencias</td>
               <td :class="`w120 has-text-right has-text-${schoolDataSet.maleStudentAttendance.color}`">
                 {{ schoolDataSet.maleStudentAttendance.text }}
               </td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Asistencia de docentes</td>
               <td :class="`w120 has-text-right has-text-${schoolDataSet.teacherAttendance.color}`">
                 {{ schoolDataSet.teacherAttendance.text }}
               </td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Asistencia de personal distinto a docentes</td>
               <td :class="`w120 has-text-right has-text-${schoolDataSet.adminAttendance.color}`">
                 {{ schoolDataSet.adminAttendance.text }}
               </td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
           </tbody>
         </table>
@@ -83,7 +83,7 @@
           <tbody>
             <tr>
               <td class="has-text-weight-bold has-text-primary is-uppercase">condiciones sanitarias elementales en la escuela</td>
-              <td class="w40 has-text-right">
+              <td v-if="!printable" class="w40 has-text-right">
                 <a class="card-header-icon px-0 py-0">
                   <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
                 </a>
@@ -162,7 +162,7 @@
                 Estadísticas básicas del personal
               </td>
               <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
-              <td class="w40 has-text-right">
+              <td v-if="!printable" class="w40 has-text-right">
                 <a class="card-header-icon px-0 py-0">
                   <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
                 </a>
@@ -177,42 +177,42 @@
             <tr>
               <td>Docentes</td>
               <td class="w120 has-text-right">{{ schoolDataSet.teachers }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Director</td>
               <td class="w120 has-text-right">{{ schoolDataSet.directors }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Subdirector</td>
               <td class="w120 has-text-right">{{ schoolDataSet.subDirectors }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Atps</td>
               <td class="w120 has-text-right">{{ schoolDataSet.technicalPedagogicalAdvisers }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Educfis</td>
               <td class="w120 has-text-right">{{ schoolDataSet.physicalEducationTeachers }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Admin</td>
               <td class="w120 has-text-right">{{ schoolDataSet.admins }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Intenden</td>
               <td class="w120 has-text-right">{{ schoolDataSet.quartermasters }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Otros</td>
               <td class="w120 has-text-right">{{ schoolDataSet.others }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
           </tbody>
         </table>
@@ -228,7 +228,7 @@
                 Causas de inasistencia de alumnos
               </td>
               <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
-              <td class="w40 has-text-right">
+              <td v-if="!printable" class="w40 has-text-right">
                 <a class="card-header-icon px-0 py-0">
                   <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
                 </a>
@@ -243,27 +243,27 @@
             <tr>
               <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
               <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['1'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Los padres de familia no enviaron a sus hijos a la escuela</td>
               <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['2'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Reportaron enfermos a los alumnos que no asistieron</td>
               <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['3'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Se desconocen las causas</td>
               <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['4'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Otras causas</td>
               <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['5'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
           </tbody>
         </table>
@@ -278,7 +278,7 @@
                 Causas de inasistencia de docentes
               </td>
               <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
-              <td class="w40 has-text-right">
+              <td v-if="!printable" class="w40 has-text-right">
                 <a class="card-header-icon px-0 py-0">
                   <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
                 </a>
@@ -293,22 +293,22 @@
             <tr>
               <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
               <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasons['1'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Se reportaron enfermos</td>
               <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasons['2'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>No se sabe las causas</td>
               <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasons['3'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Otras causas</td>
               <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasons['4'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
           </tbody>
         </table>
@@ -323,7 +323,7 @@
                 Causas de inasistencia del personal
               </td>
               <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
-              <td class="w40 has-text-right">
+              <td v-if="!printable" class="w40 has-text-right">
                 <a class="card-header-icon px-0 py-0">
                   <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
                 </a>
@@ -338,22 +338,22 @@
             <tr>
               <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
               <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasons['1'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Se reportaron enfermos</td>
               <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasons['2'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>No se sabe las causas</td>
               <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasons['3'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Otras causas</td>
               <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasons['4'].text }}</td>
-              <td class="w40"></td>
+              <td v-if="!printable" class="w40"></td>
             </tr>
           </tbody>
         </table>
