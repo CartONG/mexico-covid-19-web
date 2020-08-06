@@ -13,18 +13,6 @@
         </section>
       </b-modal>
     </div>
-    <div class="header">
-      <nav class="navbar" role="navigation">
-        <div class="navbar-brand">
-          <div class="navbar-item">
-            <img src="/logo.svg" alt="Logotipos de la Secretaría de Educación Pública y de UNICEF" />
-          </div>
-        </div>
-      </nav>
-      <div class="has-background-secondary-bis">
-        <BreadcrumbVue :navigation="navigation" />
-      </div>
-    </div>
     <section class="section py-2 px-2">
       <div class="container w16cm">
         <div class="columns">

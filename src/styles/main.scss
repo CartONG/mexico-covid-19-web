@@ -184,6 +184,10 @@ html {
   box-shadow: none !important;
 }
 
+.has-shadow {
+  box-shadow: inset 0 -2px 2px $light;
+}
+
 .opacity-6 {
   opacity: 0.6;
 }
@@ -214,5 +218,7 @@ body {
 @import "sizing";
 @import "spacing";
 @import "animations";
-@import "print";
 @import "autocomplete";
+@import "dashboard";
+@import "print";
+

@@ -1,31 +1,18 @@
 <template>
   <div>
-    <div class="header is-fixed-top is-full-width">
-      <nav class="navbar" role="navigation">
-        <div class="navbar-brand">
-          <div class="navbar-item">
-            <img src="/logo.svg" alt="Logotipos de la Secretaría de Educación Pública y de UNICEF" />
-          </div>
-        </div>
-        <div class="navbar-menu">
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <DropdownVue :items="currentSummaryList" :administrative-level="administrativeLevel" />
-            </div>
-          </div>
-        </div>
-      </nav>
-      <div class="has-background-secondary-bis">
-        <BreadcrumbVue :navigation="navigation" />
-      </div>
-    </div>
     <section class="section py-2 px-2">
-      <div class="container pt-6 is-fluid">
+      <div class="container is-fluid">
+        <div class="columns is-hidden-desktop">
+          <div class="column is-10">
+            <ExportDropdownVue class="shift-bottom" @print="$emit('startprinting')" />
+            <InfoModalVue class="ml-5 mr-3" />
+          </div>
+        </div>
         <div class="columns">
           <div class="column is-10">
             <h1 class="has-text-primary-bis title is-uppercase is-size-4 has-text-weight-bold">Tablero de Análisis Integral</h1>
           </div>
-          <div class="column is-2 has-text-right">
+          <div class="column is-2 has-text-right is-hidden-touch">
             <ExportDropdownVue class="shift-bottom" @print="$emit('startprinting')" />
             <InfoModalVue class="ml-5 mr-3" />
           </div>

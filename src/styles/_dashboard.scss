@@ -1,0 +1,9 @@
+.dashboard {
+  padding-top: 160px;
+}
+
+@media (max-width: $desktop) {
+  .dashboard {
+    padding-top: 180px;
+  }
+}
