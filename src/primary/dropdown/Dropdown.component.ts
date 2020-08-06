@@ -20,7 +20,7 @@ export default class Dropdown extends Vue {
   readonly administrativeLevel!: AdministrativeLevels;
 
   get sortedItems() {
-    return this.items.sort((item1, item2) => (item1.name < item2.name ? -1 : 1));
+    return [...this.items].sort((item1, item2) => (item1.name < item2.name ? -1 : 1));
   }
 
   get filteredItems() {
