@@ -111,7 +111,7 @@ export const makeStackedBarChart = (selectorId: string, data: { [key: string]: a
   const yAxis = d3
     .axisLeft(y)
     .ticks(10)
-    .tickFormat(d => `${d} %`);
+    .tickFormat(d => `${d}%`);
 
   x.domain(data.map(d => d.date));
 
