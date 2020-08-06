@@ -1,6 +1,7 @@
 <template>
   <b-autocomplete
     v-model="text"
+    class="wrap-item w300"
     :data="filteredItems"
     field="name"
     placeholder=""
@@ -11,6 +12,10 @@
     @select="selectItem"
   >
     <template slot="empty">No se han encontrado resultados</template>
+    <template slot-scope="props">
+      {{ props.option.name }}
+      <span class="is-lowercase">{{ props.option.level ? ` - ${props.option.level}` : '' }}</span>
+    </template>
   </b-autocomplete>
 </template>
 
