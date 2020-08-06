@@ -14,8 +14,6 @@ import { AdministrativeDivisionHistoricVue } from '@/primary/administrative-divi
 import { AdministrativeDivisionIndicatorsVue } from '@/primary/administrative-division-indicators';
 import { AttendanceListVue } from '@/primary/attendance-list';
 import { AttendanceMapVue } from '@/primary/attendance-map';
-import { BreadcrumbVue } from '@/primary/breadcrumb';
-import { DropdownVue } from '@/primary/dropdown';
 import { ExportDropdownVue } from '@/primary/export-dropdown';
 import { HistoricType } from '@/primary/HistoricType';
 import { InfoModalVue } from '@/primary/info-modal';
@@ -26,7 +24,6 @@ import { SchoolIndicatorsVue } from '@/primary/school-indicators';
 
 @Component({
   components: {
-    BreadcrumbVue,
     InfoModalVue,
     AttendanceMapVue,
     AdministrativeDivisionIndicatorsVue,
@@ -36,7 +33,6 @@ import { SchoolIndicatorsVue } from '@/primary/school-indicators';
     AdministrativeDivisionDetailsVue,
     SchoolDetailsVue,
     AdministrativeDivisionHistoricVue,
-    DropdownVue,
     ExportDropdownVue,
     SchoolHistoricVue,
   },

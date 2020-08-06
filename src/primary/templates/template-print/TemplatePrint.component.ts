@@ -24,7 +24,6 @@ import { Printer } from '@/secondary/Printer';
 
 @Component({
   components: {
-    BreadcrumbVue,
     AttendanceMapVue,
     AdministrativeDivisionIndicatorsVue,
     SchoolIndicatorsVue,

@@ -19,8 +19,10 @@ import { Summary } from '@/domain/Summary';
 import { AppStore } from '@/primary/app/AppStore';
 import { AttendanceWebmapping } from '@/primary/attendance-webmapping/AttendanceWebmapping';
 import { AttendanceTypeBus } from '@/primary/AttendanceTypeBus';
+import { BreadcrumbVue } from '@/primary/breadcrumb';
 import { ComponentState } from '@/primary/ComponentState';
 import { Delayer } from '@/primary/Delayer';
+import { DropdownVue } from '@/primary/dropdown';
 import { HistoricType } from '@/primary/HistoricType';
 import { NavigationBus } from '@/primary/navigation/NavigationBus';
 import { NavigationParams } from '@/primary/navigation/NavigationParams';
@@ -35,6 +37,8 @@ import { TemplateWebVue } from '@/primary/templates/template-web';
   components: {
     TemplateWebVue,
     TemplatePrintVue,
+    BreadcrumbVue,
+    DropdownVue,
   },
 })
 export default class Dashboard extends Vue {
