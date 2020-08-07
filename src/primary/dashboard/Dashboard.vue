@@ -55,6 +55,7 @@
         :absence-details-attendance-type="absenceDetailsAttendanceType"
         :historic-type="historicType"
         :historic-interval="historicInterval"
+        :map-extent="mapExtent"
         @endprinting="isPrinting = false"
       ></TemplatePrintVue>
       <TemplateWebVue
@@ -76,11 +77,13 @@
         :absence-details-attendance-type="absenceDetailsAttendanceType"
         :historic-type="historicType"
         :historic-interval="historicInterval"
+        :map-extent="mapExtent"
         @startprinting="isPrinting = true"
         @sortattendancelist="attendanceListSortOptions = $event"
         @changeabsenceattendance="absenceDetailsAttendanceType = $event"
         @changehistorictype="historicType = $event"
         @changehistoricinterval="historicInterval = $event"
+        @savemapextent="mapExtent = $event"
       ></TemplateWebVue>
     </template>
   </div>

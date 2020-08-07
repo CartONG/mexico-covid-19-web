@@ -3,7 +3,7 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 import { AdministrativeDivisionDailyReport } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReport';
 import { toAdministrativeDivisionHistoricDataSet } from '@/primary/administrative-division-historic/AdministrativeDivisionHistoricDataSet';
-import { makeCanvasStackedBarChart, makeStackedBarChart, updateStackedChart } from '@/primary/HistoricChart';
+import { makeStackedBarChart, transformStackedBarChartToImage, updateStackedChart } from '@/primary/HistoricChart';
 import { HistoricType } from '@/primary/HistoricType';
 
 @Component
@@ -41,7 +41,8 @@ export default class Historic extends Vue {
   mounted() {
     const data = this.administrativeDivisionHistoricDataSet.chartData.slice(this.historicInterval[0], this.historicInterval[1] + 1);
     if (this.printable) {
-      makeCanvasStackedBarChart('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartOptions);
+      const callback = () => this.$emit('imageready');
+      transformStackedBarChartToImage('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartOptions, callback);
     } else {
       makeStackedBarChart('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartOptions);
     }

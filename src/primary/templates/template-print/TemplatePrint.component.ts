@@ -1,4 +1,4 @@
-import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
+import { Component, Inject, Prop, Vue, Watch } from 'vue-property-decorator';
 
 import { AdministrativeDivisionDailyReport } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReport';
 import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
@@ -14,7 +14,6 @@ import { AdministrativeDivisionHistoricVue } from '@/primary/administrative-divi
 import { AdministrativeDivisionIndicatorsVue } from '@/primary/administrative-division-indicators';
 import { AttendanceListVue } from '@/primary/attendance-list';
 import { AttendanceMapVue } from '@/primary/attendance-map';
-import { BreadcrumbVue } from '@/primary/breadcrumb';
 import { HistoricType } from '@/primary/HistoricType';
 import { NavigationParams } from '@/primary/navigation/NavigationParams';
 import { SchoolDetailsVue } from '@/primary/school-details';
@@ -36,6 +35,9 @@ import { Printer } from '@/secondary/Printer';
   },
 })
 export default class TemplatePrint extends Vue {
+  mapReady = false;
+  chartReady = false;
+
   @Inject()
   private printer!: () => Printer;
 
@@ -89,6 +91,23 @@ export default class TemplatePrint extends Vue {
 
   @Prop()
   readonly historicInterval!: [number, number];
+
+  @Prop()
+  readonly mapExtent!: [number, number, number, number] | null;
+
+  @Watch('mapReady')
+  mapReadyWatcher() {
+    if (this.chartReady) {
+      this.printer().print();
+    }
+  }
+
+  @Watch('chartReady')
+  chartReadyWatcher() {
+    if (this.mapReady) {
+      this.printer().print();
+    }
+  }
 
   get currentSummariesChunks() {
     const sortAsc = (val1: string | number, val2: string | number) => (val1 < val2 ? -1 : 1);

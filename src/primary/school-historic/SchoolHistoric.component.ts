@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 import { SchoolDailyReport } from '@/domain/school-daily-report/SchoolDailyReport';
-import { makeCanvasStackedBarChart, makeStackedBarChart, updateStackedChart } from '@/primary/HistoricChart';
+import { makeStackedBarChart, transformStackedBarChartToImage, updateStackedChart } from '@/primary/HistoricChart';
 import { HistoricType } from '@/primary/HistoricType';
 import { toSchoolHistoricDataSet } from '@/primary/school-historic/SchoolHistoricDataSet';
 
@@ -41,7 +41,8 @@ export default class SchoolHistoric extends Vue {
   mounted() {
     const data = this.schoolHistoricDataSet.chartData.slice(this.historicInterval[0], this.historicInterval[1] + 1);
     if (this.printable) {
-      makeCanvasStackedBarChart('historic-stacked-chart', data, this.schoolHistoricDataSet.chartOptions);
+      const callback = () => this.$emit('imageready');
+      transformStackedBarChartToImage('historic-stacked-chart', data, this.schoolHistoricDataSet.chartOptions, callback);
     } else {
       makeStackedBarChart('historic-stacked-chart', data, this.schoolHistoricDataSet.chartOptions);
     }

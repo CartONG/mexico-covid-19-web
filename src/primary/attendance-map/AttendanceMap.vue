@@ -3,10 +3,16 @@
     <header class="card-header">
       <h2 class="card-header-title">Tasa de asistencia</h2>
     </header>
-    <div class="card-content px-0 py-0 is-full-height is-flex-grow-1">
-      <div class="is-full-height is-direction-column-reverse">
-        <AttendanceTabsVue class="my-0" :summary="summary" :attendanceType="attendanceType" :inline="inline" :printable="printable" />
-        <div id="map" :class="`map has-background-white is-flex-grow-1${printable ? '' : ' h400'}`"></div>
+    <div :class="`card-content px-0 py-0${printable ? '' : ' is-full-height is-flex-grow-1'}`">
+      <div :class="`is-full-height${printable ? '' : ' is-direction-column'}`">
+        <div id="map" :class="`map has-background-white${printable ? ' h12cm' : ' h500 h400-mobile'}`"></div>
+        <AttendanceTabsVue
+          :class="`my-0${printable ? '' : ' is-flex-grow-1'}`"
+          :summary="summary"
+          :attendanceType="attendanceType"
+          :inline="inline"
+          :printable="printable"
+        />
       </div>
       <PopupVue id="popup" :items="schoolItems" @pick="pickSchool" @close="attendanceWebmapping().closePopup()" />
       <div id="recenter-control" class="ol-control">

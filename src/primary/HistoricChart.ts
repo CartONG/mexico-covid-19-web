@@ -1,57 +1,6 @@
 import * as d3 from 'd3';
 
-export const makeCanvasStackedBarChart = (selectorId: string, data: { [key: string]: any }[], options: HistoricChartOptions) => {
-  makeStackedBarChart(selectorId, data, options);
-  const svg = d3.select(`#${selectorId} > svg`);
-
-  const svgString = getSVGString(svg.node() as HTMLElement);
-  svgString2Image(selectorId, svgString, 2 * 1200, 2 * 400);
-};
-
-const getSVGString = (svgNode: HTMLElement) => {
-  const serializer = new XMLSerializer();
-  svgNode.setAttribute('xlink', 'http://www.w3.org/1999/xlink');
-  let svgString = serializer.serializeToString(svgNode);
-  svgString = svgString.replace(/(\w+)?:?xlink=/g, 'xmlns:xlink='); // Fix root xlink without namespace
-  svgString = svgString.replace(/NS\d+:href/g, 'xlink:href'); // Safari NS namespace fix
-  return svgString;
-};
-
-const svgString2Image = (selectorId: string, svgString: any, width: number, height: number) => {
-  var imgsrc = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgString))); // Convert SVG string to data URL
-
-  // var canvas = document.createElement('canvas');
-  // var context = canvas.getContext('2d') as any;
-
-  // canvas.width = width / 2;
-  // canvas.height = height / 2;
-
-  d3.select(`#${selectorId} > svg`).remove();
-  d3.select(`#${selectorId} > svg`).remove();
-  // container.append(canvas);
-
-  var image = new Image();
-  image.width = width;
-  image.height = height;
-  image.onload = function() {
-    // context.clearRect(0, 0, width / 2, height / 2);
-    // context.drawImage(image, 0, 0, width / 2, height / 2);
-    document.querySelector(`#${selectorId}`)!.append(image);
-
-    /*
-    canvas.toBlob(function(blob: any) {
-      var filesize = Math.round(blob.length / 1024) + ' KB';
-      document.querySelector(`#${selectorId}`)!.append(image);
-      if (callback) callback(blob, filesize);
-    });
-     */
-  };
-
-  image.src = imgsrc;
-};
-
-// - build options interface
-// - make title bigger and with the correct font
+import { transformToImage } from '@/primary/chart/ChartUtils';
 
 export interface HistoricChartOptions {
   colors: string[];
@@ -80,6 +29,16 @@ const locale = {
 };
 
 d3.timeFormatDefaultLocale(locale as any);
+
+export const transformStackedBarChartToImage = (
+  selectorId: string,
+  data: { [key: string]: any }[],
+  options: HistoricChartOptions,
+  callback: () => void
+) => {
+  makeStackedBarChart(selectorId, data, options);
+  transformToImage(selectorId, callback);
+};
 
 export const makeStackedBarChart = (selectorId: string, data: { [key: string]: any }[], options: HistoricChartOptions) => {
   const parseDate = d3.timeFormat('%e de %B');

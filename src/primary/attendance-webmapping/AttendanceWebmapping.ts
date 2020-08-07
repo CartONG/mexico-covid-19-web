@@ -233,6 +233,7 @@ export class AttendanceWebmapping {
 
   public updateMapSize() {
     this.map.updateSize();
+    this.map.renderSync();
   }
 
   public setMinZoomToCurrentZoom() {
@@ -250,13 +251,20 @@ export class AttendanceWebmapping {
     this.schoolsLayer.setStyle(schoolStyler(attendanceType, this.schoolId));
   }
 
-  public adjust() {
+  public adjust(extent: [number, number, number, number] | null, forceRender = false, callback = () => {}) {
     if (!this.initialized) {
-      this.setMinZoomToCurrentZoom();
       this.fitToCountry(true);
       this.initialized = true;
     }
 
-    this.updateMapSize();
+    this.map.updateSize();
+
+    if (extent) {
+      this.map.getView().fit(extent, { callback });
+    }
+  }
+
+  public getExtent() {
+    return this.map.getView().calculateExtent(this.map.getSize());
   }
 }

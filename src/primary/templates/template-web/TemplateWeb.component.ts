@@ -88,4 +88,7 @@ export default class TemplateWeb extends Vue {
 
   @Prop()
   readonly historicInterval!: [number, number];
+
+  @Prop()
+  readonly mapExtent!: [number, number, number, number] | null;
 }
