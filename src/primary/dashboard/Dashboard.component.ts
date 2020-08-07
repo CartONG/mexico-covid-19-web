@@ -1,4 +1,4 @@
-import { Component, Inject, Vue } from 'vue-property-decorator';
+import { Component, Inject, Vue, Watch } from 'vue-property-decorator';
 
 import { AdministrativeDivisionDailyReport } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReport';
 import { AdministrativeDivisionDailyReportRepository } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReportRepository';
@@ -29,8 +29,6 @@ import { NavigationParams } from '@/primary/navigation/NavigationParams';
 import { TemplatePrintVue } from '@/primary/templates/template-print';
 import { TemplateWebVue } from '@/primary/templates/template-web';
 
-// TODO: navigate only if there is a change in the navigation params
-// TODO: setup a cache to avoid to download data that have been already loaded
 // TODO: summaryList --> summaries
 
 @Component({
@@ -61,6 +59,7 @@ export default class Dashboard extends Vue {
   historicType = HistoricType.GIVES_CLASSES;
   historicInterval: [number, number] = [0, 0];
   isPrinting = false;
+  mapExtent: [number, number, number, number] | null = null;
 
   @Inject()
   private logger!: () => Logger;

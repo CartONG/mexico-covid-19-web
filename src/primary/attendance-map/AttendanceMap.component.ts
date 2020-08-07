@@ -50,19 +50,23 @@ export default class ChoroplethMap extends Vue {
   @Prop()
   readonly attendanceType!: AttendanceType;
 
+  @Prop()
+  readonly mapExtent!: [number, number, number, number] | null;
+
   @Watch('schoolsSummaries')
   schoolSummariesWatcher() {
     this.attendanceWebmapping().setSchoolsFeatures(this.schoolsSummaries);
   }
 
-  @Watch('school')
-  schoolWatcher() {
-    this.updateMapViewportDelayer().afterDelay(() => this.attendanceWebmapping().updateMapSize());
-  }
-
   @Watch('attendanceType')
   attendanceTypeWatcher(attendanceType: AttendanceType) {
     this.attendanceWebmapping().switchAttendanceType(attendanceType);
+  }
+
+  @Watch('mapExtent')
+  mapExtentWatcher() {
+    const callback = () => this.$emit('mapready');
+    this.attendanceWebmapping().adjust(this.mapExtent, true, callback);
   }
 
   created() {
@@ -83,16 +87,12 @@ export default class ChoroplethMap extends Vue {
     this.attendanceWebmapping().addControls();
     this.attendanceWebmapping().setMapTarget('map');
     this.attendanceWebmapping().setPopupElement(popupElement);
-    this.attendanceWebmapping().updateMapSize();
     this.attendanceWebmapping().switchAttendanceType(this.attendanceType);
-
-    this.updateMapViewportDelayer().afterDelay(() => {
-      this.attendanceWebmapping().adjust();
-      this.$emit('ready');
-    });
+    this.attendanceWebmapping().adjust(this.mapExtent, true);
   }
 
   beforeDestroy() {
+    this.$emit('destroy', { extent: this.attendanceWebmapping().getExtent() });
     this.attendanceWebmapping().removeControls();
     this.attendanceWebmapping().setMapTarget(undefined);
   }

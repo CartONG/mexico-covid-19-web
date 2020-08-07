@@ -12,6 +12,12 @@
   flex-grow: 1;
 }
 
+.has-content-vcentered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .is-fixed-top {
   position: fixed;
   top: 0;

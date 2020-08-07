@@ -9,6 +9,8 @@ $size-7: 12px;
 @import "~ol/ol.css";
 @import "~bulma/sass/utilities/_all";
 
+$desktop: 1100px + (2 * $gap);
+
 $primary: #b38e5d;
 $primary-bis: #d4c19c;
 $primary-ter: #bc955c;

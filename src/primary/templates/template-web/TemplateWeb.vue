@@ -27,6 +27,8 @@
               :attendanceType="attendanceType"
               :inline="true"
               :printable="false"
+              :map-extent="mapExtent"
+              @destroy="$emit('savemapextent', $event.extent)"
             />
           </div>
           <div class="column is-2-desktop is-12-tablet">

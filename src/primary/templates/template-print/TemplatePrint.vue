@@ -23,14 +23,14 @@
         <div class="columns">
           <div class="column is-12">
             <AttendanceMapVue
-              class="h16cm is-direction-column"
               :schools-summaries="schoolSummaryList"
               :school="school"
               :summary="currentSummary"
               :attendanceType="attendanceType"
               :inline="false"
               :printable="true"
-              @ready="printer().print()"
+              :map-extent="mapExtent"
+              @mapready="mapReady = true"
             />
           </div>
         </div>
@@ -64,6 +64,7 @@
               :historic-type="historicType"
               :historic-interval="historicInterval"
               :printable="true"
+              @imageready="chartReady = true"
             />
             <SchoolHistoricVue
               v-if="!administrativeDivisionLevel && schoolDailyReports.length > 0"
@@ -71,6 +72,7 @@
               :historic-type="historicType"
               :historic-interval="historicInterval"
               :printable="true"
+              @imageready="chartReady = true"
             />
           </div>
         </div>
