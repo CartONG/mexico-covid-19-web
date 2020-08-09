@@ -370,7 +370,7 @@
       </div>
     </b-collapse>
     <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
-    <b-collapse class="card mb-4" animation="slide" aria-id="condicionesSanitariasElementales" :open="printable">
+    <b-collapse v-if="printable" class="card mb-4" animation="slide" aria-id="condicionesSanitariasElementales" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="condicionesSanitariasElementales">
         <table class="table is-fullwidth has-no-background">
           <tbody>
