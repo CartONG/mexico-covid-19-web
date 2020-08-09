@@ -1,5 +1,5 @@
 import { School } from '@/domain/school/School';
-import { toNumericDataSet } from '@/primary/common/NumericDataSet';
+import { NumericDataSet, toNumericDataSet } from '@/primary/common/NumericDataSet';
 import { PercentageDataSet, toPercentageDataSet } from '@/primary/common/PercentageDataSet';
 
 const turnTexts: { [key: string]: string } = {
@@ -86,12 +86,13 @@ export interface SchoolDataSet {
   name: string;
   femaleStudentAttendance: PercentageDataSet;
   maleStudentAttendance: PercentageDataSet;
+  studentAttendance: PercentageDataSet;
   teacherAttendance: PercentageDataSet;
   adminAttendance: PercentageDataSet;
   level: string;
   workCenterKey: string;
   turn: string;
-  givesClasses: string;
+  givesClasses: { shortText: string; longText: string };
   modality: string;
   municipality: string;
   address: string;
@@ -110,9 +111,9 @@ export interface SchoolDataSet {
   others: string;
   waterSupply: string;
   waterServiceContinuity: string;
-  waterForHandWashing: string;
+  waterForHandWashing: { shortText: string; longText: string };
   sinkSufficiency: string;
-  soapSufficiency: string;
+  soapSufficiency: { shortText: string; longText: string };
   towelSufficiency: string;
   sanitizerSufficiency: string;
   binSufficiency: string;
@@ -123,33 +124,33 @@ export interface SchoolDataSet {
   absentFemaleStudents: string;
   absentMaleStudents: string;
   studentAbsenceMainReasons: {
-    '1': PercentageDataSet;
-    '2': PercentageDataSet;
-    '3': PercentageDataSet;
-    '4': PercentageDataSet;
-    '5': PercentageDataSet;
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+    '4': NumericDataSet;
+    '5': NumericDataSet;
   };
   studentAbsenceOtherReason: string;
   absentTeachers: string;
   teacherAbsenceMainReasons: {
-    '1': PercentageDataSet;
-    '2': PercentageDataSet;
-    '3': PercentageDataSet;
-    '4': PercentageDataSet;
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+    '4': NumericDataSet;
   };
   teacherAbsenceOtherReason: string;
   absentAdmins: string;
   adminAbsenceMainReasons: {
-    '1': PercentageDataSet;
-    '2': PercentageDataSet;
-    '3': PercentageDataSet;
-    '4': PercentageDataSet;
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+    '4': NumericDataSet;
   };
   adminAbsenceOtherReason: string;
   comments: string;
 }
 
-export const toSchoolDataSet = (school: School | undefined) =>
+export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
   school
     ? {
         id: school.id,
@@ -157,6 +158,7 @@ export const toSchoolDataSet = (school: School | undefined) =>
         name: school.name,
         femaleStudentAttendance: toPercentageDataSet(school.femaleStudentAttendance),
         maleStudentAttendance: toPercentageDataSet(school.maleStudentAttendance),
+        studentAttendance: toPercentageDataSet(school.studentAttendance),
         teacherAttendance: toPercentageDataSet(school.teacherAttendance),
         adminAttendance: toPercentageDataSet(school.adminAttendance),
         level: school.level,
@@ -225,12 +227,13 @@ export const toSchoolDataSet = (school: School | undefined) =>
         name: '-',
         femaleStudentAttendance: toPercentageDataSet(-1),
         maleStudentAttendance: toPercentageDataSet(-1),
+        studentAttendance: toPercentageDataSet(-1),
         teacherAttendance: toPercentageDataSet(-1),
         adminAttendance: toPercentageDataSet(-1),
         level: '-',
         workCenterKey: '-',
         turn: '-',
-        givesClasses: '-',
+        givesClasses: givesClassesText[0],
         modality: '-',
         municipality: '-',
         address: '-',
@@ -249,9 +252,9 @@ export const toSchoolDataSet = (school: School | undefined) =>
         others: '-',
         waterSupply: '-',
         waterServiceContinuity: '-',
-        waterForHandWashing: '-',
+        waterForHandWashing: waterForHandWashingTexts[0],
         sinkSufficiency: '-',
-        soapSufficiency: '-',
+        soapSufficiency: soapSufficiencyTexts[0],
         towelSufficiency: '-',
         sanitizerSufficiency: '-',
         binSufficiency: '-',
