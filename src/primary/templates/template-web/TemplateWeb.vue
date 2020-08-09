@@ -88,8 +88,12 @@
         </div>
         <div class="columns">
           <div class="column is-12">
-            <AdministrativeDivisionDetailsVue v-if="administrativeDivisionLevel" :administrative-division="currentAdministrativeDivision" />
-            <SchoolDetailsVue v-else :school="school" />
+            <AdministrativeDivisionDetailsVue
+              v-if="administrativeDivisionLevel"
+              :administrative-division="currentAdministrativeDivision"
+              :printable="false"
+            />
+            <SchoolDetailsVue v-else :school="school" :printable="false" />
           </div>
         </div>
       </div>
