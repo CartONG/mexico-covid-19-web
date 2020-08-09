@@ -48,7 +48,7 @@ export const appStoreOptions: StoreOptions<AppState> = {
     addSchool(appState: AppState, school: School) {
       appState.schools[school.id] = school;
     },
-    addSchoolDivisionHistoric(appState: AppState, options: { schoolId: string; reports: SchoolDailyReport[] }) {
+    addSchoolHistoric(appState: AppState, options: { schoolId: string; reports: SchoolDailyReport[] }) {
       appState.schoolHistories[options.schoolId] = options.reports;
     },
     addSchoolSummariesForMunicipality(
