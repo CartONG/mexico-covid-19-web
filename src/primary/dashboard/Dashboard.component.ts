@@ -281,7 +281,6 @@ export default class Dashboard extends Vue {
     this.administrativeDivisionDailyReports = [];
     this.findSchool(navigationParams.id);
     this.listSchoolDailyReport(navigationParams.id);
-    this.school = null;
     this.currentSummary = this.schoolSummaryList.find(summary => summary.id === navigationParams.id) || null;
     this.navigation = [this.navigation[0], this.navigation[1], navigationParams];
     this.administrativeLevel = AdministrativeLevels.SCHOOL;
