@@ -39,8 +39,8 @@
           <tbody>
             <tr>
               <td>Asistencia del alumnado</td>
-              <td :class="`w120 has-text-right has-text-${schoolDataSet.maleStudentAttendance.color}`">
-                {{ schoolDataSet.maleStudentAttendance.text }}
+              <td :class="`w120 has-text-right has-text-${schoolDataSet.studentAttendance.color}`">
+                {{ schoolDataSet.studentAttendance.text }}
               </td>
               <td v-if="!printable" class="w40"></td>
             </tr>
