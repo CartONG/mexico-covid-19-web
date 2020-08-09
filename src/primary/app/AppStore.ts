@@ -41,7 +41,7 @@ export class AppStore {
   }
 
   addSchoolHistoric(schoolId: string, reports: SchoolDailyReport[]) {
-    this.store.commit('addSchoolDivisionHistoric', { schoolId, reports });
+    this.store.commit('addSchoolHistoric', { schoolId, reports });
   }
 
   getSchool(id: string): School | null {
@@ -49,7 +49,7 @@ export class AppStore {
   }
 
   getSchoolHistoric(id: string): SchoolDailyReport[] | null {
-    return this.store.state.administrativeDivisionHistories[id] || null;
+    return this.store.state.schoolHistories[id] || null;
   }
 
   addSchoolSummaries(municipalityId: string, summaries: SchoolSummary[]) {
