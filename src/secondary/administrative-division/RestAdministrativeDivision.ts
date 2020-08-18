@@ -38,10 +38,13 @@ export interface RestAdministrativeDivision {
   sumaInaAlumnas: number;
   sumaInaAlumnos: number;
   causaInaAlum: { [key: string]: number };
+  sumaCausaInaAlum: { [key: string]: number };
   sumaInaDocentes: number;
   causaInaDocente: { [key: string]: number };
+  sumaCausaInaDocente: { [key: string]: number };
   sumaInaAdministrativos: number;
   causaInaAdmin: { [key: string]: number };
+  sumaCausaInaAdmin: { [key: string]: number };
 }
 
 export const toAdministrativeDivision = (
@@ -87,9 +90,12 @@ export const toAdministrativeDivision = (
   alternatesAttendance: restAdministrativeDivision.alterna_asis,
   absentFemaleStudents: restAdministrativeDivision.sumaInaAlumnas,
   absentMaleStudents: restAdministrativeDivision.sumaInaAlumnos,
+  studentAbsenceMainReasons: restAdministrativeDivision.sumaCausaInaAlum || {},
   studentAbsenceMainReasonsPercentages: restAdministrativeDivision.causaInaAlum || {},
   absentTeachers: restAdministrativeDivision.sumaInaDocentes,
+  teacherAbsenceMainReasons: restAdministrativeDivision.sumaCausaInaDocente || {},
   teacherAbsenceMainReasonsPercentages: restAdministrativeDivision.causaInaDocente || {},
   absentAdmins: restAdministrativeDivision.sumaInaAdministrativos,
+  adminAbsenceMainReasons: restAdministrativeDivision.sumaCausaInaAdmin || {},
   adminAbsenceMainReasonsPercentages: restAdministrativeDivision.causaInaAdmin || {},
 });
