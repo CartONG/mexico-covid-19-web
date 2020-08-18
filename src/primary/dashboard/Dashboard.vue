@@ -29,8 +29,8 @@
           <div v-if="!isPrinting" class="is-hidden-desktop has-background-white px-1 py-1 has-text-centered">
             <DropdownVue :items="currentSummaryList" :administrative-level="administrativeLevel" />
           </div>
-          <div v-if="!isPrinting" class="has-background-secondary-bis">
-            <BreadcrumbVue :navigation="navigation" />
+          <div class="has-background-secondary-bis">
+            <BreadcrumbVue :navigation="navigation" :printable="isPrinting" />
           </div>
         </div>
         <TemplatePrintVue

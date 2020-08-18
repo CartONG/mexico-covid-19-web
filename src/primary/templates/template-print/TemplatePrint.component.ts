@@ -109,6 +109,11 @@ export default class TemplatePrint extends Vue {
     }
   }
 
+  get lastUpdateDate() {
+    const entity = this.administrativeLevel ? this.currentAdministrativeDivision : this.school;
+    return entity ? `Información correspondiente al ${entity.lastUpdateDate.toHuman()}` : '';
+  }
+
   get currentSummariesChunks() {
     const sortAsc = (val1: string | number, val2: string | number) => (val1 < val2 ? -1 : 1);
     const sortDesc = (val1: string | number, val2: string | number) => (val1 > val2 ? -1 : 1);

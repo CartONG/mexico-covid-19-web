@@ -12,6 +12,9 @@ export default class Breadcrumb extends Vue {
   @Prop()
   readonly navigation!: NavigationParams[];
 
+  @Prop({ default: false, type: Boolean })
+  readonly printable!: boolean;
+
   get breadcrumbDataSet() {
     return toBreadcrumbDataSet(this.navigation);
   }

@@ -1,0 +1,8 @@
+@media (max-width: $tablet) {
+  .horizontal-scroll-mobile {
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;;
+    overflow-x: scroll !important;;
+  }
+}
+

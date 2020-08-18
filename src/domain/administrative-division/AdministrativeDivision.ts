@@ -1,8 +1,10 @@
 import { AdministrativeDivisionTypes } from '@/domain/administrative-division/AdministrativeDivisionTypes';
+import { LocalDate } from '@/domain/date/LocalDate';
 
 export interface AdministrativeDivision {
   id: string;
   name: string;
+  lastUpdateDate: LocalDate;
   type: AdministrativeDivisionTypes;
   stateId: string;
   support: { private: number; public: number };
