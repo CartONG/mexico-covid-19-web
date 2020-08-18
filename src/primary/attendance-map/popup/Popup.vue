@@ -3,12 +3,12 @@
     <div class="is-clearfix">
       <div class="is-pulled-right">
         <button class="button is-white" @click="close">
-          <span class="icon">
-            <i class="mdi mdi-close"></i>
+          <span class="icon is-medium has-text-primary">
+            <i class="mdi mdi-24px mdi-close"></i>
           </span>
         </button>
       </div>
-      <div class="popup-title is-size-4">Escuelas</div>
+      <div class="popup-title is-size-6 has-text-weight-bold has-text-primary is-uppercase">Escuelas</div>
     </div>
     <div class="popup-content">
       <nav class="panel">
