@@ -71,7 +71,7 @@ export interface RestSchool {
   alum_prog: number;
 }
 
-const toRate = (value: number, total: number) => Math.round((value / total) * 100) / 100;
+const toRate = (value: number, total: number) => (total === 0 ? 0 : Math.round((value / total) * 100) / 100);
 
 export const toSchool = (restSchool: RestSchool): School => {
   const totalStudentAbsenceMainReasons =
