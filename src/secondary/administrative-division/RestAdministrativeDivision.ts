@@ -1,9 +1,11 @@
 import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
 import { AdministrativeDivisionTypes } from '@/domain/administrative-division/AdministrativeDivisionTypes';
+import { LocalDate } from '@/domain/date/LocalDate';
 
 export interface RestAdministrativeDivision {
   id: string;
   nombre: string;
+  fechaUltimoReporte: string;
   entidadId: string;
   sostenimiento: { privado: number; publico: number };
   indiceAsistenciaAlumnado: number;
@@ -53,6 +55,7 @@ export const toAdministrativeDivision = (
 ): AdministrativeDivision => ({
   id: `${restAdministrativeDivision.entidadId || ''}${restAdministrativeDivision.id}`,
   name: restAdministrativeDivision.nombre,
+  lastUpdateDate: LocalDate.of(restAdministrativeDivision.fechaUltimoReporte),
   type: type,
   stateId: restAdministrativeDivision.entidadId || '',
   support: {

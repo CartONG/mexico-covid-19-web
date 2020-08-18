@@ -5,7 +5,7 @@
     </header>
     <div :class="`card-content px-0 py-0${printable ? '' : ' is-full-height is-flex-grow-1'}`">
       <div :class="`is-full-height${printable ? '' : ' is-direction-column'}`">
-        <div id="map" :class="`map has-background-white${printable ? ' h12cm' : ' h500 h400-mobile'}`"></div>
+        <div id="map" :class="`map has-background-white${printable ? ' h10cm' : ' h500 h400-mobile'}`"></div>
         <AttendanceTabsVue
           :class="`my-0${printable ? '' : ' is-flex-grow-1'}`"
           :summary="summary"

@@ -1,23 +1,22 @@
 <template>
   <div>
-    <div class="no-print">
-      <b-modal :active="true" full-screen :can-cancel="false">
-        <section class="hero is-white is-fullheight">
-          <div class="hero-body">
-            <div class="container has-text-centered pulse-color-primary">
-              <span class="icon is-large">
-                <i class="mdi mdi-48px mdi-download"></i>
-              </span>
-            </div>
+    <div class="no-print obfuscator">
+      <div class="hero is-white is-fullheight">
+        <div class="hero-body">
+          <div class="container has-text-centered pulse-color-primary">
+            <span class="icon is-large">
+              <i class="mdi mdi-48px mdi-download"></i>
+            </span>
           </div>
-        </section>
-      </b-modal>
+        </div>
+      </div>
     </div>
     <section class="section py-2 px-2">
       <div class="container w16cm">
         <div class="columns">
           <div class="column is-12">
             <h1 class="has-text-primary-bis title is-uppercase is-size-4 has-text-weight-bold">Tablero de Análisis Integral</h1>
+            <p class="subtitle">{{ lastUpdateDate }}</p>
           </div>
         </div>
         <div class="columns">

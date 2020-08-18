@@ -1,9 +1,12 @@
+import { LocalDate } from '@/domain/date/LocalDate';
+
 export interface School {
   id: string;
   locality: string;
   municipalityId: string;
   stateId: string;
   name: string;
+  lastUpdateDate: LocalDate;
   studentAttendance: number;
   femaleStudentAttendance: number;
   maleStudentAttendance: number;

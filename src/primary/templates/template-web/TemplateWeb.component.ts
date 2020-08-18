@@ -91,4 +91,9 @@ export default class TemplateWeb extends Vue {
 
   @Prop()
   readonly mapExtent!: [number, number, number, number] | null;
+
+  get lastUpdateDate() {
+    const entity = this.administrativeLevel ? this.currentAdministrativeDivision : this.school;
+    return entity ? `Información correspondiente al ${entity.lastUpdateDate.toHuman()}` : '';
+  }
 }

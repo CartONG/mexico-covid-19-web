@@ -3,14 +3,22 @@
     <section class="section py-2 px-2">
       <div class="container is-fluid">
         <div class="columns is-hidden-desktop">
-          <div class="column is-10">
+          <div class="column is-12">
             <ExportDropdownVue class="shift-bottom" @print="$emit('startprinting')" />
             <InfoModalVue class="ml-5 mr-3" />
           </div>
         </div>
+        <div class="columns is-hidden-desktop">
+          <div class="column is-12 has-text-primary-bis has-text-weight-bold">
+            {{ lastUpdateDate }}
+          </div>
+        </div>
         <div class="columns">
-          <div class="column is-10">
+          <div class="column is-6">
             <h1 class="has-text-primary-bis title is-uppercase is-size-4 has-text-weight-bold">Tablero de Análisis Integral</h1>
+          </div>
+          <div class="column is-4 has-text-right has-text-primary-bis has-text-weight-bold is-hidden-touch">
+            {{ lastUpdateDate }}
           </div>
           <div class="column is-2 has-text-right is-hidden-touch">
             <ExportDropdownVue class="shift-bottom" @print="$emit('startprinting')" />

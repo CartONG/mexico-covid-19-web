@@ -1,3 +1,4 @@
+import { LocalDate } from '@/domain/date/LocalDate';
 import { School } from '@/domain/school/School';
 
 export interface RestSchool {
@@ -6,6 +7,7 @@ export interface RestSchool {
   municipioId: string;
   entidadId: string;
   nombre: string;
+  fechaUltimoReporte: string;
   indiceAsistenciaAlumnado: number;
   indiceAsistenciaAlumnas: number;
   indiceAsistenciaAlumnos: number;
@@ -93,6 +95,7 @@ export const toSchool = (restSchool: RestSchool): School => {
     municipalityId: restSchool.municipioId,
     stateId: restSchool.entidadId,
     name: restSchool.nombre,
+    lastUpdateDate: LocalDate.of(restSchool.fechaUltimoReporte),
     studentAttendance: restSchool.indiceAsistenciaAlumnado,
     femaleStudentAttendance: restSchool.indiceAsistenciaAlumnas,
     maleStudentAttendance: restSchool.indiceAsistenciaAlumnos,
