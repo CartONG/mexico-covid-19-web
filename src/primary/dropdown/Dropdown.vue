@@ -14,8 +14,7 @@
     <template slot="empty">No se han encontrado resultados</template>
     <template slot-scope="props">
       {{ props.option.name }}
-      <!-- <span class="is-lowercase">{{ props.option.level ? ` - ${props.option.level}` : '' }}</span>-->
-      <span class="is-lowercase"> - [turno]</span>
+      <span>{{ props.option.turn ? ` - ${props.option.turn}` : '' }}</span>
     </template>
   </b-autocomplete>
 </template>

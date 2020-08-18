@@ -1,7 +1,7 @@
 export interface SchoolSummary {
   id: string;
   name: string;
-  level: string;
+  turn: string;
   locality: string;
   studentAttendance: number;
   teacherAttendance: number;

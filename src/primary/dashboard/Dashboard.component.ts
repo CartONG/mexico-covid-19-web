@@ -246,6 +246,7 @@ export default class Dashboard extends Vue {
     });
     this.schoolSummaryList = [];
     this.currentSummaryList = this.stateSummaryList;
+    this.currentSummary = this.appStore().getAdministrativeDivision('country', AdministrativeDivisionTypes.COUNTRY);
     this.navigation = [];
     this.administrativeLevel = AdministrativeLevels.COUNTRY;
   }

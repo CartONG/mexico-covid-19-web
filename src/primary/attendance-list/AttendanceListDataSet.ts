@@ -40,7 +40,7 @@ const toPercentage = (attendanceType: AttendanceType, summary: Summary) => {
 
 const toItem = (attendanceType: AttendanceType, summary: Summary) => ({
   id: summary.id,
-  name: summary.name,
+  name: summary.turn ? `${summary.name} - ${summary.turn}` : summary.name,
   percentage: toPercentage(attendanceType, summary),
 });
 

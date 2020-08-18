@@ -87,9 +87,9 @@ export const toAdministrativeDivision = (
   alternatesAttendance: restAdministrativeDivision.alterna_asis,
   absentFemaleStudents: restAdministrativeDivision.sumaInaAlumnas,
   absentMaleStudents: restAdministrativeDivision.sumaInaAlumnos,
-  studentAbsenceMainReasons: restAdministrativeDivision.causaInaAlum || {},
+  studentAbsenceMainReasonsPercentages: restAdministrativeDivision.causaInaAlum || {},
   absentTeachers: restAdministrativeDivision.sumaInaDocentes,
-  teacherAbsenceMainReasons: restAdministrativeDivision.causaInaDocente || {},
+  teacherAbsenceMainReasonsPercentages: restAdministrativeDivision.causaInaDocente || {},
   absentAdmins: restAdministrativeDivision.sumaInaAdministrativos,
-  adminAbsenceMainReasons: restAdministrativeDivision.causaInaAdmin || {},
+  adminAbsenceMainReasonsPercentages: restAdministrativeDivision.causaInaAdmin || {},
 });

@@ -1,10 +1,10 @@
 import { AttendanceType } from '@/domain/AttendanceType';
 import { toPercentageDataSet } from '@/primary/common/PercentageDataSet';
 
-export interface AbsenceReasons {
-  studentAbsenceMainReasons: { [key: string]: number };
-  teacherAbsenceMainReasons: { [key: string]: number };
-  adminAbsenceMainReasons: { [key: string]: number };
+export interface AbsenceReasonsPercentages {
+  studentAbsenceMainReasonsPercentages: { [key: string]: number };
+  teacherAbsenceMainReasonsPercentages: { [key: string]: number };
+  adminAbsenceMainReasonsPercentages: { [key: string]: number };
 }
 
 export interface AbsenceLegendItem {
@@ -25,21 +25,24 @@ export interface AbsenceDetailsDataSet {
 const toText = (rate: number) => toPercentageDataSet(rate).text;
 const toValue = (rate: number) => toPercentageDataSet(rate).value;
 
-const defaultAbsenceReasons = {
-  studentAbsenceMainReasons: { '1': -1, '2': -1, '3': -1, '4': -1, '5': -1 },
-  teacherAbsenceMainReasons: { '1': -1, '2': -1, '3': -1, '4': -1 },
-  adminAbsenceMainReasons: { '1': -1, '2': -1, '3': -1, '4': -1 },
+const defaultAbsenceReasonsPercentages = {
+  studentAbsenceMainReasonsPercentages: { '1': -1, '2': -1, '3': -1, '4': -1, '5': -1 },
+  teacherAbsenceMainReasonsPercentages: { '1': -1, '2': -1, '3': -1, '4': -1 },
+  adminAbsenceMainReasonsPercentages: { '1': -1, '2': -1, '3': -1, '4': -1 },
 };
 
-export const toAbsenceDetailsDataSet = (absenceReasons: AbsenceReasons | null, attendanceType: AttendanceType): AbsenceDetailsDataSet => {
-  const validAbsenceReasons = absenceReasons || defaultAbsenceReasons;
+export const toAbsenceDetailsDataSet = (
+  absenceReasonsPercentages: AbsenceReasonsPercentages | null,
+  attendanceType: AttendanceType
+): AbsenceDetailsDataSet => {
+  const validAbsenceReasons = absenceReasonsPercentages || defaultAbsenceReasonsPercentages;
 
   const mainReasons =
     attendanceType === AttendanceType.STUDENT
-      ? validAbsenceReasons.studentAbsenceMainReasons
+      ? validAbsenceReasons.studentAbsenceMainReasonsPercentages
       : attendanceType === AttendanceType.TEACHER
-      ? validAbsenceReasons.teacherAbsenceMainReasons
-      : validAbsenceReasons.adminAbsenceMainReasons;
+      ? validAbsenceReasons.teacherAbsenceMainReasonsPercentages
+      : validAbsenceReasons.adminAbsenceMainReasonsPercentages;
 
   const partialLegendItems = [
     { color: 'primary', text: 'La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón' },
