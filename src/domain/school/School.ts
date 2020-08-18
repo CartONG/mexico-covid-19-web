@@ -46,12 +46,15 @@ export interface School {
   absentFemaleStudents: number;
   absentMaleStudents: number;
   studentAbsenceMainReasons: { [key: string]: number };
+  studentAbsenceMainReasonsPercentages: { [key: string]: number };
   studentAbsenceOtherReason: string;
   absentTeachers: number;
   teacherAbsenceMainReasons: { [key: string]: number };
+  teacherAbsenceMainReasonsPercentages: { [key: string]: number };
   teacherAbsenceOtherReason: string;
   absentAdmins: number;
   adminAbsenceMainReasons: { [key: string]: number };
+  adminAbsenceMainReasonsPercentages: { [key: string]: number };
   adminAbsenceOtherReason: string;
   comments: string;
   maleStudentAbsenceProportion: number;

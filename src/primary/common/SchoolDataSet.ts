@@ -130,6 +130,13 @@ export interface SchoolDataSet {
     '4': NumericDataSet;
     '5': NumericDataSet;
   };
+  studentAbsenceMainReasonsPercentages: {
+    '1': PercentageDataSet;
+    '2': PercentageDataSet;
+    '3': PercentageDataSet;
+    '4': PercentageDataSet;
+    '5': PercentageDataSet;
+  };
   studentAbsenceOtherReason: string;
   absentTeachers: string;
   teacherAbsenceMainReasons: {
@@ -138,6 +145,12 @@ export interface SchoolDataSet {
     '3': NumericDataSet;
     '4': NumericDataSet;
   };
+  teacherAbsenceMainReasonsPercentages: {
+    '1': PercentageDataSet;
+    '2': PercentageDataSet;
+    '3': PercentageDataSet;
+    '4': PercentageDataSet;
+  };
   teacherAbsenceOtherReason: string;
   absentAdmins: string;
   adminAbsenceMainReasons: {
@@ -145,6 +158,12 @@ export interface SchoolDataSet {
     '2': NumericDataSet;
     '3': NumericDataSet;
     '4': NumericDataSet;
+  };
+  adminAbsenceMainReasonsPercentages: {
+    '1': PercentageDataSet;
+    '2': PercentageDataSet;
+    '3': PercentageDataSet;
+    '4': PercentageDataSet;
   };
   adminAbsenceOtherReason: string;
   comments: string;
@@ -202,6 +221,13 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
           '4': toNumericDataSet(school.studentAbsenceMainReasons['4']),
           '5': toNumericDataSet(school.studentAbsenceMainReasons['5']),
         },
+        studentAbsenceMainReasonsPercentages: {
+          '1': toPercentageDataSet(school.studentAbsenceMainReasonsPercentages['1']),
+          '2': toPercentageDataSet(school.studentAbsenceMainReasonsPercentages['2']),
+          '3': toPercentageDataSet(school.studentAbsenceMainReasonsPercentages['3']),
+          '4': toPercentageDataSet(school.studentAbsenceMainReasonsPercentages['4']),
+          '5': toPercentageDataSet(school.studentAbsenceMainReasonsPercentages['5']),
+        },
         studentAbsenceOtherReason: school.studentAbsenceOtherReason,
         absentTeachers: school.absentTeachers.toString(),
         teacherAbsenceMainReasons: {
@@ -210,6 +236,12 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
           '3': toNumericDataSet(school.teacherAbsenceMainReasons['3']),
           '4': toNumericDataSet(school.teacherAbsenceMainReasons['4']),
         },
+        teacherAbsenceMainReasonsPercentages: {
+          '1': toPercentageDataSet(school.teacherAbsenceMainReasonsPercentages['1']),
+          '2': toPercentageDataSet(school.teacherAbsenceMainReasonsPercentages['2']),
+          '3': toPercentageDataSet(school.teacherAbsenceMainReasonsPercentages['3']),
+          '4': toPercentageDataSet(school.teacherAbsenceMainReasonsPercentages['4']),
+        },
         teacherAbsenceOtherReason: school.teacherAbsenceOtherReason,
         absentAdmins: school.absentAdmins.toString(),
         adminAbsenceMainReasons: {
@@ -217,6 +249,12 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
           '2': toNumericDataSet(school.adminAbsenceMainReasons['2']),
           '3': toNumericDataSet(school.adminAbsenceMainReasons['3']),
           '4': toNumericDataSet(school.adminAbsenceMainReasons['4']),
+        },
+        adminAbsenceMainReasonsPercentages: {
+          '1': toPercentageDataSet(school.adminAbsenceMainReasonsPercentages['1']),
+          '2': toPercentageDataSet(school.adminAbsenceMainReasonsPercentages['2']),
+          '3': toPercentageDataSet(school.adminAbsenceMainReasonsPercentages['3']),
+          '4': toPercentageDataSet(school.adminAbsenceMainReasonsPercentages['4']),
         },
         adminAbsenceOtherReason: school.adminAbsenceOtherReason,
         comments: school.comments,
@@ -271,6 +309,13 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
           '4': toNumericDataSet(-1),
           '5': toNumericDataSet(-1),
         },
+        studentAbsenceMainReasonsPercentages: {
+          '1': toPercentageDataSet(-1),
+          '2': toPercentageDataSet(-1),
+          '3': toPercentageDataSet(-1),
+          '4': toPercentageDataSet(-1),
+          '5': toPercentageDataSet(-1),
+        },
         studentAbsenceOtherReason: '-',
         absentTeachers: '-',
         teacherAbsenceMainReasons: {
@@ -279,6 +324,12 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
           '3': toNumericDataSet(-1),
           '4': toNumericDataSet(-1),
         },
+        teacherAbsenceMainReasonsPercentages: {
+          '1': toPercentageDataSet(-1),
+          '2': toPercentageDataSet(-1),
+          '3': toPercentageDataSet(-1),
+          '4': toPercentageDataSet(-1),
+        },
         teacherAbsenceOtherReason: '-',
         absentAdmins: '-',
         adminAbsenceMainReasons: {
@@ -286,6 +337,12 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
           '2': toNumericDataSet(-1),
           '3': toNumericDataSet(-1),
           '4': toNumericDataSet(-1),
+        },
+        adminAbsenceMainReasonsPercentages: {
+          '1': toPercentageDataSet(-1),
+          '2': toPercentageDataSet(-1),
+          '3': toPercentageDataSet(-1),
+          '4': toPercentageDataSet(-1),
         },
         adminAbsenceOtherReason: '-',
         comments: '-',

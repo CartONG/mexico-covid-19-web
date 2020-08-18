@@ -545,27 +545,27 @@
           <tbody>
             <tr>
               <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['1'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['1'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Los padres de familia no enviaron a sus hijos a la escuela</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['2'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['2'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Reportaron enfermos a los alumnos que no asistieron</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['3'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['3'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Se desconocen las causas</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['4'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['4'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Otras causas</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['5'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['5'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
           </tbody>
@@ -595,22 +595,22 @@
           <tbody>
             <tr>
               <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasons['1'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasonsPercentages['1'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Se reportaron enfermos</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasons['2'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasonsPercentages['2'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>No se sabe las causas</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasons['3'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasonsPercentages['3'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Otras causas</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasons['4'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasonsPercentages['4'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
           </tbody>
@@ -640,22 +640,22 @@
           <tbody>
             <tr>
               <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasons['1'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasonsPercentages['1'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Se reportaron enfermos</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasons['2'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasonsPercentages['2'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>No se sabe las causas</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasons['3'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasonsPercentages['3'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Otras causas</td>
-              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasons['4'].text }}</td>
+              <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasonsPercentages['4'].text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
           </tbody>

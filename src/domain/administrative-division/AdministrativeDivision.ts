@@ -37,9 +37,9 @@ export interface AdministrativeDivision {
   alternatesAttendance: { [key: string]: number };
   absentFemaleStudents: number;
   absentMaleStudents: number;
-  studentAbsenceMainReasons: { [key: string]: number };
+  studentAbsenceMainReasonsPercentages: { [key: string]: number };
   absentTeachers: number;
-  teacherAbsenceMainReasons: { [key: string]: number };
+  teacherAbsenceMainReasonsPercentages: { [key: string]: number };
   absentAdmins: number;
-  adminAbsenceMainReasons: { [key: string]: number };
+  adminAbsenceMainReasonsPercentages: { [key: string]: number };
 }

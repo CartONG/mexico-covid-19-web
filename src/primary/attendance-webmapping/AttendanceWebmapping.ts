@@ -77,6 +77,7 @@ export class AttendanceWebmapping {
     const featureOptions = {
       geometry: new Point(transform(domainSchoolSummary.coordinates, 'EPSG:4326', 'EPSG:3857')),
       name: domainSchoolSummary.name,
+      turn: domainSchoolSummary.turn,
       maleStudentAttendance: domainSchoolSummary.studentAttendance,
       teacherAttendance: domainSchoolSummary.teacherAttendance,
       adminAttendance: domainSchoolSummary.adminAttendance,
@@ -148,7 +149,10 @@ export class AttendanceWebmapping {
 
   public onSelectSchoolCluster(callable: (selectEvent: { id: string; name: string }[]) => void) {
     this.schoolsLayer.on(SELECT_SCHOOL_CLUSTER, (selectEvent: any) => {
-      const schools = selectEvent.features.map((feature: Feature) => ({ id: feature.getId().toString(), name: feature.get('name') }));
+      const schools = selectEvent.features.map((feature: Feature) => ({
+        id: feature.getId().toString(),
+        name: `${feature.get('name')} - ${feature.get('turn')}`,
+      }));
       callable(schools);
     });
   }

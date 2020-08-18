@@ -87,7 +87,7 @@ export interface AdministrativeDivisionDataSet {
   };
   absentFemaleStudents: string;
   absentMaleStudents: string;
-  studentAbsenceMainReasons: {
+  studentAbsenceMainReasonsPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
     '3': PercentageDataSet;
@@ -95,14 +95,14 @@ export interface AdministrativeDivisionDataSet {
     '5': PercentageDataSet;
   };
   absentTeachers: string;
-  teacherAbsenceMainReasons: {
+  teacherAbsenceMainReasonsPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
     '3': PercentageDataSet;
     '4': PercentageDataSet;
   };
   absentAdmins: string;
-  adminsAbsenceMainReasons: {
+  adminsAbsenceMainReasonsPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
     '3': PercentageDataSet;
@@ -203,26 +203,26 @@ export const toAdministrativeDivisionDataset = (
         },
         absentFemaleStudents: administrativeDivision.absentFemaleStudents.toString(),
         absentMaleStudents: administrativeDivision.absentMaleStudents.toString(),
-        studentAbsenceMainReasons: {
-          '1': toPercentageDataSet(administrativeDivision.studentAbsenceMainReasons['1']),
-          '2': toPercentageDataSet(administrativeDivision.studentAbsenceMainReasons['2']),
-          '3': toPercentageDataSet(administrativeDivision.studentAbsenceMainReasons['3']),
-          '4': toPercentageDataSet(administrativeDivision.studentAbsenceMainReasons['4']),
-          '5': toPercentageDataSet(administrativeDivision.studentAbsenceMainReasons['5']),
+        studentAbsenceMainReasonsPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.studentAbsenceMainReasonsPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.studentAbsenceMainReasonsPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.studentAbsenceMainReasonsPercentages['3']),
+          '4': toPercentageDataSet(administrativeDivision.studentAbsenceMainReasonsPercentages['4']),
+          '5': toPercentageDataSet(administrativeDivision.studentAbsenceMainReasonsPercentages['5']),
         },
         absentTeachers: administrativeDivision.absentTeachers.toString(),
-        teacherAbsenceMainReasons: {
-          '1': toPercentageDataSet(administrativeDivision.teacherAbsenceMainReasons['1']),
-          '2': toPercentageDataSet(administrativeDivision.teacherAbsenceMainReasons['2']),
-          '3': toPercentageDataSet(administrativeDivision.teacherAbsenceMainReasons['3']),
-          '4': toPercentageDataSet(administrativeDivision.teacherAbsenceMainReasons['4']),
+        teacherAbsenceMainReasonsPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.teacherAbsenceMainReasonsPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.teacherAbsenceMainReasonsPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.teacherAbsenceMainReasonsPercentages['3']),
+          '4': toPercentageDataSet(administrativeDivision.teacherAbsenceMainReasonsPercentages['4']),
         },
         absentAdmins: administrativeDivision.absentAdmins.toString(),
-        adminsAbsenceMainReasons: {
-          '1': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasons['1']),
-          '2': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasons['2']),
-          '3': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasons['3']),
-          '4': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasons['4']),
+        adminsAbsenceMainReasonsPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasonsPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasonsPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasonsPercentages['3']),
+          '4': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasonsPercentages['4']),
         },
       }
     : {
@@ -311,7 +311,7 @@ export const toAdministrativeDivisionDataset = (
         },
         absentFemaleStudents: '-',
         absentMaleStudents: '-',
-        studentAbsenceMainReasons: {
+        studentAbsenceMainReasonsPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
@@ -319,14 +319,14 @@ export const toAdministrativeDivisionDataset = (
           '5': toPercentageDataSet(-1),
         },
         absentTeachers: '-',
-        teacherAbsenceMainReasons: {
+        teacherAbsenceMainReasonsPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
           '4': toPercentageDataSet(-1),
         },
         absentAdmins: '-',
-        adminsAbsenceMainReasons: {
+        adminsAbsenceMainReasonsPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
