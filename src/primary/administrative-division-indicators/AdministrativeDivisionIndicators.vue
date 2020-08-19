@@ -35,8 +35,12 @@
                 </header>
                 <div class="card-content">
                   <img src="/desk-copy.svg" alt="despacho" class="is-pulled-left is-absolute" />
-                  <p :class="`title has-text-${administrativeDivisionDataSet.schoolGivingClasses['1'].color} has-text-centered is-size-2`">
-                    {{ administrativeDivisionDataSet.schoolGivingClasses['1'].text }}
+                  <p
+                    :class="
+                      `title has-text-${administrativeDivisionDataSet.schoolGivingClassesPercentages['1'].color} has-text-centered is-size-2`
+                    "
+                  >
+                    {{ administrativeDivisionDataSet.schoolGivingClassesPercentages['1'].text }}
                   </p>
                 </div>
               </div>
@@ -51,9 +55,11 @@
                 <div class="card-content">
                   <img src="/hand-sanitizer.svg" alt="jabón" class="is-pulled-left is-absolute" />
                   <p
-                    :class="`title has-text-${administrativeDivisionDataSet.schoolSoapSufficiency['1'].color} has-text-centered is-size-2`"
+                    :class="
+                      `title has-text-${administrativeDivisionDataSet.schoolSoapSufficiencyPercentages['1'].color} has-text-centered is-size-2`
+                    "
                   >
-                    {{ administrativeDivisionDataSet.schoolSoapSufficiency['1'].text }}
+                    {{ administrativeDivisionDataSet.schoolSoapSufficiencyPercentages['1'].text }}
                   </p>
                 </div>
               </div>
@@ -71,10 +77,10 @@
                   <img src="/wudu.svg" alt="lavamano" class="is-pulled-left is-absolute" />
                   <p
                     :class="
-                      `title has-text-${administrativeDivisionDataSet.schoolWithWaterForHandWashing['1'].color} has-text-centered is-size-2`
+                      `title has-text-${administrativeDivisionDataSet.schoolWithWaterForHandWashingPercentages['1'].color} has-text-centered is-size-2`
                     "
                   >
-                    {{ administrativeDivisionDataSet.schoolWithWaterForHandWashing['1'].text }}
+                    {{ administrativeDivisionDataSet.schoolWithWaterForHandWashingPercentages['1'].text }}
                   </p>
                 </div>
               </div>
@@ -88,8 +94,12 @@
                 </header>
                 <div class="card-content">
                   <img src="/desk.svg" alt="despacho" class="is-pulled-left is-absolute" />
-                  <p :class="`title has-text-${administrativeDivisionDataSet.alternatesAttendance['1'].color} has-text-centered is-size-2`">
-                    {{ administrativeDivisionDataSet.alternatesAttendance['1'].text }}
+                  <p
+                    :class="
+                      `title has-text-${administrativeDivisionDataSet.alternatesAttendancePercentages['1'].color} has-text-centered is-size-2`
+                    "
+                  >
+                    {{ administrativeDivisionDataSet.alternatesAttendancePercentages['1'].text }}
                   </p>
                 </div>
               </div>
@@ -123,8 +133,10 @@
         </header>
         <div class="card-content">
           <img src="/desk-copy.svg" alt="despacho" class="is-pulled-left is-absolute" />
-          <p :class="`title has-text-${administrativeDivisionDataSet.schoolGivingClasses['1'].color} has-text-centered is-size-2`">
-            {{ administrativeDivisionDataSet.schoolGivingClasses['1'].text }}
+          <p
+            :class="`title has-text-${administrativeDivisionDataSet.schoolGivingClassesPercentages['1'].color} has-text-centered is-size-2`"
+          >
+            {{ administrativeDivisionDataSet.schoolGivingClassesPercentages['1'].text }}
           </p>
         </div>
       </div>
@@ -137,9 +149,11 @@
         <div class="card-content">
           <img src="/wudu.svg" alt="lavamano" class="is-pulled-left is-absolute" />
           <p
-            :class="`title has-text-${administrativeDivisionDataSet.schoolWithWaterForHandWashing['1'].color} has-text-centered is-size-2`"
+            :class="
+              `title has-text-${administrativeDivisionDataSet.schoolWithWaterForHandWashingPercentages['1'].color} has-text-centered is-size-2`
+            "
           >
-            {{ administrativeDivisionDataSet.schoolWithWaterForHandWashing['1'].text }}
+            {{ administrativeDivisionDataSet.schoolWithWaterForHandWashingPercentages['1'].text }}
           </p>
         </div>
       </div>
@@ -151,8 +165,12 @@
         </header>
         <div class="card-content">
           <img src="/hand-sanitizer.svg" alt="jabón" class="is-pulled-left is-absolute" />
-          <p :class="`title has-text-${administrativeDivisionDataSet.schoolSoapSufficiency['1'].color} has-text-centered is-size-2`">
-            {{ administrativeDivisionDataSet.schoolSoapSufficiency['1'].text }}
+          <p
+            :class="
+              `title has-text-${administrativeDivisionDataSet.schoolSoapSufficiencyPercentages['1'].color} has-text-centered is-size-2`
+            "
+          >
+            {{ administrativeDivisionDataSet.schoolSoapSufficiencyPercentages['1'].text }}
           </p>
         </div>
       </div>
@@ -164,8 +182,12 @@
         </header>
         <div class="card-content">
           <img src="/desk.svg" alt="despacho" class="is-pulled-left is-absolute" />
-          <p :class="`title has-text-${administrativeDivisionDataSet.alternatesAttendance['1'].color} has-text-centered is-size-2`">
-            {{ administrativeDivisionDataSet.alternatesAttendance['1'].text }}
+          <p
+            :class="
+              `title has-text-${administrativeDivisionDataSet.alternatesAttendancePercentages['1'].color} has-text-centered is-size-2`
+            "
+          >
+            {{ administrativeDivisionDataSet.alternatesAttendancePercentages['1'].text }}
           </p>
         </div>
       </div>

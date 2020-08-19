@@ -11,11 +11,14 @@ export interface RestAdministrativeDivision {
   indiceAsistenciaAlumnado: number;
   indiceAsistenciaDocentes: number;
   indiceAsistenciaAdmin: number;
+  indiceInasistenciaAlumnas: number;
+  indiceInasistenciaAlumnos: number;
   sumaEscuelas: number;
   sumaAlumnado: number;
   sumaAlumnas: number;
   sumaAlumnos: number;
   hayClases: { [key: string]: number };
+  sumaHayClases: { [key: string]: number };
   sumaDocentes: number;
   sumaGrupos: number;
   sumaDirector: number;
@@ -26,17 +29,29 @@ export interface RestAdministrativeDivision {
   sumaIntenden: number;
   sumaOtros: number;
   tipoAbasAgua: { [key: string]: number };
+  sumaTipoAbasAgua: { [key: string]: number };
   contServAgua: { [key: string]: number };
+  sumaContServAgua: { [key: string]: number };
   aguaLavamanos: { [key: string]: number };
+  sumaAguaLavamanos: { [key: string]: number };
   lavamanos: { [key: string]: number };
+  sumaLavamanos: { [key: string]: number };
   jabon: { [key: string]: number };
+  sumaJabon: { [key: string]: number };
   toallas: { [key: string]: number };
+  sumaToallas: { [key: string]: number };
   sanitizante: { [key: string]: number };
+  sumaSanitizante: { [key: string]: number };
   botesBasura: { [key: string]: number };
+  sumaBotesBasura: { [key: string]: number };
   tipoDrenaje: { [key: string]: number };
+  sumaTipoDrenaje: { [key: string]: number };
+  sumaEspacios: { [key: string]: number };
   espacios: { [key: string]: number };
   comite: { [key: string]: number };
+  sumaComite: { [key: string]: number };
   alterna_asis: { [key: string]: number };
+  sumaAlterna_asis: { [key: string]: number };
   sumaInaAlumnas: number;
   sumaInaAlumnos: number;
   causaInaAlum: { [key: string]: number };
@@ -48,6 +63,14 @@ export interface RestAdministrativeDivision {
   causaInaAdmin: { [key: string]: number };
   sumaCausaInaAdmin: { [key: string]: number };
 }
+
+const genderPercentage = (gender: number, otherGender: number): number => {
+  if (gender === -1 || otherGender === -1) {
+    return -1;
+  }
+  const total = gender + otherGender;
+  return total === 0 ? 0 : Math.round((gender / total) * 100) / 100;
+};
 
 export const toAdministrativeDivision = (
   restAdministrativeDivision: RestAdministrativeDivision,
@@ -65,10 +88,20 @@ export const toAdministrativeDivision = (
   studentAttendance: restAdministrativeDivision.indiceAsistenciaAlumnado,
   teacherAttendance: restAdministrativeDivision.indiceAsistenciaDocentes,
   adminAttendance: restAdministrativeDivision.indiceAsistenciaAdmin,
+  maleStudentAbsencePercentageOverStudentAbsence: genderPercentage(
+    restAdministrativeDivision.indiceInasistenciaAlumnos,
+    restAdministrativeDivision.indiceInasistenciaAlumnas
+  ),
+  femaleStudentAbsencePercentageOverStudentAbsence: genderPercentage(
+    restAdministrativeDivision.indiceInasistenciaAlumnas,
+    restAdministrativeDivision.indiceInasistenciaAlumnos
+  ),
   schools: restAdministrativeDivision.sumaEscuelas,
   students: restAdministrativeDivision.sumaAlumnado,
   femaleStudents: restAdministrativeDivision.sumaAlumnas,
   maleStudents: restAdministrativeDivision.sumaAlumnos,
+  maleStudentPercentage: genderPercentage(restAdministrativeDivision.sumaAlumnos, restAdministrativeDivision.sumaAlumnas),
+  femaleStudentPercentage: genderPercentage(restAdministrativeDivision.sumaAlumnas, restAdministrativeDivision.sumaAlumnos),
   teachers: restAdministrativeDivision.sumaDocentes,
   assistants: restAdministrativeDivision.sumaGrupos,
   directors: restAdministrativeDivision.sumaDirector,
@@ -78,19 +111,32 @@ export const toAdministrativeDivision = (
   admins: restAdministrativeDivision.sumaAdmin,
   quartermasters: restAdministrativeDivision.sumaIntenden,
   others: restAdministrativeDivision.sumaOtros,
-  schoolGivingClasses: restAdministrativeDivision.hayClases,
-  schoolWaterSupply: restAdministrativeDivision.tipoAbasAgua,
-  schoolWaterServiceContinuity: restAdministrativeDivision.contServAgua,
-  schoolWithWaterForHandWashing: restAdministrativeDivision.aguaLavamanos,
-  schoolSinkSufficiency: restAdministrativeDivision.lavamanos,
-  schoolSoapSufficiency: restAdministrativeDivision.jabon,
-  schoolTowelSufficiency: restAdministrativeDivision.toallas,
-  schoolSanitizerSufficiency: restAdministrativeDivision.sanitizante,
-  schoolBinSufficiency: restAdministrativeDivision.botesBasura,
-  schoolWithSepticSystem: restAdministrativeDivision.tipoDrenaje,
-  schoolWithAbilityToReorganizeSpace: restAdministrativeDivision.espacios,
-  hygieneCommittee: restAdministrativeDivision.comite,
-  alternatesAttendance: restAdministrativeDivision.alterna_asis,
+  schoolGivingClasses: restAdministrativeDivision.sumaHayClases,
+  schoolGivingClassesPercentages: restAdministrativeDivision.hayClases,
+  schoolWaterSupply: restAdministrativeDivision.sumaTipoAbasAgua,
+  schoolWaterSupplyPercentages: restAdministrativeDivision.tipoAbasAgua,
+  schoolWaterServiceContinuity: restAdministrativeDivision.sumaContServAgua,
+  schoolWaterServiceContinuityPercentages: restAdministrativeDivision.contServAgua,
+  schoolWithWaterForHandWashing: restAdministrativeDivision.sumaAguaLavamanos,
+  schoolWithWaterForHandWashingPercentages: restAdministrativeDivision.aguaLavamanos,
+  schoolSinkSufficiency: restAdministrativeDivision.sumaLavamanos,
+  schoolSinkSufficiencyPercentages: restAdministrativeDivision.lavamanos,
+  schoolSoapSufficiency: restAdministrativeDivision.sumaJabon,
+  schoolSoapSufficiencyPercentages: restAdministrativeDivision.jabon,
+  schoolTowelSufficiency: restAdministrativeDivision.sumaToallas,
+  schoolTowelSufficiencyPercentages: restAdministrativeDivision.toallas,
+  schoolSanitizerSufficiency: restAdministrativeDivision.sumaSanitizante,
+  schoolSanitizerSufficiencyPercentages: restAdministrativeDivision.sanitizante,
+  schoolBinSufficiency: restAdministrativeDivision.sumaBotesBasura,
+  schoolBinSufficiencyPercentages: restAdministrativeDivision.botesBasura,
+  schoolWithSepticSystem: restAdministrativeDivision.sumaTipoDrenaje,
+  schoolWithSepticSystemPercentages: restAdministrativeDivision.tipoDrenaje,
+  schoolWithAbilityToReorganizeSpace: restAdministrativeDivision.sumaEspacios,
+  schoolWithAbilityToReorganizeSpacePercentages: restAdministrativeDivision.espacios,
+  hygieneCommittee: restAdministrativeDivision.sumaComite,
+  hygieneCommitteePercentages: restAdministrativeDivision.comite,
+  alternatesAttendance: restAdministrativeDivision.sumaAlterna_asis,
+  alternatesAttendancePercentages: restAdministrativeDivision.alterna_asis,
   absentFemaleStudents: restAdministrativeDivision.sumaInaAlumnas,
   absentMaleStudents: restAdministrativeDivision.sumaInaAlumnos,
   studentAbsenceMainReasons: restAdministrativeDivision.sumaCausaInaAlum || {},

@@ -10,6 +10,8 @@ export interface School {
   studentAttendance: number;
   femaleStudentAttendance: number;
   maleStudentAttendance: number;
+  maleStudentAbsencePercentageOverStudentAbsence: number;
+  femaleStudentAbsencePercentageOverStudentAbsence: number;
   teacherAttendance: number;
   adminAttendance: number;
   level: string;
@@ -24,6 +26,8 @@ export interface School {
   support: string;
   femaleStudent: number;
   maleStudent: number;
+  maleStudentPercentage: number;
+  femaleStudentPercentage: number;
   students: number;
   teachers: number;
   assistants: number;
