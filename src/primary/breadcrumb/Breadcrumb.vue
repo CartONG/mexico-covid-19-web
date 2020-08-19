@@ -1,6 +1,6 @@
 <template>
   <nav class="breadcrumb" aria-label="breadcrumbs">
-    <ul class="horizontal-scroll-mobile">
+    <ul :class="{ 'horizontal-scroll-mobile': !printable }">
       <li :class="[{ 'is-active': breadcrumbDataSet.country.active }, 'has-text-weight-bold', `is-size-${printable ? '6' : '5'}`]">
         <a href="#" @click.stop.prevent="backToCountry"> {{ breadcrumbDataSet.country.name }}</a>
       </li>

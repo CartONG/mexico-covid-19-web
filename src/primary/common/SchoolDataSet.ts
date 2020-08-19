@@ -2,6 +2,99 @@ import { School } from '@/domain/school/School';
 import { NumericDataSet, toNumericDataSet } from '@/primary/common/NumericDataSet';
 import { PercentageDataSet, toPercentageDataSet } from '@/primary/common/PercentageDataSet';
 
+export interface SchoolDataSet {
+  id: string;
+  locality: string;
+  name: string;
+  femaleStudentAttendance: PercentageDataSet;
+  maleStudentAttendance: PercentageDataSet;
+  studentAttendance: PercentageDataSet;
+  maleStudentAbsencePercentageOverStudentAbsence: PercentageDataSet;
+  femaleStudentAbsencePercentageOverStudentAbsence: PercentageDataSet;
+  teacherAttendance: PercentageDataSet;
+  adminAttendance: PercentageDataSet;
+  level: string;
+  workCenterKey: string;
+  turn: string;
+  givesClasses: { shortText: string; longText: string };
+  modality: string;
+  municipality: string;
+  address: string;
+  support: string;
+  femaleStudent: NumericDataSet;
+  maleStudent: NumericDataSet;
+  maleStudentPercentage: PercentageDataSet;
+  femaleStudentPercentage: PercentageDataSet;
+  students: NumericDataSet;
+  teachers: NumericDataSet;
+  assistants: NumericDataSet;
+  directors: NumericDataSet;
+  subDirectors: NumericDataSet;
+  technicalPedagogicalAdvisers: NumericDataSet;
+  physicalEducationTeachers: NumericDataSet;
+  admins: NumericDataSet;
+  quartermasters: NumericDataSet;
+  others: NumericDataSet;
+  waterSupply: string;
+  waterServiceContinuity: string;
+  waterForHandWashing: { shortText: string; longText: string };
+  sinkSufficiency: string;
+  soapSufficiency: { shortText: string; longText: string };
+  towelSufficiency: string;
+  sanitizerSufficiency: string;
+  binSufficiency: string;
+  hasSepticSystem: string;
+  hasAbilityToReorganizeSpace: string;
+  hasHygieneCommittee: string;
+  alternatesAttendance: string;
+  absentFemaleStudents: string;
+  absentMaleStudents: string;
+  studentAbsenceMainReasons: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+    '4': NumericDataSet;
+    '5': NumericDataSet;
+  };
+  studentAbsenceMainReasonsPercentages: {
+    '1': PercentageDataSet;
+    '2': PercentageDataSet;
+    '3': PercentageDataSet;
+    '4': PercentageDataSet;
+    '5': PercentageDataSet;
+  };
+  studentAbsenceOtherReason: string;
+  absentTeachers: string;
+  teacherAbsenceMainReasons: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+    '4': NumericDataSet;
+  };
+  teacherAbsenceMainReasonsPercentages: {
+    '1': PercentageDataSet;
+    '2': PercentageDataSet;
+    '3': PercentageDataSet;
+    '4': PercentageDataSet;
+  };
+  teacherAbsenceOtherReason: string;
+  absentAdmins: string;
+  adminAbsenceMainReasons: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+    '4': NumericDataSet;
+  };
+  adminAbsenceMainReasonsPercentages: {
+    '1': PercentageDataSet;
+    '2': PercentageDataSet;
+    '3': PercentageDataSet;
+    '4': PercentageDataSet;
+  };
+  adminAbsenceOtherReason: string;
+  comments: string;
+}
+
 const turnTexts: { [key: string]: string } = {
   '1': 'matutino',
   '2': 'vespertino',
@@ -80,95 +173,6 @@ const givesClassesText: { shortText: string; longText: string }[] = [
   { shortText: 'No', longText: 'Los padres de familia informaron que no enviarán a sus hijos a la escuela' },
 ];
 
-export interface SchoolDataSet {
-  id: string;
-  locality: string;
-  name: string;
-  femaleStudentAttendance: PercentageDataSet;
-  maleStudentAttendance: PercentageDataSet;
-  studentAttendance: PercentageDataSet;
-  teacherAttendance: PercentageDataSet;
-  adminAttendance: PercentageDataSet;
-  level: string;
-  workCenterKey: string;
-  turn: string;
-  givesClasses: { shortText: string; longText: string };
-  modality: string;
-  municipality: string;
-  address: string;
-  support: string;
-  femaleStudent: string;
-  maleStudent: string;
-  students: string;
-  teachers: string;
-  assistants: string;
-  directors: string;
-  subDirectors: string;
-  technicalPedagogicalAdvisers: string;
-  physicalEducationTeachers: string;
-  admins: string;
-  quartermasters: string;
-  others: string;
-  waterSupply: string;
-  waterServiceContinuity: string;
-  waterForHandWashing: { shortText: string; longText: string };
-  sinkSufficiency: string;
-  soapSufficiency: { shortText: string; longText: string };
-  towelSufficiency: string;
-  sanitizerSufficiency: string;
-  binSufficiency: string;
-  hasSepticSystem: string;
-  hasAbilityToReorganizeSpace: string;
-  hasHygieneCommittee: string;
-  alternatesAttendance: string;
-  absentFemaleStudents: string;
-  absentMaleStudents: string;
-  studentAbsenceMainReasons: {
-    '1': NumericDataSet;
-    '2': NumericDataSet;
-    '3': NumericDataSet;
-    '4': NumericDataSet;
-    '5': NumericDataSet;
-  };
-  studentAbsenceMainReasonsPercentages: {
-    '1': PercentageDataSet;
-    '2': PercentageDataSet;
-    '3': PercentageDataSet;
-    '4': PercentageDataSet;
-    '5': PercentageDataSet;
-  };
-  studentAbsenceOtherReason: string;
-  absentTeachers: string;
-  teacherAbsenceMainReasons: {
-    '1': NumericDataSet;
-    '2': NumericDataSet;
-    '3': NumericDataSet;
-    '4': NumericDataSet;
-  };
-  teacherAbsenceMainReasonsPercentages: {
-    '1': PercentageDataSet;
-    '2': PercentageDataSet;
-    '3': PercentageDataSet;
-    '4': PercentageDataSet;
-  };
-  teacherAbsenceOtherReason: string;
-  absentAdmins: string;
-  adminAbsenceMainReasons: {
-    '1': NumericDataSet;
-    '2': NumericDataSet;
-    '3': NumericDataSet;
-    '4': NumericDataSet;
-  };
-  adminAbsenceMainReasonsPercentages: {
-    '1': PercentageDataSet;
-    '2': PercentageDataSet;
-    '3': PercentageDataSet;
-    '4': PercentageDataSet;
-  };
-  adminAbsenceOtherReason: string;
-  comments: string;
-}
-
 export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
   school
     ? {
@@ -177,6 +181,8 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         name: school.name,
         femaleStudentAttendance: toPercentageDataSet(school.femaleStudentAttendance),
         maleStudentAttendance: toPercentageDataSet(school.maleStudentAttendance),
+        maleStudentAbsencePercentageOverStudentAbsence: toPercentageDataSet(school.maleStudentAbsencePercentageOverStudentAbsence),
+        femaleStudentAbsencePercentageOverStudentAbsence: toPercentageDataSet(school.femaleStudentAbsencePercentageOverStudentAbsence),
         studentAttendance: toPercentageDataSet(school.studentAttendance),
         teacherAttendance: toPercentageDataSet(school.teacherAttendance),
         adminAttendance: toPercentageDataSet(school.adminAttendance),
@@ -188,18 +194,20 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         municipality: school.municipality,
         address: school.address,
         support: school.support,
-        femaleStudent: school.femaleStudent.toString(),
-        maleStudent: school.maleStudent.toString(),
-        students: school.students.toString(),
-        teachers: school.teachers.toLocaleString('es-MX'),
-        assistants: school.assistants.toLocaleString('es-MX'),
-        directors: school.directors.toLocaleString('es-MX'),
-        subDirectors: school.subDirectors.toLocaleString('es-MX'),
-        technicalPedagogicalAdvisers: school.technicalPedagogicalAdvisers.toLocaleString('es-MX'),
-        physicalEducationTeachers: school.physicalEducationTeachers.toLocaleString('es-MX'),
-        admins: school.admins.toLocaleString('es-MX'),
-        quartermasters: school.quartermasters.toLocaleString('es-MX'),
-        others: school.others.toLocaleString('es-MX'),
+        femaleStudent: toNumericDataSet(school.femaleStudent),
+        maleStudent: toNumericDataSet(school.maleStudent),
+        maleStudentPercentage: toPercentageDataSet(school.maleStudentPercentage),
+        femaleStudentPercentage: toPercentageDataSet(school.femaleStudentPercentage),
+        students: toNumericDataSet(school.students),
+        teachers: toNumericDataSet(school.teachers),
+        assistants: toNumericDataSet(school.assistants),
+        directors: toNumericDataSet(school.directors),
+        subDirectors: toNumericDataSet(school.subDirectors),
+        technicalPedagogicalAdvisers: toNumericDataSet(school.technicalPedagogicalAdvisers),
+        physicalEducationTeachers: toNumericDataSet(school.physicalEducationTeachers),
+        admins: toNumericDataSet(school.admins),
+        quartermasters: toNumericDataSet(school.quartermasters),
+        others: toNumericDataSet(school.others),
         waterSupply: waterSupplyTexts[school.waterSupply],
         waterServiceContinuity: waterServiceContinuityTexts[school.waterServiceContinuity],
         waterForHandWashing: waterForHandWashingTexts[school.waterForHandWashing],
@@ -266,6 +274,8 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         femaleStudentAttendance: toPercentageDataSet(-1),
         maleStudentAttendance: toPercentageDataSet(-1),
         studentAttendance: toPercentageDataSet(-1),
+        maleStudentAbsencePercentageOverStudentAbsence: toPercentageDataSet(-1),
+        femaleStudentAbsencePercentageOverStudentAbsence: toPercentageDataSet(-1),
         teacherAttendance: toPercentageDataSet(-1),
         adminAttendance: toPercentageDataSet(-1),
         level: '-',
@@ -276,18 +286,20 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         municipality: '-',
         address: '-',
         support: '-',
-        femaleStudent: '-',
-        maleStudent: '-',
-        students: '-',
-        teachers: '-',
-        assistants: '-',
-        directors: '-',
-        subDirectors: '-',
-        technicalPedagogicalAdvisers: '-',
-        physicalEducationTeachers: '-',
-        admins: '-',
-        quartermasters: '-',
-        others: '-',
+        femaleStudent: toNumericDataSet(-1),
+        maleStudent: toNumericDataSet(-1),
+        maleStudentPercentage: toPercentageDataSet(-1),
+        femaleStudentPercentage: toPercentageDataSet(-1),
+        students: toNumericDataSet(-1),
+        teachers: toNumericDataSet(-1),
+        assistants: toNumericDataSet(-1),
+        directors: toNumericDataSet(-1),
+        subDirectors: toNumericDataSet(-1),
+        technicalPedagogicalAdvisers: toNumericDataSet(-1),
+        physicalEducationTeachers: toNumericDataSet(-1),
+        admins: toNumericDataSet(-1),
+        quartermasters: toNumericDataSet(-1),
+        others: toNumericDataSet(-1),
         waterSupply: '-',
         waterServiceContinuity: '-',
         waterForHandWashing: waterForHandWashingTexts[0],

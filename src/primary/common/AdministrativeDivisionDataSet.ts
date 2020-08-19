@@ -7,10 +7,14 @@ export interface AdministrativeDivisionDataSet {
   studentAttendance: PercentageDataSet;
   teacherAttendance: PercentageDataSet;
   adminAttendance: PercentageDataSet;
+  maleStudentAbsencePercentageOverStudentAbsence: PercentageDataSet;
+  femaleStudentAbsencePercentageOverStudentAbsence: PercentageDataSet;
   schools: string;
-  students: string;
-  femaleStudents: string;
-  maleStudents: string;
+  students: NumericDataSet;
+  femaleStudents: NumericDataSet;
+  maleStudents: NumericDataSet;
+  maleStudentPercentage: PercentageDataSet;
+  femaleStudentPercentage: PercentageDataSet;
   teachers: string;
   assistants: string;
   directors: string;
@@ -21,6 +25,15 @@ export interface AdministrativeDivisionDataSet {
   quartermasters: string;
   others: string;
   schoolGivingClasses: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+    '4': NumericDataSet;
+    '5': NumericDataSet;
+    '6': NumericDataSet;
+    '7': NumericDataSet;
+  };
+  schoolGivingClassesPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
     '3': PercentageDataSet;
@@ -30,59 +43,116 @@ export interface AdministrativeDivisionDataSet {
     '7': PercentageDataSet;
   };
   schoolWaterSupply: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+    '4': NumericDataSet;
+  };
+  schoolWaterSupplyPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
     '3': PercentageDataSet;
     '4': PercentageDataSet;
   };
   schoolWaterServiceContinuity: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+    '4': NumericDataSet;
+  };
+  schoolWaterServiceContinuityPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
     '3': PercentageDataSet;
     '4': PercentageDataSet;
   };
   schoolWithWaterForHandWashing: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+  };
+  schoolWithWaterForHandWashingPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
   };
   schoolSinkSufficiency: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+  };
+  schoolSinkSufficiencyPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
     '3': PercentageDataSet;
   };
   schoolSoapSufficiency: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+  };
+  schoolSoapSufficiencyPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
     '3': PercentageDataSet;
   };
   schoolTowelSufficiency: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+  };
+  schoolTowelSufficiencyPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
     '3': PercentageDataSet;
   };
   schoolSanitizerSufficiency: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+  };
+  schoolSanitizerSufficiencyPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
     '3': PercentageDataSet;
   };
   schoolBinSufficiency: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+  };
+  schoolBinSufficiencyPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
     '3': PercentageDataSet;
   };
   schoolWithSepticSystem: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+  };
+  schoolWithSepticSystemPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
   };
   schoolWithAbilityToReorganizeSpace: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+  };
+  schoolWithAbilityToReorganizeSpacePercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
   };
   hygieneCommittee: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+  };
+  hygieneCommitteePercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
   };
   alternatesAttendance: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+  };
+  alternatesAttendancePercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
   };
@@ -142,10 +212,18 @@ export const toAdministrativeDivisionDataset = (
         studentAttendance: toPercentageDataSet(administrativeDivision.studentAttendance),
         teacherAttendance: toPercentageDataSet(administrativeDivision.teacherAttendance),
         adminAttendance: toPercentageDataSet(administrativeDivision.adminAttendance),
+        maleStudentAbsencePercentageOverStudentAbsence: toPercentageDataSet(
+          administrativeDivision.maleStudentAbsencePercentageOverStudentAbsence
+        ),
+        femaleStudentAbsencePercentageOverStudentAbsence: toPercentageDataSet(
+          administrativeDivision.femaleStudentAbsencePercentageOverStudentAbsence
+        ),
         schools: administrativeDivision.schools.toLocaleString('es-MX'),
-        students: administrativeDivision.students.toString(),
-        femaleStudents: administrativeDivision.femaleStudents.toString(),
-        maleStudents: administrativeDivision.maleStudents.toString(),
+        students: toNumericDataSet(administrativeDivision.students),
+        femaleStudents: toNumericDataSet(administrativeDivision.femaleStudents),
+        maleStudents: toNumericDataSet(administrativeDivision.maleStudents),
+        femaleStudentPercentage: toPercentageDataSet(administrativeDivision.femaleStudentPercentage),
+        maleStudentPercentage: toPercentageDataSet(administrativeDivision.maleStudentPercentage),
         teachers: administrativeDivision.teachers.toLocaleString('es-MX'),
         assistants: administrativeDivision.assistants.toLocaleString('es-MX'),
         directors: administrativeDivision.directors.toLocaleString('es-MX'),
@@ -156,70 +234,136 @@ export const toAdministrativeDivisionDataset = (
         quartermasters: administrativeDivision.quartermasters.toLocaleString('es-MX'),
         others: administrativeDivision.others.toLocaleString('es-MX'),
         schoolGivingClasses: {
-          '1': toPercentageDataSet(administrativeDivision.schoolGivingClasses['1']),
-          '2': toPercentageDataSet(administrativeDivision.schoolGivingClasses['2']),
-          '3': toPercentageDataSet(administrativeDivision.schoolGivingClasses['3']),
-          '4': toPercentageDataSet(administrativeDivision.schoolGivingClasses['4']),
-          '5': toPercentageDataSet(administrativeDivision.schoolGivingClasses['5']),
-          '6': toPercentageDataSet(administrativeDivision.schoolGivingClasses['6']),
-          '7': toPercentageDataSet(administrativeDivision.schoolGivingClasses['7']),
+          '1': toNumericDataSet(administrativeDivision.schoolGivingClasses['1']),
+          '2': toNumericDataSet(administrativeDivision.schoolGivingClasses['2']),
+          '3': toNumericDataSet(administrativeDivision.schoolGivingClasses['3']),
+          '4': toNumericDataSet(administrativeDivision.schoolGivingClasses['4']),
+          '5': toNumericDataSet(administrativeDivision.schoolGivingClasses['5']),
+          '6': toNumericDataSet(administrativeDivision.schoolGivingClasses['6']),
+          '7': toNumericDataSet(administrativeDivision.schoolGivingClasses['7']),
+        },
+        schoolGivingClassesPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['3']),
+          '4': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['4']),
+          '5': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['5']),
+          '6': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['6']),
+          '7': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['7']),
         },
         schoolWaterSupply: {
-          '1': toPercentageDataSet(administrativeDivision.schoolWaterSupply['1']),
-          '2': toPercentageDataSet(administrativeDivision.schoolWaterSupply['2']),
-          '3': toPercentageDataSet(administrativeDivision.schoolWaterSupply['3']),
-          '4': toPercentageDataSet(administrativeDivision.schoolWaterSupply['4']),
+          '1': toNumericDataSet(administrativeDivision.schoolWaterSupply['1']),
+          '2': toNumericDataSet(administrativeDivision.schoolWaterSupply['2']),
+          '3': toNumericDataSet(administrativeDivision.schoolWaterSupply['3']),
+          '4': toNumericDataSet(administrativeDivision.schoolWaterSupply['4']),
+        },
+        schoolWaterSupplyPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.schoolWaterSupplyPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.schoolWaterSupplyPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.schoolWaterSupplyPercentages['3']),
+          '4': toPercentageDataSet(administrativeDivision.schoolWaterSupplyPercentages['4']),
         },
         schoolWaterServiceContinuity: {
-          '1': toPercentageDataSet(administrativeDivision.schoolWaterServiceContinuity['1']),
-          '2': toPercentageDataSet(administrativeDivision.schoolWaterServiceContinuity['2']),
-          '3': toPercentageDataSet(administrativeDivision.schoolWaterServiceContinuity['3']),
-          '4': toPercentageDataSet(administrativeDivision.schoolWaterServiceContinuity['4']),
+          '1': toNumericDataSet(administrativeDivision.schoolWaterServiceContinuity['1']),
+          '2': toNumericDataSet(administrativeDivision.schoolWaterServiceContinuity['2']),
+          '3': toNumericDataSet(administrativeDivision.schoolWaterServiceContinuity['3']),
+          '4': toNumericDataSet(administrativeDivision.schoolWaterServiceContinuity['4']),
+        },
+        schoolWaterServiceContinuityPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.schoolWaterServiceContinuityPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.schoolWaterServiceContinuityPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.schoolWaterServiceContinuityPercentages['3']),
+          '4': toPercentageDataSet(administrativeDivision.schoolWaterServiceContinuityPercentages['4']),
         },
         schoolWithWaterForHandWashing: {
-          '1': toPercentageDataSet(administrativeDivision.schoolWithWaterForHandWashing['1']),
-          '2': toPercentageDataSet(administrativeDivision.schoolWithWaterForHandWashing['2']),
+          '1': toNumericDataSet(administrativeDivision.schoolWithWaterForHandWashing['1']),
+          '2': toNumericDataSet(administrativeDivision.schoolWithWaterForHandWashing['2']),
+        },
+        schoolWithWaterForHandWashingPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.schoolWithWaterForHandWashingPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.schoolWithWaterForHandWashingPercentages['2']),
         },
         schoolSinkSufficiency: {
-          '1': toPercentageDataSet(administrativeDivision.schoolSinkSufficiency['1']),
-          '2': toPercentageDataSet(administrativeDivision.schoolSinkSufficiency['2']),
-          '3': toPercentageDataSet(administrativeDivision.schoolSinkSufficiency['3']),
+          '1': toNumericDataSet(administrativeDivision.schoolSinkSufficiency['1']),
+          '2': toNumericDataSet(administrativeDivision.schoolSinkSufficiency['2']),
+          '3': toNumericDataSet(administrativeDivision.schoolSinkSufficiency['3']),
+        },
+        schoolSinkSufficiencyPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.schoolSinkSufficiencyPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.schoolSinkSufficiencyPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.schoolSinkSufficiencyPercentages['3']),
         },
         schoolSoapSufficiency: {
-          '1': toPercentageDataSet(administrativeDivision.schoolSoapSufficiency['1']),
-          '2': toPercentageDataSet(administrativeDivision.schoolSoapSufficiency['2']),
-          '3': toPercentageDataSet(administrativeDivision.schoolSoapSufficiency['3']),
+          '1': toNumericDataSet(administrativeDivision.schoolSoapSufficiency['1']),
+          '2': toNumericDataSet(administrativeDivision.schoolSoapSufficiency['2']),
+          '3': toNumericDataSet(administrativeDivision.schoolSoapSufficiency['3']),
+        },
+        schoolSoapSufficiencyPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.schoolSoapSufficiencyPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.schoolSoapSufficiencyPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.schoolSoapSufficiencyPercentages['3']),
         },
         schoolTowelSufficiency: {
-          '1': toPercentageDataSet(administrativeDivision.schoolTowelSufficiency['1']),
-          '2': toPercentageDataSet(administrativeDivision.schoolTowelSufficiency['2']),
-          '3': toPercentageDataSet(administrativeDivision.schoolTowelSufficiency['3']),
+          '1': toNumericDataSet(administrativeDivision.schoolTowelSufficiency['1']),
+          '2': toNumericDataSet(administrativeDivision.schoolTowelSufficiency['2']),
+          '3': toNumericDataSet(administrativeDivision.schoolTowelSufficiency['3']),
+        },
+        schoolTowelSufficiencyPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.schoolTowelSufficiencyPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.schoolTowelSufficiencyPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.schoolTowelSufficiencyPercentages['3']),
         },
         schoolSanitizerSufficiency: {
-          '1': toPercentageDataSet(administrativeDivision.schoolSanitizerSufficiency['1']),
-          '2': toPercentageDataSet(administrativeDivision.schoolSanitizerSufficiency['2']),
-          '3': toPercentageDataSet(administrativeDivision.schoolSanitizerSufficiency['3']),
+          '1': toNumericDataSet(administrativeDivision.schoolSanitizerSufficiency['1']),
+          '2': toNumericDataSet(administrativeDivision.schoolSanitizerSufficiency['2']),
+          '3': toNumericDataSet(administrativeDivision.schoolSanitizerSufficiency['3']),
+        },
+        schoolSanitizerSufficiencyPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.schoolSanitizerSufficiencyPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.schoolSanitizerSufficiencyPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.schoolSanitizerSufficiencyPercentages['3']),
         },
         schoolBinSufficiency: {
-          '1': toPercentageDataSet(administrativeDivision.schoolBinSufficiency['1']),
-          '2': toPercentageDataSet(administrativeDivision.schoolBinSufficiency['2']),
-          '3': toPercentageDataSet(administrativeDivision.schoolBinSufficiency['3']),
+          '1': toNumericDataSet(administrativeDivision.schoolBinSufficiency['1']),
+          '2': toNumericDataSet(administrativeDivision.schoolBinSufficiency['2']),
+          '3': toNumericDataSet(administrativeDivision.schoolBinSufficiency['3']),
+        },
+        schoolBinSufficiencyPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.schoolBinSufficiencyPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.schoolBinSufficiencyPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.schoolBinSufficiencyPercentages['3']),
         },
         schoolWithSepticSystem: {
-          '1': toPercentageDataSet(administrativeDivision.schoolWithSepticSystem['1']),
-          '2': toPercentageDataSet(administrativeDivision.schoolWithSepticSystem['2']),
+          '1': toNumericDataSet(administrativeDivision.schoolWithSepticSystem['1']),
+          '2': toNumericDataSet(administrativeDivision.schoolWithSepticSystem['2']),
+        },
+        schoolWithSepticSystemPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.schoolWithSepticSystemPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.schoolWithSepticSystemPercentages['2']),
         },
         schoolWithAbilityToReorganizeSpace: {
-          '1': toPercentageDataSet(administrativeDivision.schoolWithAbilityToReorganizeSpace['1']),
-          '2': toPercentageDataSet(administrativeDivision.schoolWithAbilityToReorganizeSpace['2']),
+          '1': toNumericDataSet(administrativeDivision.schoolWithAbilityToReorganizeSpace['1']),
+          '2': toNumericDataSet(administrativeDivision.schoolWithAbilityToReorganizeSpace['2']),
+        },
+        schoolWithAbilityToReorganizeSpacePercentages: {
+          '1': toPercentageDataSet(administrativeDivision.schoolWithAbilityToReorganizeSpacePercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.schoolWithAbilityToReorganizeSpacePercentages['2']),
         },
         hygieneCommittee: {
-          '1': toPercentageDataSet(administrativeDivision.hygieneCommittee['1']),
-          '2': toPercentageDataSet(administrativeDivision.hygieneCommittee['2']),
+          '1': toNumericDataSet(administrativeDivision.hygieneCommittee['1']),
+          '2': toNumericDataSet(administrativeDivision.hygieneCommittee['2']),
+        },
+        hygieneCommitteePercentages: {
+          '1': toPercentageDataSet(administrativeDivision.hygieneCommitteePercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.hygieneCommitteePercentages['2']),
         },
         alternatesAttendance: {
-          '1': toPercentageDataSet(administrativeDivision.alternatesAttendance['1']),
-          '2': toPercentageDataSet(administrativeDivision.alternatesAttendance['2']),
+          '1': toNumericDataSet(administrativeDivision.alternatesAttendance['1']),
+          '2': toNumericDataSet(administrativeDivision.alternatesAttendance['2']),
+        },
+        alternatesAttendancePercentages: {
+          '1': toPercentageDataSet(administrativeDivision.alternatesAttendancePercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.alternatesAttendancePercentages['2']),
         },
         absentFemaleStudents: administrativeDivision.absentFemaleStudents.toString(),
         absentMaleStudents: administrativeDivision.absentMaleStudents.toString(),
@@ -269,10 +413,14 @@ export const toAdministrativeDivisionDataset = (
         studentAttendance: toPercentageDataSet(-1),
         teacherAttendance: toPercentageDataSet(-1),
         adminAttendance: toPercentageDataSet(-1),
+        maleStudentAbsencePercentageOverStudentAbsence: toPercentageDataSet(-1),
+        femaleStudentAbsencePercentageOverStudentAbsence: toPercentageDataSet(-1),
         schools: '-',
-        students: '-',
-        femaleStudents: '-',
-        maleStudents: '-',
+        students: toNumericDataSet(-1),
+        femaleStudents: toNumericDataSet(-1),
+        maleStudents: toNumericDataSet(-1),
+        femaleStudentPercentage: toPercentageDataSet(-1),
+        maleStudentPercentage: toPercentageDataSet(-1),
         teachers: '-',
         assistants: '-',
         directors: '-',
@@ -283,6 +431,15 @@ export const toAdministrativeDivisionDataset = (
         quartermasters: '-',
         others: '-',
         schoolGivingClasses: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+          '3': toNumericDataSet(-1),
+          '4': toNumericDataSet(-1),
+          '5': toNumericDataSet(-1),
+          '6': toNumericDataSet(-1),
+          '7': toNumericDataSet(-1),
+        },
+        schoolGivingClassesPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
@@ -292,59 +449,116 @@ export const toAdministrativeDivisionDataset = (
           '7': toPercentageDataSet(-1),
         },
         schoolWaterSupply: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+          '3': toNumericDataSet(-1),
+          '4': toNumericDataSet(-1),
+        },
+        schoolWaterSupplyPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
           '4': toPercentageDataSet(-1),
         },
         schoolWaterServiceContinuity: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+          '3': toNumericDataSet(-1),
+          '4': toNumericDataSet(-1),
+        },
+        schoolWaterServiceContinuityPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
           '4': toPercentageDataSet(-1),
         },
         schoolWithWaterForHandWashing: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+        },
+        schoolWithWaterForHandWashingPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
         },
         schoolSinkSufficiency: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+          '3': toNumericDataSet(-1),
+        },
+        schoolSinkSufficiencyPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
         },
         schoolSoapSufficiency: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+          '3': toNumericDataSet(-1),
+        },
+        schoolSoapSufficiencyPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
         },
         schoolTowelSufficiency: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+          '3': toNumericDataSet(-1),
+        },
+        schoolTowelSufficiencyPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
         },
         schoolSanitizerSufficiency: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+          '3': toNumericDataSet(-1),
+        },
+        schoolSanitizerSufficiencyPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
         },
         schoolBinSufficiency: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+          '3': toNumericDataSet(-1),
+        },
+        schoolBinSufficiencyPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
         },
         schoolWithSepticSystem: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+        },
+        schoolWithSepticSystemPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
         },
         schoolWithAbilityToReorganizeSpace: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+        },
+        schoolWithAbilityToReorganizeSpacePercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
         },
         hygieneCommittee: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+        },
+        hygieneCommitteePercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
         },
         alternatesAttendance: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+        },
+        alternatesAttendancePercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
         },

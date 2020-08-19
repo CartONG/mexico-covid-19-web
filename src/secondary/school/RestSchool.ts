@@ -73,6 +73,14 @@ export interface RestSchool {
   alum_prog: number;
 }
 
+const genderPercentage = (gender: number, otherGender: number): number => {
+  if (gender === -1 || otherGender === -1) {
+    return -1;
+  }
+  const total = gender + otherGender;
+  return total === 0 ? 0 : Math.round((gender / total) * 100) / 100;
+};
+
 const toRate = (value: number, total: number) => (total === 0 ? 0 : Math.round((value / total) * 100) / 100);
 
 export const toSchool = (restSchool: RestSchool): School => {
@@ -99,6 +107,8 @@ export const toSchool = (restSchool: RestSchool): School => {
     studentAttendance: restSchool.indiceAsistenciaAlumnado,
     femaleStudentAttendance: restSchool.indiceAsistenciaAlumnas,
     maleStudentAttendance: restSchool.indiceAsistenciaAlumnos,
+    maleStudentAbsencePercentageOverStudentAbsence: genderPercentage(restSchool.sumaInaAlumnos, restSchool.sumaInaAlumnas),
+    femaleStudentAbsencePercentageOverStudentAbsence: genderPercentage(restSchool.sumaInaAlumnas, restSchool.sumaInaAlumnos),
     teacherAttendance: restSchool.indiceAsistenciaDocentes,
     adminAttendance: restSchool.indiceAsistenciaAdmin,
     level: restSchool.nivel,
@@ -113,6 +123,8 @@ export const toSchool = (restSchool: RestSchool): School => {
     support: restSchool.sostenimiento,
     femaleStudent: restSchool.alumnas,
     maleStudent: restSchool.alumnos,
+    maleStudentPercentage: genderPercentage(restSchool.alumnos, restSchool.alumnas),
+    femaleStudentPercentage: genderPercentage(restSchool.alumnas, restSchool.alumnos),
     students: restSchool.sumaAlumnos,
     teachers: restSchool.docentes,
     assistants: restSchool.grupos,
