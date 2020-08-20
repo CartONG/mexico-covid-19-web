@@ -95,6 +95,11 @@
           </div>
         </div>
         <div class="columns">
+          <div class="column is-12 has-text-right">
+            <DetailsInfoModalVue />
+          </div>
+        </div>
+        <div class="columns">
           <div class="column is-12">
             <AdministrativeDivisionDetailsVue
               v-if="administrativeDivisionLevel"

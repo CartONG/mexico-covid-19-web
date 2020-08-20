@@ -2,11 +2,14 @@ import * as d3 from 'd3';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 import { SchoolDailyReport } from '@/domain/school-daily-report/SchoolDailyReport';
+import { HistoricInfoModalVue } from '@/primary/historic-info-modal';
 import { makeStackedBarChart, transformStackedBarChartToImage, updateStackedChart } from '@/primary/HistoricChart';
 import { HistoricType } from '@/primary/HistoricType';
 import { toSchoolHistoricDataSet } from '@/primary/school-historic/SchoolHistoricDataSet';
 
-@Component
+@Component({
+  components: { HistoricInfoModalVue },
+})
 export default class SchoolHistoric extends Vue {
   @Prop()
   readonly schoolDailyReports!: SchoolDailyReport[];

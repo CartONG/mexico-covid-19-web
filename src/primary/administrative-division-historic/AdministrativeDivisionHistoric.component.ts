@@ -3,10 +3,13 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 import { AdministrativeDivisionDailyReport } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReport';
 import { toAdministrativeDivisionHistoricDataSet } from '@/primary/administrative-division-historic/AdministrativeDivisionHistoricDataSet';
+import { HistoricInfoModalVue } from '@/primary/historic-info-modal';
 import { makeStackedBarChart, transformStackedBarChartToImage, updateStackedChart } from '@/primary/HistoricChart';
 import { HistoricType } from '@/primary/HistoricType';
 
-@Component
+@Component({
+  components: { HistoricInfoModalVue },
+})
 export default class Historic extends Vue {
   @Prop()
   readonly administrativeDivisionDailyReports!: AdministrativeDivisionDailyReport[];

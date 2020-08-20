@@ -14,6 +14,7 @@ import { AdministrativeDivisionHistoricVue } from '@/primary/administrative-divi
 import { AdministrativeDivisionIndicatorsVue } from '@/primary/administrative-division-indicators';
 import { AttendanceListVue } from '@/primary/attendance-list';
 import { AttendanceMapVue } from '@/primary/attendance-map';
+import { DetailsInfoModalVue } from '@/primary/details-info-modal';
 import { ExportDropdownVue } from '@/primary/export-dropdown';
 import { HistoricType } from '@/primary/HistoricType';
 import { InfoModalVue } from '@/primary/info-modal';
@@ -35,6 +36,7 @@ import { SchoolIndicatorsVue } from '@/primary/school-indicators';
     AdministrativeDivisionHistoricVue,
     ExportDropdownVue,
     SchoolHistoricVue,
+    DetailsInfoModalVue,
   },
 })
 export default class TemplateWeb extends Vue {
