@@ -2,6 +2,7 @@
   <div class="has-background-white card">
     <header class="card-header">
       <h2 class="card-header-title has-text-primary">Historial</h2>
+      <HistoricInfoModalVue v-if="!printable" class="m-1" />
     </header>
     <div class="tabs">
       <ul v-if="printable">
