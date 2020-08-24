@@ -70,6 +70,8 @@ export interface RestSchool {
   comentarios: string;
   indiceAlumnasSobreInasistencias: number;
   indiceAlumnosSobreInasistencias: number;
+  indiceInasistenciaAlumnas: number;
+  indiceInasistenciaAlumnos: number;
   alum_prog: number;
 }
 
@@ -107,8 +109,8 @@ export const toSchool = (restSchool: RestSchool): School => {
     studentAttendance: restSchool.indiceAsistenciaAlumnado,
     femaleStudentAttendance: restSchool.indiceAsistenciaAlumnas,
     maleStudentAttendance: restSchool.indiceAsistenciaAlumnos,
-    maleStudentAbsencePercentageOverStudentAbsence: restSchool.sumaInaAlumnos,
-    femaleStudentAbsencePercentageOverStudentAbsence: restSchool.sumaInaAlumnas,
+    maleStudentAbsencePercentageOverStudentAbsence: restSchool.indiceInasistenciaAlumnos,
+    femaleStudentAbsencePercentageOverStudentAbsence: restSchool.indiceInasistenciaAlumnas,
     teacherAttendance: restSchool.indiceAsistenciaDocentes,
     adminAttendance: restSchool.indiceAsistenciaAdmin,
     level: restSchool.nivel,
