@@ -16,7 +16,9 @@ import { schoolStyler } from '@/primary/attendance-webmapping/styles/schools/Sch
 import { statesStyler } from '@/primary/attendance-webmapping/styles/states/StateStyle';
 import { AttendanceTypeBus } from '@/primary/AttendanceTypeBus';
 import { ANIMATION_DURATION, MAP_EXTENT, UPDATE_MAP_VIEWPORT_DELAY } from '@/primary/constants';
+import { CsvParser } from '@/primary/CsvParser';
 import { Delayer } from '@/primary/Delayer';
+import { FileDownloader } from '@/primary/FileDownloader';
 import { NavigationBus } from '@/primary/navigation/NavigationBus';
 import { createClusterLayer, createMap, createPopup, createVectorLayer } from '@/primary/WebmappingUtils';
 import { RestAdministrativeDivisionDailyReportRepository } from '@/secondary/administrative-division-daily-report/RestAdministrativeDivisionDailyReportRepository';
@@ -52,6 +54,8 @@ const schoolsLayer = createClusterLayer(schoolStyler(AttendanceType.STUDENT, '')
 const popup = createPopup();
 const attendanceWebmapping = new AttendanceWebmapping(map, statesLayer, municipalitiesLayer, schoolsLayer, popup, ANIMATION_DURATION);
 const printer = new Printer(window);
+const csvParser = new CsvParser();
+const fileDownloader = new FileDownloader(window);
 const appStore = new AppStore(new Store(appStoreOptions));
 
 new Vue({
@@ -70,5 +74,7 @@ new Vue({
     attendanceWebmapping: () => attendanceWebmapping,
     printer: () => printer,
     appStore: () => appStore,
+    csvParser: () => csvParser,
+    fileDownloader: () => fileDownloader,
   },
 }).$mount('#app');
