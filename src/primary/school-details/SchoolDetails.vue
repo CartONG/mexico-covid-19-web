@@ -45,14 +45,14 @@
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
-              <td class="pl-2">- Inasistencia de niñas sobre el total de inasistencias</td>
+              <td class="pl-2">- Inasistencia de niñas sobre el alumnado esperado</td>
               <td class="w120 has-text-right">
                 {{ schoolDataSet.femaleStudentAbsencePercentageOverStudentAbsence.text }}
               </td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
-              <td class="pl-2">- Inasistencia de niños sobre el total de inasistencias</td>
+              <td class="pl-2">- Inasistencia de niños sobre el alumnado esperado</td>
               <td class="w120 has-text-right">
                 {{ schoolDataSet.maleStudentAbsencePercentageOverStudentAbsence.text }}
               </td>

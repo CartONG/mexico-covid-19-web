@@ -88,14 +88,8 @@ export const toAdministrativeDivision = (
   studentAttendance: restAdministrativeDivision.indiceAsistenciaAlumnado,
   teacherAttendance: restAdministrativeDivision.indiceAsistenciaDocentes,
   adminAttendance: restAdministrativeDivision.indiceAsistenciaAdmin,
-  maleStudentAbsencePercentageOverStudentAbsence: genderPercentage(
-    restAdministrativeDivision.indiceInasistenciaAlumnos,
-    restAdministrativeDivision.indiceInasistenciaAlumnas
-  ),
-  femaleStudentAbsencePercentageOverStudentAbsence: genderPercentage(
-    restAdministrativeDivision.indiceInasistenciaAlumnas,
-    restAdministrativeDivision.indiceInasistenciaAlumnos
-  ),
+  maleStudentAbsencePercentageOverStudentAbsence: restAdministrativeDivision.indiceInasistenciaAlumnos,
+  femaleStudentAbsencePercentageOverStudentAbsence: restAdministrativeDivision.indiceInasistenciaAlumnas,
   schools: restAdministrativeDivision.sumaEscuelas,
   students: restAdministrativeDivision.sumaAlumnado,
   femaleStudents: restAdministrativeDivision.sumaAlumnas,
