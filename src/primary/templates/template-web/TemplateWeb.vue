@@ -21,7 +21,11 @@
             {{ lastUpdateDate }}
           </div>
           <div class="column is-2 has-text-right is-hidden-touch">
-            <ExportDropdownVue class="shift-bottom" @print="$emit('startprinting')" />
+            <ExportDropdownVue
+              class="shift-bottom"
+              :administrative-division="currentAdministrativeDivision"
+              @print="$emit('startprinting')"
+            />
             <InfoModalVue class="ml-5 mr-3" />
           </div>
         </div>

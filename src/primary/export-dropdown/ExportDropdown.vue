@@ -6,6 +6,7 @@
       </span>
     </a>
     <b-dropdown-item aria-role="listitem" @click="$emit('print')">Descargar en PDF</b-dropdown-item>
+    <b-dropdown-item aria-role="listitem" @click="downloadCsv">Descargar en CSV</b-dropdown-item>
   </b-dropdown>
 </template>
 
