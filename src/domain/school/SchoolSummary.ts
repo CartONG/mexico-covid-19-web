@@ -6,7 +6,7 @@ export interface SchoolSummary {
   studentAttendance: number;
   teacherAttendance: number;
   adminAttendance: number;
-  maleStudentAbsenceProportion: number;
-  femaleStudentAbsenceProportion: number;
+  maleStudentAbsence: number;
+  femaleStudentAbsence: number;
   coordinates: [number, number];
 }

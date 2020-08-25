@@ -8,8 +8,8 @@ export interface RestSchoolSummary {
   indiceAsistenciaAlumnado: number;
   indiceAsistenciaDocentes: number;
   indiceAsistenciaAdmin: number;
-  indiceAlumnasSobreInasistencias: number;
-  indiceAlumnosSobreInasistencias: number;
+  indiceInasistenciaAlumnos: number;
+  indiceInasistenciaAlumnas: number;
   coordenadas: {
     latitud: string;
     longitud: string;
@@ -44,7 +44,7 @@ export const toSchoolSummary = (restSchoolSummary: RestSchoolSummary): SchoolSum
   studentAttendance: restSchoolSummary.indiceAsistenciaAlumnado,
   teacherAttendance: restSchoolSummary.indiceAsistenciaDocentes,
   adminAttendance: restSchoolSummary.indiceAsistenciaAdmin,
-  maleStudentAbsenceProportion: restSchoolSummary.indiceAlumnosSobreInasistencias,
-  femaleStudentAbsenceProportion: restSchoolSummary.indiceAlumnasSobreInasistencias,
+  maleStudentAbsence: restSchoolSummary.indiceInasistenciaAlumnas,
+  femaleStudentAbsence: restSchoolSummary.indiceInasistenciaAlumnos,
   coordinates: [parseFloat(restSchoolSummary.coordenadas.longitud), parseFloat(restSchoolSummary.coordenadas.latitud)],
 });

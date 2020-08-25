@@ -6,8 +6,6 @@ export interface SchoolDataSet {
   id: string;
   locality: string;
   name: string;
-  femaleStudentAttendance: PercentageDataSet;
-  maleStudentAttendance: PercentageDataSet;
   studentAttendance: PercentageDataSet;
   maleStudentAbsencePercentageOverStudentAbsence: PercentageDataSet;
   femaleStudentAbsencePercentageOverStudentAbsence: PercentageDataSet;
@@ -179,8 +177,6 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         id: school.id,
         locality: school.locality,
         name: school.name,
-        femaleStudentAttendance: toPercentageDataSet(school.femaleStudentAttendance),
-        maleStudentAttendance: toPercentageDataSet(school.maleStudentAttendance),
         maleStudentAbsencePercentageOverStudentAbsence: toPercentageDataSet(school.maleStudentAbsencePercentageOverStudentAbsence),
         femaleStudentAbsencePercentageOverStudentAbsence: toPercentageDataSet(school.femaleStudentAbsencePercentageOverStudentAbsence),
         studentAttendance: toPercentageDataSet(school.studentAttendance),
@@ -271,8 +267,6 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         id: '-',
         locality: '-',
         name: '-',
-        femaleStudentAttendance: toPercentageDataSet(-1),
-        maleStudentAttendance: toPercentageDataSet(-1),
         studentAttendance: toPercentageDataSet(-1),
         maleStudentAbsencePercentageOverStudentAbsence: toPercentageDataSet(-1),
         femaleStudentAbsencePercentageOverStudentAbsence: toPercentageDataSet(-1),
