@@ -10,7 +10,7 @@ export interface AttendanceListDataSet {
 }
 
 const ATTENDANCE_TYPE_LABELS = {
-  [AttendanceType.STUDENT]: 'alumnados',
+  [AttendanceType.STUDENT]: 'alumnado',
   [AttendanceType.TEACHER]: 'docentes',
   [AttendanceType.PERSONAL]: 'personal',
 };
