@@ -9,8 +9,6 @@ export interface RestSchool {
   nombre: string;
   fechaUltimoReporte: string;
   indiceAsistenciaAlumnado: number;
-  indiceAsistenciaAlumnas: number;
-  indiceAsistenciaAlumnos: number;
   indiceAsistenciaDocentes: number;
   indiceAsistenciaAdmin: number;
   nivel: string;
@@ -47,8 +45,8 @@ export interface RestSchool {
   espacios: number;
   comite: number;
   alterna_asis: number;
-  sumaInaAlumnas: number;
-  sumaInaAlumnos: number;
+  inaalumnas: number;
+  inaalumnos: number;
   inaalum_causa1: number;
   inaalum_causa2: number;
   inaalum_causa3: number;
@@ -107,8 +105,6 @@ export const toSchool = (restSchool: RestSchool): School => {
     name: restSchool.nombre,
     lastUpdateDate: LocalDate.of(restSchool.fechaUltimoReporte),
     studentAttendance: restSchool.indiceAsistenciaAlumnado,
-    femaleStudentAttendance: restSchool.indiceAsistenciaAlumnas,
-    maleStudentAttendance: restSchool.indiceAsistenciaAlumnos,
     maleStudentAbsencePercentageOverStudentAbsence: restSchool.indiceInasistenciaAlumnos,
     femaleStudentAbsencePercentageOverStudentAbsence: restSchool.indiceInasistenciaAlumnas,
     teacherAttendance: restSchool.indiceAsistenciaDocentes,
@@ -149,8 +145,8 @@ export const toSchool = (restSchool: RestSchool): School => {
     hasAbilityToReorganizeSpace: restSchool.espacios,
     hasHygieneCommittee: restSchool.comite,
     alternatesAttendance: restSchool.alterna_asis,
-    absentFemaleStudents: restSchool.sumaInaAlumnas,
-    absentMaleStudents: restSchool.sumaInaAlumnos,
+    absentFemaleStudents: restSchool.inaalumnas,
+    absentMaleStudents: restSchool.inaalumnos,
     studentAbsenceMainReasons: {
       '1': restSchool.inaalum_causa1,
       '2': restSchool.inaalum_causa2,

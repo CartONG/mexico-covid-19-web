@@ -8,8 +8,6 @@ export interface School {
   name: string;
   lastUpdateDate: LocalDate;
   studentAttendance: number;
-  femaleStudentAttendance: number;
-  maleStudentAttendance: number;
   maleStudentAbsencePercentageOverStudentAbsence: number;
   femaleStudentAbsencePercentageOverStudentAbsence: number;
   teacherAttendance: number;
