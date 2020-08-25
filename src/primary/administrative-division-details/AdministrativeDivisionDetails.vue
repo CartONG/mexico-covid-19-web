@@ -716,7 +716,7 @@
                   Causas de inasistencia de alumnos
                 </td>
                 <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
-                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Percentaje</td>
+                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
                 <td v-if="!printable" class="w40 has-text-right">
                   <a class="card-header-icon px-0 py-0">
                     <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
@@ -774,7 +774,7 @@
                   Causas de inasistencia de docentes
                 </td>
                 <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
-                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Percentaje</td>
+                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
                 <td v-if="!printable" class="w40 has-text-right">
                   <a class="card-header-icon px-0 py-0">
                     <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
@@ -826,7 +826,7 @@
                   Causas de inasistencia del personal
                 </td>
                 <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
-                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Percentaje</td>
+                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
                 <td v-if="!printable" class="w40 has-text-right">
                   <a class="card-header-icon px-0 py-0">
                     <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>

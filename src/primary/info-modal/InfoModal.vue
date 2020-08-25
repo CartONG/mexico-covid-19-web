@@ -59,7 +59,7 @@
             <span class="ml-1"><i class="square-success-darker"></i> 95% - 100%</span>
           </p>
           <p>
-            <span class="ml-1"><i class="square-grey"></i> desconoce</span>
+            <span class="ml-1"><i class="square-grey"></i> Desconocido</span>
           </p>
         </div>
       </article>

@@ -14,7 +14,7 @@
         <h2 class="has-text-weight-bold has-text-primary is-uppercase">Comentarios realizados por la escuela</h2>
       </header>
       <div class="card-content px-0 py-0">
-        <p v-if="schoolDataSet.studentAbsenceOtherReason === ''" class="px-2 py-2">No aplicable</p>
+        <p v-if="schoolDataSet.studentAbsenceOtherReason === ''" class="px-2 py-2">Sin comentarios</p>
         <p v-else class="px-2 py-2">{{ schoolDataSet.studentAbsenceOtherReason }}</p>
       </div>
     </div>
