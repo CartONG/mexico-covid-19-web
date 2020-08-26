@@ -64,4 +64,11 @@ export interface AdministrativeDivision {
   absentAdmins: number;
   adminAbsenceMainReasons: { [key: string]: number };
   adminAbsenceMainReasonsPercentages: { [key: string]: number };
+  takenActionsPercentages: { visits: number; calls: number; scholarship: number; none: number };
+  drinkers: number;
+  maleStudentToilets: number;
+  femaleStudentToilets: number;
+  foodSupportPercentages: { [key: string]: number };
+  foodSupportTypePercentages: { dif: number; fullTimeProgram: number; state: number; others: number };
+  theSchoolIsOursPercentages: { [key: string]: number };
 }

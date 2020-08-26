@@ -62,6 +62,13 @@ export interface RestAdministrativeDivision {
   sumaInaAdministrativos: number;
   causaInaAdmin: { [key: string]: number };
   sumaCausaInaAdmin: { [key: string]: number };
+  accion: { visita: number; llamada: number; beca: number; ninguna: number };
+  sumaBebederos: number;
+  sumaWcalumnas: number;
+  sumaWcalumnos: number;
+  indiceAlimentos: { [key: string]: number };
+  alimentos: { dif: number; etc: number; edo: number; otro: number };
+  escuelanuestra: { [key: string]: number };
 }
 
 const genderPercentage = (gender: number, otherGender: number): number => {
@@ -141,4 +148,21 @@ export const toAdministrativeDivision = (
   absentAdmins: restAdministrativeDivision.sumaInaAdministrativos,
   adminAbsenceMainReasons: restAdministrativeDivision.sumaCausaInaAdmin || {},
   adminAbsenceMainReasonsPercentages: restAdministrativeDivision.causaInaAdmin || {},
+  takenActionsPercentages: {
+    visits: restAdministrativeDivision.accion.visita,
+    calls: restAdministrativeDivision.accion.llamada,
+    scholarship: restAdministrativeDivision.accion.beca,
+    none: restAdministrativeDivision.accion.ninguna,
+  },
+  drinkers: restAdministrativeDivision.sumaBebederos,
+  maleStudentToilets: restAdministrativeDivision.sumaWcalumnos,
+  femaleStudentToilets: restAdministrativeDivision.sumaWcalumnas,
+  foodSupportPercentages: restAdministrativeDivision.indiceAlimentos,
+  foodSupportTypePercentages: {
+    dif: restAdministrativeDivision.alimentos.dif,
+    fullTimeProgram: restAdministrativeDivision.alimentos.etc,
+    state: restAdministrativeDivision.alimentos.edo,
+    others: restAdministrativeDivision.alimentos.otro,
+  },
+  theSchoolIsOursPercentages: restAdministrativeDivision.escuelanuestra,
 });
