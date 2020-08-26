@@ -72,5 +72,5 @@ export interface School {
   foodSupport: boolean;
   foodSupportType: { dif: boolean; fullTimeProgram: boolean; state: boolean; others: boolean };
   foodSupportComment: string;
-  theSchoolIsOurs: boolean;
+  theSchoolIsOurs: number;
 }
