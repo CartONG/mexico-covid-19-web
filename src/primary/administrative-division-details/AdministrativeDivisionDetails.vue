@@ -1,7 +1,228 @@
 <template>
   <div>
+    <b-collapse class="card mb-4" animation="slide" aria-id="tasaDeAsistencia" open>
+      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="tasaDeAsistencia">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-primary is-uppercase">ÍNDICES DE ASISTENCIA</td>
+              <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
+              <td v-if="!printable" class="w40 has-text-right">
+                <a class="card-header-icon px-0 py-0">
+                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-content px-0 py-0">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td>Asistencia del alumnado</td>
+              <td :class="`w120 has-text-right has-text-${administrativeDivisionDataSet.studentAttendance.color}`">
+                {{ administrativeDivisionDataSet.studentAttendance.text }}
+              </td>
+              <td v-if="!printable" class="w40"></td>
+            </tr>
+            <tr>
+              <td class="pl-2">- Inasistencias de niñas sobre el alumnado esperado</td>
+              <td class="w120 has-text-right">
+                {{ administrativeDivisionDataSet.femaleStudentAbsencePercentageOverStudentAbsence.text }}
+              </td>
+              <td v-if="!printable" class="w40"></td>
+            </tr>
+            <tr>
+              <td class="pl-2">- Inasistencias de niños sobre el alumnado esperado</td>
+              <td class="w120 has-text-right">
+                {{ administrativeDivisionDataSet.maleStudentAbsencePercentageOverStudentAbsence.text }}
+              </td>
+              <td v-if="!printable" class="w40"></td>
+            </tr>
+            <tr>
+              <td>Asistencia de docentes</td>
+              <td :class="`w120 has-text-right has-text-${administrativeDivisionDataSet.teacherAttendance.color}`">
+                {{ administrativeDivisionDataSet.teacherAttendance.text }}
+              </td>
+              <td v-if="!printable" class="w40"></td>
+            </tr>
+            <tr>
+              <td>Asistencia de personal distinto a docentes</td>
+              <td :class="`w120 has-text-right has-text-${administrativeDivisionDataSet.adminAttendance.color}`">
+                {{ administrativeDivisionDataSet.adminAttendance.text }}
+              </td>
+              <td v-if="!printable" class="w40"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </b-collapse>
     <div :class="{ 'horizontal-scroll': !printable }">
-      <b-collapse class="card mb-4 mw400" animation="slide" aria-id="organizaciónEscolar" open>
+      <b-collapse class="card mb-4 mw400" animation="slide" aria-id="causasDeInasistenciaDeAlumnos" :open="printable">
+        <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDeAlumnos">
+          <table class="table is-fullwidth has-no-background">
+            <tbody>
+              <tr>
+                <td class="has-text-weight-bold has-text-primary is-uppercase">
+                  Causas de inasistencia de alumnos
+                </td>
+                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
+                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
+                <td v-if="!printable" class="w40 has-text-right">
+                  <a class="card-header-icon px-0 py-0">
+                    <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-content px-0 py-0">
+          <table class="table is-fullwidth has-no-background">
+            <tbody>
+              <tr>
+                <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['1'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['1'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Los padres de familia no enviaron a sus hijos a la escuela</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['2'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['2'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Reportaron enfermos a los alumnos que no asistieron</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['3'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['3'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Se desconocen las causas</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['4'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['4'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Otras causas</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['5'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['5'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </b-collapse>
+    </div>
+    <div :class="{ 'horizontal-scroll': !printable }">
+      <b-collapse class="card mb-4 mw400" animation="slide" aria-id="causasDeInasistenciaDeDocentes" :open="printable">
+        <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDeDocentes">
+          <table class="table is-fullwidth has-no-background">
+            <tbody>
+              <tr>
+                <td class="has-text-weight-bold has-text-primary is-uppercase">
+                  Causas de inasistencia de docentes
+                </td>
+                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
+                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
+                <td v-if="!printable" class="w40 has-text-right">
+                  <a class="card-header-icon px-0 py-0">
+                    <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-content px-0 py-0">
+          <table class="table is-fullwidth has-no-background">
+            <tbody>
+              <tr>
+                <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasons['1'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasonsPercentages['1'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Se reportaron enfermos</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasons['2'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasonsPercentages['2'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>No se sabe las causas</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasons['3'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasonsPercentages['3'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Otras causas</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasons['4'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasonsPercentages['4'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </b-collapse>
+    </div>
+    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
+    <div :class="{ 'horizontal-scroll': !printable }">
+      <b-collapse class="card mb-4 mw400" animation="slide" aria-id="causasDeInasistenciaDelPersonal" :open="printable">
+        <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDelPersonal">
+          <table class="table is-fullwidth has-no-background">
+            <tbody>
+              <tr>
+                <td class="has-text-weight-bold has-text-primary is-uppercase">
+                  Causas de inasistencia del personal
+                </td>
+                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
+                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
+                <td v-if="!printable" class="w40 has-text-right">
+                  <a class="card-header-icon px-0 py-0">
+                    <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-content px-0 py-0">
+          <table class="table is-fullwidth has-no-background">
+            <tbody>
+              <tr>
+                <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasons['1'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasonsPercentages['1'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Se reportaron enfermos</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasons['2'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasonsPercentages['2'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>No se sabe las causas</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasons['3'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasonsPercentages['3'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Otras causas</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasons['4'].text }}</td>
+                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasonsPercentages['4'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </b-collapse>
+    </div>
+    <div :class="{ 'horizontal-scroll': !printable }">
+      <b-collapse class="card mb-4 mw400" animation="slide" aria-id="organizaciónEscolar" :open="printable">
         <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="organizaciónEscolar">
           <table class="table is-fullwidth has-no-background">
             <tbody>
@@ -100,64 +321,7 @@
         </div>
       </b-collapse>
     </div>
-    <b-collapse class="card mb-4" animation="slide" aria-id="tasaDeAsistencia" :open="printable">
-      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="tasaDeAsistencia">
-        <table class="table is-fullwidth has-no-background">
-          <tbody>
-            <tr>
-              <td class="has-text-weight-bold has-text-primary is-uppercase">ÍNDICES DE ASISTENCIA</td>
-              <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
-              <td v-if="!printable" class="w40 has-text-right">
-                <a class="card-header-icon px-0 py-0">
-                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="card-content px-0 py-0">
-        <table class="table is-fullwidth has-no-background">
-          <tbody>
-            <tr>
-              <td>Asistencia del alumnado</td>
-              <td :class="`w120 has-text-right has-text-${administrativeDivisionDataSet.studentAttendance.color}`">
-                {{ administrativeDivisionDataSet.studentAttendance.text }}
-              </td>
-              <td v-if="!printable" class="w40"></td>
-            </tr>
-            <tr>
-              <td class="pl-2">- Inasistencias de niñas sobre el alumnado esperado</td>
-              <td class="w120 has-text-right">
-                {{ administrativeDivisionDataSet.femaleStudentAbsencePercentageOverStudentAbsence.text }}
-              </td>
-              <td v-if="!printable" class="w40"></td>
-            </tr>
-            <tr>
-              <td class="pl-2">- Inasistencias de niños sobre el alumnado esperado</td>
-              <td class="w120 has-text-right">
-                {{ administrativeDivisionDataSet.maleStudentAbsencePercentageOverStudentAbsence.text }}
-              </td>
-              <td v-if="!printable" class="w40"></td>
-            </tr>
-            <tr>
-              <td>Asistencia de docentes</td>
-              <td :class="`w120 has-text-right has-text-${administrativeDivisionDataSet.teacherAttendance.color}`">
-                {{ administrativeDivisionDataSet.teacherAttendance.text }}
-              </td>
-              <td v-if="!printable" class="w40"></td>
-            </tr>
-            <tr>
-              <td>Asistencia de personal distinto a docentes</td>
-              <td :class="`w120 has-text-right has-text-${administrativeDivisionDataSet.adminAttendance.color}`">
-                {{ administrativeDivisionDataSet.adminAttendance.text }}
-              </td>
-              <td v-if="!printable" class="w40"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </b-collapse>
+    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
     <div :class="{ 'horizontal-scroll': !printable }">
       <b-collapse class="card mb-4 mw500" animation="slide" aria-id="principaleMotivosDeEscuelasSinClasesPresenciales" :open="printable">
         <div
@@ -542,8 +706,8 @@
       </b-collapse>
     </div>
     <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
-    <b-collapse v-if="printable" class="card mb-4" animation="slide" aria-id="condicionesSanitariasElementales" :open="printable">
-      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="condicionesSanitariasElementales">
+    <b-collapse v-if="printable" class="card mb-4" animation="slide" aria-id="condicionesSanitariasElementales2" :open="printable">
+      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="condicionesSanitariasElementales2">
         <table class="table is-fullwidth has-no-background">
           <tbody>
             <tr>
@@ -647,10 +811,128 @@
               <td class="w200 has-text-right">{{ administrativeDivisionDataSet.schoolWithSepticSystem['2'].text }}</td>
               <td class="w120 has-text-right">{{ administrativeDivisionDataSet.schoolWithSepticSystemPercentages['2'].text }}</td>
             </tr>
+            <tr>
+              <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
+                Bebederos
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Bebederos funcionales</td>
+              <td class="w200 has-text-right">{{ administrativeDivisionDataSet.drinkers.text }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
+                Baños
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Baños funcionales, Alumnas</td>
+              <td class="w200 has-text-right">{{ administrativeDivisionDataSet.femaleStudentToilets.text }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Baños funcionales, Alumnos</td>
+              <td class="w200 has-text-right">{{ administrativeDivisionDataSet.maleStudentToilets.text }}</td>
+              <td></td>
+            </tr>
           </tbody>
         </table>
       </div>
     </b-collapse>
+    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
+    <div :class="[{ 'horizontal-scroll': !printable }]">
+      <b-collapse class="card mb-4 mw400" animation="slide" aria-id="programasAdheridosALaEscuela" :open="printable">
+        <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="programasAdheridosALaEscuela">
+          <table class="table is-fullwidth has-no-background">
+            <tbody>
+              <tr>
+                <td class="has-text-weight-bold has-text-primary is-uppercase">Programas adheridos a la escuela</td>
+                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase has-text-right opacity-6 break-word">
+                  Porcentaje
+                </td>
+                <td v-if="!printable" class="w40 has-text-right">
+                  <a class="card-header-icon px-0 py-0">
+                    <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-content px-0 py-0">
+          <table class="table is-fullwidth has-no-background">
+            <tbody>
+              <tr>
+                <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
+                  Reciben el apoyo de alimentación en la escuela
+                </td>
+                <td></td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Si reciben algún apoyo de alimentación</td>
+                <td class="w200 has-text-right">{{ administrativeDivisionDataSet.foodSupportPercentages['1'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>No recibe apoyo de alimentación</td>
+                <td class="w200 has-text-right">{{ administrativeDivisionDataSet.foodSupportPercentages['2'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
+                  Quienes proporcionan los alimentos
+                </td>
+                <td></td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Reciben alimentos por parte del DIF</td>
+                <td class="w200 has-text-right">{{ administrativeDivisionDataSet.foodSupportTypePercentages.dif.text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Reciben alimentos por parte del Programa de Tiempo Completo</td>
+                <td class="w200 has-text-right">{{ administrativeDivisionDataSet.foodSupportTypePercentages.fullTimeProgram.text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Reciben alimentos por parte del Estado</td>
+                <td class="w200 has-text-right">{{ administrativeDivisionDataSet.foodSupportTypePercentages.state.text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Otros</td>
+                <td class="w200 has-text-right">{{ administrativeDivisionDataSet.foodSupportTypePercentages.others.text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
+                  La escuela pertenece al programa La Escuela es nuestra
+                </td>
+                <td></td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Si pertenece</td>
+                <td class="w200 has-text-right">{{ administrativeDivisionDataSet.theSchoolIsOursPercentages['1'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>No pertenece</td>
+                <td class="w200 has-text-right">{{ administrativeDivisionDataSet.theSchoolIsOursPercentages['2'].text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </b-collapse>
+    </div>
     <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
     <div :class="{ 'horizontal-scroll': !printable }">
       <b-collapse class="card mb-4 mw400" animation="slide" aria-id="estadísticaBásicaSobreMatricula" :open="printable">
@@ -777,169 +1059,7 @@
         </table>
       </div>
     </b-collapse>
-    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
-    <div :class="{ 'horizontal-scroll': !printable }">
-      <b-collapse class="card mb-4 mw400" animation="slide" aria-id="causasDeInasistenciaDeAlumnos" :open="printable">
-        <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDeAlumnos">
-          <table class="table is-fullwidth has-no-background">
-            <tbody>
-              <tr>
-                <td class="has-text-weight-bold has-text-primary is-uppercase">
-                  Causas de inasistencia de alumnos
-                </td>
-                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
-                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
-                <td v-if="!printable" class="w40 has-text-right">
-                  <a class="card-header-icon px-0 py-0">
-                    <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card-content px-0 py-0">
-          <table class="table is-fullwidth has-no-background">
-            <tbody>
-              <tr>
-                <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['1'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['1'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Los padres de familia no enviaron a sus hijos a la escuela</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['2'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['2'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Reportaron enfermos a los alumnos que no asistieron</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['3'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['3'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Se desconocen las causas</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['4'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['4'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Otras causas</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasons['5'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.studentAbsenceMainReasonsPercentages['5'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </b-collapse>
-    </div>
-    <div :class="{ 'horizontal-scroll': !printable }">
-      <b-collapse class="card mb-4 mw400" animation="slide" aria-id="causasDeInasistenciaDeDocentes" :open="printable">
-        <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDeDocentes">
-          <table class="table is-fullwidth has-no-background">
-            <tbody>
-              <tr>
-                <td class="has-text-weight-bold has-text-primary is-uppercase">
-                  Causas de inasistencia de docentes
-                </td>
-                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
-                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
-                <td v-if="!printable" class="w40 has-text-right">
-                  <a class="card-header-icon px-0 py-0">
-                    <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card-content px-0 py-0">
-          <table class="table is-fullwidth has-no-background">
-            <tbody>
-              <tr>
-                <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasons['1'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasonsPercentages['1'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Se reportaron enfermos</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasons['2'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasonsPercentages['2'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>No se sabe las causas</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasons['3'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasonsPercentages['3'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Otras causas</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasons['4'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.teacherAbsenceMainReasonsPercentages['4'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </b-collapse>
-    </div>
-    <div :class="{ 'horizontal-scroll': !printable }">
-      <b-collapse class="card mb-4 mw400" animation="slide" aria-id="causasDeInasistenciaDelPersonal" :open="printable">
-        <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDelPersonal">
-          <table class="table is-fullwidth has-no-background">
-            <tbody>
-              <tr>
-                <td class="has-text-weight-bold has-text-primary is-uppercase">
-                  Causas de inasistencia del personal
-                </td>
-                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
-                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
-                <td v-if="!printable" class="w40 has-text-right">
-                  <a class="card-header-icon px-0 py-0">
-                    <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card-content px-0 py-0">
-          <table class="table is-fullwidth has-no-background">
-            <tbody>
-              <tr>
-                <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasons['1'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasonsPercentages['1'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Se reportaron enfermos</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasons['2'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasonsPercentages['2'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>No se sabe las causas</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasons['3'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasonsPercentages['3'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Otras causas</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasons['4'].text }}</td>
-                <td class="w120 has-text-right">{{ administrativeDivisionDataSet.adminsAbsenceMainReasonsPercentages['4'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </b-collapse>
-    </div>
+    -->
   </div>
 </template>
 

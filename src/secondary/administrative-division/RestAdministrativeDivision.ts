@@ -68,7 +68,7 @@ export interface RestAdministrativeDivision {
   sumaWcalumnos: number;
   indiceAlimentos: { [key: string]: number };
   alimentos: { dif: number; etc: number; edo: number; otro: number };
-  escuelanuestra: { [key: string]: number };
+  indiceEscuelaNuestra: { [key: string]: number };
 }
 
 const genderPercentage = (gender: number, otherGender: number): number => {
@@ -164,5 +164,5 @@ export const toAdministrativeDivision = (
     state: restAdministrativeDivision.alimentos.edo,
     others: restAdministrativeDivision.alimentos.otro,
   },
-  theSchoolIsOursPercentages: restAdministrativeDivision.escuelanuestra,
+  theSchoolIsOursPercentages: restAdministrativeDivision.indiceEscuelaNuestra,
 });
