@@ -11,19 +11,19 @@ export interface SchoolCsvExportContent {
   Municipio: string;
   'ID Entidad Federativa': string;
   'Fecha ultimo reporte': string;
+  Nivel: string;
+  'Clave del Centro de Trabajo': string;
+  'Clave del turno': string;
+  'Modalidad de atención': string;
+  'Domicilio de la escuela': string;
+  'Clave del inmueble': string;
+  'Tipo de Sostenimiento': string;
   'Asistencia del alumnado': string;
   'Inasistencias de niñas sobre el alumnado esperado': string;
   'Inasistencias de niños sobre el alumnado esperado': string;
   'Asistencia de docentes': string;
   'Asistencia del personal': string;
-  Nivel: string;
-  'Clave del Centro de Trabajo': string;
-  'Clave del turno': string;
   'En la escuela se reiniciaron las clases presenciales': string;
-  'Modalidad de atención': string;
-  'Domicilio de la escuela': string;
-  'Clave del inmueble': string;
-  'Tipo de Sostenimiento': string;
   'Total del alumnado': string;
   'Total del alumnas': string;
   'Total del alumnos': string;
@@ -77,6 +77,14 @@ export interface SchoolCsvExportContent {
   'Porcentaje de inasistencias de personal administrativo porque: Se desconocen las causas': string;
   'Porcentaje de inasistencias de personal administrativo por otras causas de inasistencia': string;
   Comentarios: string;
+  'Acciones para reincorporar a los alumnos con inasistencias': string;
+  'Número de bebederos funcionales': string;
+  'Número de baños funcionales, Alumnas': string;
+  'Número de baños funcionales, Alumnos': string;
+  'Reciben el apoyo de alimentación en la escuela': string;
+  'Quienes proporcionan los alimentos': string;
+  'Sí otros quién da el apoyo de alimentación': string;
+  'La escuela pertenece al programa La Escuela es nuestra': string;
 }
 
 const turnTexts: { [key: string]: string } = {
@@ -157,6 +165,50 @@ const givesClassesText: { shortText: string; longText: string }[] = [
   { shortText: 'No', longText: 'No, Los padres de familia informaron que no enviarán a sus hijos a la escuela' },
 ];
 
+const toTakenActions = (takenActions: { [key: string]: boolean }): string => {
+  const actions = [];
+
+  if (takenActions.visits) {
+    actions.push('Visita domiciliaria');
+  }
+
+  if (takenActions.calls) {
+    actions.push('Llamada telefónica');
+  }
+
+  if (takenActions.scholarship) {
+    actions.push('Gestión de becas');
+  }
+
+  if (takenActions.none) {
+    actions.push('Ninguna');
+  }
+
+  return actions.join(', ');
+};
+
+const toFoodSupportTypes = (foodSupportType: { [key: string]: boolean }): string => {
+  const types = [];
+
+  if (foodSupportType.dif) {
+    types.push('Reciben alimentos por parte del DIF');
+  }
+
+  if (foodSupportType.fullTimeProgram) {
+    types.push('Reciben alimentos  por parte del Programa de Tiempo Completo');
+  }
+
+  if (foodSupportType.state) {
+    types.push('Reciben alimentos por parte del Estado');
+  }
+
+  if (foodSupportType.none) {
+    types.push('Quienes proporcionan los alimentos. Otros');
+  }
+
+  return types.join(' - ');
+};
+
 export const toSchoolCsvExportContent = (school: School): SchoolCsvExportContent => ({
   ID: school.id,
   Nombre: school.name,
@@ -166,48 +218,20 @@ export const toSchoolCsvExportContent = (school: School): SchoolCsvExportContent
   Municipio: school.municipality,
   'ID Entidad Federativa': school.stateId,
   'Fecha ultimo reporte': school.lastUpdateDate.toHuman(),
+  Nivel: school.level,
+  'Clave del Centro de Trabajo': school.workCenterKey,
+  'Clave del turno': turnTexts[school.turn],
+  'Modalidad de atención': school.modality,
+  'Domicilio de la escuela': school.address,
+  'Clave del inmueble': school.buildingId,
+  'Tipo de Sostenimiento': school.support,
+  'En la escuela se reiniciaron las clases presenciales': givesClassesText[school.givesClasses].longText,
+  Comentarios: school.comments,
   'Asistencia del alumnado': toPercentageDataSet(school.studentAttendance).text,
   'Inasistencias de niñas sobre el alumnado esperado': toPercentageDataSet(school.femaleStudentAbsencePercentageOverStudentAbsence).text,
   'Inasistencias de niños sobre el alumnado esperado': toPercentageDataSet(school.maleStudentAbsencePercentageOverStudentAbsence).text,
   'Asistencia de docentes': toPercentageDataSet(school.teacherAttendance).text,
   'Asistencia del personal': toPercentageDataSet(school.adminAttendance).text,
-  Nivel: school.level,
-  'Clave del Centro de Trabajo': school.workCenterKey,
-  'Clave del turno': turnTexts[school.turn],
-  'En la escuela se reiniciaron las clases presenciales': givesClassesText[school.givesClasses].longText,
-  'Modalidad de atención': school.modality,
-  'Domicilio de la escuela': school.address,
-  'Clave del inmueble': school.buildingId,
-  'Tipo de Sostenimiento': school.support,
-  'Total del alumnado': toNumericDataSet(school.students).rawText,
-  'Total del alumnas': toNumericDataSet(school.femaleStudent).rawText,
-  'Total del alumnos': toNumericDataSet(school.maleStudent).rawText,
-  'Alumnas (% del alumnado)': toPercentageDataSet(school.femaleStudentPercentage).text,
-  'Alumnos (% del alumnado)': toPercentageDataSet(school.maleStudentPercentage).text,
-  'Total de Docentes frente a grupo': toNumericDataSet(school.teachers).rawText,
-  'Total de grupos': toNumericDataSet(school.assistants).rawText,
-  'Total de directores': toNumericDataSet(school.directors).rawText,
-  'Total de Subdirectores': toNumericDataSet(school.subDirectors).rawText,
-  'Total de Asesores Técnicos Pedagógicos': toNumericDataSet(school.technicalPedagogicalAdvisers).rawText,
-  'Total de docentes de Educación Física': toNumericDataSet(school.physicalEducationTeachers).rawText,
-  'Total de personal Administrativo': toNumericDataSet(school.admins).rawText,
-  'Total de personal de intendencia': toNumericDataSet(school.quartermasters).rawText,
-  'Total de otro tipo de personal': toNumericDataSet(school.others).rawText,
-  'Tipo de abastecimiento de agua': waterSupplyTexts[school.waterSupply],
-  'Continuidad del servicio de agua': waterServiceContinuityTexts[school.waterServiceContinuity],
-  'Agua para el lavado de manos': waterForHandWashingTexts[school.waterForHandWashing].longText,
-  'Número de lavamanos funcionales': sinkSufficiencyTexts[school.sinkSufficiency],
-  'Existencia de Jabón para lavado de manos': soapSufficiencyTexts[school.soapSufficiency].longText,
-  'Existencia de toallas de papel en la escuela, tela u otro material  para el lavado de manos':
-    towelSufficiencyTexts[school.towelSufficiency],
-  'Sanitizante de alcohol': sanitizerSufficiencyTexts[school.sanitizerSufficiency],
-  'Botes de basura para el manejo de residuos': binSufficiencyTexts[school.binSufficiency],
-  'Red de drenaje, fosa séptica para desalojo de aguas': hasSepticSystemTexts[school.hasSepticSystem],
-  'La escuela puede reorganizar los espacios educativos': hasAbilityToReorganizeSpaceTexts[school.hasAbilityToReorganizeSpace],
-  'Se tiene instalado el comité de higiene': hasHygieneCommitteeTexts[school.hasHygieneCommittee],
-  'La escuela alterna la asistencia de los alumnos': alternatesAttendanceTexts[school.alternatesAttendance],
-  // absentFemaleStudents: number;
-  // absentMaleStudents: number;
   'Total de inasistencias de alumnos porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': toNumericDataSet(
     school.studentAbsenceMainReasons['1']
   ).rawText,
@@ -274,5 +298,42 @@ export const toSchoolCsvExportContent = (school: School): SchoolCsvExportContent
   'Porcentaje de inasistencias de personal administrativo por otras causas de inasistencia': toPercentageDataSet(
     school.adminAbsenceMainReasonsPercentages['4']
   ).text,
-  Comentarios: school.comments,
+  'Se tiene instalado el comité de higiene': hasHygieneCommitteeTexts[school.hasHygieneCommittee],
+  'La escuela alterna la asistencia de los alumnos': alternatesAttendanceTexts[school.alternatesAttendance],
+  'La escuela puede reorganizar los espacios educativos': hasAbilityToReorganizeSpaceTexts[school.hasAbilityToReorganizeSpace],
+  'Acciones para reincorporar a los alumnos con inasistencias': toTakenActions(school.takenActions),
+  'Tipo de abastecimiento de agua': waterSupplyTexts[school.waterSupply],
+  'Continuidad del servicio de agua': waterServiceContinuityTexts[school.waterServiceContinuity],
+  'Agua para el lavado de manos': waterForHandWashingTexts[school.waterForHandWashing].longText,
+  'Número de lavamanos funcionales': sinkSufficiencyTexts[school.sinkSufficiency],
+  'Existencia de Jabón para lavado de manos': soapSufficiencyTexts[school.soapSufficiency].longText,
+  'Existencia de toallas de papel en la escuela, tela u otro material  para el lavado de manos':
+    towelSufficiencyTexts[school.towelSufficiency],
+  'Sanitizante de alcohol': sanitizerSufficiencyTexts[school.sanitizerSufficiency],
+  'Botes de basura para el manejo de residuos': binSufficiencyTexts[school.binSufficiency],
+  'Red de drenaje, fosa séptica para desalojo de aguas': hasSepticSystemTexts[school.hasSepticSystem],
+  'Número de bebederos funcionales': toNumericDataSet(school.drinkers).rawText,
+  'Número de baños funcionales, Alumnas': toNumericDataSet(school.femaleStudentToilets).rawText,
+  'Número de baños funcionales, Alumnos': toNumericDataSet(school.maleStudentToilets).rawText,
+  'Reciben el apoyo de alimentación en la escuela': school.foodSupport
+    ? 'Si reciben algún apoyo de alimentación'
+    : 'No recibe apoyo de alimentación',
+  'Quienes proporcionan los alimentos': toFoodSupportTypes(school.foodSupportType),
+  'Sí otros quién da el apoyo de alimentación': school.foodSupportComment,
+  'La escuela pertenece al programa La Escuela es nuestra':
+    school.theSchoolIsOurs === 1 ? 'Si pertenece' : school.theSchoolIsOurs === 2 ? 'No pertenece' : '-',
+  'Total del alumnado': toNumericDataSet(school.students).rawText,
+  'Total del alumnas': toNumericDataSet(school.femaleStudent).rawText,
+  'Total del alumnos': toNumericDataSet(school.maleStudent).rawText,
+  'Total de grupos': toNumericDataSet(school.assistants).rawText,
+  'Alumnas (% del alumnado)': toPercentageDataSet(school.femaleStudentPercentage).text,
+  'Alumnos (% del alumnado)': toPercentageDataSet(school.maleStudentPercentage).text,
+  'Total de Docentes frente a grupo': toNumericDataSet(school.teachers).rawText,
+  'Total de directores': toNumericDataSet(school.directors).rawText,
+  'Total de Subdirectores': toNumericDataSet(school.subDirectors).rawText,
+  'Total de Asesores Técnicos Pedagógicos': toNumericDataSet(school.technicalPedagogicalAdvisers).rawText,
+  'Total de docentes de Educación Física': toNumericDataSet(school.physicalEducationTeachers).rawText,
+  'Total de personal Administrativo': toNumericDataSet(school.admins).rawText,
+  'Total de personal de intendencia': toNumericDataSet(school.quartermasters).rawText,
+  'Total de otro tipo de personal': toNumericDataSet(school.others).rawText,
 });
