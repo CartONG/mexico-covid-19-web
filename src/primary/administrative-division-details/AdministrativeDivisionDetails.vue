@@ -845,7 +845,7 @@
       </div>
     </b-collapse>
     <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
-    <div :class="[{ 'horizontal-scroll': !printable }]">
+    <div :class="{ 'horizontal-scroll': !printable }">
       <b-collapse class="card mb-4 mw400" animation="slide" aria-id="programasAdheridosALaEscuela" :open="printable">
         <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="programasAdheridosALaEscuela">
           <table class="table is-fullwidth has-no-background">
@@ -1059,7 +1059,6 @@
         </table>
       </div>
     </b-collapse>
-    -->
   </div>
 </template>
 
