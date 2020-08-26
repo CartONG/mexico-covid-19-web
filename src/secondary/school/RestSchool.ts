@@ -225,6 +225,6 @@ export const toSchool = (restSchool: RestSchool): School => {
       others: restSchool.alimentosotro === 1,
     },
     foodSupportComment: restSchool.alimentosotro_txt,
-    theSchoolIsOurs: restSchool.escuelanuestra === 1,
+    theSchoolIsOurs: restSchool.escuelanuestra,
   };
 };

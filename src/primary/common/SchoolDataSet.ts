@@ -95,7 +95,7 @@ export interface SchoolDataSet {
   drinkers: NumericDataSet;
   maleStudentToilets: NumericDataSet;
   femaleStudentToilets: NumericDataSet;
-  foodSupport: boolean;
+  foodSupport: string;
   foodSupportType: string;
   foodSupportComment: string;
   theSchoolIsOurs: string;
@@ -318,10 +318,10 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         drinkers: toNumericDataSet(school.drinkers),
         maleStudentToilets: toNumericDataSet(school.maleStudentToilets),
         femaleStudentToilets: toNumericDataSet(school.femaleStudentToilets),
-        foodSupport: school.foodSupport,
+        foodSupport: school.foodSupport ? 'Si reciben algún apoyo de alimentación' : 'No recibe apoyo de alimentación',
         foodSupportType: toFoodSupportTypes(school.foodSupportType),
         foodSupportComment: school.foodSupportComment,
-        theSchoolIsOurs: school.theSchoolIsOurs ? 'Si pertenece' : 'No pertenece',
+        theSchoolIsOurs: school.theSchoolIsOurs === 1 ? 'Si pertenece' : school.theSchoolIsOurs === 2 ? 'No pertenece' : '-',
       }
     : {
         id: '-',
@@ -416,7 +416,7 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         drinkers: toNumericDataSet(-1),
         maleStudentToilets: toNumericDataSet(-1),
         femaleStudentToilets: toNumericDataSet(-1),
-        foodSupport: false,
+        foodSupport: '-',
         foodSupportType: toFoodSupportTypes({}),
         foodSupportComment: '',
         theSchoolIsOurs: '-',
