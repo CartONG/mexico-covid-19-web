@@ -55,6 +55,46 @@
                 </td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
+              <tr>
+                <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
+                  Acciones para reincorporar a los alumnos con inasistencias
+                </td>
+                <td></td>
+                <td></td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Visita domiciliaria</td>
+                <td></td>
+                <td class="w120 has-text-right">
+                  {{ administrativeDivisionDataSet.takenActionsPercentages.visits.text }}
+                </td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Llamada telefónica</td>
+                <td></td>
+                <td class="w120 has-text-right">
+                  {{ administrativeDivisionDataSet.takenActionsPercentages.calls.text }}
+                </td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Gestión de becas</td>
+                <td></td>
+                <td class="w120 has-text-right">
+                  {{ administrativeDivisionDataSet.takenActionsPercentages.scholarship.text }}
+                </td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Ninguna</td>
+                <td></td>
+                <td class="w120 has-text-right">
+                  {{ administrativeDivisionDataSet.takenActionsPercentages.none.text }}
+                </td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -462,6 +502,38 @@
                 <td>No cuenta con Red de drenaje, fosa séptica para desalojo de aguas</td>
                 <td class="w200 has-text-right">{{ administrativeDivisionDataSet.schoolWithSepticSystem['2'].text }}</td>
                 <td class="w120 has-text-right">{{ administrativeDivisionDataSet.schoolWithSepticSystemPercentages['2'].text }}</td>
+                <td class="w40"></td>
+              </tr>
+              <tr v-if="!printable">
+                <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
+                  Bebederos
+                </td>
+                <td></td>
+                <td class="w40"></td>
+              </tr>
+              <tr v-if="!printable">
+                <td>Bebederos funcionales</td>
+                <td class="w200 has-text-right">{{ administrativeDivisionDataSet.drinkers.text }}</td>
+                <td></td>
+                <td class="w40"></td>
+              </tr>
+              <tr v-if="!printable">
+                <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
+                  Baños
+                </td>
+                <td></td>
+                <td class="w40"></td>
+              </tr>
+              <tr v-if="!printable">
+                <td>Baños funcionales, Alumnas</td>
+                <td class="w200 has-text-right">{{ administrativeDivisionDataSet.femaleStudentToilets.text }}</td>
+                <td></td>
+                <td class="w40"></td>
+              </tr>
+              <tr v-if="!printable">
+                <td>Baños funcionales, Alumnos</td>
+                <td class="w200 has-text-right">{{ administrativeDivisionDataSet.maleStudentToilets.text }}</td>
+                <td></td>
                 <td class="w40"></td>
               </tr>
             </tbody>

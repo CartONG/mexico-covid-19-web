@@ -198,6 +198,29 @@ export interface AdministrativeDivisionDataSet {
     '3': PercentageDataSet;
     '4': PercentageDataSet;
   };
+  takenActionsPercentages: {
+    visits: PercentageDataSet;
+    calls: PercentageDataSet;
+    scholarship: PercentageDataSet;
+    none: PercentageDataSet;
+  };
+  drinkers: NumericDataSet;
+  maleStudentToilets: NumericDataSet;
+  femaleStudentToilets: NumericDataSet;
+  foodSupportPercentages: {
+    '1': PercentageDataSet;
+    '2': PercentageDataSet;
+  };
+  foodSupportTypePercentages: {
+    dif: PercentageDataSet;
+    fullTimeProgram: PercentageDataSet;
+    state: PercentageDataSet;
+    others: PercentageDataSet;
+  };
+  theSchoolIsOursPercentages: {
+    '1': PercentageDataSet;
+    '2': PercentageDataSet;
+  };
 }
 
 export const toAdministrativeDivisionDataset = (
@@ -407,6 +430,29 @@ export const toAdministrativeDivisionDataset = (
           '3': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasonsPercentages['3']),
           '4': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasonsPercentages['4']),
         },
+        takenActionsPercentages: {
+          visits: toPercentageDataSet(administrativeDivision.takenActionsPercentages.visits),
+          calls: toPercentageDataSet(administrativeDivision.takenActionsPercentages.calls),
+          scholarship: toPercentageDataSet(administrativeDivision.takenActionsPercentages.scholarship),
+          none: toPercentageDataSet(administrativeDivision.takenActionsPercentages.none),
+        },
+        drinkers: toNumericDataSet(administrativeDivision.drinkers),
+        maleStudentToilets: toNumericDataSet(administrativeDivision.maleStudentToilets),
+        femaleStudentToilets: toNumericDataSet(administrativeDivision.femaleStudentToilets),
+        foodSupportPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.foodSupportPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.foodSupportPercentages['2']),
+        },
+        foodSupportTypePercentages: {
+          dif: toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.dif),
+          fullTimeProgram: toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.fullTimeProgram),
+          state: toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.state),
+          others: toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.others),
+        },
+        theSchoolIsOursPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.theSchoolIsOursPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.theSchoolIsOursPercentages['2']),
+        },
       }
     : {
         support: { private: toPercentageDataSet(-1), public: toPercentageDataSet(-1) },
@@ -603,5 +649,28 @@ export const toAdministrativeDivisionDataset = (
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
           '4': toPercentageDataSet(-1),
+        },
+        takenActionsPercentages: {
+          visits: toPercentageDataSet(-1),
+          calls: toPercentageDataSet(-1),
+          scholarship: toPercentageDataSet(-1),
+          none: toPercentageDataSet(-1),
+        },
+        drinkers: toNumericDataSet(-1),
+        maleStudentToilets: toNumericDataSet(-1),
+        femaleStudentToilets: toNumericDataSet(-1),
+        foodSupportPercentages: {
+          '1': toPercentageDataSet(-1),
+          '2': toPercentageDataSet(-1),
+        },
+        foodSupportTypePercentages: {
+          dif: toPercentageDataSet(-1),
+          fullTimeProgram: toPercentageDataSet(-1),
+          state: toPercentageDataSet(-1),
+          others: toPercentageDataSet(-1),
+        },
+        theSchoolIsOursPercentages: {
+          '1': toPercentageDataSet(-1),
+          '2': toPercentageDataSet(-1),
         },
       };

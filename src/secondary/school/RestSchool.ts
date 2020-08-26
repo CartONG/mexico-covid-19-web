@@ -71,6 +71,20 @@ export interface RestSchool {
   indiceInasistenciaAlumnas: number;
   indiceInasistenciaAlumnos: number;
   alum_prog: number;
+  alimentos: number;
+  alimentosdif: number;
+  alimentosetc: number;
+  alimentosedo: number;
+  alimentosotro: number;
+  alimentosotro_txt: string;
+  bebederos: number;
+  wcalumnas: number;
+  wcalumnos: number;
+  accionvisita: number;
+  accionllamada: number;
+  accionbeca: number;
+  accionninguna: number;
+  escuelanuestra: number;
 }
 
 const genderPercentage = (gender: number, otherGender: number): number => {
@@ -194,5 +208,23 @@ export const toSchool = (restSchool: RestSchool): School => {
     maleStudentAbsenceProportion: restSchool.indiceAlumnosSobreInasistencias,
     femaleStudentAbsenceProportion: restSchool.indiceAlumnasSobreInasistencias,
     expectedStudents: restSchool.alum_prog,
+    takenActions: {
+      visits: restSchool.accionvisita,
+      calls: restSchool.accionllamada,
+      scholarship: restSchool.accionbeca,
+      none: restSchool.accionninguna,
+    },
+    drinkers: restSchool.bebederos,
+    maleStudentToilets: restSchool.wcalumnos,
+    femaleStudentToilets: restSchool.wcalumnas,
+    foodSupport: restSchool.alimentos,
+    foodSupportType: {
+      dif: restSchool.alimentosdif,
+      fullTimeProgram: restSchool.alimentosetc,
+      state: restSchool.alimentosedo,
+      others: restSchool.alimentosotro,
+    },
+    foodSupportComment: restSchool.alimentosotro_txt,
+    theSchoolIsOurs: restSchool.escuelanuestra,
   };
 };
