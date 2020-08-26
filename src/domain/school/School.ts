@@ -65,12 +65,12 @@ export interface School {
   maleStudentAbsenceProportion: number;
   femaleStudentAbsenceProportion: number;
   expectedStudents: number;
-  takenActions: { visits: number; calls: number; scholarship: number; none: number };
+  takenActions: { visits: boolean; calls: boolean; scholarship: boolean; none: boolean };
   drinkers: number;
   maleStudentToilets: number;
   femaleStudentToilets: number;
-  foodSupport: number;
-  foodSupportType: { dif: number; fullTimeProgram: number; state: number; others: number };
+  foodSupport: boolean;
+  foodSupportType: { dif: boolean; fullTimeProgram: boolean; state: boolean; others: boolean };
   foodSupportComment: string;
-  theSchoolIsOurs: number;
+  theSchoolIsOurs: boolean;
 }

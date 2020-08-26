@@ -91,6 +91,14 @@ export interface SchoolDataSet {
   };
   adminAbsenceOtherReason: string;
   comments: string;
+  takenActions: string;
+  drinkers: NumericDataSet;
+  maleStudentToilets: NumericDataSet;
+  femaleStudentToilets: NumericDataSet;
+  foodSupport: boolean;
+  foodSupportType: string;
+  foodSupportComment: string;
+  theSchoolIsOurs: string;
 }
 
 const turnTexts: { [key: string]: string } = {
@@ -170,6 +178,50 @@ const givesClassesText: { shortText: string; longText: string }[] = [
   { shortText: 'No', longText: 'El personal de la escuela decidió continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'Los padres de familia informaron que no enviarán a sus hijos a la escuela' },
 ];
+
+const toTakenActions = (takenActions: { [key: string]: boolean }): string => {
+  const actions = [];
+
+  if (takenActions.visits) {
+    actions.push('Visita domiciliaria');
+  }
+
+  if (takenActions.calls) {
+    actions.push('Llamada telefónica');
+  }
+
+  if (takenActions.scholarship) {
+    actions.push('Gestión de becas');
+  }
+
+  if (takenActions.none) {
+    actions.push('Ninguna');
+  }
+
+  return actions.join(', ');
+};
+
+const toFoodSupportTypes = (foodSupportType: { [key: string]: boolean }): string => {
+  const types = [];
+
+  if (foodSupportType.dif) {
+    types.push('Reciben alimentos por parte del DIF');
+  }
+
+  if (foodSupportType.fullTimeProgram) {
+    types.push('Reciben alimentos  por parte del Programa de Tiempo Completo');
+  }
+
+  if (foodSupportType.state) {
+    types.push('Reciben alimentos por parte del Estado');
+  }
+
+  if (foodSupportType.none) {
+    types.push('Quienes proporcionan los alimentos. Otros');
+  }
+
+  return types.join(' - ');
+};
 
 export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
   school
@@ -262,6 +314,14 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         },
         adminAbsenceOtherReason: school.adminAbsenceOtherReason,
         comments: school.comments,
+        takenActions: toTakenActions(school.takenActions),
+        drinkers: toNumericDataSet(school.drinkers),
+        maleStudentToilets: toNumericDataSet(school.maleStudentToilets),
+        femaleStudentToilets: toNumericDataSet(school.femaleStudentToilets),
+        foodSupport: school.foodSupport,
+        foodSupportType: toFoodSupportTypes(school.foodSupportType),
+        foodSupportComment: school.foodSupportComment,
+        theSchoolIsOurs: school.theSchoolIsOurs ? 'Si pertenece' : 'No pertenece',
       }
     : {
         id: '-',
@@ -352,4 +412,12 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         },
         adminAbsenceOtherReason: '-',
         comments: '-',
+        takenActions: toTakenActions({}),
+        drinkers: toNumericDataSet(-1),
+        maleStudentToilets: toNumericDataSet(-1),
+        femaleStudentToilets: toNumericDataSet(-1),
+        foodSupport: false,
+        foodSupportType: toFoodSupportTypes({}),
+        foodSupportComment: '',
+        theSchoolIsOurs: '-',
       };
