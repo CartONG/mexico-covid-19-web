@@ -10,9 +10,9 @@ export interface AttendanceListDataSet {
 }
 
 const ATTENDANCE_TYPE_LABELS = {
-  [AttendanceType.STUDENT]: 'alumnado',
-  [AttendanceType.TEACHER]: 'docentes',
-  [AttendanceType.PERSONAL]: 'personal',
+  [AttendanceType.STUDENT]: 'alumnado presente',
+  [AttendanceType.TEACHER]: 'docentes presentes',
+  [AttendanceType.PERSONAL]: 'personal presente',
 };
 
 const ADMINISTRATIVE_LEVEL_LABELS = {
@@ -49,7 +49,7 @@ export const toAttendanceListDataSet = (
   attendanceType: AttendanceType,
   summaries: Summary[]
 ): AttendanceListDataSet => ({
-  header: `Porcentaje de ${ATTENDANCE_TYPE_LABELS[attendanceType]} presentes por ${ADMINISTRATIVE_LEVEL_LABELS[administrativeLevel]}`,
+  header: `Porcentaje de ${ATTENDANCE_TYPE_LABELS[attendanceType]} por ${ADMINISTRATIVE_LEVEL_LABELS[administrativeLevel]}`,
   entityColumnName: toEntityColumnName(administrativeLevel),
   items: summaries.map(summary => toItem(attendanceType, summary)),
 });

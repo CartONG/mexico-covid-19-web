@@ -23,7 +23,9 @@
           <div class="column is-2 has-text-right is-hidden-touch">
             <ExportDropdownVue
               class="shift-bottom"
+              :administrative-division-level="administrativeDivisionLevel"
               :administrative-division="currentAdministrativeDivision"
+              :school="school"
               @print="$emit('startprinting')"
             />
             <InfoModalVue class="ml-5 mr-3" />
