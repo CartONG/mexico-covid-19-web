@@ -136,6 +136,21 @@ export interface AdministrativeDivisionCsvExportContent {
   'La escuela alterna la asistencia de los alumnos : No': string;
   'La escuela alterna la asistencia de los alumnos : Si (% de escuelas)': string;
   'La escuela alterna la asistencia de los alumnos : No (% de escuelas)': string;
+  'Acciones para reincorporar a los alumnos con inasistencias : Visita domiciliaria (% de escuelas)': string;
+  'Acciones para reincorporar a los alumnos con inasistencias : Llamada telefónica (% de escuelas)': string;
+  'Acciones para reincorporar a los alumnos con inasistencias : Gestión de becas (% de escuelas)': string;
+  'Acciones para reincorporar a los alumnos con inasistencias : Ninguna (% de escuelas)': string;
+  'Bebederos funcionales': string;
+  'Baños funcionales, Alumnas': string;
+  'Baños funcionales, Alumnos': string;
+  'Reciben algún apoyo de alimentación (% de escuelas)': string;
+  'No recibe apoyo de alimentación (% de escuelas)': string;
+  'Reciben alimentos por parte del DIF (% de escuelas)': string;
+  'Reciben alimentos por parte del Programa de Tiempo Completo (% de escuelas)': string;
+  'Reciben alimentos por parte del Estado (% de escuelas)': string;
+  'Quienes proporcionan los alimentos. Otros (% de escuelas)': string;
+  'La escuela pertenece al programa La Escuela es nuestra (% de escuelas)': string;
+  'La escuela no pertenece al programa La Escuela es nuestra (% de escuelas)': string;
 }
 
 export const toAdministrativeDivisionCsvExportContent = (
@@ -259,6 +274,18 @@ export const toAdministrativeDivisionCsvExportContent = (
   ).text,
   'La escuela puede reorganizar los espacios educativos : No (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolWithAbilityToReorganizeSpacePercentages['1']
+  ).text,
+  'Acciones para reincorporar a los alumnos con inasistencias : Visita domiciliaria (% de escuelas)': toPercentageDataSet(
+    administrativeDivision.takenActionsPercentages.visits
+  ).text,
+  'Acciones para reincorporar a los alumnos con inasistencias : Llamada telefónica (% de escuelas)': toPercentageDataSet(
+    administrativeDivision.takenActionsPercentages.calls
+  ).text,
+  'Acciones para reincorporar a los alumnos con inasistencias : Gestión de becas (% de escuelas)': toPercentageDataSet(
+    administrativeDivision.takenActionsPercentages.scholarship
+  ).text,
+  'Acciones para reincorporar a los alumnos con inasistencias : Ninguna (% de escuelas)': toPercentageDataSet(
+    administrativeDivision.takenActionsPercentages.none
   ).text,
   'Personal y Alumnos realizan sus actividades en la escuela': toNumericDataSet(administrativeDivision.schoolGivingClasses['1']).rawText,
   'Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases': toNumericDataSet(
@@ -420,6 +447,25 @@ export const toAdministrativeDivisionCsvExportContent = (
   ).text,
   'Red de drenaje, fosa séptica para desalojo de aguas : No (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolWithSepticSystemPercentages['2']
+  ).text,
+  'Bebederos funcionales': toNumericDataSet(administrativeDivision.drinkers).rawText,
+  'Baños funcionales, Alumnas': toNumericDataSet(administrativeDivision.femaleStudentToilets).rawText,
+  'Baños funcionales, Alumnos': toNumericDataSet(administrativeDivision.maleStudentToilets).rawText,
+  'Reciben algún apoyo de alimentación (% de escuelas)': toPercentageDataSet(administrativeDivision.foodSupportPercentages[1]).text,
+  'No recibe apoyo de alimentación (% de escuelas)': toPercentageDataSet(administrativeDivision.foodSupportPercentages[2]).text,
+  'Reciben alimentos por parte del DIF (% de escuelas)': toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.dif).text,
+  'Reciben alimentos por parte del Programa de Tiempo Completo (% de escuelas)': toPercentageDataSet(
+    administrativeDivision.foodSupportTypePercentages.fullTimeProgram
+  ).text,
+  'Reciben alimentos por parte del Estado (% de escuelas)': toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.state)
+    .text,
+  'Quienes proporcionan los alimentos. Otros (% de escuelas)': toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.others)
+    .text,
+  'La escuela pertenece al programa La Escuela es nuestra (% de escuelas)': toPercentageDataSet(
+    administrativeDivision.theSchoolIsOursPercentages['1']
+  ).text,
+  'La escuela no pertenece al programa La Escuela es nuestra (% de escuelas)': toPercentageDataSet(
+    administrativeDivision.theSchoolIsOursPercentages['2']
   ).text,
   'Total del alumnado': toNumericDataSet(administrativeDivision.students).rawText,
   'Total del alumnas': toNumericDataSet(administrativeDivision.femaleStudents).rawText,
