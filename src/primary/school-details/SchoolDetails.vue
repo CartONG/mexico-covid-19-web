@@ -39,35 +39,35 @@
           <tbody>
             <tr>
               <td>Asistencia del alumnado</td>
-              <td :class="`w120 has-text-right has-text-${schoolDataSet.studentAttendance.color}`">
+              <td :class="`w120 has-text-right has-text-weight-bold has-text-${schoolDataSet.studentAttendance.color}`">
                 {{ schoolDataSet.studentAttendance.text }}
               </td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td class="pl-2">- Inasistencia de niñas sobre el alumnado esperado</td>
-              <td class="w120 has-text-right">
+              <td class="w120 has-text-right has-text-weight-bold">
                 {{ schoolDataSet.femaleStudentAbsencePercentageOverStudentAbsence.text }}
               </td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td class="pl-2">- Inasistencia de niños sobre el alumnado esperado</td>
-              <td class="w120 has-text-right">
+              <td class="w120 has-text-right has-text-weight-bold">
                 {{ schoolDataSet.maleStudentAbsencePercentageOverStudentAbsence.text }}
               </td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Asistencia de docentes</td>
-              <td :class="`w120 has-text-right has-text-${schoolDataSet.teacherAttendance.color}`">
+              <td :class="`w120 has-text-right has-text-weight-bold has-text-${schoolDataSet.teacherAttendance.color}`">
                 {{ schoolDataSet.teacherAttendance.text }}
               </td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Asistencia de personal distinto a docentes</td>
-              <td :class="`w120 has-text-right has-text-${schoolDataSet.adminAttendance.color}`">
+              <td :class="`w120 has-text-right has-text-weight-bold has-text-${schoolDataSet.adminAttendance.color}`">
                 {{ schoolDataSet.adminAttendance.text }}
               </td>
               <td v-if="!printable" class="w40"></td>
@@ -102,32 +102,32 @@
             <tbody>
               <tr>
                 <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['1'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['1'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasons['1'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['1'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>Los padres de familia no enviaron a sus hijos a la escuela</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['2'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['2'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasons['2'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['2'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>Reportaron enfermos a los alumnos que no asistieron</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['3'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['3'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasons['3'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['3'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>Se desconocen las causas</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['4'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['4'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasons['4'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['4'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>Otras causas</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasons['5'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['5'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasons['5'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['5'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
             </tbody>
@@ -160,26 +160,26 @@
             <tbody>
               <tr>
                 <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasons['1'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasonsPercentages['1'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasons['1'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasonsPercentages['1'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>Se reportaron enfermos</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasons['2'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasonsPercentages['2'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasons['2'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasonsPercentages['2'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>No se sabe las causas</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasons['3'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasonsPercentages['3'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasons['3'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasonsPercentages['3'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>Otras causas</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasons['4'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.teacherAbsenceMainReasonsPercentages['4'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasons['4'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasonsPercentages['4'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
             </tbody>
@@ -212,26 +212,26 @@
             <tbody>
               <tr>
                 <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasons['1'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasonsPercentages['1'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasons['1'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasonsPercentages['1'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>Se reportaron enfermos</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasons['2'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasonsPercentages['2'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasons['2'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasonsPercentages['2'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>No se sabe las causas</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasons['3'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasonsPercentages['3'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasons['3'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasonsPercentages['3'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>Otras causas</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasons['4'].text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.adminAbsenceMainReasonsPercentages['4'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasons['4'].text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasonsPercentages['4'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
             </tbody>
@@ -360,19 +360,19 @@
             </tr>
             <tr>
               <td>Número de bebederos funcionales</td>
-              <td>
+              <td class="has-text-weight-bold">
                 {{ schoolDataSet.drinkers.text }}
               </td>
             </tr>
             <tr>
               <td>Número de baños funcionales, Alumnas</td>
-              <td>
+              <td class="has-text-weight-bold">
                 {{ schoolDataSet.femaleStudentToilets.text }}
               </td>
             </tr>
             <tr>
               <td>Número de baños funcionales, Alumnos</td>
-              <td>
+              <td class="has-text-weight-bold">
                 {{ schoolDataSet.maleStudentToilets.text }}
               </td>
             </tr>
@@ -452,26 +452,26 @@
             <tbody>
               <tr>
                 <td>Total de alumnos</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.students.text }}</td>
-                <td class="w120 has-text-right">100%</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.students.text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">100%</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td class="pl-2">- de los cuales alumnas</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.femaleStudent.text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.femaleStudentPercentage.text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.femaleStudent.text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.femaleStudentPercentage.text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td class="pl-2">- de los cuales alumnos</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.maleStudent.text }}</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.maleStudentPercentage.text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.maleStudent.text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.maleStudentPercentage.text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>Grupos</td>
-                <td class="w120 has-text-right">{{ schoolDataSet.assistants.text }}</td>
-                <td class="w120 has-text-right">-</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.assistants.text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">-</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
             </tbody>
@@ -502,42 +502,42 @@
           <tbody>
             <tr>
               <td>Docentes</td>
-              <td class="w120 has-text-right">{{ schoolDataSet.teachers.text }}</td>
+              <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teachers.text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Directores</td>
-              <td class="w120 has-text-right">{{ schoolDataSet.directors.text }}</td>
+              <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.directors.text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Subdirectores</td>
-              <td class="w120 has-text-right">{{ schoolDataSet.subDirectors.text }}</td>
+              <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.subDirectors.text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Asesores Técnicos Pedagógicos</td>
-              <td class="w120 has-text-right">{{ schoolDataSet.technicalPedagogicalAdvisers.text }}</td>
+              <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.technicalPedagogicalAdvisers.text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Docentes de Educación Física</td>
-              <td class="w120 has-text-right">{{ schoolDataSet.physicalEducationTeachers.text }}</td>
+              <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.physicalEducationTeachers.text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Personal Administrativo</td>
-              <td class="w120 has-text-right">{{ schoolDataSet.admins.text }}</td>
+              <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.admins.text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Personal de intendencia</td>
-              <td class="w120 has-text-right">{{ schoolDataSet.quartermasters.text }}</td>
+              <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.quartermasters.text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
               <td>Otro tipo de personal</td>
-              <td class="w120 has-text-right">{{ schoolDataSet.others.text }}</td>
+              <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.others.text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>
           </tbody>
