@@ -14,8 +14,14 @@
         <h2 class="has-text-weight-bold has-text-primary is-uppercase">Comentarios realizados por la escuela</h2>
       </header>
       <div class="card-content px-0 py-0">
-        <p v-if="schoolDataSet.studentAbsenceOtherReason === ''" class="px-2 py-2">Sin comentarios</p>
-        <p v-else class="px-2 py-2">{{ schoolDataSet.studentAbsenceOtherReason }}</p>
+        <p v-if="schoolDataSet.comments === ''" class="px-2 py-2">Sin comentarios</p>
+        <template v-else>
+          <p class="px-2 py-2">{{ schoolDataSet.comments }}</p>
+          <p class="px-2 py-2 is-size-7 is-italic has-text-grey">
+            Las opiniones aquí vertidas no reflejan la posición de la Secretaría de Educación Pública o del Fondo de Naciones Unidas para la
+            Infancia UNICEF
+          </p>
+        </template>
       </div>
     </div>
     <b-collapse class="card mb-4" animation="slide" aria-id="indiceDeAsistencia" :open="printable">
