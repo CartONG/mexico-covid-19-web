@@ -130,7 +130,7 @@ const getFeatureStyle = (feature: Feature, attendanceType: AttendanceType) => {
       ? feature.get('teacherAttendance')
       : feature.get('adminAttendance');
 
-  if (rate <= 0.7) {
+  if (rate >= 0 && rate <= 0.7) {
     return highDangerFeatureStyle;
   }
   if (rate > 0.7 && rate <= 0.8) {
