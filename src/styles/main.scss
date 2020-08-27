@@ -91,8 +91,6 @@ $tabs-link-active-color: $secondary-bis;
 $tabs-link-active-border-bottom-color: $secondary-bis;
 $tabs-link-hover-color: $secondary-bis;
 
-// ajouter une class pour le border radius (et l'appliquer au tabs de la map)
-
 .tabs {
   box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
 }
@@ -120,8 +118,6 @@ $tabs-link-hover-color: $secondary-bis;
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
-
-// organize css by needs (domains), ex: spacing, sizes, print, ...
 
 .card {
   border-radius: 4px;

@@ -13,7 +13,10 @@
       <div class="app dashboard has-background-secondary">
         <div class="header is-fixed-top is-full-width">
           <nav class="navbar has-shadow" role="navigation">
-            <div class="navbar-brand">
+            <div class="navbar-item is-hidden-tablet has-text-centered">
+              <img src="/logo_mobile.svg" alt="Logotipos de la Secretaría de Educación Pública y de UNICEF" />
+            </div>
+            <div class="navbar-brand is-hidden-mobile">
               <div class="navbar-item">
                 <img src="/logo.svg" alt="Logotipos de la Secretaría de Educación Pública y de UNICEF" />
               </div>
