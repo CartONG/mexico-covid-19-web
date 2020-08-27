@@ -24,6 +24,7 @@
         </template>
       </div>
     </div>
+    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
     <b-collapse class="card mb-4" animation="slide" aria-id="indiceDeAsistencia" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="indiceDeAsistencia">
         <table class="table is-fullwidth has-no-background">
@@ -82,7 +83,6 @@
         </table>
       </div>
     </b-collapse>
-    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
     <div :class="{ 'horizontal-scroll': !printable }">
       <b-collapse class="card mb-4 mw400" animation="slide" aria-id="causasDeInasistenciaDeAlumnos" :open="printable">
         <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDeAlumnos">
@@ -193,6 +193,7 @@
         </div>
       </b-collapse>
     </div>
+    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
     <div :class="{ 'horizontal-scroll': !printable }">
       <b-collapse class="card mb-4 mw400" animation="slide" aria-id="causasDeInasistenciaDelPersonal" :open="printable">
         <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="causasDeInasistenciaDelPersonal">

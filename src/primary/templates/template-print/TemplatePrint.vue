@@ -87,7 +87,7 @@
           </div>
         </div>
         <div class="columns has-page-break-before-ff"><div class="column is-12"></div></div>
-        <div v-if="administrativeDivisionLevel" class="columns has-page-break-before-ff"><div class="column is-12"></div></div>
+        <div class="columns has-page-break-before-ff"><div class="column is-12"></div></div>
         <div v-for="(chunk, index) in currentSummariesChunks" :key="index">
           <div class="columns has-page-break-before">
             <div class="column is-12">
