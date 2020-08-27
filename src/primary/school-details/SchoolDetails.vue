@@ -371,13 +371,13 @@
               </td>
             </tr>
             <tr>
-              <td>Número de baños funcionales, Alumnas</td>
+              <td>Número de baños funcionales para alumnas</td>
               <td class="has-text-weight-bold">
                 {{ schoolDataSet.femaleStudentToilets.text }}
               </td>
             </tr>
             <tr>
-              <td>Número de baños funcionales, Alumnos</td>
+              <td>Número de baños funcionales para alumnos</td>
               <td class="has-text-weight-bold">
                 {{ schoolDataSet.maleStudentToilets.text }}
               </td>

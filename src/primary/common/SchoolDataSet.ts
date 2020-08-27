@@ -318,7 +318,7 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         drinkers: toNumericDataSet(school.drinkers),
         maleStudentToilets: toNumericDataSet(school.maleStudentToilets),
         femaleStudentToilets: toNumericDataSet(school.femaleStudentToilets),
-        foodSupport: school.foodSupport ? 'Si reciben algún apoyo de alimentación' : 'No recibe apoyo de alimentación',
+        foodSupport: school.foodSupport ? 'Sí, reciben algún apoyo de alimentación' : 'No, recibe apoyo de alimentación',
         foodSupportType: toFoodSupportTypes(school.foodSupportType),
         foodSupportComment: school.foodSupportComment,
         theSchoolIsOurs: school.theSchoolIsOurs === 1 ? 'Si pertenece' : school.theSchoolIsOurs === 2 ? 'No pertenece' : '-',

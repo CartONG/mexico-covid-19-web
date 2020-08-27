@@ -79,8 +79,8 @@ export interface SchoolCsvExportContent {
   Comentarios: string;
   'Acciones para reincorporar a los alumnos con inasistencias': string;
   'Número de bebederos funcionales': string;
-  'Número de baños funcionales, Alumnas': string;
-  'Número de baños funcionales, Alumnos': string;
+  'Número de baños funcionales para alumnas': string;
+  'Número de baños funcionales para alumnos': string;
   'Reciben el apoyo de alimentación en la escuela': string;
   'Quienes proporcionan los alimentos': string;
   'Sí otros quién da el apoyo de alimentación': string;
@@ -313,11 +313,11 @@ export const toSchoolCsvExportContent = (school: School): SchoolCsvExportContent
   'Botes de basura para el manejo de residuos': binSufficiencyTexts[school.binSufficiency],
   'Red de drenaje, fosa séptica para desalojo de aguas': hasSepticSystemTexts[school.hasSepticSystem],
   'Número de bebederos funcionales': toNumericDataSet(school.drinkers).rawText,
-  'Número de baños funcionales, Alumnas': toNumericDataSet(school.femaleStudentToilets).rawText,
-  'Número de baños funcionales, Alumnos': toNumericDataSet(school.maleStudentToilets).rawText,
+  'Número de baños funcionales para alumnas': toNumericDataSet(school.femaleStudentToilets).rawText,
+  'Número de baños funcionales para alumnos': toNumericDataSet(school.maleStudentToilets).rawText,
   'Reciben el apoyo de alimentación en la escuela': school.foodSupport
-    ? 'Si reciben algún apoyo de alimentación'
-    : 'No recibe apoyo de alimentación',
+    ? 'Sí, reciben algún apoyo de alimentación'
+    : 'No, recibe apoyo de alimentación',
   'Quienes proporcionan los alimentos': toFoodSupportTypes(school.foodSupportType),
   'Sí otros quién da el apoyo de alimentación': school.foodSupportComment,
   'La escuela pertenece al programa La Escuela es nuestra':
