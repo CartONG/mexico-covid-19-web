@@ -29,8 +29,6 @@ import { NavigationParams } from '@/primary/navigation/NavigationParams';
 import { TemplatePrintVue } from '@/primary/templates/template-print';
 import { TemplateWebVue } from '@/primary/templates/template-web';
 
-// TODO: summaryList --> summaries
-
 @Component({
   components: {
     TemplateWebVue,
