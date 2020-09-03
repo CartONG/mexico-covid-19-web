@@ -34,7 +34,7 @@ Vue.use(Vuex);
 
 Vue.config.productionTip = false;
 
-const restBaseUrl = process.env.NODE_ENV === 'development' ? './data/' : 'https://unicefmoedev8ep.azureedge.net/';
+const restBaseUrl = process.env.NODE_ENV === 'development' ? './data/' : 'https://unicefmoedev8api.azurewebsites.net';
 const localAxios = axios.create({ baseURL: './data/' });
 const restAxios = axios.create({ baseURL: restBaseUrl });
 const logger = new ConsoleLogger(console); // eslint-disable-line no-console
