@@ -40,8 +40,14 @@ export const transformStackedBarChartToImage = (
   transformToImage(selectorId, callback);
 };
 
+const parseDate = d3.timeFormat('%e de %B');
+
+const tickFormat = (length: number): ((d: any, index: number) => string) => {
+  const step = Math.trunc(length / 60) + 1;
+  return (d: any, index: number) => (index % step === 0 ? parseDate(new Date(d)) : '');
+};
+
 export const makeStackedBarChart = (selectorId: string, data: { [key: string]: any }[], options: HistoricChartOptions) => {
-  const parseDate = d3.timeFormat('%e de %B');
   const chartWidth = WIDTH - MARGIN_LEFT - MARGIN_RIGHT;
   const chartHeight = HEIGHT - MARGIN_TOP - MARGIN_BOTTOM;
 
@@ -65,7 +71,9 @@ export const makeStackedBarChart = (selectorId: string, data: { [key: string]: a
 
   const y = d3.scaleLinear().range([chartHeight, 0]);
 
-  const xAxis = d3.axisBottom(x).tickFormat(d => parseDate(new Date(d)));
+  const format = tickFormat(data.length);
+
+  const xAxis = d3.axisBottom(x).tickFormat(format);
 
   const yAxis = d3
     .axisLeft(y)
@@ -127,9 +135,9 @@ export const updateStackedChart = (selectorId: string, data: { [key: string]: an
     .range(options.colors)
     .domain(options.stackedKeys);
 
-  const parseDate = d3.timeFormat('%e de %B');
+  const format = tickFormat(data.length);
 
-  const xAxis = d3.axisBottom(x).tickFormat(d => parseDate(new Date(d)));
+  const xAxis = d3.axisBottom(x).tickFormat(format);
 
   g.select('.x')
     .transition(t as any)
