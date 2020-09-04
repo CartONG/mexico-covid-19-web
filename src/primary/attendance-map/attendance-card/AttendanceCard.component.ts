@@ -1,6 +1,6 @@
 import { Component, Inject, Prop, Vue, Watch } from 'vue-property-decorator';
 
-import { makeCanvasChart, makeChart, updateChart } from '@/primary/AttendanceChart';
+import { transformChartToImage, makeChart, updateChart } from '@/primary/attendance-map/attendance-card/AttendanceChart';
 import { AttendanceDataSet } from '@/primary/common/AttendanceDataSet';
 import { Delayer } from '@/primary/Delayer';
 
@@ -39,7 +39,7 @@ export default class AttendanceCard extends Vue {
     const color = this.attendance.percentage.color;
 
     if (this.printable) {
-      makeCanvasChart(this.chartSelectorId, attendance, color, this.attendance.percentage.text === '-');
+      transformChartToImage(this.chartSelectorId, attendance, color, this.attendance.percentage.text === '-');
     } else {
       makeChart(this.chartSelectorId, attendance, color, this.attendance.percentage.text === '-', 500);
     }
