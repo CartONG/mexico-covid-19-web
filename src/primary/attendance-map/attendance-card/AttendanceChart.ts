@@ -1,5 +1,7 @@
 import * as d3 from 'd3';
 
+import { transformToImage } from '@/primary/ChartUtils';
+
 const HEXA_COLORS: { [key: string]: string } = {
   'danger-darker': '#d91d20',
   danger: '#ee8336',
@@ -17,8 +19,6 @@ export const makeChart = (selectorId: string, attendance: number, color: string,
     .attr('width', 88)
     .attr('height', 88)
     .attr('viewBox', '0 0 88 88');
-  // .attr('perserveAspectRatio', 'xMinYMid meet')
-  // .attr('class', 'is-full-width has-height-auto');
 
   svg.append('g').attr('transform', 'translate(44, 44)');
 
@@ -97,52 +97,7 @@ export const updateChart = (
     .remove();
 };
 
-export const makeCanvasChart = (selectorId: string, attendance: number, color: string, unknown: boolean) => {
+export const transformChartToImage = (selectorId: string, attendance: number, color: string, unknown: boolean) => {
   makeChart(selectorId, attendance, color, unknown, 0);
-  const svg = d3.select(`#${selectorId} > svg`);
-
-  const svgString = getSVGString(svg.node() as HTMLElement);
-  svgString2Image(selectorId, svgString, 88, 88);
-};
-
-const getSVGString = (svgNode: HTMLElement) => {
-  const serializer = new XMLSerializer();
-  svgNode.setAttribute('xlink', 'http://www.w3.org/1999/xlink');
-  let svgString = serializer.serializeToString(svgNode);
-  svgString = svgString.replace(/(\w+)?:?xlink=/g, 'xmlns:xlink='); // Fix root xlink without namespace
-  svgString = svgString.replace(/NS\d+:href/g, 'xlink:href'); // Safari NS namespace fix
-  return svgString;
-};
-
-const svgString2Image = (selectorId: string, svgString: any, width: number, height: number) => {
-  var imgsrc = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgString))); // Convert SVG string to data URL
-
-  // var canvas = document.createElement('canvas');
-  // var context = canvas.getContext('2d') as any;
-
-  // canvas.width = width / 2;
-  // canvas.height = height / 2;
-
-  d3.select(`#${selectorId} > svg`).remove();
-  d3.select(`#${selectorId} > svg`).remove();
-  // container.append(canvas);
-
-  var image = new Image();
-  image.width = width;
-  image.height = height;
-  image.onload = function() {
-    // context.clearRect(0, 0, width / 2, height / 2);
-    // context.drawImage(image, 0, 0, width / 2, height / 2);
-    document.querySelector(`#${selectorId}`)!.append(image);
-
-    /*
-    canvas.toBlob(function(blob: any) {
-      var filesize = Math.round(blob.length / 1024) + ' KB';
-      document.querySelector(`#${selectorId}`)!.append(image);
-      if (callback) callback(blob, filesize);
-    });
-     */
-  };
-
-  image.src = imgsrc;
+  transformToImage(selectorId, [44, 44], () => {});
 };

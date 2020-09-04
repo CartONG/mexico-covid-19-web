@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 
-import { transformToImage } from '@/primary/chart/ChartUtils';
+import { transformToImage } from '@/primary/ChartUtils';
 
 export interface HistoricChartOptions {
   colors: string[];
@@ -221,6 +221,6 @@ export class HistoricChart {
     callback: () => void
   ) {
     this.makeStackedBarChart(selectorId, data, options);
-    transformToImage(selectorId, callback);
+    transformToImage(selectorId, [this.width, this.height], callback);
   }
 }

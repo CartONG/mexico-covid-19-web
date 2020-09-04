@@ -5,6 +5,7 @@ import { AdministrativeDivision } from '@/domain/administrative-division/Adminis
 import { AttendanceType } from '@/domain/AttendanceType';
 import { School } from '@/domain/school/School';
 import { toAbsenceDetailsDataSet } from '@/primary/absence-details/AbsenceDetailsDataSet';
+import { makeChart, updateChart } from '@/primary/absence-details/PieChart';
 
 @Component
 export default class AbsenceReasonsDetails extends Vue {
@@ -22,7 +23,7 @@ export default class AbsenceReasonsDetails extends Vue {
 
   @Watch('absenceDetailsDataSet')
   absenceDetailsDataSetWatcher() {
-    this.updateChart(this.absenceDetailsDataSet.chart.data, this.absenceDetailsDataSet.chart.colors);
+    updateChart('absence-details-chart', 75, this.absenceDetailsDataSet.chart.data, this.absenceDetailsDataSet.chart.colors);
   }
 
   get absenceDetailsDataSet() {
@@ -31,56 +32,11 @@ export default class AbsenceReasonsDetails extends Vue {
   }
 
   mounted() {
-    this.makeChart();
-    this.updateChart(this.absenceDetailsDataSet.chart.data, this.absenceDetailsDataSet.chart.colors);
+    makeChart('absence-details-chart', 75, { top: 0, right: 0, bottom: 0, left: 0 });
+    updateChart('absence-details-chart', 75, this.absenceDetailsDataSet.chart.data, this.absenceDetailsDataSet.chart.colors);
   }
 
   change(attendanceType: AttendanceType) {
     this.$emit('change', attendanceType);
-  }
-
-  makeChart() {
-    const svg = d3.select('#absence-details-chart');
-    const margin = { top: 0, right: 0, bottom: 0, left: 0 };
-    const width = 150 - margin.right - margin.left;
-    svg.append('g').attr('transform', 'translate(' + width / 2 + ',' + 75 + ')');
-  }
-
-  updateChart(data: number[], colors: string[]) {
-    const chartColors = d3.scaleOrdinal(colors);
-    const g = d3.select('#absence-details-chart > g');
-    const t = d3.transition().duration(250);
-    const pie = d3.pie();
-
-    const arc = d3
-      .arc()
-      .innerRadius(0)
-      .outerRadius(75);
-
-    const pieData = pie(data);
-    const selection = g.selectAll('path').data(pieData);
-
-    const arcTween = (a: any) => {
-      const i = d3.interpolate({ data: 0, index: 0, value: 0, startAngle: 0, endAngle: 0, padAngle: 0 }, a);
-      return (t: any) => arc(i(t));
-    };
-
-    selection
-      .transition()
-      .duration(500)
-      .attrTween('d', arcTween as any);
-
-    selection
-      .enter()
-      .append('path')
-      .attr('fill', (d, i) => chartColors(i.toString()))
-      .attr('d', arc as any)
-      .attr('stroke', 'white')
-      .attr('stroke-width', '1px');
-
-    selection
-      .exit()
-      .transition(t as any)
-      .remove();
   }
 }
