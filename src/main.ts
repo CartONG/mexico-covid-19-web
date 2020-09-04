@@ -19,6 +19,7 @@ import { ANIMATION_DURATION, MAP_EXTENT, UPDATE_MAP_VIEWPORT_DELAY } from '@/pri
 import { CsvParser } from '@/primary/CsvParser';
 import { Delayer } from '@/primary/Delayer';
 import { FileDownloader } from '@/primary/FileDownloader';
+import { HistoricChart } from '@/primary/HistoricChart';
 import { NavigationBus } from '@/primary/navigation/NavigationBus';
 import { createClusterLayer, createMap, createPopup, createVectorLayer } from '@/primary/WebmappingUtils';
 import { RestAdministrativeDivisionDailyReportRepository } from '@/secondary/administrative-division-daily-report/RestAdministrativeDivisionDailyReportRepository';
@@ -57,6 +58,7 @@ const printer = new Printer(window);
 const csvParser = new CsvParser();
 const fileDownloader = new FileDownloader(window);
 const appStore = new AppStore(new Store(appStoreOptions));
+const historicChart = new HistoricChart(window.innerWidth);
 
 new Vue({
   render: h => h(AppVue),
@@ -76,5 +78,6 @@ new Vue({
     appStore: () => appStore,
     csvParser: () => csvParser,
     fileDownloader: () => fileDownloader,
+    historicChart: () => historicChart,
   },
 }).$mount('#app');

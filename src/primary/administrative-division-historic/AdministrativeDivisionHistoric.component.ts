@@ -1,16 +1,19 @@
 import * as d3 from 'd3';
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Component, Inject, Prop, Vue, Watch } from 'vue-property-decorator';
 
 import { AdministrativeDivisionDailyReport } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReport';
 import { toAdministrativeDivisionHistoricDataSet } from '@/primary/administrative-division-historic/AdministrativeDivisionHistoricDataSet';
 import { HistoricInfoModalVue } from '@/primary/historic-info-modal';
-import { makeStackedBarChart, transformStackedBarChartToImage, updateStackedChart } from '@/primary/HistoricChart';
+import { HistoricChart } from '@/primary/HistoricChart';
 import { HistoricType } from '@/primary/HistoricType';
 
 @Component({
   components: { HistoricInfoModalVue },
 })
 export default class Historic extends Vue {
+  @Inject()
+  historicChart!: () => HistoricChart;
+
   @Prop()
   readonly administrativeDivisionDailyReports!: AdministrativeDivisionDailyReport[];
 
@@ -45,16 +48,21 @@ export default class Historic extends Vue {
     const data = this.administrativeDivisionHistoricDataSet.chartData.slice(this.historicInterval[0], this.historicInterval[1] + 1);
     if (this.printable) {
       const callback = () => this.$emit('imageready');
-      transformStackedBarChartToImage('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartOptions, callback);
+      this.historicChart().transformStackedBarChartToImage(
+        'historic-stacked-chart',
+        data,
+        this.administrativeDivisionHistoricDataSet.chartOptions,
+        callback
+      );
     } else {
-      makeStackedBarChart('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartOptions);
+      this.historicChart().makeStackedBarChart('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartOptions);
     }
   }
 
   update() {
     const data = this.administrativeDivisionHistoricDataSet.chartData.slice(this.historicInterval[0], this.historicInterval[1] + 1);
     if (!this.printable) {
-      updateStackedChart('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartOptions);
+      this.historicChart().updateStackedChart('historic-stacked-chart', data, this.administrativeDivisionHistoricDataSet.chartOptions);
     }
   }
 

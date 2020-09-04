@@ -1,9 +1,9 @@
 import * as d3 from 'd3';
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Component, Inject, Prop, Vue, Watch } from 'vue-property-decorator';
 
 import { SchoolDailyReport } from '@/domain/school-daily-report/SchoolDailyReport';
 import { HistoricInfoModalVue } from '@/primary/historic-info-modal';
-import { makeStackedBarChart, transformStackedBarChartToImage, updateStackedChart } from '@/primary/HistoricChart';
+import { HistoricChart } from '@/primary/HistoricChart';
 import { HistoricType } from '@/primary/HistoricType';
 import { toSchoolHistoricDataSet } from '@/primary/school-historic/SchoolHistoricDataSet';
 
@@ -11,6 +11,9 @@ import { toSchoolHistoricDataSet } from '@/primary/school-historic/SchoolHistori
   components: { HistoricInfoModalVue },
 })
 export default class SchoolHistoric extends Vue {
+  @Inject()
+  historicChart!: () => HistoricChart;
+
   @Prop()
   readonly schoolDailyReports!: SchoolDailyReport[];
 
@@ -45,16 +48,21 @@ export default class SchoolHistoric extends Vue {
     const data = this.schoolHistoricDataSet.chartData.slice(this.historicInterval[0], this.historicInterval[1] + 1);
     if (this.printable) {
       const callback = () => this.$emit('imageready');
-      transformStackedBarChartToImage('historic-stacked-chart', data, this.schoolHistoricDataSet.chartOptions, callback);
+      this.historicChart().transformStackedBarChartToImage(
+        'historic-stacked-chart',
+        data,
+        this.schoolHistoricDataSet.chartOptions,
+        callback
+      );
     } else {
-      makeStackedBarChart('historic-stacked-chart', data, this.schoolHistoricDataSet.chartOptions);
+      this.historicChart().makeStackedBarChart('historic-stacked-chart', data, this.schoolHistoricDataSet.chartOptions);
     }
   }
 
   update() {
     const data = this.schoolHistoricDataSet.chartData.slice(this.historicInterval[0], this.historicInterval[1] + 1);
     if (!this.printable) {
-      updateStackedChart('historic-stacked-chart', data, this.schoolHistoricDataSet.chartOptions);
+      this.historicChart().updateStackedChart('historic-stacked-chart', data, this.schoolHistoricDataSet.chartOptions);
     }
   }
 
