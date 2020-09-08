@@ -13,8 +13,6 @@ import { Delayer } from '@/primary/Delayer';
 import { NavigationBus } from '@/primary/navigation/NavigationBus';
 import { NavigationParams } from '@/primary/navigation/NavigationParams';
 
-// TODO: inject a selector object to not directly use the global document object
-
 @Component({
   components: { PopupVue, AttendanceTabsVue },
 })

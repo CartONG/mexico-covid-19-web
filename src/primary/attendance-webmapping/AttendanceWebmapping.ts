@@ -21,8 +21,6 @@ import {
   setLayerFeature,
 } from '@/primary/WebmappingUtils';
 
-// TODO: do better than setFeatures Method (something more business oriented)
-
 const SINGLE_CLICK = 'singleclick';
 const DOUBLE_CLICK = 'dblclick';
 const SELECT_SCHOOL_CLUSTER = 'selectschoolcluster';
