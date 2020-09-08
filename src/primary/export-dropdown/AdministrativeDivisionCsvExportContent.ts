@@ -136,6 +136,10 @@ export interface AdministrativeDivisionCsvExportContent {
   'La escuela alterna la asistencia de los alumnos : No': string;
   'La escuela alterna la asistencia de los alumnos : Si (% de escuelas)': string;
   'La escuela alterna la asistencia de los alumnos : No (% de escuelas)': string;
+  'Acciones para reincorporar a los alumnos con inasistencias : Visita domiciliaria': string;
+  'Acciones para reincorporar a los alumnos con inasistencias : Llamada telefónica': string;
+  'Acciones para reincorporar a los alumnos con inasistencias : Gestión de becas': string;
+  'Acciones para reincorporar a los alumnos con inasistencias : Ninguna': string;
   'Acciones para reincorporar a los alumnos con inasistencias : Visita domiciliaria (% de escuelas)': string;
   'Acciones para reincorporar a los alumnos con inasistencias : Llamada telefónica (% de escuelas)': string;
   'Acciones para reincorporar a los alumnos con inasistencias : Gestión de becas (% de escuelas)': string;
@@ -275,6 +279,16 @@ export const toAdministrativeDivisionCsvExportContent = (
   'La escuela puede reorganizar los espacios educativos : No (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolWithAbilityToReorganizeSpacePercentages['1']
   ).text,
+  'Acciones para reincorporar a los alumnos con inasistencias : Visita domiciliaria': toNumericDataSet(
+    administrativeDivision.takenActions.visits
+  ).text,
+  'Acciones para reincorporar a los alumnos con inasistencias : Llamada telefónica': toNumericDataSet(
+    administrativeDivision.takenActions.calls
+  ).text,
+  'Acciones para reincorporar a los alumnos con inasistencias : Gestión de becas': toNumericDataSet(
+    administrativeDivision.takenActions.scholarship
+  ).text,
+  'Acciones para reincorporar a los alumnos con inasistencias : Ninguna': toNumericDataSet(administrativeDivision.takenActions.none).text,
   'Acciones para reincorporar a los alumnos con inasistencias : Visita domiciliaria (% de escuelas)': toPercentageDataSet(
     administrativeDivision.takenActionsPercentages.visits
   ).text,

@@ -198,6 +198,12 @@ export interface AdministrativeDivisionDataSet {
     '3': PercentageDataSet;
     '4': PercentageDataSet;
   };
+  takenActions: {
+    visits: NumericDataSet;
+    calls: NumericDataSet;
+    scholarship: NumericDataSet;
+    none: NumericDataSet;
+  };
   takenActionsPercentages: {
     visits: PercentageDataSet;
     calls: PercentageDataSet;
@@ -430,6 +436,12 @@ export const toAdministrativeDivisionDataset = (
           '3': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasonsPercentages['3']),
           '4': toPercentageDataSet(administrativeDivision.adminAbsenceMainReasonsPercentages['4']),
         },
+        takenActions: {
+          visits: toNumericDataSet(administrativeDivision.takenActions.visits),
+          calls: toNumericDataSet(administrativeDivision.takenActions.calls),
+          scholarship: toNumericDataSet(administrativeDivision.takenActions.scholarship),
+          none: toNumericDataSet(administrativeDivision.takenActions.none),
+        },
         takenActionsPercentages: {
           visits: toPercentageDataSet(administrativeDivision.takenActionsPercentages.visits),
           calls: toPercentageDataSet(administrativeDivision.takenActionsPercentages.calls),
@@ -649,6 +661,12 @@ export const toAdministrativeDivisionDataset = (
           '2': toPercentageDataSet(-1),
           '3': toPercentageDataSet(-1),
           '4': toPercentageDataSet(-1),
+        },
+        takenActions: {
+          visits: toNumericDataSet(-1),
+          calls: toNumericDataSet(-1),
+          scholarship: toNumericDataSet(-1),
+          none: toNumericDataSet(-1),
         },
         takenActionsPercentages: {
           visits: toPercentageDataSet(-1),

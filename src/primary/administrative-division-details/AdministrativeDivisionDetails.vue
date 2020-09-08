@@ -346,7 +346,9 @@
               </tr>
               <tr>
                 <td>Visita domiciliaria</td>
-                <td></td>
+                <td class="w120 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.takenActions.visits.text }}
+                </td>
                 <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.takenActionsPercentages.visits.text }}
                 </td>
@@ -354,7 +356,9 @@
               </tr>
               <tr>
                 <td>Llamada telefónica</td>
-                <td></td>
+                <td class="w120 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.takenActions.calls.text }}
+                </td>
                 <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.takenActionsPercentages.calls.text }}
                 </td>
@@ -362,7 +366,9 @@
               </tr>
               <tr>
                 <td>Gestión de becas</td>
-                <td></td>
+                <td class="w120 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.takenActions.scholarship.text }}
+                </td>
                 <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.takenActionsPercentages.scholarship.text }}
                 </td>
@@ -370,7 +376,9 @@
               </tr>
               <tr>
                 <td>Ninguna</td>
-                <td></td>
+                <td class="w120 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.takenActions.none.text }}
+                </td>
                 <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.takenActionsPercentages.none.text }}
                 </td>
