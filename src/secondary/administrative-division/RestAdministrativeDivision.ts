@@ -69,6 +69,10 @@ export interface RestAdministrativeDivision {
   indiceAlimentos: { [key: string]: number };
   alimentos: { dif: number; etc: number; edo: number; otro: number };
   indiceEscuelaNuestra: { [key: string]: number };
+  sumaAccionvisita: number;
+  sumaAccionllamada: number;
+  sumaAccionbeca: number;
+  sumaAccionninguna: number;
 }
 
 const genderPercentage = (gender: number, otherGender: number): number => {
@@ -148,6 +152,12 @@ export const toAdministrativeDivision = (
   absentAdmins: restAdministrativeDivision.sumaInaAdministrativos,
   adminAbsenceMainReasons: restAdministrativeDivision.sumaCausaInaAdmin || {},
   adminAbsenceMainReasonsPercentages: restAdministrativeDivision.causaInaAdmin || {},
+  takenActions: {
+    visits: restAdministrativeDivision.sumaAccionvisita,
+    calls: restAdministrativeDivision.sumaAccionllamada,
+    scholarship: restAdministrativeDivision.sumaAccionbeca,
+    none: restAdministrativeDivision.sumaAccionninguna,
+  },
   takenActionsPercentages: {
     visits: restAdministrativeDivision.accion.visita,
     calls: restAdministrativeDivision.accion.llamada,
