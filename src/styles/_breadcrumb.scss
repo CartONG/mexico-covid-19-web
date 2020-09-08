@@ -1,3 +1,13 @@
+$breadcrumb-item-color: $white;
+$breadcrumb-item-active-color: $white;
+$breadcrumb-item-separator-color: $primary;
+$breadcrumb-item-hover-color: $primary;
+
+.breadcrumb {
+  border-radius: 4px;
+  padding: 16px 18px;
+}
+
 .breadcrumb li {
   padding: 2px 0;
 }
