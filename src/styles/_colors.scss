@@ -1,0 +1,56 @@
+$primary: #b38e5d;
+$primary-bis: #d4c19c;
+$primary-ter: #bc955c;
+$secondary: #9d2449;
+$secondary-bis: #621132;
+$tertiary: #285c4d;
+
+$grey: #C0C0C0;
+$grey-lighter: #eeeeee;
+$grey-darker: #424242;
+
+$primary-invert: findColorInvert($primary);
+$primary-bis-invert: findColorInvert($primary-bis);
+$primary-ter-invert: findColorInvert($primary-ter);
+$secondary-invert: findColorInvert($secondary);
+$secondary-bis-invert: findColorInvert($secondary-bis);
+$tertiary-invert: findColorInvert($tertiary);
+
+$grey-invert: findColorInvert($grey);
+$grey-lighter-invert: findColorInvert($grey-lighter);
+$grey-darker-invert: findColorInvert($grey-darker);
+
+$success: #97D356;
+$success-darker: #1E9B47;
+$warning: #FFC400;
+$danger: #EE8336;
+$danger-darker: #D91D20;
+
+$success-invert: findColorInvert($success);
+$success-darker-invert: findColorInvert($success-darker);
+$warning-invert: findColorInvert($warning);
+$danger-invert: findColorInvert($danger);
+$danger-darker-invert: findColorInvert($danger-darker);
+
+$colors: (
+  "white": ($white, $black),
+  "black": ($black, $white),
+  "light": ($light, $light-invert),
+  "dark": ($dark, $dark-invert),
+  "primary": ($primary, $primary-invert),
+  "primary-bis": ($primary-bis, $primary-bis-invert),
+  "primary-ter": ($primary-ter, $primary-ter-invert),
+  "secondary": ($secondary, $secondary-invert),
+  "secondary-bis": ($secondary-bis, $secondary-bis-invert),
+  "tertiary": ($tertiary, $tertiary-invert),
+  "info": ($info, $info-invert),
+  "success": ($success, $success-invert),
+  "success-darker": ($success-darker, $success-darker-invert),
+  "warning": ($warning, $warning-invert),
+  "danger": ($danger, $danger-invert),
+  "danger-darker": ($danger-darker, $danger-darker-invert),
+  "grey": ($grey, $grey-invert),
+  "unknown": ($grey, $grey-invert),
+  "grey-lighter": ($grey-lighter, $grey-lighter-invert),
+  "grey-darker": ($grey-darker, $grey-darker-invert),
+);

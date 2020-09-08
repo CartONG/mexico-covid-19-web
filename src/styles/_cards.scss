@@ -1,0 +1,14 @@
+.card {
+  border-radius: 4px;
+}
+
+.card-header {
+  margin-bottom: 1px;
+}
+
+.card-header-title {
+  color: $primary;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: $size-7;
+}

@@ -1,0 +1,30 @@
+$tabs-border-bottom-width: 0;
+$tabs-link-color: $secondary-bis;
+$tabs-link-active-color: $secondary-bis;
+$tabs-link-active-border-bottom-color: $secondary-bis;
+$tabs-link-hover-color: $secondary-bis;
+
+.tabs {
+  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
+}
+
+.tabs li {
+  opacity: 0.6;
+}
+
+.tabs li:hover {
+  opacity: 1;
+}
+
+.tabs li.is-active {
+  border-bottom: 3px solid $secondary-bis;
+  opacity: 1;
+}
+
+.tabs.shadowless {
+  box-shadow: none;
+}
+
+.tabs.no-border li.is-active {
+  border-bottom: 0 !important;
+}

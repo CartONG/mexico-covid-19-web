@@ -3,14 +3,14 @@
   box-shadow: inset 0 -2px 2px $light;
 }
 
-.map.is-h50 {
-  height: 50vh;
+#recenter-control {
+  position: absolute;
+  top: 90px;
+  left: 10px;
 }
 
-.map.is-h60 {
-  height: 60vh;
-}
-
-.map.is-h70 {
-  height: 70vh;
+#refresh-control {
+  position: absolute;
+  top: 136px;
+  left: 10px;
 }
