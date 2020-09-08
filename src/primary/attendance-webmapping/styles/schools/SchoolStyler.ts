@@ -4,8 +4,6 @@ import { Circle, Fill, Stroke, Style, Text } from 'ol/style';
 
 import { AttendanceType } from '@/domain/AttendanceType';
 
-// TODO: refactor this file
-
 const highDangerFeatureStyle = new Style({
   image: new Circle({
     radius: 6,
