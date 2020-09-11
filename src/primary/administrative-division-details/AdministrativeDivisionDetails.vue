@@ -1042,6 +1042,7 @@
             <tbody>
               <tr>
                 <td class="has-text-weight-bold has-text-primary is-uppercase">Programas adheridos a la escuela</td>
+                <td class="w200 has-text-weight-bold has-text-secondary-bis is-uppercase has-text-right opacity-6">Número de escuelas</td>
                 <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase has-text-right opacity-6 break-word">
                   Porcentaje
                 </td>
@@ -1062,11 +1063,15 @@
                   Reciben el apoyo de alimentación en la escuela
                 </td>
                 <td></td>
+                <td></td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>Si reciben algún apoyo de alimentación</td>
                 <td class="w200 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.foodSupport['1'].text }}
+                </td>
+                <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.foodSupportPercentages['1'].text }}
                 </td>
                 <td v-if="!printable" class="w40"></td>
@@ -1074,6 +1079,9 @@
               <tr>
                 <td>No recibe apoyo de alimentación</td>
                 <td class="w200 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.foodSupport['2'].text }}
+                </td>
+                <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.foodSupportPercentages['2'].text }}
                 </td>
                 <td v-if="!printable" class="w40"></td>
@@ -1083,11 +1091,15 @@
                   Quienes proporcionan los alimentos
                 </td>
                 <td></td>
+                <td></td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>Reciben alimentos por parte del DIF</td>
                 <td class="w200 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.foodSupportType.dif.text }}
+                </td>
+                <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.foodSupportTypePercentages.dif.text }}
                 </td>
                 <td v-if="!printable" class="w40"></td>
@@ -1095,6 +1107,9 @@
               <tr>
                 <td>Reciben alimentos por parte del Programa de Tiempo Completo</td>
                 <td class="w200 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.foodSupportType.fullTimeProgram.text }}
+                </td>
+                <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.foodSupportTypePercentages.fullTimeProgram.text }}
                 </td>
                 <td v-if="!printable" class="w40"></td>
@@ -1102,6 +1117,9 @@
               <tr>
                 <td>Reciben alimentos por parte del Estado</td>
                 <td class="w200 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.foodSupportType.state.text }}
+                </td>
+                <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.foodSupportTypePercentages.state.text }}
                 </td>
                 <td v-if="!printable" class="w40"></td>
@@ -1109,6 +1127,9 @@
               <tr>
                 <td>Otros</td>
                 <td class="w200 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.foodSupportType.others.text }}
+                </td>
+                <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.foodSupportTypePercentages.others.text }}
                 </td>
                 <td v-if="!printable" class="w40"></td>
@@ -1118,11 +1139,15 @@
                   La escuela pertenece al programa La Escuela es nuestra
                 </td>
                 <td></td>
+                <td></td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
                 <td>Si pertenece</td>
                 <td class="w200 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.theSchoolIsOurs['1'].text }}
+                </td>
+                <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.theSchoolIsOursPercentages['1'].text }}
                 </td>
                 <td v-if="!printable" class="w40"></td>
@@ -1130,6 +1155,9 @@
               <tr>
                 <td>No pertenece</td>
                 <td class="w200 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.theSchoolIsOurs['2'].text }}
+                </td>
+                <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.theSchoolIsOursPercentages['2'].text }}
                 </td>
                 <td v-if="!printable" class="w40"></td>

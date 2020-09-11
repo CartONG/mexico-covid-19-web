@@ -69,7 +69,10 @@ export interface AdministrativeDivision {
   drinkers: number;
   maleStudentToilets: number;
   femaleStudentToilets: number;
+  foodSupport: { [key: string]: number };
   foodSupportPercentages: { [key: string]: number };
+  foodSupportType: { dif: number; fullTimeProgram: number; state: number; others: number };
   foodSupportTypePercentages: { dif: number; fullTimeProgram: number; state: number; others: number };
+  theSchoolIsOurs: { [key: string]: number };
   theSchoolIsOursPercentages: { [key: string]: number };
 }
