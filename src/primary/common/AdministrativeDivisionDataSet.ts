@@ -213,15 +213,29 @@ export interface AdministrativeDivisionDataSet {
   drinkers: NumericDataSet;
   maleStudentToilets: NumericDataSet;
   femaleStudentToilets: NumericDataSet;
+  foodSupport: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+  };
   foodSupportPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
+  };
+  foodSupportType: {
+    dif: NumericDataSet;
+    fullTimeProgram: NumericDataSet;
+    state: NumericDataSet;
+    others: NumericDataSet;
   };
   foodSupportTypePercentages: {
     dif: PercentageDataSet;
     fullTimeProgram: PercentageDataSet;
     state: PercentageDataSet;
     others: PercentageDataSet;
+  };
+  theSchoolIsOurs: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
   };
   theSchoolIsOursPercentages: {
     '1': PercentageDataSet;
@@ -451,15 +465,29 @@ export const toAdministrativeDivisionDataset = (
         drinkers: toNumericDataSet(administrativeDivision.drinkers),
         maleStudentToilets: toNumericDataSet(administrativeDivision.maleStudentToilets),
         femaleStudentToilets: toNumericDataSet(administrativeDivision.femaleStudentToilets),
+        foodSupport: {
+          '1': toNumericDataSet(administrativeDivision.foodSupport['1']),
+          '2': toNumericDataSet(administrativeDivision.foodSupport['2']),
+        },
         foodSupportPercentages: {
           '1': toPercentageDataSet(administrativeDivision.foodSupportPercentages['1']),
           '2': toPercentageDataSet(administrativeDivision.foodSupportPercentages['2']),
+        },
+        foodSupportType: {
+          dif: toNumericDataSet(administrativeDivision.foodSupportType.dif),
+          fullTimeProgram: toNumericDataSet(administrativeDivision.foodSupportType.fullTimeProgram),
+          state: toNumericDataSet(administrativeDivision.foodSupportType.state),
+          others: toNumericDataSet(administrativeDivision.foodSupportType.others),
         },
         foodSupportTypePercentages: {
           dif: toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.dif),
           fullTimeProgram: toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.fullTimeProgram),
           state: toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.state),
           others: toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.others),
+        },
+        theSchoolIsOurs: {
+          '1': toNumericDataSet(administrativeDivision.theSchoolIsOurs['1']),
+          '2': toNumericDataSet(administrativeDivision.theSchoolIsOurs['2']),
         },
         theSchoolIsOursPercentages: {
           '1': toPercentageDataSet(administrativeDivision.theSchoolIsOursPercentages['1']),
@@ -677,15 +705,29 @@ export const toAdministrativeDivisionDataset = (
         drinkers: toNumericDataSet(-1),
         maleStudentToilets: toNumericDataSet(-1),
         femaleStudentToilets: toNumericDataSet(-1),
+        foodSupport: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+        },
         foodSupportPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
+        },
+        foodSupportType: {
+          dif: toNumericDataSet(-1),
+          fullTimeProgram: toNumericDataSet(-1),
+          state: toNumericDataSet(-1),
+          others: toNumericDataSet(-1),
         },
         foodSupportTypePercentages: {
           dif: toPercentageDataSet(-1),
           fullTimeProgram: toPercentageDataSet(-1),
           state: toPercentageDataSet(-1),
           others: toPercentageDataSet(-1),
+        },
+        theSchoolIsOurs: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
         },
         theSchoolIsOursPercentages: {
           '1': toPercentageDataSet(-1),

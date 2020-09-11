@@ -73,6 +73,12 @@ export interface RestAdministrativeDivision {
   sumaAccionllamada: number;
   sumaAccionbeca: number;
   sumaAccionninguna: number;
+  sumaAlimentos: number;
+  sumaAlimentosdif: number;
+  sumaAlimentosetc: number;
+  sumaAlimentosedo: number;
+  sumaAlimentosotro: number;
+  sumaEscuelanuestra: number;
 }
 
 const genderPercentage = (gender: number, otherGender: number): number => {
@@ -167,12 +173,26 @@ export const toAdministrativeDivision = (
   drinkers: restAdministrativeDivision.sumaBebederos,
   maleStudentToilets: restAdministrativeDivision.sumaWcalumnos,
   femaleStudentToilets: restAdministrativeDivision.sumaWcalumnas,
+  foodSupport: {
+    '1': restAdministrativeDivision.sumaAlimentos,
+    '2': restAdministrativeDivision.sumaEscuelas - restAdministrativeDivision.sumaAlimentos,
+  },
   foodSupportPercentages: restAdministrativeDivision.indiceAlimentos,
+  foodSupportType: {
+    dif: restAdministrativeDivision.sumaAlimentosdif,
+    fullTimeProgram: restAdministrativeDivision.sumaAlimentosetc,
+    state: restAdministrativeDivision.sumaAlimentosedo,
+    others: restAdministrativeDivision.sumaAlimentosotro,
+  },
   foodSupportTypePercentages: {
     dif: restAdministrativeDivision.alimentos.dif,
     fullTimeProgram: restAdministrativeDivision.alimentos.etc,
     state: restAdministrativeDivision.alimentos.edo,
     others: restAdministrativeDivision.alimentos.otro,
+  },
+  theSchoolIsOurs: {
+    '1': restAdministrativeDivision.sumaEscuelanuestra,
+    '2': restAdministrativeDivision.sumaEscuelas - restAdministrativeDivision.sumaEscuelanuestra,
   },
   theSchoolIsOursPercentages: restAdministrativeDivision.indiceEscuelaNuestra,
 });

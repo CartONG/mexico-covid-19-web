@@ -147,12 +147,20 @@ export interface AdministrativeDivisionCsvExportContent {
   'Bebederos funcionales': string;
   'Baños funcionales, Alumnas': string;
   'Baños funcionales, Alumnos': string;
+  'Reciben algún apoyo de alimentación': string;
+  'No recibe apoyo de alimentación': string;
   'Reciben algún apoyo de alimentación (% de escuelas)': string;
   'No recibe apoyo de alimentación (% de escuelas)': string;
+  'Reciben alimentos por parte del DIF': string;
+  'Reciben alimentos por parte del Programa de Tiempo Completo': string;
+  'Reciben alimentos por parte del Estado': string;
+  'Quienes proporcionan los alimentos. Otros': string;
   'Reciben alimentos por parte del DIF (% de escuelas)': string;
   'Reciben alimentos por parte del Programa de Tiempo Completo (% de escuelas)': string;
   'Reciben alimentos por parte del Estado (% de escuelas)': string;
   'Quienes proporcionan los alimentos. Otros (% de escuelas)': string;
+  'La escuela pertenece al programa La Escuela es nuestra': string;
+  'La escuela no pertenece al programa La Escuela es nuestra': string;
   'La escuela pertenece al programa La Escuela es nuestra (% de escuelas)': string;
   'La escuela no pertenece al programa La Escuela es nuestra (% de escuelas)': string;
 }
@@ -465,8 +473,15 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Bebederos funcionales': toNumericDataSet(administrativeDivision.drinkers).rawText,
   'Baños funcionales, Alumnas': toNumericDataSet(administrativeDivision.femaleStudentToilets).rawText,
   'Baños funcionales, Alumnos': toNumericDataSet(administrativeDivision.maleStudentToilets).rawText,
+  'Reciben algún apoyo de alimentación': toNumericDataSet(administrativeDivision.foodSupport[1]).rawText,
+  'No recibe apoyo de alimentación': toNumericDataSet(administrativeDivision.foodSupport[2]).rawText,
   'Reciben algún apoyo de alimentación (% de escuelas)': toPercentageDataSet(administrativeDivision.foodSupportPercentages[1]).text,
   'No recibe apoyo de alimentación (% de escuelas)': toPercentageDataSet(administrativeDivision.foodSupportPercentages[2]).text,
+  'Reciben alimentos por parte del DIF': toNumericDataSet(administrativeDivision.foodSupportType.dif).rawText,
+  'Reciben alimentos por parte del Programa de Tiempo Completo': toNumericDataSet(administrativeDivision.foodSupportType.fullTimeProgram)
+    .rawText,
+  'Reciben alimentos por parte del Estado': toNumericDataSet(administrativeDivision.foodSupportType.state).rawText,
+  'Quienes proporcionan los alimentos. Otros': toNumericDataSet(administrativeDivision.foodSupportType.others).rawText,
   'Reciben alimentos por parte del DIF (% de escuelas)': toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.dif).text,
   'Reciben alimentos por parte del Programa de Tiempo Completo (% de escuelas)': toPercentageDataSet(
     administrativeDivision.foodSupportTypePercentages.fullTimeProgram
@@ -475,6 +490,8 @@ export const toAdministrativeDivisionCsvExportContent = (
     .text,
   'Quienes proporcionan los alimentos. Otros (% de escuelas)': toPercentageDataSet(administrativeDivision.foodSupportTypePercentages.others)
     .text,
+  'La escuela pertenece al programa La Escuela es nuestra': toNumericDataSet(administrativeDivision.theSchoolIsOurs['1']).rawText,
+  'La escuela no pertenece al programa La Escuela es nuestra': toNumericDataSet(administrativeDivision.theSchoolIsOurs['2']).rawText,
   'La escuela pertenece al programa La Escuela es nuestra (% de escuelas)': toPercentageDataSet(
     administrativeDivision.theSchoolIsOursPercentages['1']
   ).text,
