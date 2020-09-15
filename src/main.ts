@@ -35,17 +35,18 @@ Vue.use(Vuex);
 
 Vue.config.productionTip = false;
 
-const restBaseUrl = process.env.NODE_ENV === 'development' ? './data/' : 'https://unicefmoedev8api.azurewebsites.net';
+const environment = process.env.NODE_ENV || '';
+const restBaseUrl = environment === 'development' ? './data/' : 'https://unicefmoedev8api.azurewebsites.net';
 const localAxios = axios.create({ baseURL: './data/' });
 const restAxios = axios.create({ baseURL: restBaseUrl });
 const logger = new ConsoleLogger(console); // eslint-disable-line no-console
 const fetcher = new LocalFetcher(localAxios);
 const animationDelayer = new Delayer(window, ANIMATION_DURATION + 50);
 const updateMapViewportDelayer = new Delayer(window, UPDATE_MAP_VIEWPORT_DELAY);
-const administrativeDivisionRepository = new RestAdministrativeDivisionRepository(restAxios);
-const administrativeDivisionDailyReportRepository = new RestAdministrativeDivisionDailyReportRepository(restAxios);
-const schoolRepository = new RestSchoolRepository(restAxios);
-const schoolDailyReportRepository = new RestSchoolDailyReportRepository(restAxios);
+const administrativeDivisionRepository = new RestAdministrativeDivisionRepository(restAxios, environment);
+const administrativeDivisionDailyReportRepository = new RestAdministrativeDivisionDailyReportRepository(restAxios, environment);
+const schoolRepository = new RestSchoolRepository(restAxios, environment);
+const schoolDailyReportRepository = new RestSchoolDailyReportRepository(restAxios, environment);
 const navigationBus = new NavigationBus(new Vue());
 const attendanceTypeBus = new AttendanceTypeBus(new Vue());
 const map = createMap(MAP_EXTENT);

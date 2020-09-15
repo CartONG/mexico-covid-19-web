@@ -44,7 +44,7 @@ export const toSchoolSummary = (restSchoolSummary: RestSchoolSummary): SchoolSum
   studentAttendance: restSchoolSummary.indiceAsistenciaAlumnado,
   teacherAttendance: restSchoolSummary.indiceAsistenciaDocentes,
   adminAttendance: restSchoolSummary.indiceAsistenciaAdmin,
-  maleStudentAbsence: restSchoolSummary.indiceInasistenciaAlumnas,
-  femaleStudentAbsence: restSchoolSummary.indiceInasistenciaAlumnos,
+  maleStudentAbsence: restSchoolSummary.indiceInasistenciaAlumnos,
+  femaleStudentAbsence: restSchoolSummary.indiceInasistenciaAlumnas,
   coordinates: [parseFloat(restSchoolSummary.coordenadas.longitud), parseFloat(restSchoolSummary.coordenadas.latitud)],
 });
