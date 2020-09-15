@@ -11,35 +11,35 @@ import {
   toAdministrativeDivisionSummary,
 } from '@/secondary/administrative-division/RestAdministrativeDivisionSummary';
 
-const listUrl = (type: AdministrativeDivisionTypes) => {
+const listUrl = (type: AdministrativeDivisionTypes, environment: string) => {
   switch (type) {
     case AdministrativeDivisionTypes.COUNTRY:
-      return process.env.NODE_ENV === 'development' ? 'country.json' : 'pais';
+      return environment === 'development' ? 'country.json' : 'pais';
     case AdministrativeDivisionTypes.STATE:
-      return process.env.NODE_ENV === 'development' ? 'states.json' : 'entidades';
+      return environment === 'development' ? 'states.json' : 'entidades';
     case AdministrativeDivisionTypes.MUNICIPALITY:
-      return process.env.NODE_ENV === 'development' ? 'municipalities.json' : 'municipios';
+      return environment === 'development' ? 'municipalities.json' : 'municipios';
   }
 };
 
-const findUrl = (type: AdministrativeDivisionTypes, administrativeDivisionId: string) => {
+const findUrl = (type: AdministrativeDivisionTypes, administrativeDivisionId: string, environment: string) => {
   switch (type) {
     case AdministrativeDivisionTypes.COUNTRY:
-      return process.env.NODE_ENV === 'development' ? 'country.json' : 'pais';
+      return environment === 'development' ? 'country.json' : 'pais';
     case AdministrativeDivisionTypes.STATE:
-      return process.env.NODE_ENV === 'development' ? 'state.json' : `entidades?cod_entidad=${administrativeDivisionId}`;
+      return environment === 'development' ? 'state.json' : `entidades?cod_entidad=${administrativeDivisionId}`;
     case AdministrativeDivisionTypes.MUNICIPALITY:
-      return process.env.NODE_ENV === 'development'
+      return environment === 'development'
         ? 'municipality.json'
         : `municipios/?cod_entidad=${administrativeDivisionId.substring(0, 2)}&cod_mun=${administrativeDivisionId.substring(2)}`;
   }
 };
 
 export class RestAdministrativeDivisionRepository implements AdministrativeDivisionRepository {
-  constructor(private axiosInstance: AxiosInstance) {}
+  constructor(private axiosInstance: AxiosInstance, private environment: string) {}
 
   find(type: AdministrativeDivisionTypes, administrativeDivisionId: string): Promise<AdministrativeDivision> {
-    const url = findUrl(type, administrativeDivisionId);
+    const url = findUrl(type, administrativeDivisionId, this.environment);
     return this.axiosInstance
       .get<RestAdministrativeDivision>(url)
       .then(response => toAdministrativeDivision(response.data, type))
@@ -49,7 +49,7 @@ export class RestAdministrativeDivisionRepository implements AdministrativeDivis
   }
 
   list(type: AdministrativeDivisionTypes): Promise<AdministrativeDivisionSummary[]> {
-    const url = listUrl(type);
+    const url = listUrl(type, this.environment);
     return this.axiosInstance
       .get<RestAdministrativeDivisionSummary[]>(url)
       .then(response => response.data.map(toAdministrativeDivisionSummary))
