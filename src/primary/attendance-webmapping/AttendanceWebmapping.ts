@@ -123,10 +123,6 @@ export class AttendanceWebmapping {
     this.statesLayer.setStyle(statesStyler(attendanceType, stateId));
   }
 
-  private byId(objects: { id: string }[]) {
-    return objects.reduce((accumulator, object) => ({ ...accumulator, [object.id]: object }), {});
-  }
-
   public setMapTarget(target: string | undefined) {
     this.map.setTarget(target);
   }
@@ -172,8 +168,12 @@ export class AttendanceWebmapping {
     const recenterControl = new Control({ element: recenterControlElement });
     const refreshControl = new Control({ element: refreshControlElement });
     this.controls = [recenterControl, refreshControl];
-    this.map.addControl(recenterControl);
-    this.map.addControl(refreshControl);
+    if (recenterControlElement) {
+      this.map.addControl(recenterControl);
+    }
+    if (refreshControlElement) {
+      this.map.addControl(refreshControl);
+    }
   }
 
   public removeControls() {
