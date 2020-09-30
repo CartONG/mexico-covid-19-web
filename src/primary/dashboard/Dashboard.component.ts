@@ -132,7 +132,7 @@ export default class Dashboard extends Vue {
     this.componentState = ComponentState.ERROR;
   }
 
-  private listSchool(municipalityId: string) {
+  public async listSchool(municipalityId: string) {
     const summaries = this.appStore().getSchoolSummaries(municipalityId);
 
     if (summaries) {
@@ -159,7 +159,7 @@ export default class Dashboard extends Vue {
     }
   }
 
-  private findAdministrativeDivision(administrativeDivisionId: string, administrativeDivisionType: AdministrativeDivisionTypes) {
+  public async findAdministrativeDivision(administrativeDivisionId: string, administrativeDivisionType: AdministrativeDivisionTypes) {
     const administrativeDivision = this.appStore().getAdministrativeDivision(administrativeDivisionId, administrativeDivisionType);
 
     if (administrativeDivision) {
@@ -178,7 +178,7 @@ export default class Dashboard extends Vue {
     }
   }
 
-  private findSchool(schoolId: string) {
+  public async findSchool(schoolId: string) {
     const school = this.appStore().getSchool(schoolId);
 
     if (school) {
@@ -198,7 +198,7 @@ export default class Dashboard extends Vue {
     }
   }
 
-  private listAdministrativeDivisionDailyReport(administrativeDivisionType: AdministrativeDivisionTypes, id: string) {
+  public async listAdministrativeDivisionDailyReport(administrativeDivisionType: AdministrativeDivisionTypes, id: string) {
     const administrativeDivisionDailyReports = this.appStore().getAdministrativeDivisionHistoric(id, administrativeDivisionType);
 
     if (administrativeDivisionDailyReports) {
@@ -217,7 +217,7 @@ export default class Dashboard extends Vue {
     }
   }
 
-  private listSchoolDailyReport(id: string) {
+  public async listSchoolDailyReport(id: string) {
     const schoolDailyReports = this.appStore().getSchoolHistoric(id);
 
     if (schoolDailyReports) {
