@@ -1,8 +1,11 @@
 import sinon from 'sinon';
 
 import { Feature, Map, Overlay, View } from 'ol';
+import { Point } from 'ol/geom';
 import VectorLayer from 'ol/layer/Vector';
 import { Cluster } from 'ol/source';
+
+import { topology } from '../../TestUtils';
 
 import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
 import { AttendanceType } from '@/domain/AttendanceType';
@@ -13,7 +16,6 @@ import { schoolStyler } from '@/primary/attendance-webmapping/styles/schools/Sch
 import { statesStyler } from '@/primary/attendance-webmapping/styles/states/StateStyle';
 import { ANIMATION_DURATION, MAP_EXTENT } from '@/primary/constants';
 import { createClusterLayer, createMap, createPopup, createVectorLayer, makeEvent } from '@/primary/WebmappingUtils';
-import { Point } from 'ol/geom';
 
 const setupAttendanceWebmapping = () => {
   map = createMap(MAP_EXTENT);
@@ -23,31 +25,6 @@ const setupAttendanceWebmapping = () => {
   popup = createPopup();
   attendanceWebmapping = new AttendanceWebmapping(map, statesLayer, municipalitiesLayer, schoolsLayer, popup, ANIMATION_DURATION);
 };
-
-const topology = (ids: [string, string] = ['0', '1']) => ({
-  type: 'Topology',
-  objects: {
-    'two-squares': {
-      type: 'GeometryCollection',
-      geometries: [
-        { type: 'Polygon', arcs: [[0, 1]], properties: { stateId: '0' }, id: ids[0] },
-        { type: 'Polygon', arcs: [[0, 1]], properties: { stateId: '0' }, id: ids[1] },
-      ],
-    },
-  },
-  arcs: [
-    [
-      [1, 2],
-      [0, -2],
-    ],
-    [
-      [1, 0],
-      [-1, 0],
-      [0, 2],
-      [1, 0],
-    ],
-  ],
-});
 
 const makeFeature = (id: string, properties: any = {}) => {
   const feature = new Feature();

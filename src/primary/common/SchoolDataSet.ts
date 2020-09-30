@@ -216,7 +216,7 @@ const toFoodSupportTypes = (foodSupportType: { [key: string]: boolean }): string
     types.push('Reciben alimentos por parte del Estado');
   }
 
-  if (foodSupportType.none) {
+  if (foodSupportType.others) {
     types.push('Quienes proporcionan los alimentos. Otros');
   }
 
