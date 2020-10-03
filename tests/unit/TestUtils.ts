@@ -1,34 +1,22 @@
 import sinon, { SinonStub } from 'sinon';
 
 import { AxiosError, AxiosInstance } from 'axios';
-import { Feature, MapBrowserEvent } from 'ol';
-import Control from 'ol/control/Control';
-import BaseEvent from 'ol/events/Event';
 
-import { AdministrativeDivisionDailyReport } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReport';
 import { AdministrativeDivisionDailyReportRepository } from '@/domain/administrative-division-daily-report/AdministrativeDivisionDailyReportRepository';
-import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';
 import { AdministrativeDivisionRepository } from '@/domain/administrative-division/AdministrativeDivisionRepository';
-import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
-import { AdministrativeDivisionTypes } from '@/domain/administrative-division/AdministrativeDivisionTypes';
-import { AttendanceType } from '@/domain/AttendanceType';
 import { Fetcher } from '@/domain/Fetcher';
 import { Logger } from '@/domain/Logger';
-import { SchoolDailyReport } from '@/domain/school-daily-report/SchoolDailyReport';
 import { SchoolDailyReportRepository } from '@/domain/school-daily-report/SchoolDailyReportRepository';
-import { School } from '@/domain/school/School';
 import { SchoolRepository } from '@/domain/school/SchoolRepository';
-import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { AppStore } from '@/primary/app/AppStore';
 import { AttendanceWebmapping } from '@/primary/attendance-webmapping/AttendanceWebmapping';
-import { municipalityStyler } from '@/primary/attendance-webmapping/styles/municipalities/MunicipalityStyle';
-import { schoolStyler } from '@/primary/attendance-webmapping/styles/schools/SchoolStyler';
-import { statesStyler } from '@/primary/attendance-webmapping/styles/states/StateStyle';
 import { AttendanceTypeBus } from '@/primary/AttendanceTypeBus';
+import { CsvParser } from '@/primary/CsvParser';
 import { Delayer } from '@/primary/Delayer';
+import { FileDownloader } from '@/primary/FileDownloader';
+import { HistoricChart } from '@/primary/HistoricChart';
 import { NavigationBus } from '@/primary/navigation/NavigationBus';
-import { NavigationParams } from '@/primary/navigation/NavigationParams';
-import { fitFeature, parseTopoJson, setClusterLayerFeature, setLayerFeature } from '@/primary/WebmappingUtils';
+import { Printer } from '@/secondary/Printer';
 
 export interface LoggerStub extends Logger {
   error: SinonStub;
@@ -229,6 +217,53 @@ export interface AxiosInstanceStub extends AxiosInstance {
   post: SinonStub;
   delete: SinonStub;
 }
+
+export interface HistoricChartStub extends HistoricChart {
+  makeStackedBarChart: SinonStub;
+  updateStackedChart: SinonStub;
+  transformStackedBarChartToImage: SinonStub;
+}
+
+export const stubHistoricChart = (): HistoricChartStub =>
+  ({
+    makeStackedBarChart: sinon.stub(),
+    updateStackedChart: sinon.stub(),
+    transformStackedBarChartToImage: sinon.stub(),
+  } as HistoricChartStub);
+
+export interface CsvParserStub extends CsvParser {
+  toCsvString: SinonStub;
+}
+
+export const stubCsvParser = (): CsvParser => ({
+  toCsvString: sinon.stub(),
+});
+
+export interface FileDownloaderStub extends FileDownloader {
+  download: SinonStub;
+}
+
+export const stubFileDownloader = (): FileDownloaderStub =>
+  ({
+    download: sinon.stub(),
+  } as FileDownloaderStub);
+
+export interface PrinterStub extends Printer {
+  print: SinonStub;
+  onBeforePrint: SinonStub;
+  onAfterPrint: SinonStub;
+  offBeforePrint: SinonStub;
+  offAfterPrint: SinonStub;
+}
+
+export const stubPrinter = () =>
+  ({
+    print: sinon.stub(),
+    onBeforePrint: sinon.stub(),
+    onAfterPrint: sinon.stub(),
+    offBeforePrint: sinon.stub(),
+    offAfterPrint: sinon.stub(),
+  } as PrinterStub);
 
 export const stubAxiosInstance = (): AxiosInstanceStub =>
   ({

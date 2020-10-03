@@ -5,6 +5,7 @@ import { AdministrativeDivision } from '@/domain/administrative-division/Adminis
 import { AdministrativeDivisionSummary } from '@/domain/administrative-division/AdministrativeDivisionSummary';
 import { AdministrativeLevels } from '@/domain/AdministrativeLevels';
 import { AttendanceType } from '@/domain/AttendanceType';
+import { SchoolDailyReport } from '@/domain/school-daily-report/SchoolDailyReport';
 import { School } from '@/domain/school/School';
 import { SchoolSummary } from '@/domain/school/SchoolSummary';
 import { Summary } from '@/domain/Summary';
@@ -57,7 +58,7 @@ export default class TemplatePrint extends Vue {
   readonly school!: School;
 
   @Prop()
-  readonly schoolDailyReports!: AdministrativeDivisionDailyReport[];
+  readonly schoolDailyReports!: SchoolDailyReport[];
 
   @Prop()
   readonly currentSummary!: Summary;
@@ -110,7 +111,7 @@ export default class TemplatePrint extends Vue {
   }
 
   get lastUpdateDate() {
-    const entity = this.administrativeLevel ? this.currentAdministrativeDivision : this.school;
+    const entity = this.administrativeLevel === AdministrativeLevels.SCHOOL ? this.school : this.currentAdministrativeDivision;
     return entity ? `Información correspondiente al ${entity.lastUpdateDate.toHuman()}` : '';
   }
 

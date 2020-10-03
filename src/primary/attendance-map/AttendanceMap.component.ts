@@ -95,7 +95,7 @@ export default class ChoroplethMap extends Vue {
     this.attendanceWebmapping().setMapTarget(undefined);
   }
 
-  private pickSchool(schoolItem: { id: string; name: string }) {
+  public pickSchool(schoolItem: { id: string; name: string }) {
     this.navigationBus().goToSchool(schoolItem);
   }
 
