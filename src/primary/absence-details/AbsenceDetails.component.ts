@@ -1,4 +1,3 @@
-import * as d3 from 'd3';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 import { AdministrativeDivision } from '@/domain/administrative-division/AdministrativeDivision';

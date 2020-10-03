@@ -3,7 +3,7 @@ import { NavigationParams } from '@/primary/navigation/NavigationParams';
 export interface BreadcrumbItemDataSet {
   id: string;
   name: string;
-  active: string;
+  active: boolean;
   visible: boolean;
 }
 
@@ -14,7 +14,7 @@ export interface BreadcrumbDataSet {
   school: BreadcrumbItemDataSet;
 }
 
-export const toBreadcrumbDataSet = (navigation: NavigationParams[]) => ({
+export const toBreadcrumbDataSet = (navigation: NavigationParams[]): BreadcrumbDataSet => ({
   country: {
     id: 'country',
     name: 'MÉXICO',

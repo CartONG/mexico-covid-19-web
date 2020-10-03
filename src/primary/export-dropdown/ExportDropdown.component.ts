@@ -29,7 +29,7 @@ export default class DownloadDropdown extends Vue {
       ? toAdministrativeDivisionCsvExportContent(this.administrativeDivision)
       : toSchoolCsvExportContent(this.school);
     const contentString = this.csvParser().toCsvString(content);
-    const filename = `${this.administrativeDivision.name || 'México'}.csv`;
+    const filename = this.administrativeDivisionLevel ? `${this.administrativeDivision.name || 'México'}.csv` : `${this.school.name}.csv`;
     this.fileDownloader().download(filename, contentString, 'text/csv');
   }
 }
