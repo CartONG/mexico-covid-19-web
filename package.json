@@ -12,7 +12,7 @@
   "dependencies": {
     "@types/ol": "^6.3.1",
     "@types/papaparse": "^5.0.6",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "buefy": "^0.8.17",
     "core-js": "^3.6.4",
     "d3": "^5.16.0",
