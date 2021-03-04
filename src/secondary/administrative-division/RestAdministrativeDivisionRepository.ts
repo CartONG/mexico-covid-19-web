@@ -14,24 +14,24 @@ import {
 const listUrl = (type: AdministrativeDivisionTypes, environment: string) => {
   switch (type) {
     case AdministrativeDivisionTypes.COUNTRY:
-      return environment === 'development' ? 'country.json' : 'pais';
+      return environment === 'development' ? 'country.json' : 'country.json';
     case AdministrativeDivisionTypes.STATE:
-      return environment === 'development' ? 'states.json' : 'entidades';
+      return environment === 'development' ? 'states.json' : 'stateSummary.json';
     case AdministrativeDivisionTypes.MUNICIPALITY:
-      return environment === 'development' ? 'municipalities.json' : 'municipios';
+      return environment === 'development' ? 'municipalities.json' : 'municipalitySummary.json';
   }
 };
 
 const findUrl = (type: AdministrativeDivisionTypes, administrativeDivisionId: string, environment: string) => {
   switch (type) {
     case AdministrativeDivisionTypes.COUNTRY:
-      return environment === 'development' ? 'country.json' : 'pais';
+      return environment === 'development' ? 'country.json' : 'country.json';
     case AdministrativeDivisionTypes.STATE:
-      return environment === 'development' ? 'state.json' : `entidades?cod_entidad=${administrativeDivisionId}`;
+      return environment === 'development' ? 'state.json' : `${administrativeDivisionId}/stateDetail.json`;
     case AdministrativeDivisionTypes.MUNICIPALITY:
       return environment === 'development'
         ? 'municipality.json'
-        : `municipios/?cod_entidad=${administrativeDivisionId.substring(0, 2)}&cod_mun=${administrativeDivisionId.substring(2)}`;
+        : `${administrativeDivisionId.substring(0, 2)}/${administrativeDivisionId.substring(2)}/municipalityDetail.json`;
   }
 };
 
