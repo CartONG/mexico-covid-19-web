@@ -12,13 +12,13 @@ import {
 const listForAdministrativeDivisionUrl = (type: AdministrativeDivisionTypes, administrativeDivisionId: string, environment: string) => {
   switch (type) {
     case AdministrativeDivisionTypes.COUNTRY:
-      return environment === 'development' ? 'country_history.json' : 'pais/historico';
+      return environment === 'development' ? 'country_history.json' : 'countryHistory.json';
     case AdministrativeDivisionTypes.STATE:
-      return environment === 'development' ? 'state_history.json' : `entidades/historico?cod_entidad=${administrativeDivisionId}`;
+      return environment === 'development' ? 'state_history.json' : `${administrativeDivisionId}/stateHistory.json`;
     case AdministrativeDivisionTypes.MUNICIPALITY:
       return environment === 'development'
         ? 'municipality_history.json'
-        : `municipios/historico/?cod_entidad=${administrativeDivisionId.substring(0, 2)}&cod_mun=${administrativeDivisionId.substring(2)}`;
+        : `${administrativeDivisionId.substring(0, 2)}/${administrativeDivisionId.substring(2)}/municipalityHistory.json`;
   }
 };
 

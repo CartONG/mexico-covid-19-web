@@ -10,7 +10,7 @@ export class RestSchoolDailyReportRepository implements SchoolDailyReportReposit
 
   listForSchool(schoolId: string): Promise<SchoolDailyReport[]> {
     const restSchoolId = schoolId.split('__')[0];
-    const url = this.environment === 'development' ? 'school_history.json' : `escuelas/historico?idescuela=${restSchoolId}`;
+    const url = this.environment === 'development' ? 'school_history.json' : `${restSchoolId}/schoolHistory.json`;
     return this.axiosInstance
       .get<RestSchoolDailyReport[]>(url)
       .then(response => response.data.map(toSchoolDailyReport))

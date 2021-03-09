@@ -13,7 +13,7 @@ export class RestSchoolRepository implements SchoolRepository {
   list(municipalityId: string): Promise<SchoolSummary[]> {
     const restMunicipalityId = municipalityId.substring(2);
     const restStateId = municipalityId.substring(0, 2);
-    const url = this.environment === 'development' ? 'schools.json' : `escuelas/?cod_entidad=${restStateId}&cod_mun=${restMunicipalityId}`;
+    const url = this.environment === 'development' ? 'schools.json' : `${restStateId}/${restMunicipalityId}/schoolsSummary.json`;
     return this.axiosInstance
       .get<RestSchoolSummary[]>(url)
       .then(response => response.data.map(toSchoolSummary))
@@ -25,7 +25,7 @@ export class RestSchoolRepository implements SchoolRepository {
   find(schoolId: string): Promise<School> {
     const restSchoolId = schoolId.split('__')[0];
     const restLevel = schoolId.split('__')[1];
-    const url = this.environment === 'development' ? 'school.json' : `escuelas/?idescuela=${restSchoolId}`;
+    const url = this.environment === 'development' ? 'school.json' : `${restSchoolId}/schoolDetail.json`;
     return this.axiosInstance
       .get<RestSchool>(url)
       .then(response => toSchool(response.data))
