@@ -37,7 +37,7 @@ describe('RestAdministrativeDivisionDailyReportRepository', () => {
       ''
     );
     expect(list).toHaveLength(1);
-    expect(axiosInstance.get.getCall(0).args[0]).toBe('pais/historico');
+    expect(axiosInstance.get.getCall(0).args[0]).toBe('countryHistory.json');
     expect(list[0]).toEqual<AdministrativeDivisionDailyReport>({
       date: '2020-06-16',
       giveClasses: 0.47,
@@ -72,8 +72,8 @@ describe('RestAdministrativeDivisionDailyReportRepository', () => {
     await restAdministrativeDivisionDailyReportRepository.listForAdministrativeDivision(AdministrativeDivisionTypes.COUNTRY, '');
     await restAdministrativeDivisionDailyReportRepository.listForAdministrativeDivision(AdministrativeDivisionTypes.STATE, '01');
     await restAdministrativeDivisionDailyReportRepository.listForAdministrativeDivision(AdministrativeDivisionTypes.MUNICIPALITY, '01001');
-    expect(axiosInstance.get.getCall(0).args[0]).toBe('pais/historico');
-    expect(axiosInstance.get.getCall(1).args[0]).toBe('entidades/historico?cod_entidad=01');
-    expect(axiosInstance.get.getCall(2).args[0]).toBe('municipios/historico/?cod_entidad=01&cod_mun=001');
+    expect(axiosInstance.get.getCall(0).args[0]).toBe('countryHistory.json');
+    expect(axiosInstance.get.getCall(1).args[0]).toBe('01/stateHistory.json');
+    expect(axiosInstance.get.getCall(2).args[0]).toBe('01/001/municipalityHistory.json');
   });
 });

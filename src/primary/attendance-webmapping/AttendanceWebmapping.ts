@@ -76,7 +76,7 @@ export class AttendanceWebmapping {
       geometry: new Point(transform(domainSchoolSummary.coordinates, 'EPSG:4326', 'EPSG:3857')),
       name: domainSchoolSummary.name,
       turn: domainSchoolSummary.turn,
-      maleStudentAttendance: domainSchoolSummary.studentAttendance,
+      studentAttendance: domainSchoolSummary.studentAttendance,
       teacherAttendance: domainSchoolSummary.teacherAttendance,
       adminAttendance: domainSchoolSummary.adminAttendance,
     };

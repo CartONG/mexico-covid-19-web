@@ -21,7 +21,7 @@
         </button>
       </div>
       <div id="refresh-control" class="ol-control">
-        <button type="button" title="regressar a Nacional" @click="goBackToCountry()">
+        <button type="button" title="Regresar a Federación" @click="goBackToCountry()">
           <span class="icon"><i class="mdi mdi-refresh"></i></span>
         </button>
       </div>

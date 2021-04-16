@@ -48,7 +48,7 @@ describe('RestAdministrativeDivision', () => {
     const list = await restAdministrativeDivisionRepository.list(AdministrativeDivisionTypes.STATE);
     const [first, second] = list;
     expect(list).toHaveLength(2);
-    expect(axiosInstance.get.getCall(0).args[0]).toBe('entidades');
+    expect(axiosInstance.get.getCall(0).args[0]).toBe('stateSummary.json');
     expect(first).toEqual<AdministrativeDivisionSummary>({
       id: '01',
       name: 'AGUASCALIENTES',
@@ -73,7 +73,7 @@ describe('RestAdministrativeDivision', () => {
     axiosInstance.get.resolves({ data: restState });
     const restAdministrativeDivisionRepository = new RestAdministrativeDivisionRepository(axiosInstance, 'production');
     const administrativeDivision = await restAdministrativeDivisionRepository.find(AdministrativeDivisionTypes.STATE, '03');
-    expect(axiosInstance.get.getCall(0).args[0]).toBe('entidades?cod_entidad=03');
+    expect(axiosInstance.get.getCall(0).args[0]).toBe('03/stateDetail.json');
     expect(administrativeDivision).toEqual<AdministrativeDivision>({
       id: '03',
       name: 'BAJA CALIFORNIA SUR',
@@ -181,11 +181,11 @@ describe('RestAdministrativeDivision', () => {
     await restAdminRepository.find(AdministrativeDivisionTypes.COUNTRY, '');
     await restAdminRepository.find(AdministrativeDivisionTypes.STATE, '01');
     await restAdminRepository.find(AdministrativeDivisionTypes.MUNICIPALITY, '01001');
-    expect(axiosInstance.get.getCall(0).args[0]).toBe('pais');
-    expect(axiosInstance.get.getCall(1).args[0]).toBe('entidades');
-    expect(axiosInstance.get.getCall(2).args[0]).toBe('municipios');
-    expect(axiosInstance.get.getCall(3).args[0]).toBe('pais');
-    expect(axiosInstance.get.getCall(4).args[0]).toBe('entidades?cod_entidad=01');
-    expect(axiosInstance.get.getCall(5).args[0]).toBe('municipios/?cod_entidad=01&cod_mun=001');
+    expect(axiosInstance.get.getCall(0).args[0]).toBe('country.json');
+    expect(axiosInstance.get.getCall(1).args[0]).toBe('stateSummary.json');
+    expect(axiosInstance.get.getCall(2).args[0]).toBe('municipalitySummary.json');
+    expect(axiosInstance.get.getCall(3).args[0]).toBe('country.json');
+    expect(axiosInstance.get.getCall(4).args[0]).toBe('01/stateDetail.json');
+    expect(axiosInstance.get.getCall(5).args[0]).toBe('01/001/municipalityDetail.json');
   });
 });
