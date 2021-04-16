@@ -43,7 +43,7 @@ describe('RestSchoolRepository', () => {
     const restSchoolRepository = new RestSchoolRepository(axiosInstance, 'production');
     const list = await restSchoolRepository.list('01001');
     expect(list).toHaveLength(1);
-    expect(axiosInstance.get.getCall(0).args[0]).toBe('escuelas/?cod_entidad=01&cod_mun=001');
+    expect(axiosInstance.get.getCall(0).args[0]).toBe('01/001/schoolsSummary.json');
     expect(list[0]).toEqual<SchoolSummary>({
       id: '03DDI0003E4',
       name: 'CENTRO DE ATENCIÓN INFANTIL 3 CARMEN VERDUGO PEDRIN',
@@ -63,7 +63,7 @@ describe('RestSchoolRepository', () => {
     axiosInstance.get.resolves({ data: restSchool() });
     const restSchoolRepository = new RestSchoolRepository(axiosInstance, 'production');
     const school = await restSchoolRepository.find('03KJN0025W4');
-    expect(axiosInstance.get.getCall(0).args[0]).toBe('escuelas/?idescuela=03KJN0025W4');
+    expect(axiosInstance.get.getCall(0).args[0]).toBe('03KJN0025W4/schoolDetail.json');
     expect(school).toEqual<School>({
       id: '03KJN0025W4',
       locality: 'LA CANDELARIA',

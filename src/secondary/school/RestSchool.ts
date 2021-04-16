@@ -95,21 +95,29 @@ const genderPercentage = (gender: number, otherGender: number): number => {
   return total === 0 ? 0 : Math.round((gender / total) * 100) / 100;
 };
 
-const toRate = (value: number, total: number) => (total === 0 ? 0 : Math.round((value / total) * 100) / 100);
+const toValidCount = (count: number) => (isNaN(count) || count < 0 ? 0 : count);
+
+const toRate = (value: number, total: number) => (total === 0 ? 0 : Math.round((toValidCount(value) / total) * 100) / 100);
 
 export const toSchool = (restSchool: RestSchool): School => {
   const totalStudentAbsenceMainReasons =
-    restSchool.inaalum_causa1 +
-    restSchool.inaalum_causa2 +
-    restSchool.inaalum_causa3 +
-    restSchool.inaalum_causa4 +
-    restSchool.inaalum_causa5;
+    toValidCount(restSchool.inaalum_causa1) +
+    toValidCount(restSchool.inaalum_causa2) +
+    toValidCount(restSchool.inaalum_causa3) +
+    toValidCount(restSchool.inaalum_causa4) +
+    toValidCount(restSchool.inaalum_causa5);
 
   const totalTeachersAbsenceMainReasons =
-    restSchool.inadoc_causa1 + restSchool.inadoc_causa2 + restSchool.inadoc_causa3 + restSchool.inadoc_causa4;
+    toValidCount(restSchool.inadoc_causa1) +
+    toValidCount(restSchool.inadoc_causa2) +
+    toValidCount(restSchool.inadoc_causa3) +
+    toValidCount(restSchool.inadoc_causa4);
 
   const totalAdminAbsenceMainReasons =
-    restSchool.inaadm_causa1 + restSchool.inaadm_causa2 + restSchool.inaadm_causa3 + restSchool.inaadm_causa4;
+    toValidCount(restSchool.inaadm_causa1) +
+    toValidCount(restSchool.inaadm_causa2) +
+    toValidCount(restSchool.inaadm_causa3) +
+    toValidCount(restSchool.inaadm_causa4);
 
   return {
     id: restSchool.id,

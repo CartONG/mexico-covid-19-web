@@ -27,7 +27,7 @@ describe('RestSchoolDailyReportRepository', () => {
     const restSchoolDailyReportRepository = new RestSchoolDailyReportRepository(axiosInstance, 'production');
     const list = await restSchoolDailyReportRepository.listForSchool('03KJN0025W4');
     expect(list).toHaveLength(1);
-    expect(axiosInstance.get.getCall(0).args[0]).toBe('escuelas/historico?idescuela=03KJN0025W4');
+    expect(axiosInstance.get.getCall(0).args[0]).toBe('03KJN0025W4/schoolHistory.json');
     expect(list[0]).toEqual<SchoolDailyReport>({
       date: '2020-06-16',
       teacherAttendance: 1,
