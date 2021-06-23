@@ -1105,7 +1105,7 @@
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
-                <td>Reciben alimentos por parte del Programa de Tiempo Completo</td>
+                <td>Reciben alimentos por parte del Programa La Escuela es Nuestra</td>
                 <td class="w200 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.foodSupportType.fullTimeProgram.text }}
                 </td>

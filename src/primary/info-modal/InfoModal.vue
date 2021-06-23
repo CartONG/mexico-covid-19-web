@@ -47,16 +47,16 @@
             <span class="ml-1"><i class="square-danger-darker"></i> 0% - 70%</span>
           </p>
           <p>
-            <span class="ml-1"><i class="square-danger"></i> 70% - 80%</span>
+            <span class="ml-1"><i class="square-danger"></i> 71% - 80%</span>
           </p>
           <p>
-            <span class="ml-1"><i class="square-warning"></i> 80% - 90%</span>
+            <span class="ml-1"><i class="square-warning"></i> 81% - 90%</span>
           </p>
           <p>
-            <span class="ml-1"><i class="square-success"></i> 90% - 95%</span>
+            <span class="ml-1"><i class="square-success"></i> 91% - 95%</span>
           </p>
           <p>
-            <span class="ml-1"><i class="square-success-darker"></i> 95% - 100%</span>
+            <span class="ml-1"><i class="square-success-darker"></i> 96% - 100%</span>
           </p>
           <p>
             <span class="ml-1"><i class="square-grey"></i> Desconocido</span>
