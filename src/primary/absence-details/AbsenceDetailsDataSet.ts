@@ -31,6 +31,17 @@ const defaultAbsenceReasonsPercentages = {
   adminAbsenceMainReasonsPercentages: { '1': -1, '2': -1, '3': -1, '4': -1 },
 };
 
+const toReportedSickText = (attendanceType: AttendanceType): string => {
+  switch (attendanceType) {
+    case AttendanceType.STUDENT:
+      return 'Reportaron enfermos a los alumnos que no asistieron';
+    case AttendanceType.TEACHER:
+      return 'Reportaron enfermos a los docentes que no asistieron';
+    case AttendanceType.PERSONAL:
+      return 'Reportaron enfermo al personal que no asistió';
+  }
+};
+
 export const toAbsenceDetailsDataSet = (
   absenceReasonsPercentages: AbsenceReasonsPercentages | null,
   attendanceType: AttendanceType
@@ -47,7 +58,7 @@ export const toAbsenceDetailsDataSet = (
   const partialLegendItems = [
     { color: 'primary', text: 'La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón' },
     { color: 'secondary', text: 'Los padres de familia no enviaron a sus hijos a la escuela' },
-    { color: 'tertiary', text: 'Reportaron enfermos a los alumnos que no asistieron' },
+    { color: 'tertiary', text: toReportedSickText(attendanceType) },
     { color: 'tertiary', text: 'Se reportaron como inasistencia por enfermedad' },
     { color: 'grey', text: 'Se desconocen las causas' },
     { color: 'secondary-bis', text: 'Otras causas' },
