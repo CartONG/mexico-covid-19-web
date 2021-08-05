@@ -768,7 +768,7 @@
                 <td class="w40"></td>
               </tr>
               <tr v-if="!printable">
-                <td>Cuenta con botes de basura para el manejo de los residuos</td>
+                <td>Sí</td>
                 <td class="w200 has-text-right has-text-weight-bold">{{ administrativeDivisionDataSet.schoolBinSufficiency['1'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.schoolBinSufficiencyPercentages['1'].text }}
@@ -776,7 +776,7 @@
                 <td class="w40"></td>
               </tr>
               <tr v-if="!printable">
-                <td>No cuenta con botes de basura para el manejo de los residuos</td>
+                <td>No</td>
                 <td class="w200 has-text-right has-text-weight-bold">{{ administrativeDivisionDataSet.schoolBinSufficiency['2'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.schoolBinSufficiencyPercentages['2'].text }}
@@ -940,14 +940,14 @@
               <td></td>
             </tr>
             <tr>
-              <td>Cuenta con botes de basura para el manejo de los residuos</td>
+              <td>Sí</td>
               <td class="w200 has-text-right has-text-weight-bold">{{ administrativeDivisionDataSet.schoolBinSufficiency['1'].text }}</td>
               <td class="w120 has-text-right has-text-weight-bold">
                 {{ administrativeDivisionDataSet.schoolBinSufficiencyPercentages['1'].text }}
               </td>
             </tr>
             <tr>
-              <td>No cuenta con botes de basura para el manejo de los residuos</td>
+              <td>No</td>
               <td class="w200 has-text-right has-text-weight-bold">{{ administrativeDivisionDataSet.schoolBinSufficiency['2'].text }}</td>
               <td class="w120 has-text-right has-text-weight-bold">
                 {{ administrativeDivisionDataSet.schoolBinSufficiencyPercentages['2'].text }}
@@ -1266,121 +1266,6 @@
         </table>
       </div>
     </b-collapse>
-    <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
-    <div :class="{ 'horizontal-scroll': !printable }">
-      <b-collapse class="card mb-4 mw400" animation="slide" aria-id="serviciosBasicos" :open="printable">
-        <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="serviciosBasicos">
-          <table class="table is-fullwidth has-no-background">
-            <tbody>
-              <tr>
-                <td class="has-text-weight-bold has-text-primary is-uppercase">Servicios básicos</td>
-                <td class="w200 has-text-weight-bold has-text-secondary-bis is-uppercase has-text-right opacity-6">Número de escuelas</td>
-                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase has-text-right opacity-6 break-word">
-                  Porcentaje
-                </td>
-                <td v-if="!printable" class="w40 has-text-right">
-                  <a class="card-header-icon px-0 py-0">
-                    <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card-content px-0 py-0">
-          <table class="table is-fullwidth has-no-background">
-            <tbody>
-              <tr>
-                <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
-                  Fuente principal de energía eléctrica
-                </td>
-                <td></td>
-                <td></td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Conexión al servicio público</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.electricitySources['1'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.electricitySourcesPercentages['1'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Paneles o celdas solares</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.electricitySources['2'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.electricitySourcesPercentages['2'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Planta de luz propria</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.electricitySources['3'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.electricitySourcesPercentages['3'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Otra</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.electricitySources['4'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.electricitySourcesPercentages['4'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>No tiene</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.electricitySources['5'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.electricitySourcesPercentages['5'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
-                  Acceso a internet
-                </td>
-                <td></td>
-                <td></td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>La escuela cuenta con accesso a internet para uso de de alumnos, docentes y directivos</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.internetAccess['1'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.internetAccessPercentages['1'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>La escuela no cuenta con accesso a internet para uso de de alumnos, docentes y directivos</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.internetAccess['2'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.internetAccessPercentages['2'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </b-collapse>
-    </div>
   </div>
 </template>
 

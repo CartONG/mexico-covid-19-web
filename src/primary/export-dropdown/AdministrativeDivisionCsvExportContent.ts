@@ -111,10 +111,10 @@ export interface AdministrativeDivisionCsvExportContent {
   'Sanitizante de alcohol : Suficiente (% de escuelas)': string;
   'Sanitizante de alcohol : Insuficiente (% de escuelas)': string;
   'Sanitizante de alcohol : No cuenta (% de escuelas)': string;
-  'Botes de basura para el manejo de residuos : Cuenta con botes de basura para el manejo de los residuos': string;
-  'Botes de basura para el manejo de residuos : No cuenta con botes de basura para el manejo de los residuos': string;
-  'Botes de basura para el manejo de residuos : Cuenta con botes de basura para el manejo de los residuos (% de escuelas)': string;
-  'Botes de basura para el manejo de residuos : No cuenta con botes de basura para el manejo de los residuos (% de escuelas)': string;
+  'Botes de basura para el manejo de residuos : Sí': string;
+  'Botes de basura para el manejo de residuos : No': string;
+  'Botes de basura para el manejo de residuos : Sí (% de escuelas)': string;
+  'Botes de basura para el manejo de residuos : No (% de escuelas)': string;
   'Red de drenaje, fosa séptica para desalojo de aguas : Si': string;
   'Red de drenaje, fosa séptica para desalojo de aguas : No': string;
   'Red de drenaje, fosa séptica para desalojo de aguas : Si (% de escuelas)': string;
@@ -158,20 +158,6 @@ export interface AdministrativeDivisionCsvExportContent {
   'La escuela no pertenece al programa La Escuela es nuestra': string;
   'La escuela pertenece al programa La Escuela es nuestra (% de escuelas)': string;
   'La escuela no pertenece al programa La Escuela es nuestra (% de escuelas)': string;
-  'Fuente principal de energía eléctrica : Conexión al servicio público': string;
-  'Fuente principal de energía eléctrica : Paneles o celdas solares': string;
-  'Fuente principal de energía eléctrica : Planta de luz propria': string;
-  'Fuente principal de energía eléctrica : Otra': string;
-  'Fuente principal de energía eléctrica : No tiene': string;
-  'Fuente principal de energía eléctrica : Conexión al servicio público (% de escuelas)': string;
-  'Fuente principal de energía eléctrica : Paneles o celdas solares (% de escuelas)': string;
-  'Fuente principal de energía eléctrica : Planta de luz propria (% de escuelas)': string;
-  'Fuente principal de energía eléctrica : Otra (% de escuelas)': string;
-  'Fuente principal de energía eléctrica : No tiene (% de escuelas)': string;
-  'Acceso a internet : La escuela cuenta con accesso a internet para uso de de alumnos, docentes y directivos': string;
-  'Acceso a internet : La escuela no cuenta con accesso a internet para uso de de alumnos, docentes y directivos': string;
-  'Acceso a internet : La escuela cuenta con accesso a internet para uso de de alumnos, docentes y directivos (% de escuelas)': string;
-  'Acceso a internet : La escuela no cuenta con accesso a internet para uso de de alumnos, docentes y directivos (% de escuelas)': string;
 }
 
 export const toAdministrativeDivisionCsvExportContent = (
@@ -450,16 +436,12 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Sanitizante de alcohol : No cuenta (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolSanitizerSufficiencyPercentages['3']
   ).text,
-  'Botes de basura para el manejo de residuos : Cuenta con botes de basura para el manejo de los residuos': toNumericDataSet(
-    administrativeDivision.schoolBinSufficiency['1']
-  ).rawText,
-  'Botes de basura para el manejo de residuos : No cuenta con botes de basura para el manejo de los residuos': toNumericDataSet(
-    administrativeDivision.schoolBinSufficiency['2']
-  ).rawText,
-  'Botes de basura para el manejo de residuos : Cuenta con botes de basura para el manejo de los residuos (% de escuelas)': toPercentageDataSet(
+  'Botes de basura para el manejo de residuos : Sí': toNumericDataSet(administrativeDivision.schoolBinSufficiency['1']).rawText,
+  'Botes de basura para el manejo de residuos : No': toNumericDataSet(administrativeDivision.schoolBinSufficiency['2']).rawText,
+  'Botes de basura para el manejo de residuos : Sí (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolBinSufficiencyPercentages['1']
   ).text,
-  'Botes de basura para el manejo de residuos : No cuenta con botes de basura para el manejo de los residuos (% de escuelas)': toPercentageDataSet(
+  'Botes de basura para el manejo de residuos : No (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolBinSufficiencyPercentages['2']
   ).text,
   'Red de drenaje, fosa séptica para desalojo de aguas : Si': toNumericDataSet(administrativeDivision.schoolWithSepticSystem['1']).rawText,
@@ -512,38 +494,4 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Total de personal Administrativo': toNumericDataSet(administrativeDivision.admins).rawText,
   'Total de personal de intendencia': toNumericDataSet(administrativeDivision.quartermasters).rawText,
   'Total de otro tipo de personal': toNumericDataSet(administrativeDivision.others).rawText,
-  'Fuente principal de energía eléctrica : Conexión al servicio público': toNumericDataSet(administrativeDivision.electricitySources['1'])
-    .rawText,
-  'Fuente principal de energía eléctrica : Paneles o celdas solares': toNumericDataSet(administrativeDivision.electricitySources['2'])
-    .rawText,
-  'Fuente principal de energía eléctrica : Planta de luz propria': toNumericDataSet(administrativeDivision.electricitySources['3']).rawText,
-  'Fuente principal de energía eléctrica : Otra': toNumericDataSet(administrativeDivision.electricitySources['4']).rawText,
-  'Fuente principal de energía eléctrica : No tiene': toNumericDataSet(administrativeDivision.electricitySources['5']).rawText,
-  'Fuente principal de energía eléctrica : Conexión al servicio público (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.electricitySourcesPercentages['1']
-  ).text,
-  'Fuente principal de energía eléctrica : Paneles o celdas solares (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.electricitySourcesPercentages['2']
-  ).text,
-  'Fuente principal de energía eléctrica : Planta de luz propria (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.electricitySourcesPercentages['3']
-  ).text,
-  'Fuente principal de energía eléctrica : Otra (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.electricitySourcesPercentages['4']
-  ).text,
-  'Fuente principal de energía eléctrica : No tiene (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.electricitySourcesPercentages['5']
-  ).text,
-  'Acceso a internet : La escuela cuenta con accesso a internet para uso de de alumnos, docentes y directivos': toNumericDataSet(
-    administrativeDivision.internetAccess['1']
-  ).rawText,
-  'Acceso a internet : La escuela no cuenta con accesso a internet para uso de de alumnos, docentes y directivos': toNumericDataSet(
-    administrativeDivision.internetAccess['2']
-  ).rawText,
-  'Acceso a internet : La escuela cuenta con accesso a internet para uso de de alumnos, docentes y directivos (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.internetAccessPercentages['1']
-  ).text,
-  'Acceso a internet : La escuela no cuenta con accesso a internet para uso de de alumnos, docentes y directivos (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.internetAccessPercentages['2']
-  ).text,
 });
