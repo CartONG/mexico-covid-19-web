@@ -39,7 +39,7 @@ export interface School {
   waterSupply: number;
   waterServiceContinuity: number;
   waterForHandWashing: number;
-  sinkSufficiency: number;
+  functionalSinkCount: number;
   soapSufficiency: number;
   towelSufficiency: number;
   sanitizerSufficiency: number;

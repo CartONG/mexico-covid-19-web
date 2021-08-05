@@ -40,7 +40,7 @@ const defaultSchool: School = {
   waterSupply: 2,
   waterServiceContinuity: 2,
   waterForHandWashing: 1,
-  sinkSufficiency: 2,
+  functionalSinkCount: 2,
   soapSufficiency: 1,
   towelSufficiency: 3,
   sanitizerSufficiency: 1,

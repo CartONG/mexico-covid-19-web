@@ -36,7 +36,7 @@ export interface SchoolDataSet {
   waterSupply: string;
   waterServiceContinuity: string;
   waterForHandWashing: { shortText: string; longText: string };
-  sinkSufficiency: string;
+  functionalSinkCount: NumericDataSet;
   soapSufficiency: { shortText: string; longText: string };
   towelSufficiency: string;
   sanitizerSufficiency: string;
@@ -133,8 +133,6 @@ const waterForHandWashingTexts: { shortText: string; longText: string }[] = [
   { shortText: 'No', longText: 'No cuenta con agua para lavado de manos' },
 ];
 
-const sinkSufficiencyTexts: string[] = ['-', 'Cuenta con suficientes lavamanos', 'No cuenta con suficientes lavamanos', 'No cuenta'];
-
 const soapSufficiencyTexts: { shortText: string; longText: string }[] = [
   { shortText: '-', longText: '-' },
   { shortText: 'Suficiente', longText: 'Cuenta con suficiente jabón' },
@@ -151,12 +149,7 @@ const sanitizerSufficiencyTexts: string[] = [
   'No cuenta',
 ];
 
-const binSufficiencyTexts: string[] = [
-  '-',
-  'Cuenta con suficientes botes de basura',
-  'No cuenta con suficientes  botes de basura',
-  'No cuenta',
-];
+const binSufficiencyTexts: string[] = ['-', 'Sí', 'No'];
 
 const hasSepticSystemTexts: string[] = [
   '-',
@@ -177,6 +170,7 @@ const givesClassesText: { shortText: string; longText: string }[] = [
   { shortText: 'No', longText: 'La comunidad escolar determinó continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'El personal de la escuela decidió continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'Los padres de familia informaron que no enviarán a sus hijos a la escuela' },
+  { shortText: 'No', longText: 'Otras razones' },
 ];
 
 const toTakenActions = (takenActions: { [key: string]: boolean }): string => {
@@ -259,7 +253,7 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         waterSupply: waterSupplyTexts[school.waterSupply],
         waterServiceContinuity: waterServiceContinuityTexts[school.waterServiceContinuity],
         waterForHandWashing: waterForHandWashingTexts[school.waterForHandWashing],
-        sinkSufficiency: sinkSufficiencyTexts[school.sinkSufficiency],
+        functionalSinkCount: toNumericDataSet(school.functionalSinkCount),
         soapSufficiency: soapSufficiencyTexts[school.soapSufficiency],
         towelSufficiency: towelSufficiencyTexts[school.towelSufficiency],
         sanitizerSufficiency: sanitizerSufficiencyTexts[school.sanitizerSufficiency],
@@ -357,7 +351,7 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         waterSupply: '-',
         waterServiceContinuity: '-',
         waterForHandWashing: waterForHandWashingTexts[0],
-        sinkSufficiency: '-',
+        functionalSinkCount: toNumericDataSet(-1),
         soapSufficiency: soapSufficiencyTexts[0],
         towelSufficiency: '-',
         sanitizerSufficiency: '-',

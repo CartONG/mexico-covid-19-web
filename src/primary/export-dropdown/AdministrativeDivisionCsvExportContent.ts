@@ -63,6 +63,7 @@ export interface AdministrativeDivisionCsvExportContent {
   'La comunidad escolar determinó continuar con la suspensión de clases': string;
   'El personal de la escuela decidió continuar con la suspensión de clases': string;
   'Los padres de familia informaron que no enviarán a sus hijos a la escuela': string;
+  'Otras razones': string;
   'Personal y Alumnos realizan sus actividades en la escuela (% de escuelas)': string;
   'Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases (% de escuelas)': string;
   'Existe la confirmación de al menos un caso de COVID-19 en la escuela (% de escuelas)': string;
@@ -70,6 +71,7 @@ export interface AdministrativeDivisionCsvExportContent {
   'La comunidad escolar determinó continuar con la suspensión de clases (% de escuelas)': string;
   'El personal de la escuela decidió continuar con la suspensión de clases (% de escuelas)': string;
   'Los padres de familia informaron que no enviarán a sus hijos a la escuela (% de escuelas)': string;
+  'Otras razones (% de escuelas)': string;
   'Tipo de abastecimiento de agua : Red municipal de agua potable': string;
   'Tipo de abastecimiento de agua : Abastecimiento a través de pipas': string;
   'Tipo de abastecimiento de agua : Otra fuente (pozo, río, lago, etc.)': string;
@@ -90,12 +92,7 @@ export interface AdministrativeDivisionCsvExportContent {
   'Agua para el lavado de manos : No': string;
   'Agua para el lavado de manos : Si (% de escuelas)': string;
   'Agua para el lavado de manos : No (% de escuelas)': string;
-  'Número de lavamanos funcionales : Suficiente': string;
-  'Número de lavamanos funcionales : Insuficiente': string;
-  'Número de lavamanos funcionales : No cuenta': string;
-  'Número de lavamanos funcionales : Suficiente (% de escuelas)': string;
-  'Número de lavamanos funcionales : Insuficiente (% de escuelas)': string;
-  'Número de lavamanos funcionales : No cuenta (% de escuelas)': string;
+  'Número de lavamanos funcionales': string;
   'Existencia de Jabón para lavado de manos : Suficiente': string;
   'Existencia de Jabón para lavado de manos : Insuficiente': string;
   'Existencia de Jabón para lavado de manos : No cuenta': string;
@@ -114,12 +111,10 @@ export interface AdministrativeDivisionCsvExportContent {
   'Sanitizante de alcohol : Suficiente (% de escuelas)': string;
   'Sanitizante de alcohol : Insuficiente (% de escuelas)': string;
   'Sanitizante de alcohol : No cuenta (% de escuelas)': string;
-  'Botes de basura para el manejo de residuos : Suficiente': string;
-  'Botes de basura para el manejo de residuos : Insuficiente': string;
-  'Botes de basura para el manejo de residuos : No cuenta': string;
-  'Botes de basura para el manejo de residuos : Suficiente (% de escuelas)': string;
-  'Botes de basura para el manejo de residuos : Insuficiente (% de escuelas)': string;
-  'Botes de basura para el manejo de residuos : No cuenta (% de escuelas)': string;
+  'Botes de basura para el manejo de residuos : Sí': string;
+  'Botes de basura para el manejo de residuos : No': string;
+  'Botes de basura para el manejo de residuos : Sí (% de escuelas)': string;
+  'Botes de basura para el manejo de residuos : No (% de escuelas)': string;
   'Red de drenaje, fosa séptica para desalojo de aguas : Si': string;
   'Red de drenaje, fosa séptica para desalojo de aguas : No': string;
   'Red de drenaje, fosa séptica para desalojo de aguas : Si (% de escuelas)': string;
@@ -326,6 +321,7 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Los padres de familia informaron que no enviarán a sus hijos a la escuela': toNumericDataSet(
     administrativeDivision.schoolGivingClasses['7']
   ).rawText,
+  'Otras razones': toNumericDataSet(administrativeDivision.schoolGivingClasses['8']).rawText,
   'Personal y Alumnos realizan sus actividades en la escuela (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolGivingClassesPercentages['1']
   ).text,
@@ -347,6 +343,7 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Los padres de familia informaron que no enviarán a sus hijos a la escuela (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolGivingClassesPercentages['7']
   ).text,
+  'Otras razones (% de escuelas)': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['8']).text,
   'Tipo de abastecimiento de agua : Red municipal de agua potable': toNumericDataSet(administrativeDivision.schoolWaterSupply['1']).rawText,
   'Tipo de abastecimiento de agua : Abastecimiento a través de pipas': toNumericDataSet(administrativeDivision.schoolWaterSupply['2'])
     .rawText,
@@ -396,18 +393,7 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Agua para el lavado de manos : No (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolWithWaterForHandWashingPercentages['2']
   ).text,
-  'Número de lavamanos funcionales : Suficiente': toNumericDataSet(administrativeDivision.schoolSinkSufficiency['1']).rawText,
-  'Número de lavamanos funcionales : Insuficiente': toNumericDataSet(administrativeDivision.schoolSinkSufficiency['2']).rawText,
-  'Número de lavamanos funcionales : No cuenta': toNumericDataSet(administrativeDivision.schoolSinkSufficiency['3']).rawText,
-  'Número de lavamanos funcionales : Suficiente (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.schoolSinkSufficiencyPercentages['1']
-  ).text,
-  'Número de lavamanos funcionales : Insuficiente (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.schoolSinkSufficiencyPercentages['2']
-  ).text,
-  'Número de lavamanos funcionales : No cuenta (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.schoolSinkSufficiencyPercentages['3']
-  ).text,
+  'Número de lavamanos funcionales': toNumericDataSet(administrativeDivision.schoolFunctionalSinkCount).rawText,
   'Existencia de Jabón para lavado de manos : Suficiente': toNumericDataSet(administrativeDivision.schoolSoapSufficiency['1']).rawText,
   'Existencia de Jabón para lavado de manos : Insuficiente': toNumericDataSet(administrativeDivision.schoolSoapSufficiency['2']).rawText,
   'Existencia de Jabón para lavado de manos : No cuenta': toNumericDataSet(administrativeDivision.schoolSoapSufficiency['3']).rawText,
@@ -450,17 +436,13 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Sanitizante de alcohol : No cuenta (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolSanitizerSufficiencyPercentages['3']
   ).text,
-  'Botes de basura para el manejo de residuos : Suficiente': toNumericDataSet(administrativeDivision.schoolBinSufficiency['1']).rawText,
-  'Botes de basura para el manejo de residuos : Insuficiente': toNumericDataSet(administrativeDivision.schoolBinSufficiency['2']).rawText,
-  'Botes de basura para el manejo de residuos : No cuenta': toNumericDataSet(administrativeDivision.schoolBinSufficiency['3']).rawText,
-  'Botes de basura para el manejo de residuos : Suficiente (% de escuelas)': toPercentageDataSet(
+  'Botes de basura para el manejo de residuos : Sí': toNumericDataSet(administrativeDivision.schoolBinSufficiency['1']).rawText,
+  'Botes de basura para el manejo de residuos : No': toNumericDataSet(administrativeDivision.schoolBinSufficiency['2']).rawText,
+  'Botes de basura para el manejo de residuos : Sí (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolBinSufficiencyPercentages['1']
   ).text,
-  'Botes de basura para el manejo de residuos : Insuficiente (% de escuelas)': toPercentageDataSet(
+  'Botes de basura para el manejo de residuos : No (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolBinSufficiencyPercentages['2']
-  ).text,
-  'Botes de basura para el manejo de residuos : No cuenta (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.schoolBinSufficiencyPercentages['3']
   ).text,
   'Red de drenaje, fosa séptica para desalojo de aguas : Si': toNumericDataSet(administrativeDivision.schoolWithSepticSystem['1']).rawText,
   'Red de drenaje, fosa séptica para desalojo de aguas : No': toNumericDataSet(administrativeDivision.schoolWithSepticSystem['2']).rawText,

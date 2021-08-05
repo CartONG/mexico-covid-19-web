@@ -119,8 +119,6 @@ const waterForHandWashingTexts: { shortText: string; longText: string }[] = [
   { shortText: 'No', longText: 'No cuenta con agua para lavado de manos' },
 ];
 
-const sinkSufficiencyTexts: string[] = ['-', 'Cuenta con suficientes lavamanos', 'No cuenta con suficientes lavamanos', 'No cuenta'];
-
 const soapSufficiencyTexts: { shortText: string; longText: string }[] = [
   { shortText: '-', longText: '-' },
   { shortText: 'Suficiente', longText: 'Cuenta con suficiente jabón' },
@@ -137,12 +135,7 @@ const sanitizerSufficiencyTexts: string[] = [
   'No cuenta',
 ];
 
-const binSufficiencyTexts: string[] = [
-  '-',
-  'Cuenta con suficientes botes de basura',
-  'No cuenta con suficientes  botes de basura',
-  'No cuenta',
-];
+const binSufficiencyTexts: string[] = ['-', 'Sí', 'No'];
 
 const hasSepticSystemTexts: string[] = [
   '-',
@@ -163,6 +156,7 @@ const givesClassesText: { shortText: string; longText: string }[] = [
   { shortText: 'No', longText: 'No, La comunidad escolar determinó continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'No, El personal de la escuela decidió continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'No, Los padres de familia informaron que no enviarán a sus hijos a la escuela' },
+  { shortText: 'No', longText: 'No, otras razones' },
 ];
 
 const toTakenActions = (takenActions: { [key: string]: boolean }): string => {
@@ -305,7 +299,7 @@ export const toSchoolCsvExportContent = (school: School): SchoolCsvExportContent
   'Tipo de abastecimiento de agua': waterSupplyTexts[school.waterSupply],
   'Continuidad del servicio de agua': waterServiceContinuityTexts[school.waterServiceContinuity],
   'Agua para el lavado de manos': waterForHandWashingTexts[school.waterForHandWashing].longText,
-  'Número de lavamanos funcionales': sinkSufficiencyTexts[school.sinkSufficiency],
+  'Número de lavamanos funcionales': toNumericDataSet(school.functionalSinkCount).rawText,
   'Existencia de Jabón para lavado de manos': soapSufficiencyTexts[school.soapSufficiency].longText,
   'Existencia de toallas de papel en la escuela, tela u otro material  para el lavado de manos':
     towelSufficiencyTexts[school.towelSufficiency],

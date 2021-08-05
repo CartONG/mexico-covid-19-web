@@ -479,6 +479,16 @@
                 </td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
+              <tr>
+                <td>Otras razones</td>
+                <td class="w200 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.schoolGivingClasses['8'].text }}
+                </td>
+                <td class="w120 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.schoolGivingClassesPercentages['8'].text }}
+                </td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -622,40 +632,18 @@
               </tr>
               <tr>
                 <td class="is-uppercase has-text-secondary-bis has-text-weight-bold">
-                  Disponibilidad de lavamanos
+                  Lavamanos
                 </td>
                 <td></td>
                 <td></td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
-                <td>Cuenta con suficientes lavamanos</td>
+                <td>Lavamanos funcionales</td>
                 <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolSinkSufficiency['1'].text }}
+                  {{ administrativeDivisionDataSet.schoolFunctionalSinkCount.text }}
                 </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolSinkSufficiencyPercentages['1'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>No cuenta con suficientes lavamanos</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolSinkSufficiency['2'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolSinkSufficiencyPercentages['2'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>No cuenta</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolSinkSufficiency['3'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolSinkSufficiencyPercentages['3'].text }}
-                </td>
+                <td></td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
@@ -780,7 +768,7 @@
                 <td class="w40"></td>
               </tr>
               <tr v-if="!printable">
-                <td>Cuenta con suficientes botes de basura</td>
+                <td>Sí</td>
                 <td class="w200 has-text-right has-text-weight-bold">{{ administrativeDivisionDataSet.schoolBinSufficiency['1'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.schoolBinSufficiencyPercentages['1'].text }}
@@ -788,18 +776,10 @@
                 <td class="w40"></td>
               </tr>
               <tr v-if="!printable">
-                <td>No cuenta con suficientes botes de basura</td>
+                <td>No</td>
                 <td class="w200 has-text-right has-text-weight-bold">{{ administrativeDivisionDataSet.schoolBinSufficiency['2'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.schoolBinSufficiencyPercentages['2'].text }}
-                </td>
-                <td class="w40"></td>
-              </tr>
-              <tr v-if="!printable">
-                <td>No cuenta</td>
-                <td class="w200 has-text-right has-text-weight-bold">{{ administrativeDivisionDataSet.schoolBinSufficiency['3'].text }}</td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolBinSufficiencyPercentages['3'].text }}
                 </td>
                 <td class="w40"></td>
               </tr>
@@ -960,24 +940,17 @@
               <td></td>
             </tr>
             <tr>
-              <td>Cuenta con suficientes botes de basura</td>
+              <td>Sí</td>
               <td class="w200 has-text-right has-text-weight-bold">{{ administrativeDivisionDataSet.schoolBinSufficiency['1'].text }}</td>
               <td class="w120 has-text-right has-text-weight-bold">
                 {{ administrativeDivisionDataSet.schoolBinSufficiencyPercentages['1'].text }}
               </td>
             </tr>
             <tr>
-              <td>No cuenta con suficientes botes de basura</td>
+              <td>No</td>
               <td class="w200 has-text-right has-text-weight-bold">{{ administrativeDivisionDataSet.schoolBinSufficiency['2'].text }}</td>
               <td class="w120 has-text-right has-text-weight-bold">
                 {{ administrativeDivisionDataSet.schoolBinSufficiencyPercentages['2'].text }}
-              </td>
-            </tr>
-            <tr>
-              <td>No cuenta</td>
-              <td class="w200 has-text-right has-text-weight-bold">{{ administrativeDivisionDataSet.schoolBinSufficiency['3'].text }}</td>
-              <td class="w120 has-text-right has-text-weight-bold">
-                {{ administrativeDivisionDataSet.schoolBinSufficiencyPercentages['3'].text }}
               </td>
             </tr>
             <tr>

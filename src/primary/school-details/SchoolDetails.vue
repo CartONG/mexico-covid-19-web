@@ -330,12 +330,6 @@
               </td>
             </tr>
             <tr>
-              <td>Disponibilidad de lavamanos</td>
-              <td>
-                {{ schoolDataSet.sinkSufficiency }}
-              </td>
-            </tr>
-            <tr>
               <td>Disponibilidad de jabón para el lavado de manos</td>
               <td>
                 {{ schoolDataSet.soapSufficiency.longText }}
@@ -363,6 +357,12 @@
               <td>Existencia de drenaje</td>
               <td>
                 {{ schoolDataSet.hasSepticSystem }}
+              </td>
+            </tr>
+            <tr>
+              <td>Número de lavamanos funcionales</td>
+              <td class="has-text-weight-bold">
+                {{ schoolDataSet.functionalSinkCount.text }}
               </td>
             </tr>
             <tr>

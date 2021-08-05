@@ -34,8 +34,7 @@ export interface RestAdministrativeDivision {
   sumaContServAgua: { [key: string]: number };
   aguaLavamanos: { [key: string]: number };
   sumaAguaLavamanos: { [key: string]: number };
-  lavamanos: { [key: string]: number };
-  sumaLavamanos: { [key: string]: number };
+  sumaLavamanos: number;
   jabon: { [key: string]: number };
   sumaJabon: { [key: string]: number };
   toallas: { [key: string]: number };
@@ -130,8 +129,7 @@ export const toAdministrativeDivision = (
   schoolWaterServiceContinuityPercentages: restAdministrativeDivision.contServAgua,
   schoolWithWaterForHandWashing: restAdministrativeDivision.sumaAguaLavamanos,
   schoolWithWaterForHandWashingPercentages: restAdministrativeDivision.aguaLavamanos,
-  schoolSinkSufficiency: restAdministrativeDivision.sumaLavamanos,
-  schoolSinkSufficiencyPercentages: restAdministrativeDivision.lavamanos,
+  schoolFunctionalSinkCount: restAdministrativeDivision.sumaLavamanos,
   schoolSoapSufficiency: restAdministrativeDivision.sumaJabon,
   schoolSoapSufficiencyPercentages: restAdministrativeDivision.jabon,
   schoolTowelSufficiency: restAdministrativeDivision.sumaToallas,

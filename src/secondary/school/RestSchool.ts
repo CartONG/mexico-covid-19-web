@@ -158,7 +158,7 @@ export const toSchool = (restSchool: RestSchool): School => {
     waterSupply: restSchool.tipoAbasAgua,
     waterServiceContinuity: restSchool.contServAgua,
     waterForHandWashing: restSchool.aguaLavamanos,
-    sinkSufficiency: restSchool.lavamanos,
+    functionalSinkCount: restSchool.lavamanos,
     soapSufficiency: restSchool.jabon,
     towelSufficiency: restSchool.toallas,
     sanitizerSufficiency: restSchool.sanitizante,

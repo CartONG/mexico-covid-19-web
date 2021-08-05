@@ -36,8 +36,7 @@ export interface AdministrativeDivision {
   schoolWaterServiceContinuityPercentages: { [key: string]: number };
   schoolWithWaterForHandWashing: { [key: string]: number };
   schoolWithWaterForHandWashingPercentages: { [key: string]: number };
-  schoolSinkSufficiency: { [key: string]: number };
-  schoolSinkSufficiencyPercentages: { [key: string]: number };
+  schoolFunctionalSinkCount: number;
   schoolSoapSufficiency: { [key: string]: number };
   schoolSoapSufficiencyPercentages: { [key: string]: number };
   schoolTowelSufficiency: { [key: string]: number };
