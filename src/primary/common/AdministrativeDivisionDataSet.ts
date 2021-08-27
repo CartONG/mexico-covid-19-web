@@ -32,6 +32,7 @@ export interface AdministrativeDivisionDataSet {
     '5': NumericDataSet;
     '6': NumericDataSet;
     '7': NumericDataSet;
+    '8': NumericDataSet;
   };
   schoolGivingClassesPercentages: {
     '1': PercentageDataSet;
@@ -41,6 +42,7 @@ export interface AdministrativeDivisionDataSet {
     '5': PercentageDataSet;
     '6': PercentageDataSet;
     '7': PercentageDataSet;
+    '8': PercentageDataSet;
   };
   schoolWaterSupply: {
     '1': NumericDataSet;
@@ -74,16 +76,7 @@ export interface AdministrativeDivisionDataSet {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
   };
-  schoolSinkSufficiency: {
-    '1': NumericDataSet;
-    '2': NumericDataSet;
-    '3': NumericDataSet;
-  };
-  schoolSinkSufficiencyPercentages: {
-    '1': PercentageDataSet;
-    '2': PercentageDataSet;
-    '3': PercentageDataSet;
-  };
+  schoolFunctionalSinkCount: NumericDataSet;
   schoolSoapSufficiency: {
     '1': NumericDataSet;
     '2': NumericDataSet;
@@ -117,12 +110,10 @@ export interface AdministrativeDivisionDataSet {
   schoolBinSufficiency: {
     '1': NumericDataSet;
     '2': NumericDataSet;
-    '3': NumericDataSet;
   };
   schoolBinSufficiencyPercentages: {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
-    '3': PercentageDataSet;
   };
   schoolWithSepticSystem: {
     '1': NumericDataSet;
@@ -241,6 +232,28 @@ export interface AdministrativeDivisionDataSet {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
   };
+  electricitySources: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+    '4': NumericDataSet;
+    '5': NumericDataSet;
+  };
+  electricitySourcesPercentages: {
+    '1': PercentageDataSet;
+    '2': PercentageDataSet;
+    '3': PercentageDataSet;
+    '4': PercentageDataSet;
+    '5': PercentageDataSet;
+  };
+  internetAccess: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+  };
+  internetAccessPercentages: {
+    '1': PercentageDataSet;
+    '2': PercentageDataSet;
+  };
 }
 
 export const toAdministrativeDivisionDataset = (
@@ -284,6 +297,7 @@ export const toAdministrativeDivisionDataset = (
           '5': toNumericDataSet(administrativeDivision.schoolGivingClasses['5']),
           '6': toNumericDataSet(administrativeDivision.schoolGivingClasses['6']),
           '7': toNumericDataSet(administrativeDivision.schoolGivingClasses['7']),
+          '8': toNumericDataSet(administrativeDivision.schoolGivingClasses['8']),
         },
         schoolGivingClassesPercentages: {
           '1': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['1']),
@@ -293,6 +307,7 @@ export const toAdministrativeDivisionDataset = (
           '5': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['5']),
           '6': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['6']),
           '7': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['7']),
+          '8': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['8']),
         },
         schoolWaterSupply: {
           '1': toNumericDataSet(administrativeDivision.schoolWaterSupply['1']),
@@ -326,16 +341,7 @@ export const toAdministrativeDivisionDataset = (
           '1': toPercentageDataSet(administrativeDivision.schoolWithWaterForHandWashingPercentages['1']),
           '2': toPercentageDataSet(administrativeDivision.schoolWithWaterForHandWashingPercentages['2']),
         },
-        schoolSinkSufficiency: {
-          '1': toNumericDataSet(administrativeDivision.schoolSinkSufficiency['1']),
-          '2': toNumericDataSet(administrativeDivision.schoolSinkSufficiency['2']),
-          '3': toNumericDataSet(administrativeDivision.schoolSinkSufficiency['3']),
-        },
-        schoolSinkSufficiencyPercentages: {
-          '1': toPercentageDataSet(administrativeDivision.schoolSinkSufficiencyPercentages['1']),
-          '2': toPercentageDataSet(administrativeDivision.schoolSinkSufficiencyPercentages['2']),
-          '3': toPercentageDataSet(administrativeDivision.schoolSinkSufficiencyPercentages['3']),
-        },
+        schoolFunctionalSinkCount: toNumericDataSet(administrativeDivision.schoolFunctionalSinkCount),
         schoolSoapSufficiency: {
           '1': toNumericDataSet(administrativeDivision.schoolSoapSufficiency['1']),
           '2': toNumericDataSet(administrativeDivision.schoolSoapSufficiency['2']),
@@ -369,12 +375,10 @@ export const toAdministrativeDivisionDataset = (
         schoolBinSufficiency: {
           '1': toNumericDataSet(administrativeDivision.schoolBinSufficiency['1']),
           '2': toNumericDataSet(administrativeDivision.schoolBinSufficiency['2']),
-          '3': toNumericDataSet(administrativeDivision.schoolBinSufficiency['3']),
         },
         schoolBinSufficiencyPercentages: {
           '1': toPercentageDataSet(administrativeDivision.schoolBinSufficiencyPercentages['1']),
           '2': toPercentageDataSet(administrativeDivision.schoolBinSufficiencyPercentages['2']),
-          '3': toPercentageDataSet(administrativeDivision.schoolBinSufficiencyPercentages['3']),
         },
         schoolWithSepticSystem: {
           '1': toNumericDataSet(administrativeDivision.schoolWithSepticSystem['1']),
@@ -493,6 +497,28 @@ export const toAdministrativeDivisionDataset = (
           '1': toPercentageDataSet(administrativeDivision.theSchoolIsOursPercentages['1']),
           '2': toPercentageDataSet(administrativeDivision.theSchoolIsOursPercentages['2']),
         },
+        electricitySources: {
+          '1': toNumericDataSet(administrativeDivision.electricitySources['1']),
+          '2': toNumericDataSet(administrativeDivision.electricitySources['2']),
+          '3': toNumericDataSet(administrativeDivision.electricitySources['3']),
+          '4': toNumericDataSet(administrativeDivision.electricitySources['4']),
+          '5': toNumericDataSet(administrativeDivision.electricitySources['5']),
+        },
+        electricitySourcesPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.electricitySourcesPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.electricitySourcesPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.electricitySourcesPercentages['3']),
+          '4': toPercentageDataSet(administrativeDivision.electricitySourcesPercentages['4']),
+          '5': toPercentageDataSet(administrativeDivision.electricitySourcesPercentages['5']),
+        },
+        internetAccess: {
+          '1': toNumericDataSet(administrativeDivision.internetAccess['1']),
+          '2': toNumericDataSet(administrativeDivision.internetAccess['2']),
+        },
+        internetAccessPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.internetAccessPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.internetAccessPercentages['2']),
+        },
       }
     : {
         support: { private: toPercentageDataSet(-1), public: toPercentageDataSet(-1) },
@@ -524,6 +550,7 @@ export const toAdministrativeDivisionDataset = (
           '5': toNumericDataSet(-1),
           '6': toNumericDataSet(-1),
           '7': toNumericDataSet(-1),
+          '8': toNumericDataSet(-1),
         },
         schoolGivingClassesPercentages: {
           '1': toPercentageDataSet(-1),
@@ -533,6 +560,7 @@ export const toAdministrativeDivisionDataset = (
           '5': toPercentageDataSet(-1),
           '6': toPercentageDataSet(-1),
           '7': toPercentageDataSet(-1),
+          '8': toPercentageDataSet(-1),
         },
         schoolWaterSupply: {
           '1': toNumericDataSet(-1),
@@ -566,16 +594,7 @@ export const toAdministrativeDivisionDataset = (
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
         },
-        schoolSinkSufficiency: {
-          '1': toNumericDataSet(-1),
-          '2': toNumericDataSet(-1),
-          '3': toNumericDataSet(-1),
-        },
-        schoolSinkSufficiencyPercentages: {
-          '1': toPercentageDataSet(-1),
-          '2': toPercentageDataSet(-1),
-          '3': toPercentageDataSet(-1),
-        },
+        schoolFunctionalSinkCount: toNumericDataSet(-1),
         schoolSoapSufficiency: {
           '1': toNumericDataSet(-1),
           '2': toNumericDataSet(-1),
@@ -609,12 +628,10 @@ export const toAdministrativeDivisionDataset = (
         schoolBinSufficiency: {
           '1': toNumericDataSet(-1),
           '2': toNumericDataSet(-1),
-          '3': toNumericDataSet(-1),
         },
         schoolBinSufficiencyPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
-          '3': toPercentageDataSet(-1),
         },
         schoolWithSepticSystem: {
           '1': toNumericDataSet(-1),
@@ -730,6 +747,28 @@ export const toAdministrativeDivisionDataset = (
           '2': toNumericDataSet(-1),
         },
         theSchoolIsOursPercentages: {
+          '1': toPercentageDataSet(-1),
+          '2': toPercentageDataSet(-1),
+        },
+        electricitySources: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+          '3': toNumericDataSet(-1),
+          '4': toNumericDataSet(-1),
+          '5': toNumericDataSet(-1),
+        },
+        electricitySourcesPercentages: {
+          '1': toPercentageDataSet(-1),
+          '2': toPercentageDataSet(-1),
+          '3': toPercentageDataSet(-1),
+          '4': toPercentageDataSet(-1),
+          '5': toPercentageDataSet(-1),
+        },
+        internetAccess: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+        },
+        internetAccessPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
         },

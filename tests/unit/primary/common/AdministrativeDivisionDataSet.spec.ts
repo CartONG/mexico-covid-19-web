@@ -37,6 +37,7 @@ describe('AdministrativeDivisionDataSet', () => {
         '5': toNumericDataSet(25),
         '6': toNumericDataSet(17),
         '7': toNumericDataSet(30),
+        '8': toNumericDataSet(45),
       },
       schoolGivingClassesPercentages: {
         '1': toPercentageDataSet(0.8),
@@ -46,6 +47,7 @@ describe('AdministrativeDivisionDataSet', () => {
         '5': toPercentageDataSet(0.03),
         '6': toPercentageDataSet(0.02),
         '7': toPercentageDataSet(0.04),
+        '8': toPercentageDataSet(0.1),
       },
       schoolWaterSupply: { '1': toNumericDataSet(196), '2': toNumericDataSet(185), '3': toNumericDataSet(188), '4': toNumericDataSet(190) },
       schoolWaterSupplyPercentages: {
@@ -68,8 +70,7 @@ describe('AdministrativeDivisionDataSet', () => {
       },
       schoolWithWaterForHandWashing: { '1': toNumericDataSet(301), '2': toNumericDataSet(458) },
       schoolWithWaterForHandWashingPercentages: { '1': toPercentageDataSet(0.4), '2': toPercentageDataSet(0.6) },
-      schoolSinkSufficiency: { '1': toNumericDataSet(282), '2': toNumericDataSet(249), '3': toNumericDataSet(228) },
-      schoolSinkSufficiencyPercentages: { '1': toPercentageDataSet(0.37), '2': toPercentageDataSet(0.33), '3': toPercentageDataSet(0.3) },
+      schoolFunctionalSinkCount: toNumericDataSet(228),
       schoolSoapSufficiency: { '1': toNumericDataSet(249), '2': toNumericDataSet(248), '3': toNumericDataSet(262) },
       schoolSoapSufficiencyPercentages: { '1': toPercentageDataSet(0.33), '2': toPercentageDataSet(0.33), '3': toPercentageDataSet(0.35) },
       schoolTowelSufficiency: { '1': toNumericDataSet(256), '2': toNumericDataSet(244), '3': toNumericDataSet(259) },
@@ -80,8 +81,8 @@ describe('AdministrativeDivisionDataSet', () => {
         '2': toPercentageDataSet(0.33),
         '3': toPercentageDataSet(0.33),
       },
-      schoolBinSufficiency: { '1': toNumericDataSet(270), '2': toNumericDataSet(249), '3': toNumericDataSet(240) },
-      schoolBinSufficiencyPercentages: { '1': toPercentageDataSet(0.36), '2': toPercentageDataSet(0.33), '3': toPercentageDataSet(0.32) },
+      schoolBinSufficiency: { '1': toNumericDataSet(270), '2': toNumericDataSet(489) },
+      schoolBinSufficiencyPercentages: { '1': toPercentageDataSet(0.36), '2': toPercentageDataSet(0.64) },
       schoolWithSepticSystem: { '1': toNumericDataSet(372), '2': toNumericDataSet(387) },
       schoolWithSepticSystemPercentages: { '1': toPercentageDataSet(0.49), '2': toPercentageDataSet(0.51) },
       schoolWithAbilityToReorganizeSpace: { '1': toNumericDataSet(359), '2': toNumericDataSet(400) },
@@ -158,6 +159,28 @@ describe('AdministrativeDivisionDataSet', () => {
       },
       theSchoolIsOurs: { '1': toNumericDataSet(319), '2': toNumericDataSet(440) },
       theSchoolIsOursPercentages: { '1': toPercentageDataSet(0.42), '2': toPercentageDataSet(0.58) },
+      electricitySources: {
+        '1': toNumericDataSet(10),
+        '2': toNumericDataSet(4),
+        '3': toNumericDataSet(2),
+        '4': toNumericDataSet(2),
+        '5': toNumericDataSet(2),
+      },
+      electricitySourcesPercentages: {
+        '1': toPercentageDataSet(0.5),
+        '2': toPercentageDataSet(0.2),
+        '3': toPercentageDataSet(0.1),
+        '4': toPercentageDataSet(0.1),
+        '5': toPercentageDataSet(0.1),
+      },
+      internetAccess: {
+        '1': toNumericDataSet(12),
+        '2': toNumericDataSet(8),
+      },
+      internetAccessPercentages: {
+        '1': toPercentageDataSet(0.6),
+        '2': toPercentageDataSet(0.4),
+      },
     });
   });
 
@@ -192,6 +215,7 @@ describe('AdministrativeDivisionDataSet', () => {
         '5': toNumericDataSet(-1),
         '6': toNumericDataSet(-1),
         '7': toNumericDataSet(-1),
+        '8': toNumericDataSet(-1),
       },
       schoolGivingClassesPercentages: {
         '1': toPercentageDataSet(-1),
@@ -201,6 +225,7 @@ describe('AdministrativeDivisionDataSet', () => {
         '5': toPercentageDataSet(-1),
         '6': toPercentageDataSet(-1),
         '7': toPercentageDataSet(-1),
+        '8': toPercentageDataSet(-1),
       },
       schoolWaterSupply: { '1': toNumericDataSet(-1), '2': toNumericDataSet(-1), '3': toNumericDataSet(-1), '4': toNumericDataSet(-1) },
       schoolWaterSupplyPercentages: {
@@ -223,8 +248,7 @@ describe('AdministrativeDivisionDataSet', () => {
       },
       schoolWithWaterForHandWashing: { '1': toNumericDataSet(-1), '2': toNumericDataSet(-1) },
       schoolWithWaterForHandWashingPercentages: { '1': toPercentageDataSet(-1), '2': toPercentageDataSet(-1) },
-      schoolSinkSufficiency: { '1': toNumericDataSet(-1), '2': toNumericDataSet(-1), '3': toNumericDataSet(-1) },
-      schoolSinkSufficiencyPercentages: { '1': toPercentageDataSet(-1), '2': toPercentageDataSet(-1), '3': toPercentageDataSet(-1) },
+      schoolFunctionalSinkCount: toNumericDataSet(-1),
       schoolSoapSufficiency: { '1': toNumericDataSet(-1), '2': toNumericDataSet(-1), '3': toNumericDataSet(-1) },
       schoolSoapSufficiencyPercentages: { '1': toPercentageDataSet(-1), '2': toPercentageDataSet(-1), '3': toPercentageDataSet(-1) },
       schoolTowelSufficiency: { '1': toNumericDataSet(-1), '2': toNumericDataSet(-1), '3': toNumericDataSet(-1) },
@@ -235,8 +259,8 @@ describe('AdministrativeDivisionDataSet', () => {
         '2': toPercentageDataSet(-1),
         '3': toPercentageDataSet(-1),
       },
-      schoolBinSufficiency: { '1': toNumericDataSet(-1), '2': toNumericDataSet(-1), '3': toNumericDataSet(-1) },
-      schoolBinSufficiencyPercentages: { '1': toPercentageDataSet(-1), '2': toPercentageDataSet(-1), '3': toPercentageDataSet(-1) },
+      schoolBinSufficiency: { '1': toNumericDataSet(-1), '2': toNumericDataSet(-1) },
+      schoolBinSufficiencyPercentages: { '1': toPercentageDataSet(-1), '2': toPercentageDataSet(-1) },
       schoolWithSepticSystem: { '1': toNumericDataSet(-1), '2': toNumericDataSet(-1) },
       schoolWithSepticSystemPercentages: { '1': toPercentageDataSet(-1), '2': toPercentageDataSet(-1) },
       schoolWithAbilityToReorganizeSpace: { '1': toNumericDataSet(-1), '2': toNumericDataSet(-1) },
@@ -318,6 +342,28 @@ describe('AdministrativeDivisionDataSet', () => {
       },
       theSchoolIsOurs: { '1': toNumericDataSet(-1), '2': toNumericDataSet(-1) },
       theSchoolIsOursPercentages: { '1': toPercentageDataSet(-1), '2': toPercentageDataSet(-1) },
+      electricitySources: {
+        '1': toNumericDataSet(-1),
+        '2': toNumericDataSet(-1),
+        '3': toNumericDataSet(-1),
+        '4': toNumericDataSet(-1),
+        '5': toNumericDataSet(-1),
+      },
+      electricitySourcesPercentages: {
+        '1': toPercentageDataSet(-1),
+        '2': toPercentageDataSet(-1),
+        '3': toPercentageDataSet(-1),
+        '4': toPercentageDataSet(-1),
+        '5': toPercentageDataSet(-1),
+      },
+      internetAccess: {
+        '1': toNumericDataSet(-1),
+        '2': toNumericDataSet(-1),
+      },
+      internetAccessPercentages: {
+        '1': toPercentageDataSet(-1),
+        '2': toPercentageDataSet(-1),
+      },
     });
   });
 });

@@ -39,7 +39,7 @@ export interface School {
   waterSupply: number;
   waterServiceContinuity: number;
   waterForHandWashing: number;
-  sinkSufficiency: number;
+  functionalSinkCount: number;
   soapSufficiency: number;
   towelSufficiency: number;
   sanitizerSufficiency: number;
@@ -73,4 +73,6 @@ export interface School {
   foodSupportType: { dif: boolean; fullTimeProgram: boolean; state: boolean; others: boolean };
   foodSupportComment: string;
   theSchoolIsOurs: number;
+  electricitySource: number;
+  internetAccess: number;
 }

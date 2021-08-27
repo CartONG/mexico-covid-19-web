@@ -36,7 +36,7 @@ export interface SchoolDataSet {
   waterSupply: string;
   waterServiceContinuity: string;
   waterForHandWashing: { shortText: string; longText: string };
-  sinkSufficiency: string;
+  functionalSinkCount: NumericDataSet;
   soapSufficiency: { shortText: string; longText: string };
   towelSufficiency: string;
   sanitizerSufficiency: string;
@@ -99,6 +99,8 @@ export interface SchoolDataSet {
   foodSupportType: string;
   foodSupportComment: string;
   theSchoolIsOurs: string;
+  electricitySource: string;
+  internetAccess: string;
 }
 
 const turnTexts: { [key: string]: string } = {
@@ -133,8 +135,6 @@ const waterForHandWashingTexts: { shortText: string; longText: string }[] = [
   { shortText: 'No', longText: 'No cuenta con agua para lavado de manos' },
 ];
 
-const sinkSufficiencyTexts: string[] = ['-', 'Cuenta con suficientes lavamanos', 'No cuenta con suficientes lavamanos', 'No cuenta'];
-
 const soapSufficiencyTexts: { shortText: string; longText: string }[] = [
   { shortText: '-', longText: '-' },
   { shortText: 'Suficiente', longText: 'Cuenta con suficiente jabón' },
@@ -153,9 +153,8 @@ const sanitizerSufficiencyTexts: string[] = [
 
 const binSufficiencyTexts: string[] = [
   '-',
-  'Cuenta con suficientes botes de basura',
-  'No cuenta con suficientes  botes de basura',
-  'No cuenta',
+  'Cuenta con botes de basura para el manejo de los residuos',
+  'No cuenta con botes de basura para el manejo de los residuos',
 ];
 
 const hasSepticSystemTexts: string[] = [
@@ -177,6 +176,22 @@ const givesClassesText: { shortText: string; longText: string }[] = [
   { shortText: 'No', longText: 'La comunidad escolar determinó continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'El personal de la escuela decidió continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'Los padres de familia informaron que no enviarán a sus hijos a la escuela' },
+  { shortText: 'No', longText: 'Otras razones' },
+];
+
+const electricitySourceTexts: string[] = [
+  '-',
+  'Conexión al servicio público',
+  'Paneles o celdas solares',
+  'Planta de luz propria',
+  'Otra',
+  'No tiene',
+];
+
+const internetAccessTexts: string[] = [
+  '-',
+  'La escuela cuenta con accesso a internet para uso de de alumnos, docentes y directivos',
+  'La escuela no cuenta con accesso a internet para uso de de alumnos, docentes y directivos',
 ];
 
 const toTakenActions = (takenActions: { [key: string]: boolean }): string => {
@@ -259,7 +274,7 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         waterSupply: waterSupplyTexts[school.waterSupply],
         waterServiceContinuity: waterServiceContinuityTexts[school.waterServiceContinuity],
         waterForHandWashing: waterForHandWashingTexts[school.waterForHandWashing],
-        sinkSufficiency: sinkSufficiencyTexts[school.sinkSufficiency],
+        functionalSinkCount: toNumericDataSet(school.functionalSinkCount),
         soapSufficiency: soapSufficiencyTexts[school.soapSufficiency],
         towelSufficiency: towelSufficiencyTexts[school.towelSufficiency],
         sanitizerSufficiency: sanitizerSufficiencyTexts[school.sanitizerSufficiency],
@@ -322,6 +337,8 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         foodSupportType: toFoodSupportTypes(school.foodSupportType),
         foodSupportComment: school.foodSupportComment,
         theSchoolIsOurs: school.theSchoolIsOurs === 1 ? 'Si pertenece' : school.theSchoolIsOurs === 2 ? 'No pertenece' : '-',
+        electricitySource: electricitySourceTexts[school.electricitySource],
+        internetAccess: internetAccessTexts[school.internetAccess],
       }
     : {
         id: '-',
@@ -357,7 +374,7 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         waterSupply: '-',
         waterServiceContinuity: '-',
         waterForHandWashing: waterForHandWashingTexts[0],
-        sinkSufficiency: '-',
+        functionalSinkCount: toNumericDataSet(-1),
         soapSufficiency: soapSufficiencyTexts[0],
         towelSufficiency: '-',
         sanitizerSufficiency: '-',
@@ -420,4 +437,6 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         foodSupportType: toFoodSupportTypes({}),
         foodSupportComment: '',
         theSchoolIsOurs: '-',
+        electricitySource: '-',
+        internetAccess: '-',
       };

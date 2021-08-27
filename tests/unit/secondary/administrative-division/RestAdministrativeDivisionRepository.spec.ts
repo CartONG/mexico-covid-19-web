@@ -109,8 +109,7 @@ describe('RestAdministrativeDivision', () => {
       schoolWaterServiceContinuityPercentages: { '1': 0.27, '2': 0.25, '3': 0.23, '4': 0.25 },
       schoolWithWaterForHandWashing: { '1': 301, '2': 458 },
       schoolWithWaterForHandWashingPercentages: { '1': 0.4, '2': 0.6 },
-      schoolSinkSufficiency: { '1': 282, '2': 249, '3': 228 },
-      schoolSinkSufficiencyPercentages: { '1': 0.37, '2': 0.33, '3': 0.3 },
+      schoolFunctionalSinkCount: 228,
       schoolSoapSufficiency: { '1': 249, '2': 248, '3': 262 },
       schoolSoapSufficiencyPercentages: { '1': 0.33, '2': 0.33, '3': 0.35 },
       schoolTowelSufficiency: { '1': 256, '2': 244, '3': 259 },
@@ -148,6 +147,10 @@ describe('RestAdministrativeDivision', () => {
       foodSupportTypePercentages: { dif: 0.23, fullTimeProgram: 0.21, state: 0.23, others: 0.22 },
       theSchoolIsOurs: { '1': 319, '2': 440 },
       theSchoolIsOursPercentages: { '1': 0.42, '2': 0.58 },
+      electricitySources: { '1': 10, '2': 4, '3': 2, '4': 2, '5': 2 },
+      electricitySourcesPercentages: { '1': 0.5, '2': 0.2, '3': 0.1, '4': 0.1, '5': 0.1 },
+      internetAccess: { '1': 12, '2': 8 },
+      internetAccessPercentages: { '1': 0.6, '2': 0.4 },
     });
   });
 

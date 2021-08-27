@@ -2,6 +2,7 @@ import '@/styles/main.scss';
 
 import axios from 'axios';
 import Buefy from 'buefy';
+import mitt from 'mitt';
 import Vue from 'vue';
 import Vuex, { Store } from 'vuex';
 
@@ -55,7 +56,7 @@ const municipalitiesLayer = createVectorLayer(municipalityStyler(AttendanceType.
 const schoolsLayer = createClusterLayer(schoolStyler(AttendanceType.STUDENT, ''));
 const popup = createPopup();
 const attendanceWebmapping = new AttendanceWebmapping(map, statesLayer, municipalitiesLayer, schoolsLayer, popup, ANIMATION_DURATION);
-const printer = new Printer(window);
+const printer = new Printer(window, mitt<any>());
 const csvParser = new CsvParser();
 const fileDownloader = new FileDownloader(window);
 const appStore = new AppStore(new Store(appStoreOptions));

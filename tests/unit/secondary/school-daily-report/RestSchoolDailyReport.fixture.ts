@@ -10,4 +10,4 @@ const defaultRestSchoolDailyReport: RestSchoolDailyReport = {
 export const restSchoolDailyReport = (override: Partial<RestSchoolDailyReport> = {}) => ({
   ...defaultRestSchoolDailyReport,
   ...override,
-})
+});

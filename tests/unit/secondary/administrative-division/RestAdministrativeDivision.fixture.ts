@@ -32,8 +32,7 @@ const defaultRestAdministrativeDivision: RestAdministrativeDivision = {
   sumaContServAgua: { '1': 202, '2': 191, '3': 176, '4': 190 },
   aguaLavamanos: { '1': 0.4, '2': 0.6 },
   sumaAguaLavamanos: { '1': 301, '2': 458 },
-  lavamanos: { '1': 0.37, '2': 0.33, '3': 0.3 },
-  sumaLavamanos: { '1': 282, '2': 249, '3': 228 },
+  sumaLavamanos: 228,
   jabon: { '1': 0.33, '2': 0.33, '3': 0.35 },
   sumaJabon: { '1': 249, '2': 248, '3': 262 },
   toallas: { '1': 0.34, '2': 0.32, '3': 0.34 },
@@ -77,6 +76,10 @@ const defaultRestAdministrativeDivision: RestAdministrativeDivision = {
   sumaAlimentosedo: 177,
   sumaAlimentosotro: 168,
   sumaEscuelanuestra: 319,
+  contservelectrica: { '1': 0.5, '2': 0.2, '3': 0.1, '4': 0.1, '5': 0.1 },
+  sumaContservelectrica: { '1': 10, '2': 4, '3': 2, '4': 2, '5': 2 },
+  internet: { '1': 0.6, '2': 0.4 },
+  sumaInternet: { '1': 12, '2': 8 },
 };
 
 export const restAdministrativeDivision = (override: Partial<RestAdministrativeDivision> = {}) => ({

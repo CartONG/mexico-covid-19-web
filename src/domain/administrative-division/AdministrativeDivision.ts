@@ -36,8 +36,7 @@ export interface AdministrativeDivision {
   schoolWaterServiceContinuityPercentages: { [key: string]: number };
   schoolWithWaterForHandWashing: { [key: string]: number };
   schoolWithWaterForHandWashingPercentages: { [key: string]: number };
-  schoolSinkSufficiency: { [key: string]: number };
-  schoolSinkSufficiencyPercentages: { [key: string]: number };
+  schoolFunctionalSinkCount: number;
   schoolSoapSufficiency: { [key: string]: number };
   schoolSoapSufficiencyPercentages: { [key: string]: number };
   schoolTowelSufficiency: { [key: string]: number };
@@ -75,4 +74,8 @@ export interface AdministrativeDivision {
   foodSupportTypePercentages: { dif: number; fullTimeProgram: number; state: number; others: number };
   theSchoolIsOurs: { [key: string]: number };
   theSchoolIsOursPercentages: { [key: string]: number };
+  electricitySources: { [key: string]: number };
+  electricitySourcesPercentages: { [key: string]: number };
+  internetAccess: { [key: string]: number };
+  internetAccessPercentages: { [key: string]: number };
 }

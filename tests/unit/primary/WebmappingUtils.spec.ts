@@ -9,7 +9,8 @@ import VectorSource from 'ol/source/Vector';
 
 import {
   createClusterLayer,
-  createMap, createPopup,
+  createMap,
+  createPopup,
   createVectorLayer,
   fitFeature,
   parseTopoJson,

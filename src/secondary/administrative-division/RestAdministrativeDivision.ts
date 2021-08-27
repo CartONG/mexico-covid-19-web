@@ -34,8 +34,7 @@ export interface RestAdministrativeDivision {
   sumaContServAgua: { [key: string]: number };
   aguaLavamanos: { [key: string]: number };
   sumaAguaLavamanos: { [key: string]: number };
-  lavamanos: { [key: string]: number };
-  sumaLavamanos: { [key: string]: number };
+  sumaLavamanos: number;
   jabon: { [key: string]: number };
   sumaJabon: { [key: string]: number };
   toallas: { [key: string]: number };
@@ -79,6 +78,10 @@ export interface RestAdministrativeDivision {
   sumaAlimentosedo: number;
   sumaAlimentosotro: number;
   sumaEscuelanuestra: number;
+  contservelectrica: { [key: string]: number };
+  sumaContservelectrica: { [key: string]: number };
+  internet: { [key: string]: number };
+  sumaInternet: { [key: string]: number };
 }
 
 const genderPercentage = (gender: number, otherGender: number): number => {
@@ -130,8 +133,7 @@ export const toAdministrativeDivision = (
   schoolWaterServiceContinuityPercentages: restAdministrativeDivision.contServAgua,
   schoolWithWaterForHandWashing: restAdministrativeDivision.sumaAguaLavamanos,
   schoolWithWaterForHandWashingPercentages: restAdministrativeDivision.aguaLavamanos,
-  schoolSinkSufficiency: restAdministrativeDivision.sumaLavamanos,
-  schoolSinkSufficiencyPercentages: restAdministrativeDivision.lavamanos,
+  schoolFunctionalSinkCount: restAdministrativeDivision.sumaLavamanos,
   schoolSoapSufficiency: restAdministrativeDivision.sumaJabon,
   schoolSoapSufficiencyPercentages: restAdministrativeDivision.jabon,
   schoolTowelSufficiency: restAdministrativeDivision.sumaToallas,
@@ -195,4 +197,8 @@ export const toAdministrativeDivision = (
     '2': restAdministrativeDivision.sumaEscuelas - restAdministrativeDivision.sumaEscuelanuestra,
   },
   theSchoolIsOursPercentages: restAdministrativeDivision.indiceEscuelaNuestra,
+  electricitySources: restAdministrativeDivision.sumaContservelectrica,
+  electricitySourcesPercentages: restAdministrativeDivision.contservelectrica,
+  internetAccess: restAdministrativeDivision.sumaInternet,
+  internetAccessPercentages: restAdministrativeDivision.internet,
 });

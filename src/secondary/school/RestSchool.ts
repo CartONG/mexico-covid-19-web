@@ -85,6 +85,8 @@ export interface RestSchool {
   accionbeca: number;
   accionninguna: number;
   escuelanuestra: number;
+  contservelectrica: number;
+  internet: number;
 }
 
 const genderPercentage = (gender: number, otherGender: number): number => {
@@ -158,7 +160,7 @@ export const toSchool = (restSchool: RestSchool): School => {
     waterSupply: restSchool.tipoAbasAgua,
     waterServiceContinuity: restSchool.contServAgua,
     waterForHandWashing: restSchool.aguaLavamanos,
-    sinkSufficiency: restSchool.lavamanos,
+    functionalSinkCount: restSchool.lavamanos,
     soapSufficiency: restSchool.jabon,
     towelSufficiency: restSchool.toallas,
     sanitizerSufficiency: restSchool.sanitizante,
@@ -234,5 +236,7 @@ export const toSchool = (restSchool: RestSchool): School => {
     },
     foodSupportComment: restSchool.alimentosotro_txt,
     theSchoolIsOurs: restSchool.escuelanuestra,
+    electricitySource: restSchool.contservelectrica,
+    internetAccess: restSchool.internet,
   };
 };

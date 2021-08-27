@@ -103,7 +103,7 @@ describe('RestSchoolRepository', () => {
       waterSupply: 2,
       waterServiceContinuity: 2,
       waterForHandWashing: 1,
-      sinkSufficiency: 2,
+      functionalSinkCount: 2,
       soapSufficiency: 1,
       towelSufficiency: 3,
       sanitizerSufficiency: 1,
@@ -169,6 +169,8 @@ describe('RestSchoolRepository', () => {
       foodSupportType: { dif: false, fullTimeProgram: true, state: false, others: true },
       foodSupportComment: '',
       theSchoolIsOurs: 1,
+      electricitySource: 3,
+      internetAccess: 1,
     });
   });
 

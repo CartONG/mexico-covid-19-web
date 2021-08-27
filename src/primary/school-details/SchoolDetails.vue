@@ -330,12 +330,6 @@
               </td>
             </tr>
             <tr>
-              <td>Disponibilidad de lavamanos</td>
-              <td>
-                {{ schoolDataSet.sinkSufficiency }}
-              </td>
-            </tr>
-            <tr>
               <td>Disponibilidad de jabón para el lavado de manos</td>
               <td>
                 {{ schoolDataSet.soapSufficiency.longText }}
@@ -363,6 +357,12 @@
               <td>Existencia de drenaje</td>
               <td>
                 {{ schoolDataSet.hasSepticSystem }}
+              </td>
+            </tr>
+            <tr>
+              <td>Número de lavamanos funcionales</td>
+              <td class="has-text-weight-bold">
+                {{ schoolDataSet.functionalSinkCount.text }}
               </td>
             </tr>
             <tr>
@@ -546,6 +546,40 @@
               <td>Otro tipo de personal</td>
               <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.others.text }}</td>
               <td v-if="!printable" class="w40"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </b-collapse>
+    <b-collapse class="card mb-4" animation="slide" aria-id="serviciosBasicos" :open="printable">
+      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="serviciosBasicos">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-primary is-uppercase">Servicios básicos</td>
+              <td v-if="!printable" class="w40 has-text-right">
+                <a class="card-header-icon px-0 py-0">
+                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-content px-0 py-0">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td>Fuente principal de energía eléctrica</td>
+              <td>
+                {{ schoolDataSet.electricitySource }}
+              </td>
+            </tr>
+            <tr>
+              <td>Acceso a internet</td>
+              <td>
+                {{ schoolDataSet.internetAccess }}
+              </td>
             </tr>
           </tbody>
         </table>
