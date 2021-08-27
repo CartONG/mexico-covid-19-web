@@ -78,10 +78,10 @@ export interface RestAdministrativeDivision {
   sumaAlimentosedo: number;
   sumaAlimentosotro: number;
   sumaEscuelanuestra: number;
-  contservelectrica: { [key: string]: number };
-  sumaContservelectrica: { [key: string]: number };
-  internet: { [key: string]: number };
-  sumaInternet: { [key: string]: number };
+  contservelectrica?: { [key: string]: number };
+  sumaContservelectrica?: { [key: string]: number };
+  internet?: { [key: string]: number };
+  sumaInternet?: { [key: string]: number };
 }
 
 const genderPercentage = (gender: number, otherGender: number): number => {
@@ -197,8 +197,8 @@ export const toAdministrativeDivision = (
     '2': restAdministrativeDivision.sumaEscuelas - restAdministrativeDivision.sumaEscuelanuestra,
   },
   theSchoolIsOursPercentages: restAdministrativeDivision.indiceEscuelaNuestra,
-  electricitySources: restAdministrativeDivision.sumaContservelectrica,
-  electricitySourcesPercentages: restAdministrativeDivision.contservelectrica,
-  internetAccess: restAdministrativeDivision.sumaInternet,
-  internetAccessPercentages: restAdministrativeDivision.internet,
+  electricitySources: restAdministrativeDivision.sumaContservelectrica || { '1': -1, '2': -1, '3': -1, '4': -1, '5': -1 },
+  electricitySourcesPercentages: restAdministrativeDivision.contservelectrica || { '1': -1, '2': -1, '3': -1, '4': -1, '5': -1 },
+  internetAccess: restAdministrativeDivision.sumaInternet || { '1': -1, '2': -1 },
+  internetAccessPercentages: restAdministrativeDivision.internet || { '1': -1, '2': -1 },
 });
