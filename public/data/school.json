@@ -80,5 +80,7 @@
   "accionllamada": -1,
   "accionbeca": -1,
   "accionninguna": -1,
-  "escuelanuestra": -1
+  "escuelanuestra": -1,
+  "contservelectrica": 3,
+  "internet": 1
 }

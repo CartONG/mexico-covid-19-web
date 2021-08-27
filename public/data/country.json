@@ -89,5 +89,27 @@
   "sumaAccionvisita": 576,
   "sumaAccionllamada": 605,
   "sumaAccionbeca": 594,
-  "sumaAccionninguna": 589
+  "sumaAccionninguna": 589,
+  "contservelectrica": {
+    "1": 0.50,
+    "2": 0.20,
+    "3": 0.10,
+    "4": 0.10,
+    "5": 0.10
+  },
+  "sumaContservelectrica": {
+    "1": 10,
+    "2": 4,
+    "3": 2,
+    "4": 2,
+    "5": 2
+  },
+  "internet": {
+    "1": 0.60,
+    "2": 0.40
+  },
+  "sumaInternet": {
+    "1": 12,
+    "2": 8
+  }
 }

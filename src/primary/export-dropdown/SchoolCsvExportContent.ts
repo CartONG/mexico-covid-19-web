@@ -85,6 +85,8 @@ export interface SchoolCsvExportContent {
   'Quienes proporcionan los alimentos': string;
   'Sí otros quién da el apoyo de alimentación': string;
   'La escuela pertenece al programa La Escuela es nuestra': string;
+  'Fuente principal de energía eléctrica': string;
+  'Acceso a internet': string;
 }
 
 const turnTexts: { [key: string]: string } = {
@@ -135,7 +137,11 @@ const sanitizerSufficiencyTexts: string[] = [
   'No cuenta',
 ];
 
-const binSufficiencyTexts: string[] = ['-', 'Sí', 'No'];
+const binSufficiencyTexts: string[] = [
+  '-',
+  'Cuenta con botes de basura para el manejo de los residuos',
+  'No cuenta con botes de basura para el manejo de los residuos',
+];
 
 const hasSepticSystemTexts: string[] = [
   '-',
@@ -157,6 +163,21 @@ const givesClassesText: { shortText: string; longText: string }[] = [
   { shortText: 'No', longText: 'No, El personal de la escuela decidió continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'No, Los padres de familia informaron que no enviarán a sus hijos a la escuela' },
   { shortText: 'No', longText: 'No, otras razones' },
+];
+
+const electricitySourceTexts: string[] = [
+  '-',
+  'Conexión al servicio público',
+  'Paneles o celdas solares',
+  'Planta de luz propria',
+  'Otra',
+  'No tiene',
+];
+
+const internetAccessTexts: string[] = [
+  '-',
+  'La escuela cuenta con accesso a internet para uso de de alumnos, docentes y directivos',
+  'La escuela no cuenta con accesso a internet para uso de de alumnos, docentes y directivos',
 ];
 
 const toTakenActions = (takenActions: { [key: string]: boolean }): string => {
@@ -330,4 +351,6 @@ export const toSchoolCsvExportContent = (school: School): SchoolCsvExportContent
   'Total de personal Administrativo': toNumericDataSet(school.admins).rawText,
   'Total de personal de intendencia': toNumericDataSet(school.quartermasters).rawText,
   'Total de otro tipo de personal': toNumericDataSet(school.others).rawText,
+  'Fuente principal de energía eléctrica': electricitySourceTexts[school.electricitySource],
+  'Acceso a internet': internetAccessTexts[school.internetAccess],
 });
