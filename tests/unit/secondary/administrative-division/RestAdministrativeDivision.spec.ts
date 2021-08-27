@@ -35,4 +35,18 @@ describe('RestAdministrativeDivision', () => {
     expect(adminDivision.adminAbsenceMainReasons).toEqual({});
     expect(adminDivision.adminAbsenceMainReasonsPercentages).toEqual({});
   });
+
+  it('should handle undefined values for electricity sources and internet data', () => {
+    const restAdminDivision = restAdministrativeDivision({
+      sumaContservelectrica: undefined,
+      contservelectrica: undefined,
+      internet: undefined,
+      sumaInternet: undefined,
+    });
+    const adminDivision = toAdministrativeDivision(restAdminDivision, AdministrativeDivisionTypes.STATE);
+    expect(adminDivision.electricitySources).toEqual({ '1': -1, '2': -1, '3': -1, '4': -1, '5': -1 });
+    expect(adminDivision.electricitySourcesPercentages).toEqual({ '1': -1, '2': -1, '3': -1, '4': -1, '5': -1 });
+    expect(adminDivision.internetAccess).toEqual({ '1': -1, '2': -1 });
+    expect(adminDivision.internetAccessPercentages).toEqual({ '1': -1, '2': -1 });
+  });
 });

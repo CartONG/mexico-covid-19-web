@@ -61,4 +61,10 @@ describe('RestSchool', () => {
     expect(school.adminAbsenceMainReasonsPercentages['3']).toBe(0);
     expect(school.adminAbsenceMainReasonsPercentages['4']).toBe(0);
   });
+
+  it('should handle undefined values for electricity sources and internet data', () => {
+    const school = toSchool(restSchool({ contservelectrica: undefined, internet: undefined }));
+    expect(school.electricitySource).toBe(0);
+    expect(school.internetAccess).toBe(0);
+  });
 });

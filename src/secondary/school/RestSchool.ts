@@ -85,8 +85,8 @@ export interface RestSchool {
   accionbeca: number;
   accionninguna: number;
   escuelanuestra: number;
-  contservelectrica: number;
-  internet: number;
+  contservelectrica?: number;
+  internet?: number;
 }
 
 const genderPercentage = (gender: number, otherGender: number): number => {
@@ -236,7 +236,7 @@ export const toSchool = (restSchool: RestSchool): School => {
     },
     foodSupportComment: restSchool.alimentosotro_txt,
     theSchoolIsOurs: restSchool.escuelanuestra,
-    electricitySource: restSchool.contservelectrica,
-    internetAccess: restSchool.internet,
+    electricitySource: restSchool.contservelectrica || 0,
+    internetAccess: restSchool.internet || 0,
   };
 };
