@@ -75,6 +75,10 @@ const defaultAdministrativeDivision: AdministrativeDivision = {
   foodSupportTypePercentages: { dif: 0.23, fullTimeProgram: 0.21, state: 0.23, others: 0.22 },
   theSchoolIsOurs: { '1': 319, '2': 440 },
   theSchoolIsOursPercentages: { '1': 0.42, '2': 0.58 },
+  electricitySources: { '1': 10, '2': 4, '3': 2, '4': 2, '5': 2 },
+  electricitySourcesPercentages: { '1': 0.5, '2': 0.2, '3': 0.1, '4': 0.1, '5': 0.1 },
+  internetAccess: { '1': 12, '2': 8 },
+  internetAccessPercentages: { '1': 0.6, '2': 0.4 },
 };
 
 export const makeAdministrativeDivision = (override: Partial<AdministrativeDivision> = {}) => ({

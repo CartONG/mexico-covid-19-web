@@ -73,4 +73,6 @@ export interface School {
   foodSupportType: { dif: boolean; fullTimeProgram: boolean; state: boolean; others: boolean };
   foodSupportComment: string;
   theSchoolIsOurs: number;
+  electricitySource: number;
+  internetAccess: number;
 }

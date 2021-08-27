@@ -84,6 +84,8 @@ const defaultRestSchool: RestSchool = {
   escuelanuestra: 1,
   indiceAlumnosSobreInasistencias: -1,
   indiceAlumnasSobreInasistencias: -1,
+  contservelectrica: 3,
+  internet: 1,
 };
 
 export const restSchool = (override: Partial<RestSchool> = {}) => ({

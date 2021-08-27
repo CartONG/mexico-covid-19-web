@@ -169,6 +169,8 @@ describe('RestSchoolRepository', () => {
       foodSupportType: { dif: false, fullTimeProgram: true, state: false, others: true },
       foodSupportComment: '',
       theSchoolIsOurs: 1,
+      electricitySource: 3,
+      internetAccess: 1,
     });
   });
 

@@ -63,7 +63,7 @@ describe('SchoolDataSet', () => {
       soapSufficiency: { shortText: 'Suficiente', longText: 'Cuenta con suficiente jabón' },
       towelSufficiency: 'No cuenta',
       sanitizerSufficiency: 'Cuenta con suficiente alcohol en gel',
-      binSufficiency: 'No',
+      binSufficiency: 'No cuenta con botes de basura para el manejo de los residuos',
       hasSepticSystem: 'No cuenta con Red de drenaje, fosa séptica para desalojo de aguas',
       hasAbilityToReorganizeSpace: 'Si',
       hasHygieneCommittee: 'Si',
@@ -122,6 +122,8 @@ describe('SchoolDataSet', () => {
       foodSupportType: 'Reciben alimentos  por parte del Programa de Tiempo Completo - Quienes proporcionan los alimentos. Otros',
       foodSupportComment: '',
       theSchoolIsOurs: 'Si pertenece',
+      electricitySource: 'Planta de luz propria',
+      internetAccess: 'La escuela cuenta con accesso a internet para uso de de alumnos, docentes y directivos',
     });
   });
 
@@ -223,6 +225,8 @@ describe('SchoolDataSet', () => {
       foodSupportType: '',
       foodSupportComment: '',
       theSchoolIsOurs: '-',
+      electricitySource: '-',
+      internetAccess: '-',
     });
   });
 

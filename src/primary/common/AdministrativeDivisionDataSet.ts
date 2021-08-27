@@ -232,6 +232,28 @@ export interface AdministrativeDivisionDataSet {
     '1': PercentageDataSet;
     '2': PercentageDataSet;
   };
+  electricitySources: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+    '3': NumericDataSet;
+    '4': NumericDataSet;
+    '5': NumericDataSet;
+  };
+  electricitySourcesPercentages: {
+    '1': PercentageDataSet;
+    '2': PercentageDataSet;
+    '3': PercentageDataSet;
+    '4': PercentageDataSet;
+    '5': PercentageDataSet;
+  };
+  internetAccess: {
+    '1': NumericDataSet;
+    '2': NumericDataSet;
+  };
+  internetAccessPercentages: {
+    '1': PercentageDataSet;
+    '2': PercentageDataSet;
+  };
 }
 
 export const toAdministrativeDivisionDataset = (
@@ -475,6 +497,28 @@ export const toAdministrativeDivisionDataset = (
           '1': toPercentageDataSet(administrativeDivision.theSchoolIsOursPercentages['1']),
           '2': toPercentageDataSet(administrativeDivision.theSchoolIsOursPercentages['2']),
         },
+        electricitySources: {
+          '1': toNumericDataSet(administrativeDivision.electricitySources['1']),
+          '2': toNumericDataSet(administrativeDivision.electricitySources['2']),
+          '3': toNumericDataSet(administrativeDivision.electricitySources['3']),
+          '4': toNumericDataSet(administrativeDivision.electricitySources['4']),
+          '5': toNumericDataSet(administrativeDivision.electricitySources['5']),
+        },
+        electricitySourcesPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.electricitySourcesPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.electricitySourcesPercentages['2']),
+          '3': toPercentageDataSet(administrativeDivision.electricitySourcesPercentages['3']),
+          '4': toPercentageDataSet(administrativeDivision.electricitySourcesPercentages['4']),
+          '5': toPercentageDataSet(administrativeDivision.electricitySourcesPercentages['5']),
+        },
+        internetAccess: {
+          '1': toNumericDataSet(administrativeDivision.internetAccess['1']),
+          '2': toNumericDataSet(administrativeDivision.internetAccess['2']),
+        },
+        internetAccessPercentages: {
+          '1': toPercentageDataSet(administrativeDivision.internetAccessPercentages['1']),
+          '2': toPercentageDataSet(administrativeDivision.internetAccessPercentages['2']),
+        },
       }
     : {
         support: { private: toPercentageDataSet(-1), public: toPercentageDataSet(-1) },
@@ -703,6 +747,28 @@ export const toAdministrativeDivisionDataset = (
           '2': toNumericDataSet(-1),
         },
         theSchoolIsOursPercentages: {
+          '1': toPercentageDataSet(-1),
+          '2': toPercentageDataSet(-1),
+        },
+        electricitySources: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+          '3': toNumericDataSet(-1),
+          '4': toNumericDataSet(-1),
+          '5': toNumericDataSet(-1),
+        },
+        electricitySourcesPercentages: {
+          '1': toPercentageDataSet(-1),
+          '2': toPercentageDataSet(-1),
+          '3': toPercentageDataSet(-1),
+          '4': toPercentageDataSet(-1),
+          '5': toPercentageDataSet(-1),
+        },
+        internetAccess: {
+          '1': toNumericDataSet(-1),
+          '2': toNumericDataSet(-1),
+        },
+        internetAccessPercentages: {
           '1': toPercentageDataSet(-1),
           '2': toPercentageDataSet(-1),
         },

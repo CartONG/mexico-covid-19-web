@@ -159,6 +159,28 @@ describe('AdministrativeDivisionDataSet', () => {
       },
       theSchoolIsOurs: { '1': toNumericDataSet(319), '2': toNumericDataSet(440) },
       theSchoolIsOursPercentages: { '1': toPercentageDataSet(0.42), '2': toPercentageDataSet(0.58) },
+      electricitySources: {
+        '1': toNumericDataSet(10),
+        '2': toNumericDataSet(4),
+        '3': toNumericDataSet(2),
+        '4': toNumericDataSet(2),
+        '5': toNumericDataSet(2),
+      },
+      electricitySourcesPercentages: {
+        '1': toPercentageDataSet(0.5),
+        '2': toPercentageDataSet(0.2),
+        '3': toPercentageDataSet(0.1),
+        '4': toPercentageDataSet(0.1),
+        '5': toPercentageDataSet(0.1),
+      },
+      internetAccess: {
+        '1': toNumericDataSet(12),
+        '2': toNumericDataSet(8),
+      },
+      internetAccessPercentages: {
+        '1': toPercentageDataSet(0.6),
+        '2': toPercentageDataSet(0.4),
+      },
     });
   });
 
@@ -320,6 +342,28 @@ describe('AdministrativeDivisionDataSet', () => {
       },
       theSchoolIsOurs: { '1': toNumericDataSet(-1), '2': toNumericDataSet(-1) },
       theSchoolIsOursPercentages: { '1': toPercentageDataSet(-1), '2': toPercentageDataSet(-1) },
+      electricitySources: {
+        '1': toNumericDataSet(-1),
+        '2': toNumericDataSet(-1),
+        '3': toNumericDataSet(-1),
+        '4': toNumericDataSet(-1),
+        '5': toNumericDataSet(-1),
+      },
+      electricitySourcesPercentages: {
+        '1': toPercentageDataSet(-1),
+        '2': toPercentageDataSet(-1),
+        '3': toPercentageDataSet(-1),
+        '4': toPercentageDataSet(-1),
+        '5': toPercentageDataSet(-1),
+      },
+      internetAccess: {
+        '1': toNumericDataSet(-1),
+        '2': toNumericDataSet(-1),
+      },
+      internetAccessPercentages: {
+        '1': toPercentageDataSet(-1),
+        '2': toPercentageDataSet(-1),
+      },
     });
   });
 });

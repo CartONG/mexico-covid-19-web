@@ -99,6 +99,8 @@ export interface SchoolDataSet {
   foodSupportType: string;
   foodSupportComment: string;
   theSchoolIsOurs: string;
+  electricitySource: string;
+  internetAccess: string;
 }
 
 const turnTexts: { [key: string]: string } = {
@@ -149,7 +151,11 @@ const sanitizerSufficiencyTexts: string[] = [
   'No cuenta',
 ];
 
-const binSufficiencyTexts: string[] = ['-', 'Sí', 'No'];
+const binSufficiencyTexts: string[] = [
+  '-',
+  'Cuenta con botes de basura para el manejo de los residuos',
+  'No cuenta con botes de basura para el manejo de los residuos',
+];
 
 const hasSepticSystemTexts: string[] = [
   '-',
@@ -171,6 +177,21 @@ const givesClassesText: { shortText: string; longText: string }[] = [
   { shortText: 'No', longText: 'El personal de la escuela decidió continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'Los padres de familia informaron que no enviarán a sus hijos a la escuela' },
   { shortText: 'No', longText: 'Otras razones' },
+];
+
+const electricitySourceTexts: string[] = [
+  '-',
+  'Conexión al servicio público',
+  'Paneles o celdas solares',
+  'Planta de luz propria',
+  'Otra',
+  'No tiene',
+];
+
+const internetAccessTexts: string[] = [
+  '-',
+  'La escuela cuenta con accesso a internet para uso de de alumnos, docentes y directivos',
+  'La escuela no cuenta con accesso a internet para uso de de alumnos, docentes y directivos',
 ];
 
 const toTakenActions = (takenActions: { [key: string]: boolean }): string => {
@@ -316,6 +337,8 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         foodSupportType: toFoodSupportTypes(school.foodSupportType),
         foodSupportComment: school.foodSupportComment,
         theSchoolIsOurs: school.theSchoolIsOurs === 1 ? 'Si pertenece' : school.theSchoolIsOurs === 2 ? 'No pertenece' : '-',
+        electricitySource: electricitySourceTexts[school.electricitySource],
+        internetAccess: internetAccessTexts[school.internetAccess],
       }
     : {
         id: '-',
@@ -414,4 +437,6 @@ export const toSchoolDataSet = (school: School | undefined): SchoolDataSet =>
         foodSupportType: toFoodSupportTypes({}),
         foodSupportComment: '',
         theSchoolIsOurs: '-',
+        electricitySource: '-',
+        internetAccess: '-',
       };

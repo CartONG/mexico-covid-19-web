@@ -74,4 +74,8 @@ export interface AdministrativeDivision {
   foodSupportTypePercentages: { dif: number; fullTimeProgram: number; state: number; others: number };
   theSchoolIsOurs: { [key: string]: number };
   theSchoolIsOursPercentages: { [key: string]: number };
+  electricitySources: { [key: string]: number };
+  electricitySourcesPercentages: { [key: string]: number };
+  internetAccess: { [key: string]: number };
+  internetAccessPercentages: { [key: string]: number };
 }

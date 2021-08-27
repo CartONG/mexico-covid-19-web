@@ -76,6 +76,10 @@ const defaultRestAdministrativeDivision: RestAdministrativeDivision = {
   sumaAlimentosedo: 177,
   sumaAlimentosotro: 168,
   sumaEscuelanuestra: 319,
+  contservelectrica: { '1': 0.5, '2': 0.2, '3': 0.1, '4': 0.1, '5': 0.1 },
+  sumaContservelectrica: { '1': 10, '2': 4, '3': 2, '4': 2, '5': 2 },
+  internet: { '1': 0.6, '2': 0.4 },
+  sumaInternet: { '1': 12, '2': 8 },
 };
 
 export const restAdministrativeDivision = (override: Partial<RestAdministrativeDivision> = {}) => ({

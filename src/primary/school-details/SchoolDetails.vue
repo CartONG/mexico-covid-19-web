@@ -551,6 +551,40 @@
         </table>
       </div>
     </b-collapse>
+    <b-collapse class="card mb-4" animation="slide" aria-id="serviciosBasicos" :open="printable">
+      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="serviciosBasicos">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-primary is-uppercase">Servicios básicos</td>
+              <td v-if="!printable" class="w40 has-text-right">
+                <a class="card-header-icon px-0 py-0">
+                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-content px-0 py-0">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td>Fuente principal de energía eléctrica</td>
+              <td>
+                {{ schoolDataSet.electricitySource }}
+              </td>
+            </tr>
+            <tr>
+              <td>Acceso a internet</td>
+              <td>
+                {{ schoolDataSet.internetAccess }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </b-collapse>
   </div>
 </template>
 

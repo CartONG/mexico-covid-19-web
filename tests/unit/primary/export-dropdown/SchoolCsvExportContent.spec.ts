@@ -1,6 +1,5 @@
 import { makeSchool } from '../School.fixture';
 
-import { toSchoolDataSet } from '@/primary/common/SchoolDataSet';
 import { toSchoolCsvExportContent } from '@/primary/export-dropdown/SchoolCsvExportContent';
 
 const expectTakenActions = (takenActions: { visits: boolean; calls: boolean; scholarship: boolean; none: boolean }, expected: string) => {
