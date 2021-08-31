@@ -16,30 +16,30 @@ export interface AdministrativeDivisionCsvExportContent {
   'Inasistencias de niños': string;
   'Asistencia de docentes': string;
   'Asistencia del personal': string;
-  'Total de inasistencias de alumnos porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': string;
   'Total de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': string;
-  'Total de inasistencias de alumnos porque: Reportaron enfermos a los alumnos que no asistieron': string;
+  'Total de inasistencias de alumnos porque: Reportados con síntomas de contagio': string;
+  'Total de inasistencias de alumnos porque: Casos de contagio (COVID 19) confirmados': string;
   'Total de inasistencias de alumnos porque: Se desconocen las causas': string;
   'Total de inasistencias de alumnos por otras causas': string;
-  'Porcentaje de inasistencias de alumnos porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': string;
   'Porcentaje de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': string;
-  'Porcentaje de inasistencias de alumnos porque: Reportaron enfermos a los alumnos que no asistieron': string;
+  'Porcentaje de inasistencias de alumnos porque: Reportados con síntomas de contagio': string;
+  'Porcentaje de inasistencias de alumnos porque: Casos de contagio (COVID 19) confirmados': string;
   'Porcentaje de inasistencias de alumnos porque: Se desconocen las causas': string;
   'Porcentaje de inasistencias de alumnos por otras causas': string;
-  'Total de inasistencias de docentes porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': string;
-  'Total de inasistencias de docentes porque: Se reportaron como inasistencia por enfermedad': string;
+  'Total de inasistencias de docentes porque: Casos de contagio (COVID 19) confirmados': string;
+  'Total de inasistencias de docentes porque: Se reportaron enfermos (NO COVID 19)': string;
   'Total de inasistencias de docentes porque: Se desconocen las causas': string;
-  'Total de inasistencias de docentes por tras causas': string;
-  'Porcentaje de inasistencias de docentes porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': string;
-  'Porcentaje de inasistencias de docentes porque: Se reportaron como inasistencia por enfermedad': string;
+  'Total de inasistencias de docentes por otras causas': string;
+  'Porcentaje de inasistencias de docentes porque: Casos de contagio (COVID 19) confirmados': string;
+  'Porcentaje de inasistencias de docentes porque: Se reportaron enfermos (NO COVID 19)': string;
   'Porcentaje de inasistencias de docentes porque: Se desconocen las causas': string;
-  'Porcentaje de inasistencias de docentes por tras causas': string;
-  'Total de inasistencias de personal administrativo porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': string;
-  'Total de inasistencias de personal administrativo porque: Se reportaron como inasistencia por enfermedad': string;
+  'Porcentaje de inasistencias de docentes por otras causas': string;
+  'Total de inasistencias de personal administrativo porque: Casos de contagio (COVID 19) confirmados': string;
+  'Total de inasistencias de personal administrativo porque: Se reportaron enfermos (NO COVID 19)': string;
   'Total de inasistencias de personal administrativo porque: Se desconocen las causas': string;
   'Total de inasistencias de personal administrativo por otras causas de inasistencia': string;
-  'Porcentaje de inasistencias de personal administrativo porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': string;
-  'Porcentaje de inasistencias de personal administrativo porque: Se reportaron como inasistencia por enfermedad': string;
+  'Porcentaje de inasistencias de personal administrativo porque: Casos de contagio (COVID 19) confirmados': string;
+  'Porcentaje de inasistencias de personal administrativo porque: Se reportaron enfermos (NO COVID 19)': string;
   'Porcentaje de inasistencias de personal administrativo porque: Se desconocen las causas': string;
   'Porcentaje de inasistencias de personal administrativo por otras causas de inasistencia': string;
   'Total del alumnado': string;
@@ -186,26 +186,26 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Inasistencias de niños': toPercentageDataSet(administrativeDivision.maleStudentAbsencePercentageOverStudentAbsence).text,
   'Asistencia de docentes': toPercentageDataSet(administrativeDivision.teacherAttendance).text,
   'Asistencia del personal': toPercentageDataSet(administrativeDivision.adminAttendance).text,
-  'Total de inasistencias de alumnos porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': toNumericDataSet(
+  'Total de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': toNumericDataSet(
     administrativeDivision.studentAbsenceMainReasons['1']
   ).rawText,
-  'Total de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': toNumericDataSet(
+  'Total de inasistencias de alumnos porque: Reportados con síntomas de contagio': toNumericDataSet(
     administrativeDivision.studentAbsenceMainReasons['2']
   ).rawText,
-  'Total de inasistencias de alumnos porque: Reportaron enfermos a los alumnos que no asistieron': toNumericDataSet(
+  'Total de inasistencias de alumnos porque: Casos de contagio (COVID 19) confirmados': toNumericDataSet(
     administrativeDivision.studentAbsenceMainReasons['3']
   ).rawText,
   'Total de inasistencias de alumnos porque: Se desconocen las causas': toNumericDataSet(
     administrativeDivision.studentAbsenceMainReasons['4']
   ).rawText,
   'Total de inasistencias de alumnos por otras causas': toNumericDataSet(administrativeDivision.studentAbsenceMainReasons['5']).rawText,
-  'Porcentaje de inasistencias de alumnos porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': toPercentageDataSet(
+  'Porcentaje de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': toPercentageDataSet(
     administrativeDivision.studentAbsenceMainReasonsPercentages['1']
   ).text,
-  'Porcentaje de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': toPercentageDataSet(
+  'Porcentaje de inasistencias de alumnos porque: Reportados con síntomas de contagio': toPercentageDataSet(
     administrativeDivision.studentAbsenceMainReasonsPercentages['2']
   ).text,
-  'Porcentaje de inasistencias de alumnos porque: Reportaron enfermos a los alumnos que no asistieron': toPercentageDataSet(
+  'Porcentaje de inasistencias de alumnos porque: Casos de contagio (COVID 19) confirmados': toPercentageDataSet(
     administrativeDivision.studentAbsenceMainReasonsPercentages['3']
   ).text,
   'Porcentaje de inasistencias de alumnos porque: Se desconocen las causas': toPercentageDataSet(
@@ -214,32 +214,32 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Porcentaje de inasistencias de alumnos por otras causas': toPercentageDataSet(
     administrativeDivision.studentAbsenceMainReasonsPercentages['5']
   ).text,
-  'Total de inasistencias de docentes porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': toNumericDataSet(
+  'Total de inasistencias de docentes porque: Casos de contagio (COVID 19) confirmados': toNumericDataSet(
     administrativeDivision.teacherAbsenceMainReasons['1']
   ).rawText,
-  'Total de inasistencias de docentes porque: Se reportaron como inasistencia por enfermedad': toNumericDataSet(
+  'Total de inasistencias de docentes porque: Se reportaron enfermos (NO COVID 19)': toNumericDataSet(
     administrativeDivision.teacherAbsenceMainReasons['2']
   ).rawText,
   'Total de inasistencias de docentes porque: Se desconocen las causas': toNumericDataSet(
     administrativeDivision.teacherAbsenceMainReasons['3']
   ).rawText,
-  'Total de inasistencias de docentes por tras causas': toNumericDataSet(administrativeDivision.teacherAbsenceMainReasons['4']).rawText,
-  'Porcentaje de inasistencias de docentes porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': toPercentageDataSet(
+  'Total de inasistencias de docentes por otras causas': toNumericDataSet(administrativeDivision.teacherAbsenceMainReasons['4']).rawText,
+  'Porcentaje de inasistencias de docentes porque: Casos de contagio (COVID 19) confirmados': toPercentageDataSet(
     administrativeDivision.teacherAbsenceMainReasonsPercentages['1']
   ).text,
-  'Porcentaje de inasistencias de docentes porque: Se reportaron como inasistencia por enfermedad': toPercentageDataSet(
+  'Porcentaje de inasistencias de docentes porque: Se reportaron enfermos (NO COVID 19)': toPercentageDataSet(
     administrativeDivision.teacherAbsenceMainReasonsPercentages['2']
   ).text,
   'Porcentaje de inasistencias de docentes porque: Se desconocen las causas': toPercentageDataSet(
     administrativeDivision.teacherAbsenceMainReasonsPercentages['3']
   ).text,
-  'Porcentaje de inasistencias de docentes por tras causas': toPercentageDataSet(
+  'Porcentaje de inasistencias de docentes por otras causas': toPercentageDataSet(
     administrativeDivision.teacherAbsenceMainReasonsPercentages['4']
   ).text,
-  'Total de inasistencias de personal administrativo porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': toNumericDataSet(
+  'Total de inasistencias de personal administrativo porque: Casos de contagio (COVID 19) confirmados': toNumericDataSet(
     administrativeDivision.adminAbsenceMainReasons['1']
   ).rawText,
-  'Total de inasistencias de personal administrativo porque: Se reportaron como inasistencia por enfermedad': toNumericDataSet(
+  'Total de inasistencias de personal administrativo porque: Se reportaron enfermos (NO COVID 19)': toNumericDataSet(
     administrativeDivision.adminAbsenceMainReasons['2']
   ).rawText,
   'Total de inasistencias de personal administrativo porque: Se desconocen las causas': toNumericDataSet(
@@ -248,10 +248,10 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Total de inasistencias de personal administrativo por otras causas de inasistencia': toNumericDataSet(
     administrativeDivision.adminAbsenceMainReasons['4']
   ).rawText,
-  'Porcentaje de inasistencias de personal administrativo porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': toPercentageDataSet(
+  'Porcentaje de inasistencias de personal administrativo porque: Casos de contagio (COVID 19) confirmados': toPercentageDataSet(
     administrativeDivision.adminAbsenceMainReasonsPercentages['1']
   ).text,
-  'Porcentaje de inasistencias de personal administrativo porque: Se reportaron como inasistencia por enfermedad': toPercentageDataSet(
+  'Porcentaje de inasistencias de personal administrativo porque: Se reportaron enfermos (NO COVID 19)': toPercentageDataSet(
     administrativeDivision.adminAbsenceMainReasonsPercentages['2']
   ).text,
   'Porcentaje de inasistencias de personal administrativo porque: Se desconocen las causas': toPercentageDataSet(

@@ -107,19 +107,19 @@
           <table class="table is-fullwidth has-no-background">
             <tbody>
               <tr>
-                <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
+                <td>Los padres de familia no enviaron a sus hijos a la escuela</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasons['1'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['1'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
-                <td>Los padres de familia no enviaron a sus hijos a la escuela</td>
+                <td>Reportados con síntomas de contagio</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasons['2'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['2'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
-                <td>Reportaron enfermos a los alumnos que no asistieron</td>
+                <td>Casos de contagio (COVID 19) confirmados</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasons['3'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['3'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
@@ -165,19 +165,19 @@
           <table class="table is-fullwidth has-no-background">
             <tbody>
               <tr>
-                <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
+                <td>Casos de contagio (COVID 19) confirmados</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasons['1'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasonsPercentages['1'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
-                <td>Se reportaron enfermos</td>
+                <td>Se reportaron enfermos (NO COVID 19)</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasons['2'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasonsPercentages['2'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
-                <td>No se sabe las causas</td>
+                <td>Se desconocen las causas</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasons['3'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.teacherAbsenceMainReasonsPercentages['3'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
@@ -218,19 +218,19 @@
           <table class="table is-fullwidth has-no-background">
             <tbody>
               <tr>
-                <td>La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón</td>
+                <td>Casos de contagio (COVID 19) confirmados</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasons['1'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasonsPercentages['1'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
-                <td>Se reportaron enfermos</td>
+                <td>Se reportaron enfermos (NO COVID 19)</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasons['2'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasonsPercentages['2'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
-                <td>No se sabe las causas</td>
+                <td>Se desconocen las causas</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasons['3'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.adminAbsenceMainReasonsPercentages['3'].text }}</td>
                 <td v-if="!printable" class="w40"></td>
