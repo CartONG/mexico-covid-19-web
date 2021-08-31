@@ -52,14 +52,14 @@
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
-              <td class="pl-2">- Inasistencia de niñas sobre el alumnado esperado</td>
+              <td class="pl-2">- Inasistencia de niñas</td>
               <td class="w120 has-text-right has-text-weight-bold">
                 {{ schoolDataSet.femaleStudentAbsencePercentageOverStudentAbsence.text }}
               </td>
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
-              <td class="pl-2">- Inasistencia de niños sobre el alumnado esperado</td>
+              <td class="pl-2">- Inasistencia de niños</td>
               <td class="w120 has-text-right has-text-weight-bold">
                 {{ schoolDataSet.maleStudentAbsencePercentageOverStudentAbsence.text }}
               </td>
@@ -265,15 +265,9 @@
         <table class="table is-fullwidth has-no-background">
           <tbody>
             <tr>
-              <td>Se tiene instalado el comité de higiene</td>
+              <td>Se tiene instalado el comité participativo de salud escolar</td>
               <td>
                 {{ schoolDataSet.hasHygieneCommittee }}
-              </td>
-            </tr>
-            <tr>
-              <td>La escuela alterna la asistencia de los alumnos</td>
-              <td>
-                {{ schoolDataSet.alternatesAttendance }}
               </td>
             </tr>
             <tr>
@@ -381,6 +375,40 @@
               <td>Número de baños funcionales para alumnos</td>
               <td class="has-text-weight-bold">
                 {{ schoolDataSet.maleStudentToilets.text }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </b-collapse>
+    <b-collapse class="card mb-4" animation="slide" aria-id="serviciosBasicos" :open="printable">
+      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="serviciosBasicos">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-primary is-uppercase">Servicios básicos</td>
+              <td v-if="!printable" class="w40 has-text-right">
+                <a class="card-header-icon px-0 py-0">
+                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-content px-0 py-0">
+        <table class="table is-fullwidth has-no-background">
+          <tbody>
+            <tr>
+              <td>Fuente principal de energía eléctrica</td>
+              <td>
+                {{ schoolDataSet.electricitySource }}
+              </td>
+            </tr>
+            <tr>
+              <td>Acceso a internet</td>
+              <td>
+                {{ schoolDataSet.internetAccess }}
               </td>
             </tr>
           </tbody>
@@ -546,40 +574,6 @@
               <td>Otro tipo de personal</td>
               <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.others.text }}</td>
               <td v-if="!printable" class="w40"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </b-collapse>
-    <b-collapse class="card mb-4" animation="slide" aria-id="serviciosBasicos" :open="printable">
-      <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="serviciosBasicos">
-        <table class="table is-fullwidth has-no-background">
-          <tbody>
-            <tr>
-              <td class="has-text-weight-bold has-text-primary is-uppercase">Servicios básicos</td>
-              <td v-if="!printable" class="w40 has-text-right">
-                <a class="card-header-icon px-0 py-0">
-                  <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="card-content px-0 py-0">
-        <table class="table is-fullwidth has-no-background">
-          <tbody>
-            <tr>
-              <td>Fuente principal de energía eléctrica</td>
-              <td>
-                {{ schoolDataSet.electricitySource }}
-              </td>
-            </tr>
-            <tr>
-              <td>Acceso a internet</td>
-              <td>
-                {{ schoolDataSet.internetAccess }}
-              </td>
             </tr>
           </tbody>
         </table>
