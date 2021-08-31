@@ -19,8 +19,8 @@ export interface SchoolCsvExportContent {
   'Clave del inmueble': string;
   'Tipo de Sostenimiento': string;
   'Asistencia del alumnado': string;
-  'Inasistencias de niñas sobre el alumnado esperado': string;
-  'Inasistencias de niños sobre el alumnado esperado': string;
+  'Inasistencias de niñas': string;
+  'Inasistencias de niños': string;
   'Asistencia de docentes': string;
   'Asistencia del personal': string;
   'En la escuela se reiniciaron las clases presenciales': string;
@@ -48,8 +48,7 @@ export interface SchoolCsvExportContent {
   'Botes de basura para el manejo de residuos': string;
   'Red de drenaje, fosa séptica para desalojo de aguas': string;
   'La escuela puede reorganizar los espacios educativos': string;
-  'Se tiene instalado el comité de higiene': string;
-  'La escuela alterna la asistencia de los alumnos': string;
+  'Se tiene instalado el comité participativo de salud escolar': string;
   'Total de inasistencias de alumnos porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': string;
   'Total de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': string;
   'Total de inasistencias de alumnos porque: Reportaron enfermos a los alumnos que no asistieron': string;
@@ -151,7 +150,6 @@ const hasSepticSystemTexts: string[] = [
 
 const hasAbilityToReorganizeSpaceTexts: string[] = ['-', 'Si', 'No'];
 const hasHygieneCommitteeTexts: string[] = ['-', 'Si', 'No'];
-const alternatesAttendanceTexts: string[] = ['-', 'Si', 'No'];
 
 const givesClassesText: { shortText: string; longText: string }[] = [
   { shortText: '-', longText: '-' },
@@ -243,8 +241,8 @@ export const toSchoolCsvExportContent = (school: School): SchoolCsvExportContent
   'En la escuela se reiniciaron las clases presenciales': givesClassesText[school.givesClasses].longText,
   Comentarios: school.comments,
   'Asistencia del alumnado': toPercentageDataSet(school.studentAttendance).text,
-  'Inasistencias de niñas sobre el alumnado esperado': toPercentageDataSet(school.femaleStudentAbsencePercentageOverStudentAbsence).text,
-  'Inasistencias de niños sobre el alumnado esperado': toPercentageDataSet(school.maleStudentAbsencePercentageOverStudentAbsence).text,
+  'Inasistencias de niñas': toPercentageDataSet(school.femaleStudentAbsencePercentageOverStudentAbsence).text,
+  'Inasistencias de niños': toPercentageDataSet(school.maleStudentAbsencePercentageOverStudentAbsence).text,
   'Asistencia de docentes': toPercentageDataSet(school.teacherAttendance).text,
   'Asistencia del personal': toPercentageDataSet(school.adminAttendance).text,
   'Total de inasistencias de alumnos porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': toNumericDataSet(
@@ -313,8 +311,7 @@ export const toSchoolCsvExportContent = (school: School): SchoolCsvExportContent
   'Porcentaje de inasistencias de personal administrativo por otras causas de inasistencia': toPercentageDataSet(
     school.adminAbsenceMainReasonsPercentages['4']
   ).text,
-  'Se tiene instalado el comité de higiene': hasHygieneCommitteeTexts[school.hasHygieneCommittee],
-  'La escuela alterna la asistencia de los alumnos': alternatesAttendanceTexts[school.alternatesAttendance],
+  'Se tiene instalado el comité participativo de salud escolar': hasHygieneCommitteeTexts[school.hasHygieneCommittee],
   'La escuela puede reorganizar los espacios educativos': hasAbilityToReorganizeSpaceTexts[school.hasAbilityToReorganizeSpace],
   'Acciones para reincorporar a los alumnos con inasistencias': toTakenActions(school.takenActions),
   'Tipo de abastecimiento de agua': waterSupplyTexts[school.waterSupply],

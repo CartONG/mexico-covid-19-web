@@ -12,8 +12,8 @@ export interface AdministrativeDivisionCsvExportContent {
   'Sostenimiento privado (% de escuelas)': string;
   'Sostenimiento publico (% de escuelas)': string;
   'Asistencia del alumnado': string;
-  'Inasistencias de niñas sobre el alumnado esperado': string;
-  'Inasistencias de niños sobre el alumnado esperado': string;
+  'Inasistencias de niñas': string;
+  'Inasistencias de niños': string;
   'Asistencia de docentes': string;
   'Asistencia del personal': string;
   'Total de inasistencias de alumnos porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': string;
@@ -119,18 +119,14 @@ export interface AdministrativeDivisionCsvExportContent {
   'Red de drenaje, fosa séptica para desalojo de aguas : No': string;
   'Red de drenaje, fosa séptica para desalojo de aguas : Si (% de escuelas)': string;
   'Red de drenaje, fosa séptica para desalojo de aguas : No (% de escuelas)': string;
-  'La escuela puede reorganizar los espacios educativos : Si': string;
-  'La escuela puede reorganizar los espacios educativos : No': string;
-  'La escuela puede reorganizar los espacios educativos : Si (% de escuelas)': string;
-  'La escuela puede reorganizar los espacios educativos : No (% de escuelas)': string;
-  'Se tiene instalado el comité de higiene : Si': string;
-  'Se tiene instalado el comité de higiene : No': string;
-  'Se tiene instalado el comité de higiene : Si (% de escuelas)': string;
-  'Se tiene instalado el comité de higiene : No (% de escuelas)': string;
-  'La escuela alterna la asistencia de los alumnos : Si': string;
-  'La escuela alterna la asistencia de los alumnos : No': string;
-  'La escuela alterna la asistencia de los alumnos : Si (% de escuelas)': string;
-  'La escuela alterna la asistencia de los alumnos : No (% de escuelas)': string;
+  'Escuelas que pueden reorganizar los espacios para facilitar la sana distancia : Si': string;
+  'Escuelas que pueden reorganizar los espacios para facilitar la sana distancia : No': string;
+  'Escuelas que pueden reorganizar los espacios para facilitar la sana distancia : Si (% de escuelas)': string;
+  'Escuelas que pueden reorganizar los espacios para facilitar la sana distancia : No (% de escuelas)': string;
+  'Escuelas que instalaron el comité participativo de salud escolar : Si': string;
+  'Escuelas que instalaron el comité participativo de salud escolar : No': string;
+  'Escuelas que instalaron el comité participativo de salud escolar : Si (% de escuelas)': string;
+  'Escuelas que instalaron el comité participativo de salud escolar : No (% de escuelas)': string;
   'Acciones para reincorporar a los alumnos con inasistencias : Visita domiciliaria': string;
   'Acciones para reincorporar a los alumnos con inasistencias : Llamada telefónica': string;
   'Acciones para reincorporar a los alumnos con inasistencias : Gestión de becas': string;
@@ -186,12 +182,8 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Sostenimiento privado (% de escuelas)': toPercentageDataSet(administrativeDivision.support.private).text,
   'Sostenimiento publico (% de escuelas)': toPercentageDataSet(administrativeDivision.support.public).text,
   'Asistencia del alumnado': toPercentageDataSet(administrativeDivision.studentAttendance).text,
-  'Inasistencias de niñas sobre el alumnado esperado': toPercentageDataSet(
-    administrativeDivision.femaleStudentAbsencePercentageOverStudentAbsence
-  ).text,
-  'Inasistencias de niños sobre el alumnado esperado': toPercentageDataSet(
-    administrativeDivision.maleStudentAbsencePercentageOverStudentAbsence
-  ).text,
+  'Inasistencias de niñas': toPercentageDataSet(administrativeDivision.femaleStudentAbsencePercentageOverStudentAbsence).text,
+  'Inasistencias de niños': toPercentageDataSet(administrativeDivision.maleStudentAbsencePercentageOverStudentAbsence).text,
   'Asistencia de docentes': toPercentageDataSet(administrativeDivision.teacherAttendance).text,
   'Asistencia del personal': toPercentageDataSet(administrativeDivision.adminAttendance).text,
   'Total de inasistencias de alumnos porque: La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón': toNumericDataSet(
@@ -268,32 +260,26 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Porcentaje de inasistencias de personal administrativo por otras causas de inasistencia': toPercentageDataSet(
     administrativeDivision.adminAbsenceMainReasonsPercentages['4']
   ).text,
-  'Se tiene instalado el comité de higiene : Si': toNumericDataSet(administrativeDivision.hygieneCommittee['1']).rawText,
-  'Se tiene instalado el comité de higiene : No': toNumericDataSet(administrativeDivision.hygieneCommittee['2']).rawText,
-  'Se tiene instalado el comité de higiene : Si (% de escuelas)': toPercentageDataSet(
+  'Escuelas que instalaron el comité participativo de salud escolar : Si': toNumericDataSet(administrativeDivision.hygieneCommittee['1'])
+    .rawText,
+  'Escuelas que instalaron el comité participativo de salud escolar : No': toNumericDataSet(administrativeDivision.hygieneCommittee['2'])
+    .rawText,
+  'Escuelas que instalaron el comité participativo de salud escolar : Si (% de escuelas)': toPercentageDataSet(
     administrativeDivision.hygieneCommitteePercentages['1']
   ).text,
-  'Se tiene instalado el comité de higiene : No (% de escuelas)': toPercentageDataSet(
+  'Escuelas que instalaron el comité participativo de salud escolar : No (% de escuelas)': toPercentageDataSet(
     administrativeDivision.hygieneCommitteePercentages['2']
   ).text,
-  'La escuela alterna la asistencia de los alumnos : Si': toNumericDataSet(administrativeDivision.alternatesAttendance['1']).rawText,
-  'La escuela alterna la asistencia de los alumnos : No': toNumericDataSet(administrativeDivision.alternatesAttendance['2']).rawText,
-  'La escuela alterna la asistencia de los alumnos : Si (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.alternatesAttendancePercentages['1']
-  ).text,
-  'La escuela alterna la asistencia de los alumnos : No (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.alternatesAttendancePercentages['2']
-  ).text,
-  'La escuela puede reorganizar los espacios educativos : Si': toNumericDataSet(
+  'Escuelas que pueden reorganizar los espacios para facilitar la sana distancia : Si': toNumericDataSet(
     administrativeDivision.schoolWithAbilityToReorganizeSpace['1']
   ).rawText,
-  'La escuela puede reorganizar los espacios educativos : No': toNumericDataSet(
+  'Escuelas que pueden reorganizar los espacios para facilitar la sana distancia : No': toNumericDataSet(
     administrativeDivision.schoolWithAbilityToReorganizeSpace['2']
   ).rawText,
-  'La escuela puede reorganizar los espacios educativos : Si (% de escuelas)': toPercentageDataSet(
+  'Escuelas que pueden reorganizar los espacios para facilitar la sana distancia : Si (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolWithAbilityToReorganizeSpacePercentages['1']
   ).text,
-  'La escuela puede reorganizar los espacios educativos : No (% de escuelas)': toPercentageDataSet(
+  'Escuelas que pueden reorganizar los espacios para facilitar la sana distancia : No (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolWithAbilityToReorganizeSpacePercentages['1']
   ).text,
   'Acciones para reincorporar a los alumnos con inasistencias : Visita domiciliaria': toNumericDataSet(

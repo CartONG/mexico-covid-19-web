@@ -41,6 +41,8 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="tile">
             <div class="tile is-parent">
               <div class="tile is-child indicator-card card mb-3 px-2 py-1">
                 <header class="card-header">
@@ -56,8 +58,6 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="tile">
             <div class="tile is-parent">
               <div class="tile is-child indicator-card card mb-3 px-2 py-1">
                 <header class="card-header">
@@ -69,21 +69,6 @@
                   <img src="/wudu.svg" alt="lavamano" class="is-pulled-left is-absolute" />
                   <p class="title has-text-secondary has-text-centered is-size-2">
                     {{ schoolDataSet.waterForHandWashing.shortText }}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="tile is-parent">
-              <div class="tile is child indicator-card card px-2 py-1">
-                <header class="card-header">
-                  <p class="has-text-grey is-size-7 has-text-left has-text-weight-bold">
-                    Se alterna la asistencia de los alumnos
-                  </p>
-                </header>
-                <div class="card-content">
-                  <img src="/desk.svg" alt="despacho" class="is-pulled-left is-absolute" />
-                  <p class="title has-text-secondary has-text-centered is-size-2">
-                    {{ schoolDataSet.alternatesAttendance }}
                   </p>
                 </div>
               </div>
@@ -139,7 +124,7 @@
           </p>
         </div>
       </div>
-      <div class="indicator-card card mb-3 px-2 py-1">
+      <div class="indicator-card card px-2 py-1">
         <header class="card-header">
           <p class="has-text-grey is-size-7 has-text-left has-text-weight-bold">
             Dispone de jabón para el lavado de manos
@@ -149,19 +134,6 @@
           <img src="/hand-sanitizer.svg" alt="jabón" class="is-pulled-left is-absolute" />
           <p class="title has-text-secondary has-text-centered is-size-2">
             {{ schoolDataSet.soapSufficiency.shortText }}
-          </p>
-        </div>
-      </div>
-      <div class="indicator-card card px-2 py-1">
-        <header class="card-header">
-          <p class="has-text-grey is-size-7 has-text-left has-text-weight-bold">
-            Se alterna la asistencia de los alumnos
-          </p>
-        </header>
-        <div class="card-content">
-          <img src="/desk.svg" alt="despacho" class="is-pulled-left is-absolute" />
-          <p class="title has-text-secondary has-text-centered is-size-2">
-            {{ schoolDataSet.alternatesAttendance }}
           </p>
         </div>
       </div>

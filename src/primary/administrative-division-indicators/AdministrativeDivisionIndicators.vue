@@ -45,6 +45,8 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="tile">
             <div class="tile is-parent">
               <div class="tile is-child indicator-card card px-2 py-1">
                 <header class="card-header">
@@ -64,8 +66,6 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="tile">
             <div class="tile is-parent">
               <div class="tile is-child indicator-card card px-2 py-1">
                 <header class="card-header">
@@ -81,25 +81,6 @@
                     "
                   >
                     {{ administrativeDivisionDataSet.schoolWithWaterForHandWashingPercentages['1'].text }}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="tile is-parent">
-              <div class="tile is-child indicator-card card px-2 py-1">
-                <header class="card-header">
-                  <p class="has-text-grey is-size-7 has-text-left has-text-weight-bold">
-                    Escuelas que alternan la asistencia de sus alumnos
-                  </p>
-                </header>
-                <div class="card-content">
-                  <img src="/desk.svg" alt="despacho" class="is-pulled-left is-absolute" />
-                  <p
-                    :class="
-                      `title has-text-${administrativeDivisionDataSet.alternatesAttendancePercentages['1'].color} has-text-centered is-size-2`
-                    "
-                  >
-                    {{ administrativeDivisionDataSet.alternatesAttendancePercentages['1'].text }}
                   </p>
                 </div>
               </div>
@@ -157,7 +138,7 @@
           </p>
         </div>
       </div>
-      <div class="indicator-card card mb-3 px-2 py-1">
+      <div class="indicator-card card px-2 py-1">
         <header class="card-header">
           <p class="has-text-grey is-size-7 has-text-left has-text-weight-bold">
             Escuelas con disposición de jabón para el lavado de manos
@@ -171,23 +152,6 @@
             "
           >
             {{ administrativeDivisionDataSet.schoolSoapSufficiencyPercentages['1'].text }}
-          </p>
-        </div>
-      </div>
-      <div class="indicator-card card px-2 py-1">
-        <header class="card-header">
-          <p class="has-text-grey is-size-7 has-text-left has-text-weight-bold">
-            Escuelas que alternan la asistencia de sus alumnos
-          </p>
-        </header>
-        <div class="card-content">
-          <img src="/desk.svg" alt="despacho" class="is-pulled-left is-absolute" />
-          <p
-            :class="
-              `title has-text-${administrativeDivisionDataSet.alternatesAttendancePercentages['1'].color} has-text-centered is-size-2`
-            "
-          >
-            {{ administrativeDivisionDataSet.alternatesAttendancePercentages['1'].text }}
           </p>
         </div>
       </div>
