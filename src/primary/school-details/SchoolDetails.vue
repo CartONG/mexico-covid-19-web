@@ -551,7 +551,7 @@
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
-              <td>Asesores Técnicos Pedagógicos</td>
+              <td>Total de maestros de Segunda lengua</td>
               <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.technicalPedagogicalAdvisers.text }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>

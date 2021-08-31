@@ -170,12 +170,12 @@ const alternatesAttendanceTexts: string[] = ['-', 'Si', 'No'];
 const givesClassesText: { shortText: string; longText: string }[] = [
   { shortText: '-', longText: '-' },
   { shortText: 'Si', longText: 'Personal y Alumnos realizan sus actividades en la escuela' },
-  { shortText: 'No', longText: 'Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases' },
+  { shortText: 'No', longText: 'Se está realizando la limpieza de espacios para poder iniciar con las clases' },
   { shortText: 'No', longText: 'Existe la confirmación de al menos un caso de COVID-19 en la escuela' },
   { shortText: 'No', longText: 'La Autoridad Educativa Local determinó continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'La comunidad escolar determinó continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'El personal de la escuela decidió continuar con la suspensión de clases' },
-  { shortText: 'No', longText: 'Los padres de familia informaron que no enviarán a sus hijos a la escuela' },
+  { shortText: 'No', longText: 'Todos las madres y los padres de familia determinarón no enviar a sus hijos a la escuela' },
   { shortText: 'No', longText: 'Otras razones' },
 ];
 

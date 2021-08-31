@@ -33,7 +33,7 @@ export interface SchoolCsvExportContent {
   'Total de grupos': string;
   'Total de directores': string;
   'Total de Subdirectores': string;
-  'Total de Asesores Técnicos Pedagógicos': string;
+  'Total de maestros de Segunda lengua': string;
   'Total de docentes de Educación Física': string;
   'Total de personal Administrativo': string;
   'Total de personal de intendencia': string;
@@ -154,13 +154,13 @@ const hasHygieneCommitteeTexts: string[] = ['-', 'Si', 'No'];
 const givesClassesText: { shortText: string; longText: string }[] = [
   { shortText: '-', longText: '-' },
   { shortText: 'Si', longText: 'Si, Personal y Alumnos realizan sus actividades en la escuela' },
-  { shortText: 'No', longText: 'No, Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases' },
+  { shortText: 'No', longText: 'No, Se está realizando la limpieza de espacios para poder iniciar con las clases' },
   { shortText: 'No', longText: 'No, Existe la confirmación de al menos un caso de COVID-19 en la escuela' },
   { shortText: 'No', longText: 'No, La Autoridad Educativa Local determinó continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'No, La comunidad escolar determinó continuar con la suspensión de clases' },
   { shortText: 'No', longText: 'No, El personal de la escuela decidió continuar con la suspensión de clases' },
-  { shortText: 'No', longText: 'No, Los padres de familia informaron que no enviarán a sus hijos a la escuela' },
-  { shortText: 'No', longText: 'No, otras razones' },
+  { shortText: 'No', longText: 'No, Todos las madres y los padres de familia determinarón no enviar a sus hijos a la escuela' },
+  { shortText: 'No', longText: 'No, Otras razones' },
 ];
 
 const electricitySourceTexts: string[] = [
@@ -341,7 +341,7 @@ export const toSchoolCsvExportContent = (school: School): SchoolCsvExportContent
   'Total de Docentes frente a grupo': toNumericDataSet(school.teachers).rawText,
   'Total de directores': toNumericDataSet(school.directors).rawText,
   'Total de Subdirectores': toNumericDataSet(school.subDirectors).rawText,
-  'Total de Asesores Técnicos Pedagógicos': toNumericDataSet(school.technicalPedagogicalAdvisers).rawText,
+  'Total de maestros de Segunda lengua': toNumericDataSet(school.technicalPedagogicalAdvisers).rawText,
   'Total de docentes de Educación Física': toNumericDataSet(school.physicalEducationTeachers).rawText,
   'Total de personal Administrativo': toNumericDataSet(school.admins).rawText,
   'Total de personal de intendencia': toNumericDataSet(school.quartermasters).rawText,

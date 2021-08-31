@@ -406,7 +406,17 @@
           <table class="table is-fullwidth has-no-background">
             <tbody>
               <tr>
-                <td>Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases</td>
+                <td>Si, Personal y Alumnos realizan sus actividades en la escuela</td>
+                <td class="w200 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.schoolGivingClasses['1'].text }}
+                </td>
+                <td class="w120 has-text-right has-text-weight-bold">
+                  {{ administrativeDivisionDataSet.schoolGivingClassesPercentages['1'].text }}
+                </td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>No, se está realizando la limpieza de espacios para poder iniciar con las clases</td>
                 <td class="w200 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.schoolGivingClasses['2'].text }}
                 </td>
@@ -416,47 +426,7 @@
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
-                <td>Existe la confirmación de al menos un caso de COVID-19 en la escuela</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolGivingClasses['3'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolGivingClassesPercentages['3'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>La Autoridad Educativa Local determinó continuar con la suspensión de clases</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolGivingClasses['4'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolGivingClassesPercentages['4'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>La comunidad escolar determinó continuar con la suspensión de clases</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolGivingClasses['5'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolGivingClassesPercentages['5'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>El personal de la escuela decidió continuar con la suspensión de clases</td>
-                <td class="w200 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolGivingClasses['6'].text }}
-                </td>
-                <td class="w120 has-text-right has-text-weight-bold">
-                  {{ administrativeDivisionDataSet.schoolGivingClassesPercentages['6'].text }}
-                </td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Los padres de familia informaron que no enviarán a sus hijos a la escuela</td>
+                <td>No, todas las madres y los padres de familia determinarón no enviar a sus hijos a la escuela</td>
                 <td class="w200 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.schoolGivingClasses['7'].text }}
                 </td>
@@ -466,7 +436,7 @@
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
-                <td>Otras razones</td>
+                <td>No, otras razones</td>
                 <td class="w200 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.schoolGivingClasses['8'].text }}
                 </td>
@@ -1338,7 +1308,7 @@
               <td v-if="!printable" class="w40"></td>
             </tr>
             <tr>
-              <td>Asesores Técnicos Pedagógicos</td>
+              <td>Total de maestros de Segunda lengua</td>
               <td class="w120 has-text-right has-text-weight-bold">{{ administrativeDivisionDataSet.technicalPedagogicalAdvisers }}</td>
               <td v-if="!printable" class="w40"></td>
             </tr>

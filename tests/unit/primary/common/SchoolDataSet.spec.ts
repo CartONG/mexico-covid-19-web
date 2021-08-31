@@ -282,4 +282,40 @@ describe('SchoolDataSet', () => {
     expect(toSchoolDataSet(makeSchool({ theSchoolIsOurs: 1 })).theSchoolIsOurs).toBe('Si pertenece');
     expect(toSchoolDataSet(makeSchool({ theSchoolIsOurs: 2 })).theSchoolIsOurs).toBe('No pertenece');
   });
+
+  it('should set give classes', () => {
+    expect(toSchoolDataSet(makeSchool({ givesClasses: 0 })).givesClasses).toEqual({ shortText: '-', longText: '-' });
+    expect(toSchoolDataSet(makeSchool({ givesClasses: 1 })).givesClasses).toEqual({
+      shortText: 'Si',
+      longText: 'Personal y Alumnos realizan sus actividades en la escuela',
+    });
+    expect(toSchoolDataSet(makeSchool({ givesClasses: 2 })).givesClasses).toEqual({
+      shortText: 'No',
+      longText: 'Se está realizando la limpieza de espacios para poder iniciar con las clases',
+    });
+    expect(toSchoolDataSet(makeSchool({ givesClasses: 3 })).givesClasses).toEqual({
+      shortText: 'No',
+      longText: 'Existe la confirmación de al menos un caso de COVID-19 en la escuela',
+    });
+    expect(toSchoolDataSet(makeSchool({ givesClasses: 4 })).givesClasses).toEqual({
+      shortText: 'No',
+      longText: 'La Autoridad Educativa Local determinó continuar con la suspensión de clases',
+    });
+    expect(toSchoolDataSet(makeSchool({ givesClasses: 5 })).givesClasses).toEqual({
+      shortText: 'No',
+      longText: 'La comunidad escolar determinó continuar con la suspensión de clases',
+    });
+    expect(toSchoolDataSet(makeSchool({ givesClasses: 6 })).givesClasses).toEqual({
+      shortText: 'No',
+      longText: 'El personal de la escuela decidió continuar con la suspensión de clases',
+    });
+    expect(toSchoolDataSet(makeSchool({ givesClasses: 7 })).givesClasses).toEqual({
+      shortText: 'No',
+      longText: 'Todos las madres y los padres de familia determinarón no enviar a sus hijos a la escuela',
+    });
+    expect(toSchoolDataSet(makeSchool({ givesClasses: 8 })).givesClasses).toEqual({
+      shortText: 'No',
+      longText: 'Otras razones',
+    });
+  });
 });
