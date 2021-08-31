@@ -67,4 +67,32 @@ describe('SchoolCsvExportContent', () => {
       'No pertenece'
     );
   });
+
+  it('should set give classes', () => {
+    expect(toSchoolCsvExportContent(makeSchool({ givesClasses: 0 }))['En la escuela se reiniciaron las clases presenciales']).toBe('-');
+    expect(toSchoolCsvExportContent(makeSchool({ givesClasses: 1 }))['En la escuela se reiniciaron las clases presenciales']).toBe(
+      'Si, Personal y Alumnos realizan sus actividades en la escuela'
+    );
+    expect(toSchoolCsvExportContent(makeSchool({ givesClasses: 2 }))['En la escuela se reiniciaron las clases presenciales']).toBe(
+      'No, Se está realizando la limpieza de espacios para poder iniciar con las clases'
+    );
+    expect(toSchoolCsvExportContent(makeSchool({ givesClasses: 3 }))['En la escuela se reiniciaron las clases presenciales']).toBe(
+      'No, Existe la confirmación de al menos un caso de COVID-19 en la escuela'
+    );
+    expect(toSchoolCsvExportContent(makeSchool({ givesClasses: 4 }))['En la escuela se reiniciaron las clases presenciales']).toBe(
+      'No, La Autoridad Educativa Local determinó continuar con la suspensión de clases'
+    );
+    expect(toSchoolCsvExportContent(makeSchool({ givesClasses: 5 }))['En la escuela se reiniciaron las clases presenciales']).toBe(
+      'No, La comunidad escolar determinó continuar con la suspensión de clases'
+    );
+    expect(toSchoolCsvExportContent(makeSchool({ givesClasses: 6 }))['En la escuela se reiniciaron las clases presenciales']).toBe(
+      'No, El personal de la escuela decidió continuar con la suspensión de clases'
+    );
+    expect(toSchoolCsvExportContent(makeSchool({ givesClasses: 7 }))['En la escuela se reiniciaron las clases presenciales']).toBe(
+      'No, Todos las madres y los padres de familia determinarón no enviar a sus hijos a la escuela'
+    );
+    expect(toSchoolCsvExportContent(makeSchool({ givesClasses: 8 }))['En la escuela se reiniciaron las clases presenciales']).toBe(
+      'No, Otras razones'
+    );
+  });
 });

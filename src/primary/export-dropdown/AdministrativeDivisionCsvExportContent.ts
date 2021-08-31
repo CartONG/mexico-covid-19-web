@@ -51,27 +51,19 @@ export interface AdministrativeDivisionCsvExportContent {
   'Total de grupos': string;
   'Total de directores': string;
   'Total de Subdirectores': string;
-  'Total de Asesores Técnicos Pedagógicos': string;
+  'Total de maestros de Segunda lengua': string;
   'Total de docentes de Educación Física': string;
   'Total de personal Administrativo': string;
   'Total de personal de intendencia': string;
   'Total de otro tipo de personal': string;
-  'Personal y Alumnos realizan sus actividades en la escuela': string;
-  'Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases': string;
-  'Existe la confirmación de al menos un caso de COVID-19 en la escuela': string;
-  'La Autoridad Educativa Local determinó continuar con la suspensión de clases': string;
-  'La comunidad escolar determinó continuar con la suspensión de clases': string;
-  'El personal de la escuela decidió continuar con la suspensión de clases': string;
-  'Los padres de familia informaron que no enviarán a sus hijos a la escuela': string;
-  'Otras razones': string;
-  'Personal y Alumnos realizan sus actividades en la escuela (% de escuelas)': string;
-  'Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases (% de escuelas)': string;
-  'Existe la confirmación de al menos un caso de COVID-19 en la escuela (% de escuelas)': string;
-  'La Autoridad Educativa Local determinó continuar con la suspensión de clases (% de escuelas)': string;
-  'La comunidad escolar determinó continuar con la suspensión de clases (% de escuelas)': string;
-  'El personal de la escuela decidió continuar con la suspensión de clases (% de escuelas)': string;
-  'Los padres de familia informaron que no enviarán a sus hijos a la escuela (% de escuelas)': string;
-  'Otras razones (% de escuelas)': string;
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : Si, Personal y Alumnos realizan sus actividades en la escuela': string;
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : No, se está realizando la limpieza de espacios para poder iniciar con las clases': string;
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : No, todas las madres y los padres de familia determinarón no enviar a sus hijos a la escuela': string;
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : No, otras razones': string;
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : Si, Personal y Alumnos realizan sus actividades en la escuela (% de escuelas)': string;
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : No, se está realizando la limpieza de espacios para poder iniciar con las clases (% de escuelas)': string;
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : No, todos las madres y los padres de familia determinarón no enviar a sus hijos a la escuela (% de escuelas)': string;
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : No, otras razones (% de escuelas)': string;
   'Tipo de abastecimiento de agua : Red municipal de agua potable': string;
   'Tipo de abastecimiento de agua : Abastecimiento a través de pipas': string;
   'Tipo de abastecimiento de agua : Otra fuente (pozo, río, lago, etc.)': string;
@@ -304,46 +296,30 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Acciones para reincorporar a los alumnos con inasistencias : Ninguna (% de escuelas)': toPercentageDataSet(
     administrativeDivision.takenActionsPercentages.none
   ).text,
-  'Personal y Alumnos realizan sus actividades en la escuela': toNumericDataSet(administrativeDivision.schoolGivingClasses['1']).rawText,
-  'Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases': toNumericDataSet(
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : Si, Personal y Alumnos realizan sus actividades en la escuela': toNumericDataSet(
+    administrativeDivision.schoolGivingClasses['1']
+  ).rawText,
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : No, se está realizando la limpieza de espacios para poder iniciar con las clases': toNumericDataSet(
     administrativeDivision.schoolGivingClasses['2']
   ).rawText,
-  'Existe la confirmación de al menos un caso de COVID-19 en la escuela': toNumericDataSet(administrativeDivision.schoolGivingClasses['3'])
-    .rawText,
-  'La Autoridad Educativa Local determinó continuar con la suspensión de clases': toNumericDataSet(
-    administrativeDivision.schoolGivingClasses['4']
-  ).rawText,
-  'La comunidad escolar determinó continuar con la suspensión de clases': toNumericDataSet(administrativeDivision.schoolGivingClasses['5'])
-    .rawText,
-  'El personal de la escuela decidió continuar con la suspensión de clases': toNumericDataSet(
-    administrativeDivision.schoolGivingClasses['6']
-  ).rawText,
-  'Los padres de familia informaron que no enviarán a sus hijos a la escuela': toNumericDataSet(
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : No, todas las madres y los padres de familia determinarón no enviar a sus hijos a la escuela': toNumericDataSet(
     administrativeDivision.schoolGivingClasses['7']
   ).rawText,
-  'Otras razones': toNumericDataSet(administrativeDivision.schoolGivingClasses['8']).rawText,
-  'Personal y Alumnos realizan sus actividades en la escuela (% de escuelas)': toPercentageDataSet(
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : No, otras razones': toNumericDataSet(
+    administrativeDivision.schoolGivingClasses['8']
+  ).rawText,
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : Si, Personal y Alumnos realizan sus actividades en la escuela (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolGivingClassesPercentages['1']
   ).text,
-  'Se está realizando la limpieza de espacios y mobiliario para poder iniciar con las clases (% de escuelas)': toPercentageDataSet(
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : No, se está realizando la limpieza de espacios para poder iniciar con las clases (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolGivingClassesPercentages['2']
   ).text,
-  'Existe la confirmación de al menos un caso de COVID-19 en la escuela (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.schoolGivingClassesPercentages['3']
-  ).text,
-  'La Autoridad Educativa Local determinó continuar con la suspensión de clases (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.schoolGivingClassesPercentages['4']
-  ).text,
-  'La comunidad escolar determinó continuar con la suspensión de clases (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.schoolGivingClassesPercentages['5']
-  ).text,
-  'El personal de la escuela decidió continuar con la suspensión de clases (% de escuelas)': toPercentageDataSet(
-    administrativeDivision.schoolGivingClassesPercentages['6']
-  ).text,
-  'Los padres de familia informaron que no enviarán a sus hijos a la escuela (% de escuelas)': toPercentageDataSet(
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : No, todos las madres y los padres de familia determinarón no enviar a sus hijos a la escuela (% de escuelas)': toPercentageDataSet(
     administrativeDivision.schoolGivingClassesPercentages['7']
   ).text,
-  'Otras razones (% de escuelas)': toPercentageDataSet(administrativeDivision.schoolGivingClassesPercentages['8']).text,
+  'Principales motivos de escuelas sin clases presenciales en regiones con semáforo verde : No, otras razones (% de escuelas)': toPercentageDataSet(
+    administrativeDivision.schoolGivingClassesPercentages['8']
+  ).text,
   'Tipo de abastecimiento de agua : Red municipal de agua potable': toNumericDataSet(administrativeDivision.schoolWaterSupply['1']).rawText,
   'Tipo de abastecimiento de agua : Abastecimiento a través de pipas': toNumericDataSet(administrativeDivision.schoolWaterSupply['2'])
     .rawText,
@@ -493,7 +469,7 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Total de grupos': toNumericDataSet(administrativeDivision.assistants).rawText,
   'Total de directores': toNumericDataSet(administrativeDivision.directors).rawText,
   'Total de Subdirectores': toNumericDataSet(administrativeDivision.subDirectors).rawText,
-  'Total de Asesores Técnicos Pedagógicos': toNumericDataSet(administrativeDivision.technicalPedagogicalAdvisers).rawText,
+  'Total de maestros de Segunda lengua': toNumericDataSet(administrativeDivision.technicalPedagogicalAdvisers).rawText,
   'Total de docentes de Educación Física': toNumericDataSet(administrativeDivision.physicalEducationTeachers).rawText,
   'Total de personal Administrativo': toNumericDataSet(administrativeDivision.admins).rawText,
   'Total de personal de intendencia': toNumericDataSet(administrativeDivision.quartermasters).rawText,
