@@ -31,17 +31,6 @@ const defaultAbsenceReasonsPercentages = {
   adminAbsenceMainReasonsPercentages: { '1': -1, '2': -1, '3': -1, '4': -1 },
 };
 
-const toReportedSickText = (attendanceType: AttendanceType): string => {
-  switch (attendanceType) {
-    case AttendanceType.STUDENT:
-      return 'Reportaron enfermos a los alumnos que no asistieron';
-    case AttendanceType.TEACHER:
-      return 'Reportaron enfermos a los docentes que no asistieron';
-    case AttendanceType.PERSONAL:
-      return 'Reportaron enfermo al personal que no asistió';
-  }
-};
-
 export const toAbsenceDetailsDataSet = (
   absenceReasonsPercentages: AbsenceReasonsPercentages | null,
   attendanceType: AttendanceType
@@ -55,19 +44,23 @@ export const toAbsenceDetailsDataSet = (
       ? validAbsenceReasons.teacherAbsenceMainReasonsPercentages
       : validAbsenceReasons.adminAbsenceMainReasonsPercentages;
 
-  const partialLegendItems = [
-    { color: 'primary', text: 'La escuela no cuenta con instalaciones para el lavado de manos con agua y jabón' },
-    { color: 'secondary', text: 'Los padres de familia no enviaron a sus hijos a la escuela' },
-    { color: 'tertiary', text: toReportedSickText(attendanceType) },
-    { color: 'tertiary', text: 'Se reportaron como inasistencia por enfermedad' },
+  const studentsPartialLegendItems = [
+    { color: 'primary', text: 'Los padres de familia no enviaron a sus hijos a la escuela' },
+    { color: 'secondary', text: 'Reportados con síntomas de contagio' },
+    { color: 'tertiary', text: 'Casos de contagio (COVID 19) confirmados' },
+    { color: 'grey', text: 'Se desconocen las causas' },
+    { color: 'secondary-bis', text: 'Otras causas' },
+  ];
+
+  const teachersAndAdminsPartialLegendItems = [
+    { color: 'primary', text: 'Casos de contagio (COVID 19) confirmados' },
+    { color: 'tertiary', text: 'Se reportaron enfermos (NO COVID 19)' },
     { color: 'grey', text: 'Se desconocen las causas' },
     { color: 'secondary-bis', text: 'Otras causas' },
   ];
 
   const legendItemsForAttendance =
-    attendanceType === AttendanceType.STUDENT
-      ? [partialLegendItems[0], partialLegendItems[1], partialLegendItems[2], partialLegendItems[4], partialLegendItems[5]]
-      : [partialLegendItems[0], partialLegendItems[2], partialLegendItems[4], partialLegendItems[5]];
+    attendanceType === AttendanceType.STUDENT ? studentsPartialLegendItems : teachersAndAdminsPartialLegendItems;
 
   const dataForAttendance =
     attendanceType === AttendanceType.STUDENT
