@@ -1,5 +1,57 @@
 <template>
   <div>
+    <div :class="{ 'horizontal-scroll': !printable }">
+      <b-collapse class="card mb-4 mw400" animation="slide" aria-id="estadísticaBásicaSobreMatrícula" open>
+        <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="estadísticaBásicaSobreMatrícula">
+          <table class="table is-fullwidth has-no-background">
+            <tbody>
+              <tr>
+                <td class="has-text-weight-bold has-text-primary is-uppercase">
+                  Estadística básica sobre matrícula
+                </td>
+                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
+                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
+                <td v-if="!printable" class="w40 has-text-right">
+                  <a class="card-header-icon px-0 py-0">
+                    <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-content px-0 py-0">
+          <table class="table is-fullwidth has-no-background">
+            <tbody>
+              <tr>
+                <td>Total de alumnos</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.students.text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">100%</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td class="pl-2">- de los cuales alumnas</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.femaleStudent.text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.femaleStudentPercentage.text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td class="pl-2">- de los cuales alumnos</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.maleStudent.text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.maleStudentPercentage.text }}</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+              <tr>
+                <td>Grupos</td>
+                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.assistants.text }}</td>
+                <td class="w120 has-text-right has-text-weight-bold">-</td>
+                <td v-if="!printable" class="w40"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </b-collapse>
+    </div>
     <div class="has-background-white card mb-4">
       <header class="card-header py-2 px-2">
         <h2 class="has-text-weight-bold has-text-primary is-uppercase">Motivo por el que la escuela no tiene clases presenciales</h2>
@@ -456,58 +508,6 @@
       </div>
     </b-collapse>
     <div v-if="printable" class="columns has-page-break-before"><div class="column is-12"></div></div>
-    <div :class="{ 'horizontal-scroll': !printable }">
-      <b-collapse class="card mb-4 mw400" animation="slide" aria-id="estadísticaBásicaSobreMatrícula" :open="printable">
-        <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="estadísticaBásicaSobreMatrícula">
-          <table class="table is-fullwidth has-no-background">
-            <tbody>
-              <tr>
-                <td class="has-text-weight-bold has-text-primary is-uppercase">
-                  Estadística básica sobre matrícula
-                </td>
-                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Número</td>
-                <td class="w120 has-text-weight-bold has-text-secondary-bis is-uppercase w80 has-text-right opacity-6">Porcentaje</td>
-                <td v-if="!printable" class="w40 has-text-right">
-                  <a class="card-header-icon px-0 py-0">
-                    <span class="icon is-small"><i :class="`mdi mdi-chevron-${props.open ? 'down' : 'up'} is-size-3`"></i></span>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card-content px-0 py-0">
-          <table class="table is-fullwidth has-no-background">
-            <tbody>
-              <tr>
-                <td>Total de alumnos</td>
-                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.students.text }}</td>
-                <td class="w120 has-text-right has-text-weight-bold">100%</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td class="pl-2">- de los cuales alumnas</td>
-                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.femaleStudent.text }}</td>
-                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.femaleStudentPercentage.text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td class="pl-2">- de los cuales alumnos</td>
-                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.maleStudent.text }}</td>
-                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.maleStudentPercentage.text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
-                <td>Grupos</td>
-                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.assistants.text }}</td>
-                <td class="w120 has-text-right has-text-weight-bold">-</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </b-collapse>
-    </div>
     <b-collapse class="card mb-4" animation="slide" aria-id="estadísticasBásicasDelPersonal" :open="printable">
       <div slot="trigger" slot-scope="props" class="card-header py-1" role="button" aria-controls="estadísticasBásicasDelPersonal">
         <table class="table is-fullwidth has-no-background">
