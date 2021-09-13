@@ -42,6 +42,9 @@
             emergencias en el sector educativo. La información aquí contenida permitirá una mejor coordinación, planeación, asignación de
             recursos y el desarrollo de mecanismos de respuesta más rápidos y efectivos.
           </p>
+          <p>
+            Los colores en el mapa siguen la semaforización a continuación, de acuerdo a la reapertura de escuelas reportadas.
+          </p>
           <p><strong>Leyenda</strong></p>
           <p>
             <span class="ml-1"><i class="square-danger-darker"></i> 0% - 70%</span>
