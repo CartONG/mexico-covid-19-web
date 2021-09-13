@@ -50,12 +50,10 @@ export interface SchoolCsvExportContent {
   'La escuela puede reorganizar los espacios educativos': string;
   'Se tiene instalado el comité participativo de salud escolar': string;
   'Total de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': string;
-  'Total de inasistencias de alumnos porque: Reportados con síntomas de contagio': string;
   'Total de inasistencias de alumnos porque: Casos de contagio (COVID 19) confirmados': string;
   'Total de inasistencias de alumnos porque: Se desconocen las causas': string;
   'Total de inasistencias de alumnos por otras causas': string;
   'Porcentaje de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': string;
-  'Porcentaje de inasistencias de alumnos porque: Reportados con síntomas de contagio': string;
   'Porcentaje de inasistencias de alumnos porque: Casos de contagio (COVID 19) confirmados': string;
   'Porcentaje de inasistencias de alumnos porque: Se desconocen las causas': string;
   'Porcentaje de inasistencias de alumnos por otras causas': string;
@@ -248,8 +246,6 @@ export const toSchoolCsvExportContent = (school: School): SchoolCsvExportContent
   'Total de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': toNumericDataSet(
     school.studentAbsenceMainReasons['1']
   ).rawText,
-  'Total de inasistencias de alumnos porque: Reportados con síntomas de contagio': toNumericDataSet(school.studentAbsenceMainReasons['2'])
-    .rawText,
   'Total de inasistencias de alumnos porque: Casos de contagio (COVID 19) confirmados': toNumericDataSet(
     school.studentAbsenceMainReasons['3']
   ).rawText,
@@ -257,9 +253,6 @@ export const toSchoolCsvExportContent = (school: School): SchoolCsvExportContent
   'Total de inasistencias de alumnos por otras causas': toNumericDataSet(school.studentAbsenceMainReasons['5']).rawText,
   'Porcentaje de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': toPercentageDataSet(
     school.studentAbsenceMainReasonsPercentages['1']
-  ).text,
-  'Porcentaje de inasistencias de alumnos porque: Reportados con síntomas de contagio': toPercentageDataSet(
-    school.studentAbsenceMainReasonsPercentages['2']
   ).text,
   'Porcentaje de inasistencias de alumnos porque: Casos de contagio (COVID 19) confirmados': toPercentageDataSet(
     school.studentAbsenceMainReasonsPercentages['3']

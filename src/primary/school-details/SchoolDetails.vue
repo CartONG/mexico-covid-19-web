@@ -113,12 +113,6 @@
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
-                <td>Reportados con síntomas de contagio</td>
-                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasons['2'].text }}</td>
-                <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['2'].text }}</td>
-                <td v-if="!printable" class="w40"></td>
-              </tr>
-              <tr>
                 <td>Casos de contagio (COVID 19) confirmados</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasons['3'].text }}</td>
                 <td class="w120 has-text-right has-text-weight-bold">{{ schoolDataSet.studentAbsenceMainReasonsPercentages['3'].text }}</td>

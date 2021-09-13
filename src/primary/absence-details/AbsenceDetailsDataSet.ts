@@ -64,14 +64,30 @@ export const toAbsenceDetailsDataSet = (
 
   const dataForAttendance =
     attendanceType === AttendanceType.STUDENT
-      ? [mainReasons['1'], mainReasons['2'], mainReasons['3'], mainReasons['4'], mainReasons['5']].map(toValue)
-      : [mainReasons['1'], 0, mainReasons['2'], mainReasons['3'], mainReasons['4']].map(toValue);
+      ? [mainReasons['1'], mainReasons['3'], mainReasons['4'], mainReasons['5']].map(toValue)
+      : [mainReasons['1'], mainReasons['2'], mainReasons['3'], mainReasons['4']].map(toValue);
+
+  const studentsLegendItems = [
+    { ...legendItemsForAttendance[0], value: toText(mainReasons['1']) },
+    { ...legendItemsForAttendance[2], value: toText(mainReasons['3']) },
+    { ...legendItemsForAttendance[3], value: toText(mainReasons['4']) },
+    { ...legendItemsForAttendance[4], value: toText(mainReasons['5']) },
+  ];
+
+  const teachersAndAdminsLegendItems = [
+    { ...legendItemsForAttendance[0], value: toText(mainReasons['1']) },
+    { ...legendItemsForAttendance[1], value: toText(mainReasons['2']) },
+    { ...legendItemsForAttendance[2], value: toText(mainReasons['3']) },
+    { ...legendItemsForAttendance[3], value: toText(mainReasons['4']) },
+  ];
+
+  const legendItems = attendanceType === AttendanceType.STUDENT ? studentsLegendItems : teachersAndAdminsLegendItems;
 
   return {
-    legendItems: legendItemsForAttendance.map((item, index) => ({ ...item, value: toText(mainReasons[(index + 1).toString()]) })),
+    legendItems,
     chart: {
       data: dataForAttendance,
-      colors: ['#b38e5d', '#9d2449', '#285c4d', '#C0C0C0', '#621132'],
+      colors: ['#b38e5d', '#285c4d', '#C0C0C0', '#621132'],
     },
     appendix: attendanceType === AttendanceType.PERSONAL ? '*distinto a docentes' : '',
   };
