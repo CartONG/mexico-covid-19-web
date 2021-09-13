@@ -17,12 +17,10 @@ export interface AdministrativeDivisionCsvExportContent {
   'Asistencia de docentes': string;
   'Asistencia del personal': string;
   'Total de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': string;
-  'Total de inasistencias de alumnos porque: Reportados con síntomas de contagio': string;
   'Total de inasistencias de alumnos porque: Casos de contagio (COVID 19) confirmados': string;
   'Total de inasistencias de alumnos porque: Se desconocen las causas': string;
   'Total de inasistencias de alumnos por otras causas': string;
   'Porcentaje de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': string;
-  'Porcentaje de inasistencias de alumnos porque: Reportados con síntomas de contagio': string;
   'Porcentaje de inasistencias de alumnos porque: Casos de contagio (COVID 19) confirmados': string;
   'Porcentaje de inasistencias de alumnos porque: Se desconocen las causas': string;
   'Porcentaje de inasistencias de alumnos por otras causas': string;
@@ -181,9 +179,6 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Total de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': toNumericDataSet(
     administrativeDivision.studentAbsenceMainReasons['1']
   ).rawText,
-  'Total de inasistencias de alumnos porque: Reportados con síntomas de contagio': toNumericDataSet(
-    administrativeDivision.studentAbsenceMainReasons['2']
-  ).rawText,
   'Total de inasistencias de alumnos porque: Casos de contagio (COVID 19) confirmados': toNumericDataSet(
     administrativeDivision.studentAbsenceMainReasons['3']
   ).rawText,
@@ -193,9 +188,6 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Total de inasistencias de alumnos por otras causas': toNumericDataSet(administrativeDivision.studentAbsenceMainReasons['5']).rawText,
   'Porcentaje de inasistencias de alumnos porque: Los padres de familia no enviaron a sus hijos a la escuela': toPercentageDataSet(
     administrativeDivision.studentAbsenceMainReasonsPercentages['1']
-  ).text,
-  'Porcentaje de inasistencias de alumnos porque: Reportados con síntomas de contagio': toPercentageDataSet(
-    administrativeDivision.studentAbsenceMainReasonsPercentages['2']
   ).text,
   'Porcentaje de inasistencias de alumnos porque: Casos de contagio (COVID 19) confirmados': toPercentageDataSet(
     administrativeDivision.studentAbsenceMainReasonsPercentages['3']
