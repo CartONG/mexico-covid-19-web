@@ -122,7 +122,7 @@ describe('SchoolDataSet', () => {
       foodSupportType: 'Reciben alimentos  por parte del Programa de Tiempo Completo - Quienes proporcionan los alimentos. Otros',
       foodSupportComment: '',
       theSchoolIsOurs: 'Si pertenece',
-      electricitySource: 'Planta de luz propria',
+      electricitySource: 'Planta de luz propia',
       internetAccess: 'La escuela cuenta con accesso a internet para uso de de alumnos, docentes y directivos',
     });
   });

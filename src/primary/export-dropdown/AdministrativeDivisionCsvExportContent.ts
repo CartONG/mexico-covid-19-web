@@ -146,12 +146,12 @@ export interface AdministrativeDivisionCsvExportContent {
   'La escuela no pertenece al programa La Escuela es nuestra (% de escuelas)': string;
   'Fuente principal de energía eléctrica : Conexión al servicio público': string;
   'Fuente principal de energía eléctrica : Paneles o celdas solares': string;
-  'Fuente principal de energía eléctrica : Planta de luz propria': string;
+  'Fuente principal de energía eléctrica : Planta de luz propia': string;
   'Fuente principal de energía eléctrica : Otra': string;
   'Fuente principal de energía eléctrica : No tiene': string;
   'Fuente principal de energía eléctrica : Conexión al servicio público (% de escuelas)': string;
   'Fuente principal de energía eléctrica : Paneles o celdas solares (% de escuelas)': string;
-  'Fuente principal de energía eléctrica : Planta de luz propria (% de escuelas)': string;
+  'Fuente principal de energía eléctrica : Planta de luz propia (% de escuelas)': string;
   'Fuente principal de energía eléctrica : Otra (% de escuelas)': string;
   'Fuente principal de energía eléctrica : No tiene (% de escuelas)': string;
   'Acceso a internet : La escuela cuenta con accesso a internet para uso de de alumnos, docentes y directivos': string;
@@ -470,7 +470,7 @@ export const toAdministrativeDivisionCsvExportContent = (
     .rawText,
   'Fuente principal de energía eléctrica : Paneles o celdas solares': toNumericDataSet(administrativeDivision.electricitySources['2'])
     .rawText,
-  'Fuente principal de energía eléctrica : Planta de luz propria': toNumericDataSet(administrativeDivision.electricitySources['3']).rawText,
+  'Fuente principal de energía eléctrica : Planta de luz propia': toNumericDataSet(administrativeDivision.electricitySources['3']).rawText,
   'Fuente principal de energía eléctrica : Otra': toNumericDataSet(administrativeDivision.electricitySources['4']).rawText,
   'Fuente principal de energía eléctrica : No tiene': toNumericDataSet(administrativeDivision.electricitySources['5']).rawText,
   'Fuente principal de energía eléctrica : Conexión al servicio público (% de escuelas)': toPercentageDataSet(
@@ -479,7 +479,7 @@ export const toAdministrativeDivisionCsvExportContent = (
   'Fuente principal de energía eléctrica : Paneles o celdas solares (% de escuelas)': toPercentageDataSet(
     administrativeDivision.electricitySourcesPercentages['2']
   ).text,
-  'Fuente principal de energía eléctrica : Planta de luz propria (% de escuelas)': toPercentageDataSet(
+  'Fuente principal de energía eléctrica : Planta de luz propia (% de escuelas)': toPercentageDataSet(
     administrativeDivision.electricitySourcesPercentages['3']
   ).text,
   'Fuente principal de energía eléctrica : Otra (% de escuelas)': toPercentageDataSet(
