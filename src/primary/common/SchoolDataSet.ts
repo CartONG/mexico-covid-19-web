@@ -183,7 +183,7 @@ const electricitySourceTexts: string[] = [
   '-',
   'Conexión al servicio público',
   'Paneles o celdas solares',
-  'Planta de luz propria',
+  'Planta de luz propia',
   'Otra',
   'No tiene',
 ];

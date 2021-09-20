@@ -1066,7 +1066,7 @@
                 <td v-if="!printable" class="w40"></td>
               </tr>
               <tr>
-                <td>Planta de luz propria</td>
+                <td>Planta de luz propia</td>
                 <td class="w200 has-text-right has-text-weight-bold">
                   {{ administrativeDivisionDataSet.electricitySources['3'].text }}
                 </td>
